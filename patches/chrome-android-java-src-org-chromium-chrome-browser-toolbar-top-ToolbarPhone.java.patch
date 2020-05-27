@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index 8803c290bda481fc04cb03a4f07ddcc3dd92e551..1ad4ba14169b7051ec387b91d62d5ac8ec089837 100644
+index 8ff0c85136a81f4a1905ea96456f9c5a6376b244..5237749475a19b67ce46b0d2ff2381f2c647ea70 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-@@ -92,7 +92,7 @@ import java.util.List;
+@@ -91,7 +91,7 @@ import java.util.List;
  /**
   * Phone specific toolbar implementation.
   */
@@ -11,7 +11,7 @@ index 8803c290bda481fc04cb03a4f07ddcc3dd92e551..1ad4ba14169b7051ec387b91d62d5ac8
                                                             NewTabPage.OnSearchBoxScrollListener,
                                                             TabCountObserver {
      /** The amount of time transitioning from one theme color to another should take in ms. */
-@@ -378,9 +378,11 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+@@ -377,9 +377,11 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
  
              setLayoutTransition(null);
  
@@ -23,7 +23,7 @@ index 8803c290bda481fc04cb03a4f07ddcc3dd92e551..1ad4ba14169b7051ec387b91d62d5ac8
  
              inflateTabSwitchingResources();
  
-@@ -426,10 +428,12 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+@@ -425,10 +427,12 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
      /**
       * Set the background color of the location bar to appropriately match the theme color.
       */
@@ -37,7 +37,7 @@ index 8803c290bda481fc04cb03a4f07ddcc3dd92e551..1ad4ba14169b7051ec387b91d62d5ac8
      }
  
      /**
-@@ -550,6 +554,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+@@ -549,6 +553,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
                          EventConstants.PARTNER_HOME_PAGE_BUTTON_PRESSED);
              }
          }
@@ -45,7 +45,7 @@ index 8803c290bda481fc04cb03a4f07ddcc3dd92e551..1ad4ba14169b7051ec387b91d62d5ac8
      }
  
      @Override
-@@ -716,7 +721,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+@@ -715,7 +720,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
       * @return The right bounds of the location bar after accounting for any visible left buttons.
       */
      private int getBoundsAfterAccountingForRightButtons() {
@@ -54,7 +54,7 @@ index 8803c290bda481fc04cb03a4f07ddcc3dd92e551..1ad4ba14169b7051ec387b91d62d5ac8
      }
  
      private void updateToolbarBackground(int color) {
-@@ -2172,6 +2177,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+@@ -2168,6 +2173,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
          } else {
              populateUrlClearFocusingAnimatorSet(animators);
          }
@@ -62,7 +62,7 @@ index 8803c290bda481fc04cb03a4f07ddcc3dd92e551..1ad4ba14169b7051ec387b91d62d5ac8
          mUrlFocusLayoutAnimator = new AnimatorSet();
          mUrlFocusLayoutAnimator.playTogether(animators);
  
-@@ -2850,6 +2856,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+@@ -2846,6 +2852,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
  
      @Override
      public void onBottomToolbarVisibilityChanged(boolean isVisible) {
