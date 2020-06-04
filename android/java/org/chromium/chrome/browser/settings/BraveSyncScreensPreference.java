@@ -80,7 +80,7 @@ import org.chromium.chrome.browser.qrreader.BarcodeTracker;
 import org.chromium.chrome.browser.qrreader.BarcodeTrackerFactory;
 import org.chromium.chrome.browser.qrreader.CameraSource;
 import org.chromium.chrome.browser.qrreader.CameraSourcePreview;
-import org.chromium.chrome.browser.settings.BravePreferenceFragment;
+import org.chromium.components.browser_ui.settings.BravePreferenceFragment;
 import org.chromium.chrome.browser.settings.SettingsActivity;
 import org.chromium.chrome.browser.sync.BraveSyncService;
 import org.chromium.ui.KeyboardVisibilityDelegate;

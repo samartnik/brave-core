@@ -1,0 +1,19 @@
+diff --git a/components/browser_ui/settings/android/BUILD.gn b/components/browser_ui/settings/android/BUILD.gn
+index 806560d5d1937dc6176256bc4f1f5e9bac8e143e..62764b17ee09d935dd3d4557e4017d80abb91b53 100644
+--- a/components/browser_ui/settings/android/BUILD.gn
++++ b/components/browser_ui/settings/android/BUILD.gn
+@@ -20,6 +20,7 @@ android_library("java") {
+     "widget/java/src/org/chromium/components/browser_ui/settings/SpinnerPreference.java",
+     "widget/java/src/org/chromium/components/browser_ui/settings/TextMessagePreference.java",
+   ]
++  sources += brave_components_browser_ui_settings_android_java
+   deps = [
+     ":java_resources",
+     "//base:base_java",
+@@ -59,5 +60,6 @@ android_resources("java_resources") {
+     "java/res/values/dimens.xml",
+     "java/res/values/styles.xml",
+   ]
++  sources += brave_components_browser_ui_settings_android_java_resources
+   custom_package = "org.chromium.components.browser_ui.settings"
+ }

@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/privacy/settings/PrivacySettings.java b/chrome/android/java/src/org/chromium/chrome/browser/privacy/settings/PrivacySettings.java
-index b000d284cb42cc7f84750bd810bece20190aef65..4b4c5ee422a4467075bf7f219307789086cfb425 100644
+index b000d284cb42cc7f84750bd810bece20190aef65..323686a8a2edc8d174f787874124ba93f667e4f2 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/privacy/settings/PrivacySettings.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/privacy/settings/PrivacySettings.java
 @@ -35,7 +35,7 @@ import org.chromium.ui.text.SpanApplier;
@@ -7,7 +7,7 @@ index b000d284cb42cc7f84750bd810bece20190aef65..4b4c5ee422a4467075bf7f2193077890
   */
  public class PrivacySettings
 -        extends PreferenceFragmentCompat implements Preference.OnPreferenceChangeListener {
-+        extends org.chromium.chrome.browser.settings.BravePreferenceFragment implements Preference.OnPreferenceChangeListener {
++        extends org.chromium.components.browser_ui.settings.BravePreferenceFragment implements Preference.OnPreferenceChangeListener {
      private static final String PREF_CAN_MAKE_PAYMENT = "can_make_payment";
      private static final String PREF_NETWORK_PREDICTIONS = "preload_pages";
      private static final String PREF_USAGE_STATS = "usage_stats_reporting";

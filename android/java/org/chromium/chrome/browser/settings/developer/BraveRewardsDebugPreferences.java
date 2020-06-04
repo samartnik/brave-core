@@ -14,7 +14,7 @@ import androidx.preference.Preference;
 
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.BraveRelaunchUtils;
-import org.chromium.chrome.browser.settings.BravePreferenceFragment;
+import org.chromium.components.browser_ui.settings.BravePreferenceFragment;
 import org.chromium.components.browser_ui.settings.SettingsUtils;
 import org.chromium.chrome.browser.util.BraveDbUtil;
 

@@ -13,7 +13,7 @@ import org.chromium.chrome.browser.BraveRelaunchUtils;
 import org.chromium.chrome.browser.preferences.BravePrefServiceBridge;
 import org.chromium.components.browser_ui.settings.ChromeSwitchPreference;
 import org.chromium.components.browser_ui.settings.SettingsUtils;
-import org.chromium.chrome.browser.settings.BravePreferenceFragment;
+import org.chromium.components.browser_ui.settings.BravePreferenceFragment;
 
 public class BackgroundVideoPlaybackPreference
         extends BravePreferenceFragment implements Preference.OnPreferenceChangeListener {

@@ -687,7 +687,6 @@ brave_java_resources = [
   "java/res/layout-land/brave_rewards_site_banner.xml",
   "java/res/layout-land/verify_wallet_activity.xml",
   "java/res/menu/new_tab_menu.xml",
-  "java/res/menu/exit_settings_menu.xml",
   "java/res/values/brave_ids.xml",
   "java/res/values/brave_styles.xml",
   "java/res/values/brave_colors.xml",
@@ -719,4 +718,8 @@ brave_java_resources = [
   "java/res/xml/brave_site_settings_preferences.xml",
   "java/res/xml/brave_privacy_preferences.xml",
   "java/res/xml/appearance_preferences.xml",
+]
+
+brave_components_browser_ui_settings_android_java_resources = [
+  "java/res/menu/exit_settings_menu.xml",
 ]

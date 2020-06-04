@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/autofill/settings/AutofillPaymentMethodsFragment.java b/chrome/android/java/src/org/chromium/chrome/browser/autofill/settings/AutofillPaymentMethodsFragment.java
-index 6bc1a9c4d0510f9b36c2ce100ab51d6daceb8f9d..e22bfaa55100caef0a9140f0c13df0b1bd4f7a42 100644
+index 6bc1a9c4d0510f9b36c2ce100ab51d6daceb8f9d..257f605f476289ec4e54cb791b81f5f0f04c5f1a 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/autofill/settings/AutofillPaymentMethodsFragment.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/autofill/settings/AutofillPaymentMethodsFragment.java
 @@ -30,7 +30,7 @@ import org.chromium.components.browser_ui.settings.ChromeSwitchPreference;
@@ -7,7 +7,7 @@ index 6bc1a9c4d0510f9b36c2ce100ab51d6daceb8f9d..e22bfaa55100caef0a9140f0c13df0b1
   * payment apps.
   */
 -public class AutofillPaymentMethodsFragment extends PreferenceFragmentCompat
-+public class AutofillPaymentMethodsFragment extends org.chromium.chrome.browser.settings.BravePreferenceFragment
++public class AutofillPaymentMethodsFragment extends org.chromium.components.browser_ui.settings.BravePreferenceFragment
          implements PersonalDataManager.PersonalDataManagerObserver {
      private static final String PREF_PAYMENT_APPS = "payment_apps";
  

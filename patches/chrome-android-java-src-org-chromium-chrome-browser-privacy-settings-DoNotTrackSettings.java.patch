@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/privacy/settings/DoNotTrackSettings.java b/chrome/android/java/src/org/chromium/chrome/browser/privacy/settings/DoNotTrackSettings.java
-index ce1e70ab28a2c9d0be46f51fe1a28d7299b2390a..8f015f4f29c268244d5cc8d29f52d43a951275ab 100644
+index ce1e70ab28a2c9d0be46f51fe1a28d7299b2390a..444ddd51e2b1ec2098fc386b49a6bb1d92cab358 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/privacy/settings/DoNotTrackSettings.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/privacy/settings/DoNotTrackSettings.java
 @@ -17,7 +17,7 @@ import org.chromium.components.browser_ui.settings.SettingsUtils;
@@ -7,7 +7,7 @@ index ce1e70ab28a2c9d0be46f51fe1a28d7299b2390a..8f015f4f29c268244d5cc8d29f52d43a
   * Fragment to manage 'Do Not Track' preference and to explain to the user what it does.
   */
 -public class DoNotTrackSettings extends PreferenceFragmentCompat {
-+public class DoNotTrackSettings extends org.chromium.chrome.browser.settings.BravePreferenceFragment {
++public class DoNotTrackSettings extends org.chromium.components.browser_ui.settings.BravePreferenceFragment {
      // Must match key in do_not_track_preferences.xml.
      private static final String PREF_DO_NOT_TRACK_SWITCH = "do_not_track_switch";
  

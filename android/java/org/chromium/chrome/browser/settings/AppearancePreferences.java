@@ -23,7 +23,7 @@ import org.chromium.chrome.browser.preferences.BravePreferenceKeys;
 import org.chromium.chrome.browser.toolbar.bottom.BottomToolbarConfiguration;
 import org.chromium.components.browser_ui.settings.ChromeSwitchPreference;
 import org.chromium.components.browser_ui.settings.SettingsUtils;
-import org.chromium.chrome.browser.settings.BravePreferenceFragment;
+import org.chromium.components.browser_ui.settings.BravePreferenceFragment;
 import org.chromium.ui.base.DeviceFormFactor;
 
 public class AppearancePreferences extends BravePreferenceFragment

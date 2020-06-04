@@ -11,7 +11,7 @@ import androidx.preference.Preference;
 import org.chromium.chrome.R;
 import org.chromium.components.browser_ui.settings.ChromeSwitchPreference;
 import org.chromium.components.browser_ui.settings.SettingsUtils;
-import org.chromium.chrome.browser.settings.BravePreferenceFragment;
+import org.chromium.components.browser_ui.settings.BravePreferenceFragment;
 import org.chromium.chrome.browser.partnercustomizations.CloseBraveManager;
 
 public class ClosingAllTabsClosesBravePreference

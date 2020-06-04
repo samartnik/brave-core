@@ -94,7 +94,6 @@ brave_java_sources = [
   "../../brave/android/java/org/chromium/chrome/browser/settings/BraveCustomTabsPreference.java",
   "../../brave/android/java/org/chromium/chrome/browser/settings/BraveLicensePreferences.java",
   "../../brave/android/java/org/chromium/chrome/browser/settings/BraveMainPreferencesBase.java",
-  "../../brave/android/java/org/chromium/chrome/browser/settings/BravePreferenceFragment.java",
   "../../brave/android/java/org/chromium/chrome/browser/settings/BravePrivateSearchEnginePreference.java",
   "../../brave/android/java/org/chromium/chrome/browser/settings/BraveRewardsPreferences.java",
   "../../brave/android/java/org/chromium/chrome/browser/settings/BraveRewardsResetPreference.java",
@@ -150,3 +149,7 @@ if (brave_rewards_enabled) {
 if (brave_ads_enabled) {
   brave_java_sources += brave_ads_java_sources
 }
+
+brave_components_browser_ui_settings_android_java = [
+  "//brave/components/browser_ui/settings/android/java/src/org/chromium/components/browser_ui/settings/BravePreferenceFragment.java",
+]
