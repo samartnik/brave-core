@@ -9,6 +9,7 @@ import { DialogFrame } from '../../ui/components/checkout/dialogFrame'
 import { EnableRewardsPanel } from '../../ui/components/checkout/enableRewardsPanel'
 import { PaymentMethodPanel } from '../../ui/components/checkout/paymentMethodPanel'
 import { LoadingPanel } from '../../ui/components/checkout/loadingPanel'
+import { ErrorPanel } from '../../ui/components/checkout/errorPanel'
 import { AddFundsPanel } from '../../ui/components/checkout/addFundsPanel'
 import { PaymentProcessing } from '../../ui/components/checkout/paymentProcessing'
 import { PaymentComplete } from '../../ui/components/checkout/paymentComplete'
@@ -18,6 +19,7 @@ import {
   OrderInfo,
   ExchangeRateInfo,
   Settings,
+  ServiceError,
   Host
 } from '../interfaces'
 
@@ -65,6 +67,7 @@ export function App (props: AppProps) {
   const [walletInfo, setWalletInfo] = React.useState<WalletInfo | undefined>()
   const [orderInfo, setOrderInfo] = React.useState<OrderInfo | undefined>()
   const [settings, setSettings] = React.useState<Settings | undefined>()
+  const [serviceError, setServiceError] = React.useState<ServiceError | undefined>()
 
   React.useEffect(() => {
     return props.host.addListener((state) => {
@@ -72,6 +75,7 @@ export function App (props: AppProps) {
       setOrderInfo(state.orderInfo)
       setWalletInfo(state.walletInfo)
       setSettings(state.settings)
+      setServiceError(state.serviceError)
 
       switch (state.paymentStatus) {
         case 'processing':
@@ -86,6 +90,17 @@ export function App (props: AppProps) {
 
   const onClose = () => { props.host.cancelPayment() }
 
+  if (serviceError) {
+    return (
+      <DialogFrame showTitle={true} onClose={onClose}>
+        <ErrorPanel
+          text={locale.get('errorHasOccurred')}
+          details={`(${ serviceError.type }:${ serviceError.status })`}
+        />
+      </DialogFrame>
+    )
+  }
+
   if (
     !settings ||
     !rateInfo ||
@@ -93,20 +108,16 @@ export function App (props: AppProps) {
     !walletInfo ||
     walletInfo.state === 'creating'
   ) {
-    const loadingText = walletInfo && walletInfo.state === 'creating'
-      ? locale.get('creatingWallet')
-      : ''
-
     return (
-      <DialogFrame showTitle={true} showBackground={false} onClose={onClose}>
-        <LoadingPanel text={loadingText} />
+      <DialogFrame showTitle={true} onClose={onClose}>
+        <LoadingPanel text={''} />
       </DialogFrame>
     )
   }
 
   if (!settings.rewardsEnabled) {
     return (
-      <DialogFrame showTitle={false} showBackground={true} onClose={onClose}>
+      <DialogFrame showBackground={true} onClose={onClose}>
         <EnableRewardsPanel onEnableRewards={props.host.enableRewards} />
       </DialogFrame>
     )
@@ -138,7 +149,7 @@ export function App (props: AppProps) {
     <DialogFrame
       showTitle={showTitle}
       showBackground={showBackground}
-      onClose={onClose}
+      onClose={flowState === 'payment-processing' ? undefined : onClose}
     >
       {
         flowState === 'start' ?

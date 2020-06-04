@@ -38,12 +38,18 @@ export interface Settings {
   rewardsEnabled: boolean
 }
 
+export interface ServiceError {
+  type: string
+  status: number
+}
+
 export interface HostState {
   walletInfo?: WalletInfo
   exchangeRateInfo?: ExchangeRateInfo
   orderInfo?: OrderInfo
   settings?: Settings
   paymentStatus?: PaymentStatus
+  serviceError?: ServiceError
 }
 
 export type HostListener = (state: HostState) => void

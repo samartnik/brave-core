@@ -8,6 +8,7 @@
 #include <string>
 #include <utility>
 
+#include "base/time/time.h"
 #include "brave/browser/brave_rewards/rewards_service_factory.h"
 #include "chrome/browser/profiles/profile.h"
 
@@ -44,6 +45,15 @@ RewardsService* CheckoutDialogMessageHandler::GetRewardsService() {
     }
   }
   return rewards_service_;
+}
+
+void CheckoutDialogMessageHandler::FireServiceError(
+    const std::string& type,
+    int status) {
+  base::Value response(base::Value::Type::DICTIONARY);
+  response.SetStringKey("type", type);
+  response.SetIntKey("status", status);
+  FireWebUIListener("serviceError", response);
 }
 
 void CheckoutDialogMessageHandler::RegisterMessages() {
@@ -111,7 +121,6 @@ void CheckoutDialogMessageHandler::OnPaymentAborted() {
       FireWebUIListener("dialogDismissed");
     }
   }
-  // TODO(zenparsing): Handle PaymentState::InProgress
 }
 
 void CheckoutDialogMessageHandler::OnPaymentConfirmed() {
@@ -123,6 +132,11 @@ void CheckoutDialogMessageHandler::OnPaymentConfirmed() {
 
 void CheckoutDialogMessageHandler::OnGetWalletBalance(
     const base::ListValue* args) {
+  if (Profile::FromWebUI(web_ui())->IsOffTheRecord()) {
+    AllowJavascript();
+    FireServiceError("off-the-record", 0);
+    return;
+  }
   if (auto* service = GetRewardsService()) {
     AllowJavascript();
     service->FetchBalance(BindOnce(
@@ -181,9 +195,10 @@ void CheckoutDialogMessageHandler::OnCreateWallet(
 
 void CheckoutDialogMessageHandler::OnCancelPayment(
     const base::ListValue* args) {
-  // TODO(zenparsing): Handle PaymentState::InProgress
-  AllowJavascript();
-  FireWebUIListener("dialogDismissed");
+  if (payment_state_ != PaymentState::InProgress) {
+    AllowJavascript();
+    FireWebUIListener("dialogDismissed");
+  }
 }
 
 void CheckoutDialogMessageHandler::OnGetOrderInfo(
@@ -200,6 +215,7 @@ void CheckoutDialogMessageHandler::OnPayWithWallet(
     const base::ListValue* args) {
   DCHECK(payment_state_ == PaymentState::None);
   payment_state_ = PaymentState::InProgress;
+
   // TODO(zenparsing): Call GetRewardsService()->ProcessSKU,
   // providing a vector of SKUOrderItems. The rewards service
   // currently uses only the "sku" and "quantity" fields. The
@@ -208,16 +224,15 @@ void CheckoutDialogMessageHandler::OnPayWithWallet(
   // the total that was displayed to the user so that we don't
   // inadvertantly charge them the incorrect amount.
 
-  // ProcessSKU returns an SKUOrder pointer. Do we need to
-  // check the "status" for FULFILLED?
+  // TODO(zenparsing): ProcessSKU returns an SKUOrder pointer. Do we
+  // need to check the "status" for FULFILLED?
   std::string order_id = "temp_order_id";
   controller_->NotifyPaymentReady(order_id);
 }
 
 void CheckoutDialogMessageHandler::OnPayWithCreditCard(
     const base::ListValue* args) {
-  // TODO(zenparsing): Implementation required for credit card
-  // integration
+  // NOTE: Implementation required for credit card integration
   NOTREACHED();
 }
 
@@ -238,12 +253,13 @@ void CheckoutDialogMessageHandler::FetchBalanceCallback(
     }
     response.SetKey("rates", std::move(rates_dict));
 
+    response.SetDoubleKey(
+        "lastUpdated",
+        base::Time::Now().ToJsTimeIgnoringNull());
+
     FireWebUIListener("walletBalanceUpdated", response);
   } else {
-    base::Value response(base::Value::Type::DICTIONARY);
-    response.SetStringKey("type", "fetch-balance-error");
-    response.SetIntKey("status", status);
-    FireWebUIListener("serviceError", response);
+    FireServiceError("fetch-balance-error", status);
   }
 }
 
@@ -280,10 +296,7 @@ void CheckoutDialogMessageHandler::GetExternalWalletCallback(
 
     FireWebUIListener("externalWalletUpdated", response);
   } else {
-    base::Value response(base::Value::Type::DICTIONARY);
-    response.SetStringKey("type", "get-external-wallet-error");
-    response.SetIntKey("status", status);
-    FireWebUIListener("serviceError", response);
+    FireServiceError("get-external-wallet-error", status);
   }
 }
 

@@ -15,9 +15,7 @@ BraveCheckoutUI::BraveCheckoutUI(
     content::WebUI* web_ui,
     const std::string& name)
     : ConstrainedWebDialogUI(web_ui) {
-  // TODO(zenparsing): Handle profile->IsOffTheRecord()?
   Profile* profile = Profile::FromWebUI(web_ui);
-
   content::WebUIDataSource::Add(profile, CreateBasicUIHTMLSource(
       profile,
       name,

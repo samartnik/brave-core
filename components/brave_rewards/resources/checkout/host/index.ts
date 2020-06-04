@@ -62,8 +62,6 @@ function createWalletCollator () {
 function addWebUIListeners (listeners: object) {
   for (const key of Object.keys(listeners)) {
     self.cr.addWebUIListener(key, (event: any) => {
-      // TODO(zenparsing): Disable logging in production?
-      console.log(key, event)
       listeners[key](event)
     })
   }
@@ -88,10 +86,9 @@ export function createHost (): Host {
     },
 
     walletBalanceUpdated (event: any) {
-      const total = event.total as number
+      const total = Number(event.total)
       const rates = event.rates as Record<string, number>
-      // TODO(zenparsing): Get lastUpdated from service
-      const lastUpdated = new Date().toISOString()
+      const lastUpdated = new Date(Number(event.lastUpdated)).toISOString()
 
       stateManager.update({
         walletInfo: walletCollator.setBalance(total),
@@ -140,8 +137,13 @@ export function createHost (): Host {
     },
 
     serviceError (event: any) {
-      // TODO(zenparsing): Display an error UI
       console.error(event)
+      stateManager.update({
+        serviceError: {
+          type: String(event.type),
+          status: Number(event.status)
+        }
+      })
     },
 
     dialogDismissed () {
@@ -156,7 +158,6 @@ export function createHost (): Host {
   chrome.send('getExternalWallet')
   chrome.send('getOrderInfo')
 
-  // TODO(zenparsing): Is this required?
   self.i18nTemplate.process(document, self.loadTimeData)
 
   return {

@@ -869,7 +869,7 @@ void CustomizeWebUIHTMLSource(const std::string &name,
         { "enableRewardsLearnMore", IDS_BRAVE_REWARDS_CHECKOUT_ENABLE_REWARDS_LEARN_MORE },  // NOLINT
         { "enableRewardsButtonText", IDS_BRAVE_REWARDS_CHECKOUT_ENABLE_REWARDS_BUTTON_TEXT },  // NOLINT
         { "enableRewardsTerms", IDS_BRAVE_REWARDS_CHECKOUT_ENABLE_REWARDS_TERMS },  // NOLINT
-        { "creatingWallet", IDS_BRAVE_UI_BRAVE_REWARDS_CREATING_TEXT },
+        { "errorHasOccurred", IDS_BRAVE_REWARDS_CHECKOUT_ERROR_HAS_OCCURRED },
       }
     }, {
       std::string("rewards-internals"), {

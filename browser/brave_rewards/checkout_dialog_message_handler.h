@@ -51,6 +51,7 @@ class CheckoutDialogMessageHandler
 
  private:
   RewardsService* GetRewardsService();
+  void FireServiceError(const std::string& type, int status);
 
   // Message handlers:
   void OnGetWalletBalance(const base::ListValue* args);

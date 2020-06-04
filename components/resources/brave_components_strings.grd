@@ -431,6 +431,7 @@
       <message name="IDS_BRAVE_REWARDS_CHECKOUT_ENABLE_REWARDS_LEARN_MORE" desc="">&lt;a href="javascript:void 0"&gt;Learn more.&lt;/a&gt;</message>
       <message name="IDS_BRAVE_REWARDS_CHECKOUT_ENABLE_REWARDS_BUTTON_TEXT" desc="">Enable Brave Rewards</message>
       <message name="IDS_BRAVE_REWARDS_CHECKOUT_ENABLE_REWARDS_TERMS" desc="">By clicking Enable Brave Rewards, you agree to &lt;a target="_blank" href="https://basicattentiontoken.org/user-terms-of-service"&gt;Brave Reward’s Terms of Service&lt;/a&gt;.</message>
+      <message name="IDS_BRAVE_REWARDS_CHECKOUT_ERROR_HAS_OCCURRED" desc="">Hmmm... Something went wrong.</message>
 
       <!-- WebUI brave ui resources -->
       <message name="IDS_BRAVE_UI_ABOUT" desc="">about</message>
