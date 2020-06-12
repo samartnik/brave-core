@@ -1,0 +1,15 @@
+diff --git a/services/network/url_loader.cc b/services/network/url_loader.cc
+index c9e8660da7abc1dda24720457aa006299ad6fe4e..1a0ebabb5b6d4634b7e94f1be1d8b07e7b620cd6 100644
+--- a/services/network/url_loader.cc
++++ b/services/network/url_loader.cc
+@@ -516,8 +516,8 @@ URLLoader::URLLoader(
+              !request.trusted_params->isolation_info.IsEmpty()) {
+     url_request_->set_isolation_info(request.trusted_params->isolation_info);
+     if (request.credentials_mode != network::mojom::CredentialsMode::kOmit) {
+-      DCHECK(url_request_->isolation_info().site_for_cookies().IsEquivalent(
+-          request.site_for_cookies));
++//      DCHECK(url_request_->isolation_info().site_for_cookies().IsEquivalent(
++//          request.site_for_cookies));
+     }
+   } else if (factory_params_->automatically_assign_isolation_info) {
+     url::Origin origin = url::Origin::Create(request.url);
