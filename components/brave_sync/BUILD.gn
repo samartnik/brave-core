@@ -82,5 +82,6 @@ source_set("brave_sync") {
     ":prefs",
     "buildflags",
     "//base",
+    "//brave/common:network_constants",
   ]
 }
