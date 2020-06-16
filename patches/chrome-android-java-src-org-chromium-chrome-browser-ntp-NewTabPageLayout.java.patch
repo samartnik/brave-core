@@ -1,0 +1,13 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ntp/NewTabPageLayout.java b/chrome/android/java/src/org/chromium/chrome/browser/ntp/NewTabPageLayout.java
+index 36a8f1b16b9d27afe611df9632887504a7b91e55..1d225782d5b07f17474c84f4aa986391e878e6b7 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/ntp/NewTabPageLayout.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/ntp/NewTabPageLayout.java
+@@ -61,7 +61,7 @@ import org.chromium.ui.vr.VrModeObserver;
+  * Layout for the new tab page. This positions the page elements in the correct vertical positions.
+  * There are no separate phone and tablet UIs; this layout adapts based on the available space.
+  */
+-public class NewTabPageLayout extends LinearLayout implements TileGroup.Observer, VrModeObserver {
++public class NewTabPageLayout extends android.widget.FrameLayout implements TileGroup.Observer, VrModeObserver {
+     private static final String TAG = "NewTabPageLayout";
+     // Used to signify the cached resource value is unset.
+     private static final int UNSET_RESOURCE_FLAG = -1;

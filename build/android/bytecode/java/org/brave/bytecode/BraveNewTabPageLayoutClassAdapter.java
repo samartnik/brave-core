@@ -15,12 +15,12 @@ public class BraveNewTabPageLayoutClassAdapter extends BraveClassVisitor {
 
     public BraveNewTabPageLayoutClassAdapter(ClassVisitor visitor) {
         super(visitor);
-        makeProtectedMethod(sAndroidSyncSettingsClassName, "insertSiteSectionView");
-        addMethodAnnotation(sBraveAndroidSyncSettingsClassName, "insertSiteSectionView",
+        makePublicMethod(sNewTabPageLayoutClassName, "insertSiteSectionView");
+        addMethodAnnotation(sBraveNewTabPageLayoutClassName, "insertSiteSectionView",
                 "Ljava/lang/Override;");
 
-        makeProtectedMethod(sAndroidSyncSettingsClassName, "getMaxRowsForMostVisitedTiles");
-        addMethodAnnotation(sBraveAndroidSyncSettingsClassName, "getMaxRowsForMostVisitedTiles",
+        makePublicMethod(sNewTabPageLayoutClassName, "getMaxRowsForMostVisitedTiles");
+        addMethodAnnotation(sBraveNewTabPageLayoutClassName, "getMaxRowsForMostVisitedTiles",
                 "Ljava/lang/Override;");
 
         deleteField(sBraveNewTabPageLayoutClassName, "mSiteSectionView");
