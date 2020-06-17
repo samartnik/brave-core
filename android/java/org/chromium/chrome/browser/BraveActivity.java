@@ -100,11 +100,6 @@ public abstract class BraveActivity<C extends ChromeActivityComponent> extends C
     }
 
     @Override
-    public void onStartWithNative() {
-        super.onStartWithNative();
-    }
-
-    @Override
     public boolean onMenuOrKeyboardAction(int id, boolean fromMenu) {
         final TabImpl currentTab = (TabImpl) getActivityTab();
         // Handle items replaced by Brave.
