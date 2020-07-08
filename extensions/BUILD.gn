@@ -14,6 +14,7 @@ if (is_android || is_ios) {
       "//components/url_pattern_index",
       "//extensions/buildflags",
       "//extensions/common:common_constants",
+      "//skia",
       "//url",
     ]
   }
