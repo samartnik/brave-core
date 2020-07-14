@@ -10,7 +10,8 @@ import os
 import subprocess
 import sys
 
-from util import build_utils
+sys.path.append('../../build/android/gyp/util')
+import build_utils
 
 
 def _AddSwitch(parser, val):
