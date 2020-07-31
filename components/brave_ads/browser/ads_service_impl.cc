@@ -168,7 +168,9 @@ bool ResetOnFileTaskRunner(const base::FilePath& path) {
     recursive = false;
   }
 
-  return base::DeleteFile(path, recursive);
+  if (recursive)
+    return base::DeletePathRecursively(path);
+  return base::DeleteFile(path);
 }
 
 net::NetworkTrafficAnnotationTag GetNetworkTrafficAnnotationTag() {

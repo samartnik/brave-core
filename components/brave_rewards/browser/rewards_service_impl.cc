@@ -213,7 +213,7 @@ std::string LoadOnFileTaskRunner(const base::FilePath& path) {
 }
 
 bool ResetOnFileTaskRunner(const base::FilePath& path) {
-  return base::DeleteFile(path, false);
+  return base::DeleteFile(path);
 }
 
 bool ResetOnFilesTaskRunner(const std::vector<base::FilePath>& paths) {
@@ -2578,7 +2578,7 @@ bool RewardsServiceImpl::ClearDiagnosticLogOnFileTaskRunner(
 
   diagnostic_log_.Close();
 
-  return base::DeleteFile(path, false);
+  return base::DeleteFile(path);
 }
 
 void RewardsServiceImpl::OnClearDiagnosticLogOnFileTaskRunner(
