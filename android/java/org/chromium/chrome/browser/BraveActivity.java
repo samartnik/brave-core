@@ -34,6 +34,7 @@ import org.chromium.base.task.TaskTraits;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.BraveHelper;
 import org.chromium.chrome.browser.BraveSyncReflectionUtils;
+import org.chromium.chrome.browser.CrossPromotionalModalDialogFragment;
 import org.chromium.chrome.browser.bookmarks.BookmarkBridge;
 import org.chromium.chrome.browser.bookmarks.BookmarkModel;
 import org.chromium.chrome.browser.dependency_injection.ChromeActivityComponent;
@@ -43,7 +44,6 @@ import org.chromium.chrome.browser.onboarding.OnboardingActivity;
 import org.chromium.chrome.browser.onboarding.OnboardingPrefManager;
 import org.chromium.chrome.browser.preferences.BravePreferenceKeys;
 import org.chromium.chrome.browser.preferences.Pref;
-import org.chromium.chrome.browser.preferences.PrefServiceBridge;
 import org.chromium.chrome.browser.preferences.SharedPreferencesManager;
 import org.chromium.chrome.browser.rate.RateDialogFragment;
 import org.chromium.chrome.browser.rate.RateUtils;
@@ -59,19 +59,15 @@ import org.chromium.chrome.browser.tabmodel.TabModelUtils;
 import org.chromium.chrome.browser.toolbar.top.BraveToolbarLayout;
 import org.chromium.chrome.browser.util.BraveDbUtil;
 import org.chromium.chrome.browser.util.BraveReferrer;
+import org.chromium.chrome.browser.util.PackageUtils;
 import org.chromium.components.bookmarks.BookmarkId;
 import org.chromium.components.bookmarks.BookmarkType;
 import org.chromium.components.embedder_support.util.UrlConstants;
+import org.chromium.components.user_prefs.UserPrefs;
 import org.chromium.ui.widget.Toast;
-import org.chromium.chrome.browser.util.PackageUtils;
-import org.chromium.chrome.browser.onboarding.OnboardingPrefManager;
-import org.chromium.chrome.browser.onboarding.OnboardingActivity;
-import org.chromium.chrome.browser.CrossPromotionalModalDialogFragment;
 
 import java.util.Calendar;
 import java.util.Date;
-
-import java.util.Calendar;
 
 /**
  * Brave's extension for ChromeActivity
