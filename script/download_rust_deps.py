@@ -66,16 +66,16 @@ def download_and_unpack_rust_deps(platform):
 
 def get_android_api_level(target_arch):
     return {
-        'arm': '19',
+        'arm': '21',
         'arm64': '24',
-        'x86': '19',
+        'x86': '21',
         'x86_64': '24',
     }[target_arch]
 
 
 def get_android_target(target_arch):
     return {
-        'arm': 'arm-linux-androideabi',
+        'arm': 'armv7a-linux-androideabi',
         'arm64': 'aarch64-linux-android',
         'x86': 'i686-linux-android',
         'x86_64': 'x86_64-linux-android',
@@ -97,24 +97,6 @@ def make_standalone_toolchain_for_android():
     fp = open(config_path, "w+")
 
     for target_arch in ['arm', 'arm64', 'x86', 'x86_64']:
-        toolchain_path = os.path.join(RUSTUP_PATH, 'toolchains', target_arch)
-
-        api_level = get_android_api_level(target_arch)
-
-        # Make standalone Android toolchain for target_arch
-        toolchain_args = []
-        toolchain_args.append(make_standalone_toolchain)
-        toolchain_args.append("--force")
-        toolchain_args.append("--install-dir=" + toolchain_path)
-        toolchain_args.append("--api=" + api_level)
-        toolchain_args.append("--arch=" + target_arch)
-
-        try:
-            subprocess.check_call(toolchain_args, env=None)
-        except subprocess.CalledProcessError as e:
-            print(e.output)
-            raise e
-
         # Add target to rustup config
         fp.write("[target." + get_android_target(target_arch) + "]\r\n")
         fp.write("linker = \"" + get_android_linker(target_arch) + "\"\r\n")
