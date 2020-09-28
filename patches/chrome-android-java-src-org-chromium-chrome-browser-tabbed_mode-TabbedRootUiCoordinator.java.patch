@@ -1,0 +1,14 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
+index 60c7f801559c11e564e6370cb0999175e2a73f92..ebb7099f5d878064155d3fcb18141bdf25ed0293 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedRootUiCoordinator.java
+@@ -251,6 +251,9 @@ public class TabbedRootUiCoordinator extends RootUiCoordinator implements Native
+                         || TabUiFeatureUtilities.isConditionalTabStripEnabled())) {
+             getToolbarManager().enableBottomControls();
+         }
++        if (org.chromium.chrome.browser.toolbar.bottom.BottomToolbarConfiguration.isBottomToolbarEnabled()) {
++            getToolbarManager().enableBottomControls();
++        }
+     }
+ 
+     @Override

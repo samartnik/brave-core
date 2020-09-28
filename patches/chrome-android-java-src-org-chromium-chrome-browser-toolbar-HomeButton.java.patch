@@ -1,0 +1,22 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/HomeButton.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/HomeButton.java
+index 3a08a2e0ad9c72052b917f652e93850a7b9dd7fe..9c768f38394bc55a93fb4fdce58a12a2b9a8323a 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/HomeButton.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/HomeButton.java
+@@ -37,6 +37,8 @@ import org.chromium.chrome.browser.settings.SettingsLauncherImpl;
+ import org.chromium.chrome.browser.tab.Tab;
+ import org.chromium.ui.widget.ChromeImageButton;
+ 
++import org.chromium.chrome.browser.toolbar.bottom.BottomToolbarConfiguration;
++
+ /**
+  * The home button.
+  */
+@@ -246,7 +248,7 @@ public class HomeButton extends ChromeImageButton
+     }
+ 
+     private void updateContextMenuListener() {
+-        if (!isManagedByPolicy()) {
++        if (!BottomToolbarConfiguration.isBottomToolbarEnabled() && !isManagedByPolicy()) {
+             setOnCreateContextMenuListener(this);
+         } else {
+             setOnCreateContextMenuListener(null);

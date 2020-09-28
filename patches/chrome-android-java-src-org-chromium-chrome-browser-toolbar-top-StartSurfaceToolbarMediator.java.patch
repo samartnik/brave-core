@@ -1,0 +1,11 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/StartSurfaceToolbarMediator.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/StartSurfaceToolbarMediator.java
+index 0d324470e47e6e40031aefebef0512e6b36c7418..b91cfd5866ec8950ef1f529bcf2ecb641bc48e2c 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/StartSurfaceToolbarMediator.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/StartSurfaceToolbarMediator.java
+@@ -245,4 +245,6 @@ class StartSurfaceToolbarMediator {
+                 || ChromeAccessibilityUtil.get().isAccessibilityEnabled();
+         mPropertyModel.set(NEW_TAB_BUTTON_IS_VISIBLE, isShownTabswitcherState);
+     }
++
++    void onBottomToolbarVisibilityChanged(boolean isVisible) {}
+ }

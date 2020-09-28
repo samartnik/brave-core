@@ -1,8 +1,14 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-index 25c687987c90ac32f40698e9270cddc1d77f3bb0..0ea457c1b335d38d402d96ae559e792170854c57 100644
+index 25c687987c90ac32f40698e9270cddc1d77f3bb0..e01d2f1a4c46e818acdc5f19e27a79493f735878 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarPhone.java
-@@ -89,7 +89,7 @@ import java.util.List;
+@@ -86,10 +86,13 @@ import java.lang.annotation.RetentionPolicy;
+ import java.util.ArrayList;
+ import java.util.List;
+ 
++import org.chromium.chrome.browser.toolbar.bottom.BottomToolbarConfiguration;
++import org.chromium.chrome.browser.toolbar.bottom.BottomToolbarVariationManager;
++
  /**
   * Phone specific toolbar implementation.
   */
@@ -11,7 +17,17 @@ index 25c687987c90ac32f40698e9270cddc1d77f3bb0..0ea457c1b335d38d402d96ae559e7921
                                                             NewTabPage.OnSearchBoxScrollListener,
                                                             TabCountObserver {
      /** The amount of time transitioning from one theme color to another should take in ms. */
-@@ -411,10 +411,12 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+@@ -118,6 +121,9 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+     protected static final int ENTERING_TAB_SWITCHER = 2;
+     protected static final int EXITING_TAB_SWITCHER = 3;
+ 
++    private boolean mIsBottomToolbarVisible;
++    private boolean mWasBottomToolbarVisibleForLastTextureCapture;
++
+     @ViewDebug.ExportedProperty(category = "chrome", mapping = {
+             @ViewDebug.IntToString(from = STATIC_TAB, to = "STATIC_TAB"),
+             @ViewDebug.IntToString(from = TAB_SWITCHER, to = "TAB_SWITCHER"),
+@@ -411,10 +417,12 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
      /**
       * Set the background color of the location bar to appropriately match the theme color.
       */
@@ -25,7 +41,16 @@ index 25c687987c90ac32f40698e9270cddc1d77f3bb0..0ea457c1b335d38d402d96ae559e7921
      }
  
      /**
-@@ -533,6 +535,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+@@ -484,7 +492,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+                 }
+             });
+         }
+-        onHomeButtonUpdate(HomepageManager.isHomepageEnabled());
++        onHomeButtonUpdate(HomepageManager.isHomepageEnabled() || BottomToolbarConfiguration.isBottomToolbarEnabled());
+ 
+         updateVisualsForLocationBarState();
+     }
+@@ -533,6 +541,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
                          EventConstants.PARTNER_HOME_PAGE_BUTTON_PRESSED);
              }
          }
@@ -33,7 +58,7 @@ index 25c687987c90ac32f40698e9270cddc1d77f3bb0..0ea457c1b335d38d402d96ae559e7921
      }
  
      @Override
-@@ -701,7 +704,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+@@ -701,7 +710,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
       * @return The right bounds of the location bar after accounting for any visible left buttons.
       */
      private int getBoundsAfterAccountingForRightButtons() {
@@ -42,7 +67,74 @@ index 25c687987c90ac32f40698e9270cddc1d77f3bb0..0ea457c1b335d38d402d96ae559e7921
      }
  
      private void updateToolbarBackground(int color) {
-@@ -2140,6 +2143,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+@@ -1279,7 +1288,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+ 
+         // Draw the tab stack button and associated text if necessary.
+         if (mTabSwitcherAnimationTabStackDrawable != null && mToggleTabStackButton != null
+-                && mUrlExpansionPercent != 1f) {
++                && mUrlExpansionPercent != 1f && !isTabSwitcherOnBottom()) {
+             // Draw the tab stack button image.
+             canvas.save();
+             translateCanvasToView(mToolbarButtonsContainer, mToggleTabStackButton, canvas);
+@@ -1316,7 +1325,10 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+ 
+         mLightDrawablesUsedForLastTextureCapture = useLight();
+ 
+-        if (mTabSwitcherAnimationTabStackDrawable != null && mToggleTabStackButton != null) {
++        mWasBottomToolbarVisibleForLastTextureCapture = mIsBottomToolbarVisible;
++
++        if (mTabSwitcherAnimationTabStackDrawable != null && mToggleTabStackButton != null
++                && !mIsBottomToolbarVisible) {
+             mTabCountForLastTextureCapture = mTabSwitcherAnimationTabStackDrawable.getTabCount();
+         }
+ 
+@@ -1561,7 +1573,8 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+         if (forceTextureCapture) {
+             // Only force a texture capture if the tint for the toolbar drawables is changing or
+             // if the tab count has changed since the last texture capture.
+-            mForceTextureCapture = mLightDrawablesUsedForLastTextureCapture != useLight();
++            mForceTextureCapture = mLightDrawablesUsedForLastTextureCapture != useLight()
++                    || mWasBottomToolbarVisibleForLastTextureCapture != mIsBottomToolbarVisible;
+ 
+             if (mTabSwitcherAnimationTabStackDrawable != null && mToggleTabStackButton != null) {
+                 mForceTextureCapture = mForceTextureCapture
+@@ -1625,7 +1638,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+     public void updateButtonVisibility() {
+         if (mHomeButton == null) return;
+ 
+-        boolean hideHomeButton = !mIsHomeButtonEnabled;
++        boolean hideHomeButton = !mIsHomeButtonEnabled || (mIsBottomToolbarVisible && BottomToolbarVariationManager.isHomeButtonOnBottom());
+         if (hideHomeButton) {
+             removeHomeButton();
+         } else {
+@@ -1876,7 +1889,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+         if (!getToolbarDataProvider().shouldShowLocationBarInOverviewMode()) return false;
+ 
+         if (mToggleTabStackButton != null) {
+-            boolean isGone = inTabSwitcherMode;
++            boolean isGone = inTabSwitcherMode || isTabSwitcherOnBottom();
+             mToggleTabStackButton.setVisibility(isGone ? GONE : VISIBLE);
+         }
+ 
+@@ -2012,7 +2025,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+             animators.add(animator);
+         }
+ 
+-        if (mToggleTabStackButton != null) {
++        if (mToggleTabStackButton != null && !isTabSwitcherOnBottom()) {
+             animator = ObjectAnimator.ofFloat(
+                     mToggleTabStackButton, TRANSLATION_X, toolbarButtonTranslationX);
+             animator.setDuration(URL_FOCUS_TOOLBAR_BUTTONS_DURATION_MS);
+@@ -2068,7 +2081,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+             animators.add(animator);
+         }
+ 
+-        if (mToggleTabStackButton != null) {
++        if (mToggleTabStackButton != null && !isTabSwitcherOnBottom()) {
+             animator = ObjectAnimator.ofFloat(mToggleTabStackButton, TRANSLATION_X, 0);
+             animator.setDuration(URL_FOCUS_TOOLBAR_BUTTONS_DURATION_MS);
+             animator.setStartDelay(URL_CLEAR_FOCUS_TABSTACK_DELAY_MS);
+@@ -2140,6 +2153,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
          } else {
              populateUrlClearFocusingAnimatorSet(animators);
          }
@@ -50,3 +142,31 @@ index 25c687987c90ac32f40698e9270cddc1d77f3bb0..0ea457c1b335d38d402d96ae559e7921
          mUrlFocusLayoutAnimator = new AnimatorSet();
          mUrlFocusLayoutAnimator.playTogether(animators);
  
+@@ -2511,7 +2525,7 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+         }
+ 
+         getMenuButtonCoordinator().setMenuButtonHighlightDrawable();
+-        getMenuButtonCoordinator().setVisibility(View.VISIBLE);
++        if (!mIsBottomToolbarVisible) getMenuButtonCoordinator().setVisibility(View.VISIBLE);
+ 
+         DrawableCompat.setTint(mLocationBarBackground,
+                 isIncognito() ? Color.WHITE
+@@ -2808,4 +2822,18 @@ public class ToolbarPhone extends ToolbarLayout implements Invalidator.Client, O
+             mOptionalButtonAnimator.cancel();
+         }
+     }
++
++    @Override
++    public void onBottomToolbarVisibilityChanged(boolean isVisible) {
++        super.onBottomToolbarVisibilityChanged(isVisible);
++        mIsBottomToolbarVisible = isVisible;
++
++        mToggleTabStackButton.setVisibility(isTabSwitcherOnBottom() ? GONE : VISIBLE);
++        updateButtonVisibility();
++        mToolbarButtonsContainer.requestLayout();
++    }
++
++    private boolean isTabSwitcherOnBottom() {
++        return mIsBottomToolbarVisible && BottomToolbarVariationManager.isTabSwitcherOnBottom();
++    }
+ }

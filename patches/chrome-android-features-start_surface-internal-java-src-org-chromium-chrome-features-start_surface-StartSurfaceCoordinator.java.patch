@@ -1,0 +1,13 @@
+diff --git a/chrome/android/features/start_surface/internal/java/src/org/chromium/chrome/features/start_surface/StartSurfaceCoordinator.java b/chrome/android/features/start_surface/internal/java/src/org/chromium/chrome/features/start_surface/StartSurfaceCoordinator.java
+index c91baf8097c706989186b45885fc928b40f8c059..6633f4aae1efc6c5133ad1fbf17493ea7b9e01fb 100644
+--- a/chrome/android/features/start_surface/internal/java/src/org/chromium/chrome/features/start_surface/StartSurfaceCoordinator.java
++++ b/chrome/android/features/start_surface/internal/java/src/org/chromium/chrome/features/start_surface/StartSurfaceCoordinator.java
+@@ -282,7 +282,7 @@ public class StartSurfaceCoordinator implements StartSurface {
+ 
+         String feature = StartSurfaceConfiguration.START_SURFACE_VARIATION.getValue();
+ 
+-        if (feature.equals("twopanes")) return SurfaceMode.TWO_PANES;
++        if (feature.equals("twopanes")) return org.chromium.chrome.browser.toolbar.bottom.BottomToolbarConfiguration.isBottomToolbarEnabled() ? SurfaceMode.SINGLE_PANE : SurfaceMode.TWO_PANES;
+ 
+         // TODO(crbug.com/982018): Remove isStartSurfaceSinglePaneEnabled check after
+         // removing ChromePreferenceKeys.START_SURFACE_SINGLE_PANE_ENABLED_KEY.

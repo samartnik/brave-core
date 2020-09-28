@@ -1,0 +1,11 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
+index e5eb98455527e03f8f17e09c4ede550dec9ce734..68261b73c557ca732121d0bc95dfb87581e80924 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/ToolbarLayout.java
+@@ -854,4 +854,6 @@ public abstract class ToolbarLayout
+     public HomeButton getHomeButtonForTesting() {
+         return null;
+     }
++
++    void onBottomToolbarVisibilityChanged(boolean isVisible) {}
+ }

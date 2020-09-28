@@ -1,0 +1,23 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ui/RootUiCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/ui/RootUiCoordinator.java
+index fbecdc2a6a0263fe151b65a66b203585f4b81003..2ae6c18099a0ce4e51f0ad2def44fd8dcaf4c05a 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/ui/RootUiCoordinator.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/ui/RootUiCoordinator.java
+@@ -491,14 +491,16 @@ public class RootUiCoordinator
+                 }
+                 mOmniboxFocusStateSupplier.set(hasFocus);
+             };
++            ObservableSupplierImpl<Boolean> bottomToolbarVisibilitySupplier = new ObservableSupplierImpl<>();
+ 
+             mIdentityDiscController = new IdentityDiscController(
+-                    mActivity, mActivity.getLifecycleDispatcher(), mProfileSupplier);
++                    mActivity, mActivity.getLifecycleDispatcher(), bottomToolbarVisibilitySupplier, mProfileSupplier);
+             ShareButtonController shareButtonController = new ShareButtonController(mActivity,
+                     mActivityTabProvider, mShareDelegateSupplier, new ShareUtils(),
+                     mActivity.getLifecycleDispatcher(), mActivity.getModalDialogManager());
+             mButtonDataProviders = Arrays.asList(mIdentityDiscController, shareButtonController);
+-            mToolbarManager = new ToolbarManager(mActivity, mActivity.getBrowserControlsManager(),
++            bottomToolbarVisibilitySupplier.set(false);
++            mToolbarManager = new ToolbarManager(bottomToolbarVisibilitySupplier, mActivity, mActivity.getBrowserControlsManager(),
+                     mActivity.getFullscreenManager(), toolbarContainer,
+                     mActivity.getCompositorViewHolder().getInvalidator(), urlFocusChangedCallback,
+                     mTabThemeColorProvider, mTabObscuringHandler, mShareDelegateSupplier,

@@ -1,0 +1,13 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/StartSurfaceToolbarCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/StartSurfaceToolbarCoordinator.java
+index dd551dbebada46d08fb49a91f97838e2c7f5339b..eafc7ccf2bf82ac50d3c1e194443e5611317ad66 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/StartSurfaceToolbarCoordinator.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/StartSurfaceToolbarCoordinator.java
+@@ -276,4 +276,8 @@ public class StartSurfaceToolbarCoordinator {
+     public IncognitoSwitchCoordinator getIncognitoSwitchCoordinatorForTesting() {
+         return mIncognitoSwitchCoordinator;
+     }
++
++    void onBottomToolbarVisibilityChanged(boolean isVisible) {
++        mToolbarMediator.onBottomToolbarVisibilityChanged(isVisible);
++    }
+ }

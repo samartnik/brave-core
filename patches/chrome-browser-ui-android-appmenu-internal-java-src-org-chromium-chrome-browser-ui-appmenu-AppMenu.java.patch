@@ -1,0 +1,56 @@
+diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
+index 12a4e3b5ed297e047ae2ea07b6aa7ca1dad6052d..c1a649c71795e41c12262bb6d1ce670eeb6a7ae9 100644
+--- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
++++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenu.java
+@@ -171,7 +171,7 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuAdapter.OnCl
+             int screenRotation, Rect visibleDisplayFrame, int screenHeight,
+             @IdRes int footerResourceId, @IdRes int headerResourceId,
+             @IdRes int groupDividerResourceId, Integer highlightedItemId,
+-            boolean circleHighlightItem, @Nullable List<CustomViewBinder> customViewBinders) {
++            boolean circleHighlightItem, boolean showFromBottom, @Nullable List<CustomViewBinder> customViewBinders) {
+         mPopup = new PopupWindow(context);
+         mPopup.setFocusable(true);
+         mPopup.setInputMethodMode(PopupWindow.INPUT_METHOD_NOT_NEEDED);
+@@ -208,7 +208,7 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuAdapter.OnCl
+         // an incorrectly drawn background.
+         mPopup.setBackgroundDrawable(ApiCompatibilityUtils.getDrawable(
+                 context.getResources(), R.drawable.popup_bg_tinted));
+-        if (!isByPermanentButton) mPopup.setAnimationStyle(R.style.OverflowMenuAnim);
++        if (!isByPermanentButton) mPopup.setAnimationStyle(showFromBottom ? R.style.OverflowMenuAnimBottom : R.style.OverflowMenuAnim);
+ 
+         // Turn off window animations for low end devices.
+         if (SysUtils.isLowEndDevice()) mPopup.setAnimationStyle(0);
+@@ -269,7 +269,7 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuAdapter.OnCl
+         int[] popupPosition = getPopupPosition(mTempLocation, mIsByPermanentButton,
+                 mNegativeSoftwareVerticalOffset, mNegativeVerticalOffsetNotTopAnchored,
+                 mCurrentScreenRotation, visibleDisplayFrame, sizingPadding, anchorView, popupWidth,
+-                popupHeight, anchorView.getRootView().getLayoutDirection());
++                popupHeight, showFromBottom, anchorView.getRootView().getLayoutDirection());
+ 
+         mPopup.setContentView(contentView);
+         mPopup.showAtLocation(
+@@ -305,7 +305,7 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuAdapter.OnCl
+     static int[] getPopupPosition(int[] tempLocation, boolean isByPermanentButton,
+             int negativeSoftwareVerticalOffset, int negativeVerticalOffsetNotTopAnchored,
+             int screenRotation, Rect appRect, Rect padding, View anchorView, int popupWidth,
+-            int popupHeight, int viewLayoutDirection) {
++            int popupHeight, boolean isAnchorAtBottom, int viewLayoutDirection) {
+         anchorView.getLocationInWindow(tempLocation);
+         int anchorViewX = tempLocation[0];
+         int anchorViewY = tempLocation[1];
+@@ -335,6 +335,15 @@ class AppMenu implements OnItemClickListener, OnKeyListener, AppMenuAdapter.OnCl
+             offsets[1] = -padding.bottom;
+         } else {
+             offsets[1] = -negativeSoftwareVerticalOffset;
++
++            if (isAnchorAtBottom) {
++                anchorView.getLocationOnScreen(tempLocation);
++                int anchorViewLocationOnScreenY = tempLocation[1];
++                offsets[1] += appRect.bottom - anchorViewLocationOnScreenY - popupHeight;
++                offsets[1] -= negativeVerticalOffsetNotTopAnchored;
++                offsets[1] += padding.bottom;
++            }
++
+             if (viewLayoutDirection != View.LAYOUT_DIRECTION_RTL) {
+                 offsets[0] = anchorView.getWidth() - popupWidth;
+             }

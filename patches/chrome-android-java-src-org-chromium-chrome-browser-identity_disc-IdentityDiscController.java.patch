@@ -1,0 +1,92 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/identity_disc/IdentityDiscController.java b/chrome/android/java/src/org/chromium/chrome/browser/identity_disc/IdentityDiscController.java
+index 941f9204ed6963dbd92ab88c413832287921cf54..37ede63de4f5830a2a528f3d4aa344f4cc0538e8 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/identity_disc/IdentityDiscController.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/identity_disc/IdentityDiscController.java
+@@ -41,6 +41,8 @@ import java.lang.annotation.Retention;
+ import java.lang.annotation.RetentionPolicy;
+ import java.util.Collections;
+ 
++import org.chromium.chrome.browser.toolbar.bottom.BottomToolbarVariationManager;
++import androidx.annotation.Nullable;
+ /**
+  * Handles displaying IdentityDisc on toolbar depending on several conditions
+  * (user sign-in state, whether NTP is shown)
+@@ -85,6 +87,9 @@ public class IdentityDiscController implements NativeInitObserver, ProfileDataCa
+     private ObserverList<ButtonDataObserver> mObservers = new ObserverList<>();
+     private boolean mNativeIsInitialized;
+ 
++    private final ObservableSupplier<Boolean> mBottomToolbarVisibilitySupplier;
++    private @Nullable Callback<Boolean> mBottomToolbarVisibilityObserver;
++
+     /**
+      *
+      * @param context The Context for retrieving resources, launching preference activiy, etc.
+@@ -93,7 +98,9 @@ public class IdentityDiscController implements NativeInitObserver, ProfileDataCa
+      */
+     public IdentityDiscController(Context context,
+             ActivityLifecycleDispatcher activityLifecycleDispatcher,
++            ObservableSupplier<Boolean> bottomToolbarVisibilitySupplier,
+             ObservableSupplier<Profile> profileSupplier) {
++        mBottomToolbarVisibilitySupplier = bottomToolbarVisibilitySupplier;
+         mContext = context;
+         mActivityLifecycleDispatcher = activityLifecycleDispatcher;
+         mProfileSupplier = profileSupplier;
+@@ -124,6 +131,9 @@ public class IdentityDiscController implements NativeInitObserver, ProfileDataCa
+         mNativeIsInitialized = true;
+ 
+         mProfileSupplier.addObserver(mProfileSupplierObserver);
++        mBottomToolbarVisibilityObserver =
++                (bottomToolbarIsVisible) -> notifyObservers(getSyncAccountInfo() != null);
++        mBottomToolbarVisibilitySupplier.addObserver(mBottomToolbarVisibilityObserver);
+     }
+ 
+     @Override
+@@ -144,7 +154,7 @@ public class IdentityDiscController implements NativeInitObserver, ProfileDataCa
+             return mButtonData;
+         }
+ 
+-        calculateButtonData();
++        calculateButtonData(mBottomToolbarVisibilitySupplier.get());
+         return mButtonData;
+     }
+ 
+@@ -154,11 +164,11 @@ public class IdentityDiscController implements NativeInitObserver, ProfileDataCa
+             return mButtonData;
+         }
+ 
+-        calculateButtonData();
++        calculateButtonData(false);
+         return mButtonData;
+     }
+ 
+-    private void calculateButtonData() {
++    private void calculateButtonData(boolean bottomToolbarVisible) {
+         if (!mNativeIsInitialized) {
+             assert !mButtonData.canShow;
+             return;
+@@ -167,7 +177,12 @@ public class IdentityDiscController implements NativeInitObserver, ProfileDataCa
+         String email = CoreAccountInfo.getEmailFrom(getSyncAccountInfo());
+         boolean canShowIdentityDisc = email != null;
+ 
+-        mState = !canShowIdentityDisc ? IdentityDiscState.NONE : IdentityDiscState.SMALL;
++        boolean menuBottomOnBottom =
++                bottomToolbarVisible && BottomToolbarVariationManager.isMenuButtonOnBottom();
++
++        mState = !canShowIdentityDisc
++                ? IdentityDiscState.NONE
++                : menuBottomOnBottom ? IdentityDiscState.LARGE : IdentityDiscState.SMALL;
+         ensureProfileDataCache(email, mState);
+ 
+         if (mState != IdentityDiscState.NONE) {
+@@ -274,6 +289,11 @@ public class IdentityDiscController implements NativeInitObserver, ProfileDataCa
+         if (mNativeIsInitialized) {
+             mProfileSupplier.removeObserver(mProfileSupplierObserver);
+         }
++
++        if (mBottomToolbarVisibilityObserver != null) {
++            mBottomToolbarVisibilitySupplier.removeObserver(mBottomToolbarVisibilityObserver);
++            mBottomToolbarVisibilityObserver = null;
++        }
+     }
+ 
+     /**

@@ -1,0 +1,13 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
+index 73d85c310b657ca5f1d185ee9aa8e59de9d7c5c5..82370ddcd5919e1433e6f7ab2c8bf12c9cbce1ac 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/app/appmenu/AppMenuPropertiesDelegateImpl.java
+@@ -618,7 +618,7 @@ public class AppMenuPropertiesDelegateImpl implements AppMenuPropertiesDelegate
+                 || mDecorView.getWidth()
+                         < DeviceFormFactor.getNonMultiDisplayMinimumTabletWidthPx(mContext);
+ 
+-        final boolean isMenuButtonOnTop = mToolbarManager != null;
++        final boolean isMenuButtonOnTop = mToolbarManager != null && !mToolbarManager.isMenuFromBottom();
+         shouldShowIconRow &= isMenuButtonOnTop;
+         return shouldShowIconRow;
+     }

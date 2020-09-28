@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuCoordinatorImpl.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuCoordinatorImpl.java
+index df38b113916af6bb2eda54c861297003c396170c..c1dc202f77d4634b59f6ae131b4c10f71c943813 100644
+--- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuCoordinatorImpl.java
++++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuCoordinatorImpl.java
+@@ -86,7 +86,7 @@ class AppMenuCoordinatorImpl implements AppMenuCoordinator {
+                 ? sHasPermanentMenuKeyForTesting.booleanValue()
+                 : ViewConfiguration.get(mContext).hasPermanentMenuKey();
+         mAppMenuHandler.showAppMenu(
+-                hasPermanentMenuKey ? null : mButtonDelegate.getMenuButtonView(), false);
++                hasPermanentMenuKey ? null : mButtonDelegate.getMenuButtonView(), false, mButtonDelegate.isMenuFromBottom());
+     }
+ 
+     @Override

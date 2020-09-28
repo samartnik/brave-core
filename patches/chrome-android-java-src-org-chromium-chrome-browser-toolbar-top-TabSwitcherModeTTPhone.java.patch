@@ -1,0 +1,43 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherModeTTPhone.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherModeTTPhone.java
+index 8677a7ee3f20cb39b8397655500ac21cc5437f99..2cc5d08f006de3de6e1d77a6d3cf1d48806aabe2 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherModeTTPhone.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherModeTTPhone.java
+@@ -64,6 +64,8 @@ public class TabSwitcherModeTTPhone extends OptimizedFrameLayout
+ 
+     private ObjectAnimator mVisiblityAnimator;
+ 
++    private boolean mShouldShowNewTabButton;
++
+     public TabSwitcherModeTTPhone(Context context, AttributeSet attrs) {
+         super(context, attrs);
+     }
+@@ -279,10 +281,10 @@ public class TabSwitcherModeTTPhone extends OptimizedFrameLayout
+ 
+     private void updateNewTabButtonVisibility() {
+         if (mNewTabViewButton != null) {
+-            mNewTabViewButton.setVisibility(mShouldShowNewTabVariation ? VISIBLE : GONE);
++            mNewTabViewButton.setVisibility(mShouldShowNewTabVariation && mShouldShowNewTabButton ? VISIBLE : GONE);
+         }
+         if (mNewTabImageButton != null) {
+-            mNewTabImageButton.setVisibility(!mShouldShowNewTabVariation ? VISIBLE : GONE);
++            mNewTabImageButton.setVisibility(!mShouldShowNewTabVariation && mShouldShowNewTabButton ? VISIBLE : GONE);
+         }
+     }
+ 
+@@ -390,4 +392,16 @@ public class TabSwitcherModeTTPhone extends OptimizedFrameLayout
+         return (usingHorizontalTabSwitcher() || TabUiFeatureUtilities.isGridTabSwitcherEnabled())
+                 && IncognitoUtils.isIncognitoModeEnabled();
+     }
++
++    void onBottomToolbarVisibilityChanged(boolean isVisible) {
++        mShouldShowNewTabButton = !isVisible
++                || (org.chromium.chrome.browser.toolbar.bottom.BottomToolbarConfiguration.isBottomToolbarEnabled()
++                        && !org.chromium.chrome.browser.toolbar.bottom.BottomToolbarVariationManager.isNewTabButtonOnBottom());
++        updateNewTabButtonVisibility();
++        // show tab switcher button on the top in landscape mode.
++        if (org.chromium.chrome.browser.toolbar.bottom.BottomToolbarVariationManager.isTabSwitcherOnBottom() && !shouldShowIncognitoToggle()) {
++            mToggleTabStackButton.setVisibility(isVisible ? GONE : VISIBLE);
++        }
++        setMenuButtonVisibility(!isVisible || (org.chromium.chrome.browser.toolbar.bottom.BottomToolbarConfiguration.isBottomToolbarEnabled() && !org.chromium.chrome.browser.toolbar.bottom.BottomToolbarVariationManager.isMenuButtonOnBottom()));
++    }
+ }

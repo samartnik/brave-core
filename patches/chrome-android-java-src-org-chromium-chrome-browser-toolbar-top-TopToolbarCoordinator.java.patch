@@ -1,0 +1,19 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
+index fe2825324245103967a84296a85903f06bb7740d..58eb6b18ffdcfe183be70b34e5c5d919ed6dc3e9 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/TopToolbarCoordinator.java
+@@ -622,4 +622,14 @@ public class TopToolbarCoordinator implements Toolbar {
+     public StartSurfaceToolbarCoordinator getStartSurfaceToolbarForTesting() {
+         return mStartSurfaceToolbarCoordinator;
+     }
++
++    public void onBottomToolbarVisibilityChanged(boolean isVisible) {
++        mToolbarLayout.onBottomToolbarVisibilityChanged(isVisible);
++        if (mTabSwitcherModeCoordinatorPhone != null) {
++            mTabSwitcherModeCoordinatorPhone.onBottomToolbarVisibilityChanged(isVisible);
++        } else if (mStartSurfaceToolbarCoordinator != null) {
++            mStartSurfaceToolbarCoordinator.onBottomToolbarVisibilityChanged(isVisible);
++        }
++        mOptionalButtonController.updateButtonVisibility();
++    }
+ }

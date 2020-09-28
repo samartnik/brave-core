@@ -1,0 +1,11 @@
+diff --git a/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/MenuButtonDelegate.java b/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/MenuButtonDelegate.java
+index 0471bbe893394c41f1850c94a75aa08693a51cec..ae9f0960e74d48934d2d84e44f71ec9aa1d4e4b6 100644
+--- a/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/MenuButtonDelegate.java
++++ b/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/MenuButtonDelegate.java
+@@ -15,4 +15,6 @@ public interface MenuButtonDelegate {
+      */
+     @Nullable
+     View getMenuButtonView();
++
++    boolean isMenuFromBottom();
+ }

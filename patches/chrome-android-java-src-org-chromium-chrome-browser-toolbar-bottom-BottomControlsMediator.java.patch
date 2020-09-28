@@ -1,0 +1,14 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/bottom/BottomControlsMediator.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/bottom/BottomControlsMediator.java
+index 2544306f8a4799c031543fc60f2ca3555bef0ea7..3647d0a19cbbab351b8ea76bbfdf97e6907f04a1 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/bottom/BottomControlsMediator.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/bottom/BottomControlsMediator.java
+@@ -185,4 +185,9 @@ class BottomControlsMediator implements BrowserControlsStateProvider.Observer,
+                         && !mIsInSwipeLayout && mBrowserControlsSizer.getBottomControlOffset() == 0
+                         && !isInFullscreenMode());
+     }
++
++    public void setCompositedViewVisibile(boolean visible) {
++        org.chromium.base.Log.e("SAM", "SAM: setCompositedViewVisibile: " + visible);
++        mModel.set(BottomControlsProperties.COMPOSITED_VIEW_VISIBLE, visible);
++    }
+ }

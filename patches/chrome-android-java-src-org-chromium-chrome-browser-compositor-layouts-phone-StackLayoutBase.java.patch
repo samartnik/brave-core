@@ -1,0 +1,30 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/compositor/layouts/phone/StackLayoutBase.java b/chrome/android/java/src/org/chromium/chrome/browser/compositor/layouts/phone/StackLayoutBase.java
+index 4465def44888d144553aa9dea753b2c3f2d2e2e9..0d2dc31186a226af43708610c5b0165925b0fe70 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/compositor/layouts/phone/StackLayoutBase.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/compositor/layouts/phone/StackLayoutBase.java
+@@ -61,6 +61,10 @@ import java.util.Arrays;
+ import java.util.Comparator;
+ import java.util.List;
+ 
++import org.chromium.chrome.R;
++import org.chromium.chrome.browser.toolbar.bottom.BottomToolbarConfiguration;
++import org.chromium.ui.UiUtils;
++
+ /**
+  * Base class for layouts that show one or more stacks of tabs.
+  */
+@@ -646,6 +650,14 @@ public abstract class StackLayoutBase extends Layout {
+ 
+     @Override
+     public void attachViews(ViewGroup container) {
++        if (BottomToolbarConfiguration.isBottomToolbarEnabled()) {
++            ViewGroup compositorViewHolder = container.findViewById(R.id.compositor_view_holder);
++            UiUtils.insertAfter((ViewGroup) compositorViewHolder.getParent(), mViewContainer,
++                    compositorViewHolder);
++            mViewContainer.getLayoutParams().width = LayoutParams.MATCH_PARENT;
++            mViewContainer.getLayoutParams().height = LayoutParams.MATCH_PARENT;
++            return;
++        }
+         // TODO(dtrainor): This is a hack.  We're attaching to the parent of the view container
+         // which is the content container of the Activity.
+         ((ViewGroup) container.getParent())

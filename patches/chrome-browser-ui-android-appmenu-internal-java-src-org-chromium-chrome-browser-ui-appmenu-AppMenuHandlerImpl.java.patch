@@ -1,0 +1,22 @@
+diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
+index 63913bb232bb634918d63d8cd9e67b448c8ee505..0d95314bb957d68e28f857fae4bfcc10d4135d89 100644
+--- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
++++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuHandlerImpl.java
+@@ -142,7 +142,7 @@ class AppMenuHandlerImpl
+      */
+     // TODO(crbug.com/635567): Fix this properly.
+     @SuppressLint("ResourceType")
+-    boolean showAppMenu(View anchorView, boolean startDragging) {
++    boolean showAppMenu(View anchorView, boolean startDragging, boolean showFromBottom) {
+         if (!shouldShowAppMenu() || isAppMenuShowing()) return false;
+ 
+         TextBubble.dismissBubbles();
+@@ -222,7 +222,7 @@ class AppMenuHandlerImpl
+         }
+         mAppMenu.show(wrapper, anchorView, isByPermanentButton, rotation, appRect, pt.y,
+                 footerResourceId, headerResourceId, mDelegate.getGroupDividerId(), mHighlightMenuId,
+-                mCircleHighlight, mDelegate.getCustomViewBinders());
++                mCircleHighlight, showFromBottom, mDelegate.getCustomViewBinders());
+         mAppMenuDragHelper.onShow(startDragging);
+         clearMenuHighlight();
+         RecordUserAction.record("MobileMenuShow");

@@ -1,0 +1,54 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedAppMenuPropertiesDelegate.java b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedAppMenuPropertiesDelegate.java
+index 082fcb0af39bcedbca71d41fabebc90989f8a07e..52abf9ac1c8b0f69d716ed6e8ada3a5da8ae0680 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedAppMenuPropertiesDelegate.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/tabbed_mode/TabbedAppMenuPropertiesDelegate.java
+@@ -51,6 +51,9 @@ public class TabbedAppMenuPropertiesDelegate extends AppMenuPropertiesDelegateIm
+ 
+     @Override
+     public int getFooterResourceId() {
++        if (isMenuButtonInBottomToolbar()) {
++            return this.shouldShowPageMenu() ? R.layout.icon_row_menu_footer : 0;
++        }
+         return shouldShowDataSaverMenuItem() ? R.layout.data_reduction_main_menu_item : 0;
+     }
+ 
+@@ -65,6 +68,9 @@ public class TabbedAppMenuPropertiesDelegate extends AppMenuPropertiesDelegateIm
+ 
+     @Override
+     public int getHeaderResourceId() {
++        if (isMenuButtonInBottomToolbar()) {
++            return shouldShowDataSaverMenuItem() ? R.layout.data_reduction_main_menu_item : 0;
++        }
+         return 0;
+     }
+ 
+@@ -77,6 +83,7 @@ public class TabbedAppMenuPropertiesDelegate extends AppMenuPropertiesDelegateIm
+ 
+     @Override
+     public boolean shouldShowFooter(int maxMenuHeight) {
++        if (isMenuButtonInBottomToolbar()) return true;
+         if (shouldShowDataSaverMenuItem()) {
+             return canShowDataReductionItem(maxMenuHeight);
+         }
+@@ -101,4 +108,21 @@ public class TabbedAppMenuPropertiesDelegate extends AppMenuPropertiesDelegateIm
+         return maxMenuHeight >= mContext.getResources().getDimension(
+                        R.dimen.data_saver_menu_footer_min_show_height);
+     }
++
++    private boolean isMenuButtonInBottomToolbar() {
++        return mToolbarManager != null && mToolbarManager.isMenuFromBottom();
++    }
++
++    @Override
++    public boolean shouldShowHeader(int maxMenuHeight) {
++        if (!isMenuButtonInBottomToolbar()) {
++            return super.shouldShowHeader(maxMenuHeight);
++        }
++
++        if (DataReductionProxySettings.getInstance().shouldUseDataReductionMainMenuItem()) {
++            return canShowDataReductionItem(maxMenuHeight);
++        }
++
++        return super.shouldShowHeader(maxMenuHeight);
++    }
+ }

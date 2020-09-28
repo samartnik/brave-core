@@ -1,0 +1,32 @@
+diff --git a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuButtonHelperImpl.java b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuButtonHelperImpl.java
+index caaa1096e18a085a002840c10ba475aa46843961..2301965fb7ae3e8c578c1fee690694ab0573467e 100644
+--- a/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuButtonHelperImpl.java
++++ b/chrome/browser/ui/android/appmenu/internal/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuButtonHelperImpl.java
+@@ -28,6 +28,8 @@ class AppMenuButtonHelperImpl extends AccessibilityDelegate implements AppMenuBu
+     private boolean mIsTouchEventsBeingProcessed;
+     private Runnable mOnClickRunnable;
+ 
++    private boolean mMenuShowsFromBottom;
++
+     /**
+      * @param menuHandler MenuHandler implementation that can show and get the app menu.
+      */
+@@ -119,7 +121,7 @@ class AppMenuButtonHelperImpl extends AccessibilityDelegate implements AppMenuBu
+      * @return Whether or not if the app menu is successfully shown.
+      */
+     private boolean showAppMenu(View view, boolean startDragging) {
+-        if (!mMenuHandler.isAppMenuShowing() && mMenuHandler.showAppMenu(view, startDragging)) {
++        if (!mMenuHandler.isAppMenuShowing() && mMenuHandler.showAppMenu(view, startDragging, mMenuShowsFromBottom)) {
+             // Initial start dragging can be canceled in case if it was just single tap.
+             // So we only record non-dragging here, and will deal with those dragging cases in
+             // AppMenuDragHelper class.
+@@ -142,4 +144,9 @@ class AppMenuButtonHelperImpl extends AccessibilityDelegate implements AppMenuBu
+         mIsTouchEventsBeingProcessed = isActionDown;
+         view.setPressed(isActionDown);
+     }
++
++    @Override
++    public void setMenuShowsFromBottom(boolean showsFromBottom) {
++        mMenuShowsFromBottom = showsFromBottom;
++    }
+ }

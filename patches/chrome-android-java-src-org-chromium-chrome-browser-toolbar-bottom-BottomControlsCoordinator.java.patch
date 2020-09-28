@@ -1,0 +1,86 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/bottom/BottomControlsCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/bottom/BottomControlsCoordinator.java
+index b59b3b2bee6dad83a9c6f57a40851b2d4495285a..c5fcf81ab5947db7cd1ac93aa4a48a2e8f206820 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/bottom/BottomControlsCoordinator.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/bottom/BottomControlsCoordinator.java
+@@ -38,6 +38,8 @@ import org.chromium.ui.modelutil.PropertyModelChangeProcessor;
+ import org.chromium.ui.resources.ResourceManager;
+ import org.chromium.ui.widget.Toast;
+ 
++import android.view.View.OnLongClickListener;
++
+ /**
+  * The root coordinator for the bottom controls component. This component is intended for use with
+  * bottom UI that re-sizes the web contents, scrolls off-screen, and hides when the keyboard is
+@@ -59,6 +61,8 @@ public class BottomControlsCoordinator {
+     /** The coordinator for the split toolbar's bottom toolbar component. */
+     private @Nullable TabGroupUi mTabGroupUi;
+ 
++    private @Nullable BottomToolbarCoordinator mBottomToolbarCoordinator;
++
+     /**
+      * Build the coordinator that manages the bottom controls.
+      * @param controlsSizer A {@link BrowserControlsSizer} to update the bottom controls
+@@ -78,7 +82,7 @@ public class BottomControlsCoordinator {
+      * @param scrimCoordinator The {@link ScrimCoordinator} to control scrim view.
+      */
+     @SuppressLint("CutPasteId") // Not actually cut and paste since it's View vs ViewGroup.
+-    public BottomControlsCoordinator(BrowserControlsSizer controlsSizer,
++    public BottomControlsCoordinator(OnLongClickListener tabSwitcherLongclickListener, BrowserControlsSizer controlsSizer,
+             FullscreenManager fullscreenManager, ViewStub stub, ActivityTabProvider tabProvider,
+             ThemeColorProvider themeColorProvider,
+             ObservableSupplier<ShareDelegate> shareDelegateSupplier,
+@@ -109,6 +113,13 @@ public class BottomControlsCoordinator {
+                     root.findViewById(R.id.bottom_container_slot), themeColorProvider,
+                     scrimCoordinator);
+         }
++        if (BottomToolbarConfiguration.isBottomToolbarEnabled()) {
++            mBottomToolbarCoordinator = new BottomToolbarCoordinator(root,
++                    root.findViewById(R.id.bottom_toolbar_stub), tabProvider,
++                    tabSwitcherLongclickListener, themeColorProvider, shareDelegateSupplier,
++                    showStartSurfaceCallable, openHomepageAction, setUrlBarFocusAction,
++                    overviewModeBehaviorSupplier, menuButtonHelperSupplier, mMediator);
++        }
+         Toast.setGlobalExtraYOffset(
+                 root.getResources().getDimensionPixelSize(bottomControlsHeightId));
+     }
+@@ -144,6 +155,11 @@ public class BottomControlsCoordinator {
+         if (mTabGroupUi != null) {
+             mTabGroupUi.initializeWithNative(chromeActivity, mMediator::setBottomControlsVisible);
+         }
++
++        if (mBottomToolbarCoordinator != null) {
++            mBottomToolbarCoordinator.initializeWithNative(tabSwitcherListener, newTabClickListener,
++                    tabCountProvider, incognitoStateProvider, topToolbarRoot, closeAllTabsAction);
++        }
+     }
+ 
+     /**
+@@ -151,6 +167,9 @@ public class BottomControlsCoordinator {
+      */
+     public void setBottomControlsVisible(boolean isVisible) {
+         mMediator.setBottomControlsVisible(isVisible);
++        if (mBottomToolbarCoordinator != null) {
++            mBottomToolbarCoordinator.setBottomToolbarVisible(isVisible);
++        }
+     }
+ 
+     /**
+@@ -167,6 +186,7 @@ public class BottomControlsCoordinator {
+     public void destroy() {
+         if (mTabGroupUi != null) mTabGroupUi.destroy();
+         mMediator.destroy();
++        if (mBottomToolbarCoordinator != null) mBottomToolbarCoordinator.destroy();
+     }
+ 
+     /**
+@@ -178,4 +198,10 @@ public class BottomControlsCoordinator {
+         }
+         return mTabGroupUi.getTabGridDialogVisibilitySupplier();
+     }
++
++    public void updateBookmarkButton(boolean isBookmarked, boolean editingAllowed) {
++        if (mBottomToolbarCoordinator != null) {
++            mBottomToolbarCoordinator.updateBookmarkButton(isBookmarked, editingAllowed);
++        }
++    }
+ }

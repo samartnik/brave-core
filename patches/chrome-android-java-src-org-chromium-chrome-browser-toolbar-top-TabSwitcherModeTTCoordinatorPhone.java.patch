@@ -1,0 +1,36 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherModeTTCoordinatorPhone.java b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherModeTTCoordinatorPhone.java
+index 276e724c1bba7a0cd8ec365bbbb9bfaea37dd4b4..b8fbe135600a0b8cbfcd29fabee5a96c1127f719 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherModeTTCoordinatorPhone.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherModeTTCoordinatorPhone.java
+@@ -44,6 +44,8 @@ class TabSwitcherModeTTCoordinatorPhone {
+ 
+     private TabSwitcherModeTTPhone mTabSwitcherModeToolbar;
+ 
++    private boolean mIsBottomToolbarVisible;
++
+     @Nullable
+     private TabModelObserver mTabModelObserver;
+ 
+@@ -237,6 +239,7 @@ class TabSwitcherModeTTCoordinatorPhone {
+         if (mAccessibilityEnabled) {
+             mTabSwitcherModeToolbar.onAccessibilityStatusChanged(mAccessibilityEnabled);
+         }
++        mTabSwitcherModeToolbar.onBottomToolbarVisibilityChanged(mIsBottomToolbarVisible);
+     }
+ 
+     private boolean isNewTabVariationEnabled() {
+@@ -247,4 +250,14 @@ class TabSwitcherModeTTCoordinatorPhone {
+                                    "tab_grid_layout_android_new_tab")
+                            .equals("NewTabVariation");
+     }
++
++    void onBottomToolbarVisibilityChanged(boolean isVisible) {
++        if (mIsBottomToolbarVisible == isVisible) {
++            return;
++        }
++        mIsBottomToolbarVisible = isVisible;
++        if (mTabSwitcherModeToolbar != null) {
++            mTabSwitcherModeToolbar.onBottomToolbarVisibilityChanged(isVisible);
++        }
++    }
+ }

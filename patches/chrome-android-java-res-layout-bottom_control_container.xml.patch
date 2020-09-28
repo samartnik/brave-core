@@ -1,0 +1,23 @@
+diff --git a/chrome/android/java/res/layout/bottom_control_container.xml b/chrome/android/java/res/layout/bottom_control_container.xml
+index a19b66115758b4fd76ed2e6aeab100ec9cd9f070..03f19cffcec2888bbb4a3d9146cfd6ccdacad4e3 100644
+--- a/chrome/android/java/res/layout/bottom_control_container.xml
++++ b/chrome/android/java/res/layout/bottom_control_container.xml
+@@ -27,7 +27,17 @@
+         <FrameLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+-            android:id="@+id/bottom_container_slot" />
++            android:id="@+id/bottom_container_slot" >
++
++            <ViewStub
++                android:id="@+id/bottom_toolbar_stub"
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                android:layout_gravity="start|bottom"
++                android:inflatedId="@+id/bottom_toolbar"
++                android:layout="@layout/bottom_toolbar" />
++
++        </FrameLayout>
+ 
+     </LinearLayout>
+ 

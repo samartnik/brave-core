@@ -1,0 +1,11 @@
+diff --git a/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuButtonHelper.java b/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuButtonHelper.java
+index 6204d20403f2e207715778e11933593f692f8e6e..d48286342e7068b5d702f14a013923bed282fa2a 100644
+--- a/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuButtonHelper.java
++++ b/chrome/browser/ui/android/appmenu/java/src/org/chromium/chrome/browser/ui/appmenu/AppMenuButtonHelper.java
+@@ -44,4 +44,6 @@ public interface AppMenuButtonHelper extends View.OnTouchListener {
+      * @param clickRunnable The {@link Runnable} to be executed on a down event.
+      */
+     void setOnClickRunnable(Runnable clickRunnable);
++
++    void setMenuShowsFromBottom(boolean showsFromBottom);
+ }
