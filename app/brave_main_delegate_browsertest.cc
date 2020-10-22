@@ -67,6 +67,7 @@ IN_PROC_BROWSER_TEST_F(BraveMainDelegateBrowserTest, DisabledFeatures) {
       &features::kAllowPopupsDuringPageUnload,
       &features::kNotificationTriggers,
       &features::kPrivacySettingsRedesign,
+      &features::kSignedExchangeSubresourcePrefetch,
       &features::kSmsReceiver,
       &features::kVideoPlaybackQuality,
       &features::kTabHoverCards,
