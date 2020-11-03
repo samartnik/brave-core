@@ -16,5 +16,5 @@ index c20ea42359db561ac6e6b748a07ad686bdd41630..dd5a280ea4cdc9a405cf5dd944f61b3d
      }
 +    sources += brave_chrome_browser_sources deps += brave_chrome_browser_deps
    }
-
+ 
    if (is_chromeos) {
