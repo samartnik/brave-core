@@ -90,14 +90,15 @@ public class BraveToolbarManager extends ToolbarManager {
             OneshotSupplier<AppMenuCoordinator> appMenuCoordinatorSupplier,
             boolean shouldShowUpdateBadge,
             ObservableSupplier<TabModelSelector> tabModelSelectorSupplier,
-            OneshotSupplier<StartSurface> startSurfaceSupplier) {
+            OneshotSupplier<StartSurface> startSurfaceSupplier,
+            ObservableSupplier<Boolean> omniboxFocusStateSupplier) {
         super(activity, controlsSizer, fullscreenManager, controlContainer, invalidator,
                 urlFocusChangedCallback, themeColorProvider, tabObscuringHandler,
                 shareDelegateSupplier, identityDiscController, buttonDataProviders, tabProvider,
                 scrimCoordinator, toolbarActionModeCallback, findToolbarManager, profileSupplier,
                 bookmarkBridgeSupplier, canAnimateNativeBrowserControls,
                 overviewModeBehaviorSupplier, appMenuCoordinatorSupplier, shouldShowUpdateBadge,
-                tabModelSelectorSupplier, startSurfaceSupplier);
+                tabModelSelectorSupplier, startSurfaceSupplier, omniboxFocusStateSupplier);
     }
 
     @Override
