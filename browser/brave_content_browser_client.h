@@ -26,7 +26,7 @@ class BrowserContext;
 
 class BraveContentBrowserClient : public ChromeContentBrowserClient {
  public:
-  explicit BraveContentBrowserClient(StartupData* startup_data = nullptr);
+  explicit BraveContentBrowserClient();
   ~BraveContentBrowserClient() override;
 
   // Overridden from ChromeContentBrowserClient:
