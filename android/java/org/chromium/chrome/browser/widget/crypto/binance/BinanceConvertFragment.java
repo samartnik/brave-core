@@ -206,7 +206,7 @@ public class BinanceConvertFragment extends Fragment {
     }
 
     private void dismissBinanceBottomSheet() {
-        FragmentManager fm = getActivity().getSupportFragmentManager();
+        FragmentManager fm = getParentFragmentManager();
         CryptoWidgetBottomSheetDialogFragment fragment =
                 (CryptoWidgetBottomSheetDialogFragment) fm.findFragmentByTag(
                         CryptoWidgetBottomSheetDialogFragment.TAG_FRAGMENT);
