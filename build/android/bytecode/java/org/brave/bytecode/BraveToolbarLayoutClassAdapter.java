@@ -10,12 +10,36 @@ import org.objectweb.asm.ClassVisitor;
 public class BraveToolbarLayoutClassAdapter extends BraveClassVisitor {
     static String sCustomTabToolbarClassName =
             "org/chromium/chrome/browser/customtabs/features/toolbar/CustomTabToolbar";
-
-    static String sBraveCustomTabToolbarBaseClassName =
+    static String sToolbarPhoneClassName = "org/chromium/chrome/browser/toolbar/top/ToolbarPhone";
+    static String sBraveToolbarLayoutClassName =
             "org/chromium/chrome/browser/toolbar/top/BraveToolbarLayout";
 
     public BraveToolbarLayoutClassAdapter(ClassVisitor visitor) {
         super(visitor);
-        changeSuperName(sCustomTabToolbarClassName, sBraveCustomTabToolbarBaseClassName);
+        changeSuperName(sCustomTabToolbarClassName, sBraveToolbarLayoutClassName);
+
+        changeSuperName(sToolbarPhoneClassName, sBraveToolbarLayoutClassName);
+
+        makePublicMethod(sToolbarPhoneClassName, "updateModernLocationBarColor");
+        addMethodAnnotation(
+                sToolbarPhoneClassName, "updateModernLocationBarColor", "Ljava/lang/Override;");
+        changeMethodOwner(sToolbarPhoneClassName, "updateModernLocationBarColor",
+                sBraveToolbarLayoutClassName);
+
+        changeMethodOwner(sToolbarPhoneClassName, "onClick", sBraveToolbarLayoutClassName);
+
+        deleteMethod(sToolbarPhoneClassName, "getBoundsAfterAccountingForRightButtons");
+
+        makePublicMethod(sToolbarPhoneClassName, "populateUrlFocusingAnimatorSet");
+        addMethodAnnotation(
+                sToolbarPhoneClassName, "populateUrlFocusingAnimatorSet", "Ljava/lang/Override;");
+        changeMethodOwner(sToolbarPhoneClassName, "populateUrlFocusingAnimatorSet",
+                sBraveToolbarLayoutClassName);
+
+        makePublicMethod(sToolbarPhoneClassName, "populateUrlClearFocusingAnimatorSet");
+        addMethodAnnotation(sToolbarPhoneClassName, "populateUrlClearFocusingAnimatorSet",
+                "Ljava/lang/Override;");
+        changeMethodOwner(sToolbarPhoneClassName, "populateUrlClearFocusingAnimatorSet",
+                sBraveToolbarLayoutClassName);
     }
 }

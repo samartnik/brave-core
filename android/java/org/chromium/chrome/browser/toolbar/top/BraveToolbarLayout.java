@@ -117,6 +117,8 @@ public abstract class BraveToolbarLayout extends ToolbarLayout
     private static final long MINUTES_10 = 10 * 60 * 1000;
 
     private static final int URL_FOCUS_TOOLBAR_BUTTONS_TRANSLATION_X_DP = 10;
+    private static final int URL_FOCUS_TOOLBAR_BUTTONS_DURATION_MS = 100;
+    private static final int URL_CLEAR_FOCUS_TABSTACK_DELAY_MS = 200;
 
     private DatabaseHelper mDatabaseHelper = DatabaseHelper.getInstance();
 
@@ -144,9 +146,14 @@ public abstract class BraveToolbarLayout extends ToolbarLayout
     private PopupWindow mShieldsTooltipPopupWindow;
 
     private boolean mIsBottomToolbarVisible;
+    private ViewGroup mToolbarButtonsContainer;
+    protected int mToolbarSidePadding;
 
     public BraveToolbarLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
+
+        mToolbarButtonsContainer = (ViewGroup) findViewById(R.id.toolbar_buttons);
+        mToolbarSidePadding = getResources().getDimensionPixelOffset(R.dimen.toolbar_edge_padding);
     }
 
     @Override
@@ -262,7 +269,7 @@ public abstract class BraveToolbarLayout extends ToolbarLayout
         // Initially show shields off image. Shields button state will be updated when tab is
         // shown and loading state is changed.
         updateBraveShieldsButtonState(null);
-        if (this instanceof ToolbarPhone) {
+        if (BraveReflectionUtil.EqualTypes(this.getClass(), ToolbarPhone.class)) {
             if (getMenuButtonCoordinator() != null && isMenuButtonOnBottom()) {
                 getMenuButtonCoordinator().setVisibility(false);
             }
@@ -588,6 +595,9 @@ public abstract class BraveToolbarLayout extends ToolbarLayout
 
     @Override
     public void onClick(View v) {
+        if (BraveReflectionUtil.EqualTypes(this.getClass(), ToolbarPhone.class)) {
+            BraveReflectionUtil.InvokeMethod(ToolbarPhone.class, this, "onClick", View.class, v);
+        }
         if (mBraveShieldsHandler == null) {
             assert false;
             return;
@@ -723,13 +733,18 @@ public abstract class BraveToolbarLayout extends ToolbarLayout
     }
 
     protected void updateModernLocationBarColor(int color) {
+        if (BraveReflectionUtil.EqualTypes(this.getClass(), ToolbarPhone.class)) {
+            BraveReflectionUtil.InvokeMethod(
+                    ToolbarPhone.class, this, "updateModernLocationBarColor", int.class, color);
+        }
+        if (mShieldsLayout != null && mShieldsLayoutIsColorBackground) {
+            mShieldsLayout.setBackgroundColor(
+                    ChromeColors.getDefaultThemeColor(getResources(), isIncognito()));
+        }
+        if (mCurrentToolbarColor == color) return;
         mCurrentToolbarColor = color;
         if (mShieldsLayout != null) {
             mShieldsLayout.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_IN);
-            if (mShieldsLayoutIsColorBackground) {
-                mShieldsLayout.setBackgroundColor(
-                        ChromeColors.getDefaultThemeColor(getResources(), isIncognito()));
-            }
         }
         if (mRewardsLayout != null) {
             mRewardsLayout.getBackground().setColorFilter(color, PorterDuff.Mode.SRC_IN);
@@ -949,7 +964,8 @@ public abstract class BraveToolbarLayout extends ToolbarLayout
 
     public void onBottomToolbarVisibilityChanged(boolean isVisible) {
         mIsBottomToolbarVisible = isVisible;
-        if (this instanceof ToolbarPhone && getMenuButtonCoordinator() != null) {
+        if (BraveReflectionUtil.EqualTypes(this.getClass(), ToolbarPhone.class)
+                && getMenuButtonCoordinator() != null) {
             getMenuButtonCoordinator().setVisibility(!isVisible);
             ToggleTabStackButton toggleTabStackButton = findViewById(R.id.tab_switcher_button);
             if (toggleTabStackButton != null) {
@@ -998,9 +1014,35 @@ public abstract class BraveToolbarLayout extends ToolbarLayout
     @Override
     protected void onDraw(Canvas canvas) {
         if (BraveReflectionUtil.EqualTypes(this.getClass(), CustomTabToolbar.class)
-                || this instanceof ToolbarPhone) {
+                || BraveReflectionUtil.EqualTypes(this.getClass(), ToolbarPhone.class)) {
             updateMenuButtonState();
         }
         super.onDraw(canvas);
+    }
+
+    protected int getBoundsAfterAccountingForRightButtons() {
+        if (BraveReflectionUtil.EqualTypes(this.getClass(), ToolbarPhone.class)) {
+            return Math.max(mToolbarSidePadding,
+                    getBoundsAfterAccountingForRightButtons(mToolbarButtonsContainer));
+        }
+        return 0;
+    }
+
+    protected void populateUrlFocusingAnimatorSet(List<Animator> animators) {
+        if (BraveReflectionUtil.EqualTypes(this.getClass(), ToolbarPhone.class)) {
+            BraveReflectionUtil.InvokeMethod(ToolbarPhone.class, this,
+                    "populateUrlFocusingAnimatorSet", List.class, animators);
+            populateUrlAnimatorSet(true, URL_FOCUS_TOOLBAR_BUTTONS_DURATION_MS,
+                    URL_CLEAR_FOCUS_TABSTACK_DELAY_MS, animators);
+        }
+    }
+
+    protected void populateUrlClearFocusingAnimatorSet(List<Animator> animators) {
+        if (BraveReflectionUtil.EqualTypes(this.getClass(), ToolbarPhone.class)) {
+            BraveReflectionUtil.InvokeMethod(ToolbarPhone.class, this,
+                    "populateUrlClearFocusingAnimatorSet", List.class, animators);
+            populateUrlAnimatorSet(false, URL_FOCUS_TOOLBAR_BUTTONS_DURATION_MS,
+                    URL_CLEAR_FOCUS_TABSTACK_DELAY_MS, animators);
+        }
     }
 }
