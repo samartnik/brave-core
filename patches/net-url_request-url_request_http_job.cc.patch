@@ -1,16 +1,16 @@
 diff --git a/net/url_request/url_request_http_job.cc b/net/url_request/url_request_http_job.cc
-index b3273836587b394ecac6f37ad75ac9d2986bd0e3..316802de3157d4d6eb6c86f4152e623ae0d2ede0 100644
+index 9d993cce5e0e01936d1e4c9837f6bc129ca41e67..0cc3cf33b7c3de0a6581e6a20c748810f5b56eca 100644
 --- a/net/url_request/url_request_http_job.cc
 +++ b/net/url_request/url_request_http_job.cc
-@@ -579,6 +579,7 @@ void URLRequestHttpJob::AddCookieHeaderAndStart() {
-     CookieOptions options = CreateCookieOptions(
-         same_site_context, same_party_context, request_->isolation_info());
+@@ -567,6 +567,7 @@ void URLRequestHttpJob::AddCookieHeaderAndStart() {
+         same_site_context, same_party_context, request_->isolation_info(),
+         is_in_nontrivial_first_party_set);
  
 +    BRAVE_ADDCOOKIEHEADERANDSTART
      cookie_store->GetCookieListWithOptionsAsync(
          request_->url(), options,
          base::BindOnce(&URLRequestHttpJob::SetCookieHeaderAndStart,
-@@ -764,6 +765,7 @@ void URLRequestHttpJob::SaveCookiesAndNotifyHeadersComplete(int result) {
+@@ -757,6 +758,7 @@ void URLRequestHttpJob::SaveCookiesAndNotifyHeadersComplete(int result) {
        continue;
      }
  
