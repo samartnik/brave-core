@@ -32,9 +32,9 @@
 #if !defined(OS_ANDROID)
 #include "brave/browser/infobars/brave_confirm_p3a_infobar_delegate.h"
 #include "brave/browser/infobars/crypto_wallets_infobar_delegate.h"
+#include "chrome/browser/infobars/infobar_service.h"
 #include "chrome/browser/ui/browser.h"
 #include "chrome/browser/ui/browser_finder.h"
-#include "chrome/browser/infobars/infobar_service.h"
 #include "content/public/browser/web_contents.h"
 #endif
 
@@ -44,9 +44,9 @@
 
 #if BUILDFLAG(ENABLE_BRAVE_SYNC) && !defined(OS_ANDROID)
 #include "brave/browser/infobars/sync_v2_migrate_infobar_delegate.h"
+#include "chrome/browser/sync/profile_sync_service_factory.h"
 #include "components/sync/driver/sync_service.h"
 #include "components/sync/driver/sync_user_settings.h"
-#include "chrome/browser/sync/profile_sync_service_factory.h"
 #endif
 
 void BraveBrowserMainParts::PostBrowserStart() {
@@ -63,10 +63,11 @@ void BraveBrowserMainParts::PostBrowserStart() {
     // because we will hit DCHECK(!GetProfileAttributesWithPath(...))  in
     // ProfileInfoCache::DeleteProfileFromCache when we trying to delete it
     // without this being added into the storage first.
-    ProfileAttributesEntry* entry = nullptr;
     ProfileAttributesStorage& storage =
         profile_manager->GetProfileAttributesStorage();
-    if (!storage.GetProfileAttributesWithPath(tor_legacy_path, &entry)) {
+    ProfileAttributesEntry* entry =
+        storage.GetProfileAttributesWithPath(tor_legacy_path);
+    if (!entry) {
       storage.AddProfile(tor_legacy_path, base::string16(), std::string(),
                          base::string16(),
                          /* is_consented_primary_account*/ false, 0,
@@ -105,13 +106,15 @@ void BraveBrowserMainParts::PostBrowserStart() {
         BraveConfirmP3AInfoBarDelegate::Create(
             infobar_service, g_browser_process->local_state());
 #if BUILDFLAG(ENABLE_BRAVE_SYNC)
-      auto* sync_service = ProfileSyncServiceFactory::IsSyncAllowed(profile())
-             ? ProfileSyncServiceFactory::GetForProfile(profile())
-             : nullptr;
-      const bool is_v2_user = sync_service &&
-          sync_service->GetUserSettings()->IsFirstSetupComplete();
-      SyncV2MigrateInfoBarDelegate::Create(infobar_service, is_v2_user,
-          profile(), browser);
+        auto* sync_service =
+            ProfileSyncServiceFactory::IsSyncAllowed(profile())
+                ? ProfileSyncServiceFactory::GetForProfile(profile())
+                : nullptr;
+        const bool is_v2_user =
+            sync_service &&
+            sync_service->GetUserSettings()->IsFirstSetupComplete();
+        SyncV2MigrateInfoBarDelegate::Create(infobar_service, is_v2_user,
+                                             profile(), browser);
 #endif  // BUILDFLAG(ENABLE_BRAVE_SYNC)
       }
     }
@@ -130,7 +133,7 @@ void BraveBrowserMainParts::PreProfileInit() {
   if (!base::FeatureList::IsEnabled(brave_sync::features::kBraveSync)) {
     // Disable sync temporarily
     if (!command_line->HasSwitch(switches::kDisableSync))
-        command_line->AppendSwitch(switches::kDisableSync);
+      command_line->AppendSwitch(switches::kDisableSync);
   } else {
     // Relaunch after flag changes will still have the switch
     // when switching from disabled to enabled
