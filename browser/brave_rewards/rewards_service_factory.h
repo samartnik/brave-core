@@ -7,10 +7,11 @@
 #define BRAVE_BROWSER_BRAVE_REWARDS_REWARDS_SERVICE_FACTORY_H_
 
 #include "base/memory/singleton.h"
+#include "base/scoped_observation.h"
 #include "brave/components/brave_rewards/browser/rewards_service.h"
+#include "chrome/browser/profiles/profile_manager.h"
+#include "chrome/browser/profiles/profile_manager_observer.h"
 #include "components/keyed_service/content/browser_context_keyed_service_factory.h"
-#include "content/public/browser/notification_observer.h"
-#include "content/public/browser/notification_registrar.h"
 
 class Profile;
 
@@ -19,7 +20,7 @@ class RewardsService;
 
 // Singleton that owns all RewardsService and associates them with Profiles.
 class RewardsServiceFactory : public BrowserContextKeyedServiceFactory,
-                              public content::NotificationObserver {
+                              public ProfileManagerObserver {
  public:
   RewardsServiceFactory(const RewardsServiceFactory&) = delete;
   RewardsServiceFactory& operator=(const RewardsServiceFactory&) = delete;
@@ -41,12 +42,11 @@ class RewardsServiceFactory : public BrowserContextKeyedServiceFactory,
       content::BrowserContext* context) const override;
   bool ServiceIsNULLWhileTesting() const override;
 
-  // content::NotificationObserver:
-  void Observe(int type,
-               const content::NotificationSource& source,
-               const content::NotificationDetails& details) override;
+  // ProfileManagerObserver:
+  void OnProfileAdded(Profile* profile) override;
 
-  content::NotificationRegistrar registrar_;
+  base::ScopedObservation<ProfileManager, ProfileManagerObserver>
+      profile_manager_observer_{this};
 };
 
 }  // namespace brave_rewards
