@@ -8,7 +8,9 @@ package org.chromium.chrome.browser.toolbar.bottom;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.view.View;
 
+import org.chromium.chrome.R;
 import org.chromium.components.browser_ui.widget.gesture.SwipeGestureListener;
 import org.chromium.components.browser_ui.widget.gesture.SwipeGestureListener.SwipeHandler;
 
@@ -16,6 +18,10 @@ public class BraveScrollingBottomViewResourceFrameLayout
         extends ScrollingBottomViewResourceFrameLayout {
     /** A swipe recognizer for handling swipe gestures. */
     private SwipeGestureListener mSwipeGestureListener;
+    private boolean mIsBottomToolbarVisible;
+
+    // delete me
+    int count;
 
     public BraveScrollingBottomViewResourceFrameLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -48,5 +54,43 @@ public class BraveScrollingBottomViewResourceFrameLayout
         boolean handledEvent = false;
         if (mSwipeGestureListener != null) handledEvent = mSwipeGestureListener.onTouchEvent(event);
         return handledEvent || super.onTouchEvent(event);
+    }
+
+    @Override
+    public void setVisibility(int visibility) {
+        org.chromium.base.Log.e("SAM",
+                "SAM: BraveScrollingBottomViewResourceFrameLayout.setVisibility: " + visibility);
+        org.chromium.base.Log.e("SAM",
+                "SAM: BraveScrollingBottomViewResourceFrameLayout.mIsBottomToolbarVisible: "
+                        + mIsBottomToolbarVisible);
+        // if (visibility == 0) {
+        //     Object o = null;
+        //     String s = o.toString();
+        // }
+        if (!mIsBottomToolbarVisible) {
+            // Force bottom toolbar UI to be gone.
+            setBottomToolbarVisible(false);
+            super.setVisibility(visibility);
+            return;
+        }
+        View bottomContainerSlot = findViewById(R.id.bottom_container_slot);
+        assert (bottomContainerSlot != null);
+        if (bottomContainerSlot != null) {
+            bottomContainerSlot.setVisibility(
+                    /*(visibility == View.INVISIBLE) ? View.GONE : */visibility);
+        }
+    }
+
+    public void setBottomToolbarVisible(boolean visible) {
+        if (!mIsBottomToolbarVisible && visible) {
+            // Force whole bottom controls UI to be visible.
+            setVisibility(View.VISIBLE);
+        }
+        mIsBottomToolbarVisible = visible;
+        View bottomToolbarStub = findViewById(R.id.bottom_toolbar);
+        assert (bottomToolbarStub != null);
+        if (bottomToolbarStub != null) {
+            bottomToolbarStub.setVisibility(visible ? View.VISIBLE : View.GONE);
+        }
     }
 }

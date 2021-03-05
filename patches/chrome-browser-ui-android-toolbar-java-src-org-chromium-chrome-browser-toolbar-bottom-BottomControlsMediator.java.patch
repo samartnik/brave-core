@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/bottom/BottomControlsMediator.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/bottom/BottomControlsMediator.java
+index f305a6a92b7a8a0b4b11c36eb9a0a3bbb970347a..6653f0347e056a5cacfe389da7e13ee73e778553 100644
+--- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/bottom/BottomControlsMediator.java
++++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/bottom/BottomControlsMediator.java
+@@ -153,7 +153,7 @@ class BottomControlsMediator implements BrowserControlsStateProvider.Observer,
+         final boolean isCompositedViewVisible = isCompositedViewVisible();
+         mModel.set(BottomControlsProperties.COMPOSITED_VIEW_VISIBLE, isCompositedViewVisible);
+         mBrowserControlsSizer.setBottomControlsHeight(
+-                isCompositedViewVisible ? mBottomControlsHeight : 0,
++                isCompositedViewVisible ? mBottomControlsHeight : mBottomControlsHeight / 2,
+                 mBrowserControlsSizer.getBottomControlsMinHeight());
+     }
+ 

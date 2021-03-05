@@ -47,6 +47,7 @@ public class BraveBottomControlsCoordinator extends BottomControlsCoordinator {
     private Callback<Integer> mSetUrlBarFocusAction;
     private OneshotSupplier<LayoutStateProvider> mLayoutStateProviderSupplier;
     private ScrollingBottomViewResourceFrameLayout mRoot;
+    private boolean mIsBottomToolbarVisible;
 
     public BraveBottomControlsCoordinator(
             OneshotSupplier<LayoutStateProvider> layoutStateProviderSupplier,
@@ -79,11 +80,11 @@ public class BraveBottomControlsCoordinator extends BottomControlsCoordinator {
             TabCountProvider tabCountProvider, IncognitoStateProvider incognitoStateProvider,
             ViewGroup topToolbarRoot, Runnable closeAllTabsAction) {
         if (BottomToolbarConfiguration.isBottomToolbarEnabled()) {
-            mBottomToolbarCoordinator = new BottomToolbarCoordinator(mRoot,
-                    mRoot.findViewById(R.id.bottom_toolbar_stub), mTabProvider,
-                    mTabSwitcherLongclickListener, mThemeColorProvider, mOpenHomepageAction,
-                    mSetUrlBarFocusAction, mLayoutStateProviderSupplier, mMenuButtonHelperSupplier,
-                    mMediator);
+            mBottomToolbarCoordinator =
+                    new BottomToolbarCoordinator(mRoot, mRoot.findViewById(R.id.bottom_toolbar),
+                            mTabProvider, mTabSwitcherLongclickListener, mThemeColorProvider,
+                            mOpenHomepageAction, mSetUrlBarFocusAction,
+                            mLayoutStateProviderSupplier, mMenuButtonHelperSupplier, mMediator);
 
             mBottomToolbarCoordinator.initializeWithNative(tabSwitcherListener, newTabClickListener,
                     tabCountProvider, incognitoStateProvider, topToolbarRoot, closeAllTabsAction);
@@ -92,11 +93,8 @@ public class BraveBottomControlsCoordinator extends BottomControlsCoordinator {
 
     @Override
     public void setBottomControlsVisible(boolean isVisible) {
-        super.setBottomControlsVisible(isVisible);
-
-        if (mBottomToolbarCoordinator != null) {
-            mBottomToolbarCoordinator.setBottomToolbarVisible(isVisible);
-        }
+        // Bottom controls still should be visible is bottom toolbar is visible.
+        super.setBottomControlsVisible(mIsBottomToolbarVisible || isVisible);
     }
 
     @Override
@@ -115,6 +113,13 @@ public class BraveBottomControlsCoordinator extends BottomControlsCoordinator {
     public void updateHomeButtonState() {
         if (mBottomToolbarCoordinator != null) {
             mBottomToolbarCoordinator.updateHomeButtonState();
+        }
+    }
+
+    public void setBottomToolbarVisible(boolean visible) {
+        mIsBottomToolbarVisible = visible;
+        if (mBottomToolbarCoordinator != null) {
+            mBottomToolbarCoordinator.setBottomToolbarVisible(mIsBottomToolbarVisible);
         }
     }
 }

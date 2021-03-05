@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/flags/android/chrome_feature_list.cc b/chrome/browser/flags/android/chrome_feature_list.cc
-index 7a6c4dd179b1877139b00f8fca97c2c9df6de71d..162741f5f2a46fb9e7786be540f6c55ad15b9037 100644
+index 7a6c4dd179b1877139b00f8fca97c2c9df6de71d..f71736e2f5e5fd48812308b0d08be8caa4a339c5 100644
 --- a/chrome/browser/flags/android/chrome_feature_list.cc
 +++ b/chrome/browser/flags/android/chrome_feature_list.cc
 @@ -308,6 +308,7 @@ const base::Feature* kFeaturesExposedToJava[] = {
@@ -10,3 +10,21 @@ index 7a6c4dd179b1877139b00f8fca97c2c9df6de71d..162741f5f2a46fb9e7786be540f6c55a
    for (const auto* feature : kFeaturesExposedToJava) {
      if (feature->name == feature_name)
        return feature;
+@@ -618,7 +619,7 @@ const base::Feature kTabEngagementReportingAndroid{
+     "TabEngagementReportingAndroid", base::FEATURE_DISABLED_BY_DEFAULT};
+ 
+ const base::Feature kTabGroupsAndroid{"TabGroupsAndroid",
+-                                      base::FEATURE_DISABLED_BY_DEFAULT};
++                                      base::FEATURE_ENABLED_BY_DEFAULT};
+ 
+ const base::Feature kTabGroupsContinuationAndroid{
+     "TabGroupsContinuationAndroid", base::FEATURE_DISABLED_BY_DEFAULT};
+@@ -627,7 +628,7 @@ const base::Feature kTabGroupsUiImprovementsAndroid{
+     "TabGroupsUiImprovementsAndroid", base::FEATURE_ENABLED_BY_DEFAULT};
+ 
+ const base::Feature kTabGridLayoutAndroid{"TabGridLayoutAndroid",
+-                                          base::FEATURE_DISABLED_BY_DEFAULT};
++                                          base::FEATURE_ENABLED_BY_DEFAULT};
+ 
+ const base::Feature kTabReparenting{"TabReparenting",
+                                     base::FEATURE_ENABLED_BY_DEFAULT};

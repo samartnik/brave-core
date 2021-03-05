@@ -13,13 +13,17 @@ import org.chromium.ui.modelutil.PropertyModel;
 
 class BraveBottomControlsMediator extends BottomControlsMediator {
     private final PropertyModel mModel;
+    private int mBottomControlsHeightSingle;
+    private int mBottomControlsHeightDouble;
 
     BraveBottomControlsMediator(WindowAndroid windowAndroid, PropertyModel model,
             BrowserControlsSizer controlsSizer, FullscreenManager fullscreenManager,
             int bottomControlsHeight, ObservableSupplier<Boolean> overlayPanelVisibilitySupplier) {
-        super(windowAndroid, model, controlsSizer, fullscreenManager, bottomControlsHeight,
+        super(windowAndroid, model, controlsSizer, fullscreenManager, bottomControlsHeight * 2,
                 overlayPanelVisibilitySupplier);
 
+        mBottomControlsHeightSingle = bottomControlsHeight;
+        mBottomControlsHeightDouble = bottomControlsHeight * 2;
         mModel = model;
     }
 
