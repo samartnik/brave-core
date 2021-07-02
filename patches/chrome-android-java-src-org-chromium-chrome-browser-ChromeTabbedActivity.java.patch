@@ -6,7 +6,7 @@ index 690fad4b5b825b6167ec2445c43cb3ce74363239..5ded07ee01833d299c86d2c99416b7bc
      }
  
      private void hideOverview() {
-+        org.chromium.chrome.browser.app.BraveActivity.class.cast(this).hideOverview(mLayoutManager);
++        org.chromium.base.Log.e("SAM", "SAM: ChromeTabbedActivity.hideOverview");
          assert (mOverviewModeController.overviewVisible());
          if (getCurrentTabModel().getCount() != 0) {
              // Don't hide overview if current tab stack is empty()
