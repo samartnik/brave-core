@@ -842,11 +842,6 @@ public abstract class BraveToolbarLayoutImpl extends ToolbarLayout
 
     @Override
     public void onClickImpl(View v) {
-        onClick(v);
-    }
-
-    @Override
-    public void onClick(View v) {
         if (mBraveShieldsHandler == null) {
             assert false;
             return;
@@ -884,6 +879,11 @@ public abstract class BraveToolbarLayoutImpl extends ToolbarLayout
         }
     }
 
+    @Override
+    public void onClick(View v) {
+        onClickImpl(v);
+    }
+
     private boolean checkForRewardsOnboarding() {
         return PackageUtils.isFirstInstall(getContext())
                 && !BraveAdsNativeHelper.nativeIsBraveAdsEnabled(
@@ -913,11 +913,6 @@ public abstract class BraveToolbarLayoutImpl extends ToolbarLayout
 
     @Override
     public boolean onLongClickImpl(View v) {
-        return onLongClick(v);
-    }
-
-    @Override
-    public boolean onLongClick(View v) {
         // Use null as the default description since Toast.showAnchoredToast
         // will return false if it is null.
         String description = null;
@@ -933,6 +928,11 @@ public abstract class BraveToolbarLayoutImpl extends ToolbarLayout
         }
 
         return Toast.showAnchoredToast(context, v, description);
+    }
+
+    @Override
+    public boolean onLongClick(View v) {
+        return onLongClickImpl(v);
     }
 
     @Override
