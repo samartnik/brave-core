@@ -16,8 +16,7 @@ polymer_modulizer("shared_vars_css") {
 
 group("polymer3_elements") {
   deps = [
-    "br_toolbar:br_toolbar_module",
-    "br_toolbar:br_toolbar_search_field_module",
+    "br_toolbar",
     ":shared_style_css_module",
     ":shared_vars_css_module",
   ]
