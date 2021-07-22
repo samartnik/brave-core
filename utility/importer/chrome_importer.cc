@@ -137,8 +137,7 @@ bool SetEncryptionKey(const base::FilePath& source_path) {
   return true;
 }
 
-std::u16string DecryptedCardFromColumn(const sql::Statement& s,
-                                       int column_index) {
+std::u16string DecryptedCardFromColumn(sql::Statement& s, int column_index) {
   std::u16string credit_card_number;
   int encrypted_number_len = s.ColumnByteLength(column_index);
   if (encrypted_number_len) {
