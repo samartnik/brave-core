@@ -94,7 +94,6 @@ public class BravePrivacySettingsTest {
     @SmallTest
     public void testDisabledOptions() {
         TestThreadUtils.runOnUiThreadBlocking(() -> {
-            assertFalse(PrivacySandboxBridge.isPrivacySandboxSettingsFunctional());
             assertFalse(PrivacyPreferencesManagerImpl.getInstance().getNetworkPredictionEnabled());
         });
     }
