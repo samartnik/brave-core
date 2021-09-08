@@ -86,9 +86,9 @@ BraveTranslateBubbleView::BraveCreateViewBeforeTranslate() {
       views::GridLayout::kFixedSize,
       provider->GetDistanceMetric(views::DISTANCE_UNRELATED_CONTROL_VERTICAL));
 
-  // We can't call views::style::GetColor() until the anything the associated
-  // widget has been initialized or views::View::GetNativeTheme() will be called
-  // to avoid using the global NativeInstance, which would be an error.
+  // We can't call views::style::GetColor() until the associated widget has been
+  // initialized or views::View::GetNativeTheme() will be called to avoid using
+  // the global NativeInstance, which would be an error.
   RegisterWidgetInitializedCallback(base::BindOnce(
       [](views::LabelButton* dont_ask_button) {
         const auto color = views::style::GetColor(
