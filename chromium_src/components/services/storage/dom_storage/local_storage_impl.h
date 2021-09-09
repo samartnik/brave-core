@@ -47,7 +47,7 @@ class LocalStorageImpl : public mojom::LocalStorageControl {
   std::unique_ptr<LocalStorageImpl_ChromiumImpl> local_storage_;
   std::unique_ptr<LocalStorageImpl_ChromiumImpl> in_memory_local_storage_;
   mojo::Receiver<mojom::LocalStorageControl> control_receiver_{this};
-  // LocalStorageImpl works only with non-opaque origins, that's why we use an
+  // LocalStorageImpl works only with non-opaque origins, that's why we use a
   // map of opaque origins to StorageKeys with non-opaque origins.
   std::map<url::Origin, blink::StorageKey> storage_keys_with_non_opaque_origin_;
 
