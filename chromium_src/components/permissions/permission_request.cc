@@ -45,7 +45,7 @@ PermissionRequest::PermissionRequest(
 PermissionRequest::~PermissionRequest() = default;
 
 bool PermissionRequest::SupportsLifetime() const {
-  static const std::vector<RequestType> excluded_types = {
+  const RequestType kExcludedTypes[] = {
     RequestType::kDiskQuota,
     RequestType::kMultipleDownloads,
 #if defined(OS_ANDROID)
@@ -58,7 +58,7 @@ bool PermissionRequest::SupportsLifetime() const {
     RequestType::kWidevine
 #endif  // BUILDFLAG(ENABLE_WIDEVINE)
   };
-  if (base::Contains(excluded_types, request_type())) {
+  if (base::Contains(kExcludedTypes, request_type())) {
     return false;
   }
   return true;
