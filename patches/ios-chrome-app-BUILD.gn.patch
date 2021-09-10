@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/app/BUILD.gn b/ios/chrome/app/BUILD.gn
-index 016d86d6b6ca590e76138f47d2660999f4bab78c..0ddd3796145176c10fd8b4711fc22b8a206b6c3c 100644
+index f09ff76c113eb8858ba7ebffa002626d86c3396b..246298ba7fa51d674fd350ccbb2aeb5b020d312b 100644
 --- a/ios/chrome/app/BUILD.gn
 +++ b/ios/chrome/app/BUILD.gn
 @@ -167,7 +167,7 @@ if (ios_enable_credential_provider_extension) {
