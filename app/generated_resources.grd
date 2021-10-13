@@ -2571,6 +2571,21 @@ are declared in tools/grit/grit_rule.gni.
         </message>
       </if>
 
+      <!-- Bluetooth Device Credentials (i.e. PIN/Passkey) dialog -->
+      <if expr="is_win or is_linux">
+        <message name="IDS_BLUETOOTH_DEVICE_CREDENTIALS_TITLE" desc="Title of the Bluetooth device credentials prompt dialog.">
+          Device Credentials
+        </message>
+        <!--
+          NOTE: As per Bluetooth v4.2 spec. (section 3.2.3.2):
+          > When the Bluetooth PIN is referred to on the UI level, the term
+          > 'Bluetooth Passkey' should be used."
+        -->
+        <message name="IDS_BLUETOOTH_DEVICE_CREDENTIALS_LABEL" desc="Label of the text prompt for Bluetooth device credentials.">
+          Enter Bluetooth Passkey for device <ph name="DEVICE">$1</ph>
+        </message>
+      </if>
+
       <!-- Content blocking strings -->
       <message name="IDS_MANAGE" desc="Text for a button on permission bubbles, which opens a more detailed content settings page where users can manage that particular setting.">
         Manage
@@ -5172,9 +5187,6 @@ Keep your key file in a safe place. You will need it to create new versions of y
       <message name="IDS_PLUGIN_DISABLED" desc="The placeholder text for a disabled plugin.">
         <ph name="PLUGIN_NAME">$1<ex>Flash</ex></ph> disabled.
       </message>
-      <message name="IDS_PLUGIN_PREFER_HTML_BY_DEFAULT" desc="The placeholder text for a plugin with no fallback content when Prefer HTML5 By Default is on.">
-        Click to enable <ph name="PLUGIN_NAME">$1<ex>Flash</ex></ph>
-      </message>
       <message name="IDS_PLUGIN_DEPRECATED" desc="The placeholder text for a deprecated plugin.">
         <ph name="PLUGIN_NAME">$1<ex>Adobe Flash Player</ex></ph> is no longer supported
       </message>
@@ -5288,7 +5300,7 @@ Keep your key file in a safe place. You will need it to create new versions of y
       </if>
 
       <!-- chrome://browser-switch strings -->
-      <if expr="is_win or is_macosx or (is_linux and not chromeos)">
+      <if expr="is_win or is_macosx or is_fuchsia or (is_linux and not chromeos)">
         <message name="IDS_ABOUT_BROWSER_SWITCH_TITLE" desc="about:browser-switch page title">
           Legacy Browser Support
         </message>
@@ -5771,29 +5783,50 @@ Keep your key file in a safe place. You will need it to create new versions of y
         <ph name="BREAK">&lt;br&gt;</ph>
         Learn about the data Google Drive collects and why <ph name="BEGIN_LINK">&lt;a href="https://support.google.com/drive/answer/2450387" target="_blank"&gt;</ph>here<ph name="END_LINK">&lt;/a&gt;</ph>.
       </message>
-      <message name="IDS_NTP_MODULES_PHOTOS_TITLE" desc="Title shown in the header of the photos module and various other UIs.">
-        Brave Photos
+      <message name="IDS_NTP_MODULES_PHOTOS_TITLE" desc="Title shown in the header of the photos module.">
+        From your Brave Photos
       </message>
-      <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_HIDE_TODAY" desc="Label used to hide Brave Photos Memories from the new tab page for today.">
-        Hide memories for today
+      <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_TITLE" desc="Title shown for Brave Photos Memories in the list of available cards for the new tab page.">
+        Brave Photos memories
+      </message>
+      <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_HIDE_TODAY" desc="Part of label (combined with IDS_NTP_MODULES_DISMISS_BUTTON_TEXT) used to hide Brave Photos Memories from the new tab page for today.">
+        your memories for today
       </message>
       <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_HIDDEN_TODAY" desc="Confirmation text shown when Brave Photos Memories were hidden from the new tab page for today.">
         Memories hidden for today
       </message>
-      <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_DISABLE" desc="Label used to disable Brave Photos Memories from the new tab page.">
-        Never show memories
+      <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_DISABLE" desc="Part of label (combined with IDS_NTP_MODULES_DISABLE_BUTTON_TEXT) used to disable Brave Photos Memories from the new tab page.">
+        memories
       </message>
-      <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_DISABLED" desc="Confirmation text shown when the Brave Photos Memories module is disabled from the new tab page.">
-        All memories hidden
+      <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_DISABLED" desc="Part of confirmation text (combined with IDS_NTP_MODULES_DISABLE_TOAST_MESSAGE) shown when the Brave Photos Memories module is disabled from the new tab page.">
+        memories from Brave Photos
       </message>
       <message name="IDS_NTP_MODULES_PHOTOS_INFO" desc="Text shown in the body of the info dialog of the Photos module.">
-        Your Memories from Brave Photos are shown here. They are visible only when you’re signed in.
+        Your memories from Brave Photos are shown here. They are visible only to you, whenever you’re signed in.
         <ph name="BREAK">&lt;br&gt;</ph>
         <ph name="BREAK">&lt;br&gt;</ph>
-        Manage what you see in your memories at <ph name="BEGIN_LINK">&lt;a href="https://photos.google.com/settings" target="_blank"&gt;</ph>photos.google.com/settings<ph name="END_LINK">&lt;/a&gt;</ph>.
+        Manage what you see in your memories at <ph name="BEGIN_LINK">&lt;a href="https://photos.google.com/settings?referrer=CHROME_NTP" target="_blank"&gt;</ph>photos.google.com/settings<ph name="END_LINK">&lt;/a&gt;</ph>.
       </message>
       <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_EXPLORE" desc="Text to encourage users to explore Brave Photos in the new tab page.">
         Explore more of your memories in Brave Photos
+      </message>
+      <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_WELCOME_TITLE" desc="Title of the opt-in UI for Brave Photos in the new tab page.">
+        See your memories here
+      </message>
+      <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_WELCOME_TEXT" desc="Text for the opt-in UI for Brave Photos in the new tab page.">
+        Start exploring your memories from Brave Photos, whenever you’re signed in.
+      </message>
+      <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_WELCOME_BUTTON_OPT_IN" desc="Label of the button to opt-in of Brave Photos in the new tab page.">
+        See memories
+      </message>
+      <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_WELCOME_BUTTON_OPT_OUT" desc="Label of the button to opt-out of Brave Photos in the new tab page.">
+        No thanks
+      </message>
+      <message name="IDS_NTP_MODULES_PHOTOS_MEMORIES_WELCOME_EXAMPLE" desc="Example of a memory title for the Brave Photos module in the new tab page.">
+        2 years ago
+      </message>
+      <message name="IDS_NTP_MODULES_PHOTOS_NEW" desc="Text shown on the header chip of Brave Photos module.">
+        New
       </message>
       <message name="IDS_NTP_MODULES_KALEIDOSCOPE_TITLE" desc="Title shown in the header of the Kaleidoscope module.">
         Top picks for you
@@ -6015,6 +6048,9 @@ Keep your key file in a safe place. You will need it to create new versions of y
       </message>
       <message name="IDS_TOOLTIP_EXTENSIONS_BUTTON" desc="The tooltip for the extensions button">
         Extensions
+      </message>
+      <message name="IDS_TOOLTIP_EXTENSIONS_SITE_ACCESS_BUTTON" desc="The tooltip for the extensions site access button">
+        Extension permissions
       </message>
       <message name="IDS_TOOLTIP_SIDE_PANEL_SHOW" desc="The tooltip for the side panel button, when closed">
         Show side panel
@@ -7128,8 +7164,17 @@ Keep your key file in a safe place. You will need it to create new versions of y
         <message name="IDS_ACCNAME_SIDE_SEARCH_TOOLBAR_BUTTON" desc="The accessible name for the side search toolbar button">
           Toggle side search
         </message>
+        <message name="IDS_ACCNAME_SIDE_SEARCH_TOOLBAR_BUTTON_ACTIVATED" desc="The accessible name for the side search toolbar button when side search is activated.">
+          Toggle side search. Side search activated.
+        </message>
+        <message name="IDS_ACCNAME_SIDE_SEARCH_TOOLBAR_BUTTON_NOT_ACTIVATED" desc="The accessible name for the side search toolbar button when side search is not activated.">
+          Toggle side search. Side search not activated.
+        </message>
         <message name="IDS_ACCNAME_SIDE_SEARCH_CLOSE_BUTTON" desc="The accessible name for the side search header close button">
           Close side search
+        </message>
+        <message name="IDS_SIDE_SEARCH_PROMO" desc="Promo UI shown next to the side search button to encourage its use.">
+          See more search results in side panel
         </message>
         <message name="IDS_TOOLTIP_SIDE_SEARCH_TOOLBAR_BUTTON" desc="The tooltip for the side search toolbar button">
           Toggle side search
@@ -7716,6 +7761,9 @@ Keep your key file in a safe place. You will need it to create new versions of y
         <message name="IDS_CONTEXT_MENU_GENERATE_QR_CODE_IMAGE" desc="The label for the Create QR Code for this Image context menu item.">
           Create QR Code for this image
         </message>
+        <message name="IDS_CONTEXT_MENU_GENERATE_QR_CODE_LINK" desc="The label for the Create QR Code for this Link context menu item.">
+          Create QR Code for this link
+        </message>
       </if>
       <if expr="use_titlecase">
         <message name="IDS_CONTEXT_MENU_GENERATE_QR_CODE_PAGE" desc="The label for the Create QR Code for this Page context menu item.">
@@ -7723,6 +7771,9 @@ Keep your key file in a safe place. You will need it to create new versions of y
         </message>
         <message name="IDS_CONTEXT_MENU_GENERATE_QR_CODE_IMAGE" desc="The label for the Create QR Code for this Image context menu item.">
           Create QR Code for this Image
+        </message>
+        <message name="IDS_CONTEXT_MENU_GENERATE_QR_CODE_LINK" desc="The label for the Create QR Code for this Link context menu item.">
+          Create QR Code for this Link
         </message>
       </if>
       <if expr="not is_android">
@@ -10119,6 +10170,9 @@ Please help our engineers fix this problem. Tell us what happened right before y
       </if>
       <message name="IDS_DESKTOP_MEDIA_PICKER_EMPTY_PREVIEW" desc="Text shown instead of a preview image of a tab when the user hasn't yet selected a tab to screenshare.">
         Select a tab to preview
+      </message>
+      <message name="IDS_DESKTOP_MEDIA_PICKER_PREVIEW_ACCESSIBLE_NAME" desc="Name used by screen readers for a preview screenshot of a tab selected for screensharing.">
+        Preview of shared tab
       </message>
 
       <message name="IDS_TAB_CAPTURE_TERMINATED_BY_POLICY_TITLE" desc="Title for a confirmation dialog shown on the captured tab when capture of that tab is terminated due to enterprise policy.">
