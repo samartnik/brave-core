@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/net/system_network_context_manager.cc b/chrome/browser/net/system_network_context_manager.cc
-index db3d6b4a06d6f00b035a212982192c86006871a7..2402056ac60824904d672cdafd23eb77536f1f0b 100644
+index 8b4d6be41b495a454e9ae59d63141683df9b27c7..d8152cf3080f96a9947f63f38f30760942123a16 100644
 --- a/chrome/browser/net/system_network_context_manager.cc
 +++ b/chrome/browser/net/system_network_context_manager.cc
-@@ -235,7 +235,7 @@ class SystemNetworkContextManager::URLLoaderFactoryForSystem
+@@ -239,7 +239,7 @@ class SystemNetworkContextManager::URLLoaderFactoryForSystem
      if (!manager_)
        return;
      manager_->GetURLLoaderFactory()->CreateLoaderAndStart(

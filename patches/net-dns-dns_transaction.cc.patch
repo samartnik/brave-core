@@ -1,5 +1,5 @@
 diff --git a/net/dns/dns_transaction.cc b/net/dns/dns_transaction.cc
-index 25158819a61159ee14d1b14a00234ed2e5e63579..997c3c564435e8538ed5f235f2706fbe2ce7eba8 100644
+index 18d48034118c9bd7f48060973ba39dc1c216c963..b7f8f69f30a55bccbc231b1c82dffea9acbba4f1 100644
 --- a/net/dns/dns_transaction.cc
 +++ b/net/dns/dns_transaction.cc
 @@ -1342,6 +1342,7 @@ class DnsTransactionImpl : public DnsTransaction,

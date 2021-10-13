@@ -1,5 +1,5 @@
 diff --git a/chrome/common/BUILD.gn b/chrome/common/BUILD.gn
-index 44de8f191f57149e0d37553d585ef7fc38bd7d4d..d16ff2005cfe27c890c7f18a7e915d9ff3660b2a 100644
+index 4cea6cd1d4e8a1cf5e8ff0f967dd33fec6900abc..831ec2d765c2f0f39c4d1c802cc38b644a5290a7 100644
 --- a/chrome/common/BUILD.gn
 +++ b/chrome/common/BUILD.gn
 @@ -84,6 +84,7 @@ source_set("channel_info") {
@@ -10,7 +10,7 @@ index 44de8f191f57149e0d37553d585ef7fc38bd7d4d..d16ff2005cfe27c890c7f18a7e915d9f
  }
  
  source_set("ini_parser") {
-@@ -552,6 +553,7 @@ static_library("non_code_constants") {
+@@ -550,6 +551,7 @@ static_library("non_code_constants") {
      "//printing/buildflags",
      "//ui/base:buildflags",
    ]
