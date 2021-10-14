@@ -10,6 +10,7 @@
 #include <utility>
 #include <vector>
 
+#include "base/callback_helpers.h"
 #include "base/json/json_reader.h"
 #include "base/test/bind.h"
 #include "brave/components/brave_wallet/browser/asset_ratio_controller.h"
@@ -207,10 +208,9 @@ class EthTxControllerUnitTest : public testing::Test {
         std::move(nonce_tracker), std::move(pending_tx_tracker), &prefs_));
 
     rpc_controller_->SetNetwork(brave_wallet::mojom::kLocalhostChainId);
-    keyring_controller_->CreateWallet(
-        "testing123", base::DoNothing::Once<const std::string&>());
+    keyring_controller_->CreateWallet("testing123", base::DoNothing());
     base::RunLoop().RunUntilIdle();
-    keyring_controller_->AddAccount("Account 1", base::DoNothing::Once<bool>());
+    keyring_controller_->AddAccount("Account 1", base::DoNothing());
     base::RunLoop().RunUntilIdle();
 
     ASSERT_TRUE(base::HexStringToBytes(

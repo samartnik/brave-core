@@ -9,6 +9,7 @@
 #include <utility>
 #include <vector>
 
+#include "base/callback_helpers.h"
 #include "base/strings/utf_string_conversions.h"
 #include "base/test/bind.h"
 #include "base/test/task_environment.h"
@@ -140,11 +141,9 @@ class BraveWalletProviderImplUnitTest : public testing::Test {
     return HostContentSettingsMapFactory::GetForProfile(&profile_);
   }
   void CreateWalletAndAccount() {
-    keyring_controller()->CreateWallet(
-        "testing123", base::DoNothing::Once<const std::string&>());
+    keyring_controller()->CreateWallet("testing123", base::DoNothing());
     base::RunLoop().RunUntilIdle();
-    keyring_controller()->AddAccount("Account 2",
-                                     base::DoNothing::Once<bool>());
+    keyring_controller()->AddAccount("Account 2", base::DoNothing());
     base::RunLoop().RunUntilIdle();
   }
 
