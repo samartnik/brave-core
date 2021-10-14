@@ -1,0 +1,22 @@
+diff --git a/chrome/browser/metrics/variations/BUILD.gn b/chrome/browser/metrics/variations/BUILD.gn
+index ccb8ef058361495a7dc1ded63e178d6a7a9f3cb8..859a6e322dc7853e24e9098aec750935946d37a3 100644
+--- a/chrome/browser/metrics/variations/BUILD.gn
++++ b/chrome/browser/metrics/variations/BUILD.gn
+@@ -10,7 +10,7 @@ generate_ui_string_overrider("chrome_ui_string_overrider_factory") {
+     "$root_gen_dir/chrome/grit/generated_resources.h",
+     "$root_gen_dir/chrome/grit/google_chrome_strings.h",
+     "$root_gen_dir/components/strings/grit/components_chromium_strings.h",
+-    "$root_gen_dir/components/strings/grit/components_google_chrome_strings.h",
++    # "$root_gen_dir/components/strings/grit/components_google_chrome_strings.h",
+     "$root_gen_dir/components/strings/grit/components_strings.h",
+   ]
+   deps = [
+@@ -18,7 +18,7 @@ generate_ui_string_overrider("chrome_ui_string_overrider_factory") {
+     "//chrome/app:generated_resources",
+     "//chrome/app:google_chrome_strings",
+     "//components/strings:components_chromium_strings",
+-    "//components/strings:components_google_chrome_strings",
++    # "//components/strings:components_google_chrome_strings",
+     "//components/strings:components_strings",
+   ]
+   namespace = "chrome_variations"
