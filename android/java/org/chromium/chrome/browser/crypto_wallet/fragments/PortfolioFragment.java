@@ -44,6 +44,7 @@ import org.chromium.content_public.browser.UiThreadTaskTraits;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class PortfolioFragment
         extends Fragment implements OnWalletListItemClick, AdapterView.OnItemSelectedListener {
@@ -323,7 +324,8 @@ public class PortfolioFragment
                                                         ? (fromHexWei(context.balance) * usdPerEth)
                                                         : 0.0d);
                                     }
-                                    final String fiatSumString = String.format("$%,.2f", fiatSum);
+                                    final String fiatSumString =
+                                            String.format(Locale.getDefault(), "$%,.2f", fiatSum);
                                     PostTask.runOrPostTask(UiThreadTaskTraits.DEFAULT, () -> {
                                         mBalance.setText(fiatSumString);
                                         mBalance.invalidate();
