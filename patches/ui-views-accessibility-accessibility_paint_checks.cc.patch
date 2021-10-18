@@ -1,0 +1,22 @@
+diff --git a/ui/views/accessibility/accessibility_paint_checks.cc b/ui/views/accessibility/accessibility_paint_checks.cc
+index 8c2dfe6dc5ccd53765c448560a6e3a5cef8de3f9..73a09ebb4a35e2ea31bdfb4b5c1898af07d0739e 100644
+--- a/ui/views/accessibility/accessibility_paint_checks.cc
++++ b/ui/views/accessibility/accessibility_paint_checks.cc
+@@ -53,6 +53,9 @@ void RunAccessibilityPaintChecks(View* view) {
+     return;
+   }
+ 
++  // The CHECK belows is currently (96.0.4664.9) failing due to a problem
++  // upstream, see https://bugs.chromium.org/p/chromium/issues/detail?id=1260423
++#if 0
+   // Finally, a view is allowed to explicitly state that it has no name. Note
+   // that while this is a CHECK, calling code may decide to only run this if
+   // DCHECKs are enabled.
+@@ -62,6 +65,7 @@ void RunAccessibilityPaintChecks(View* view) {
+       << " is focusable but has no accessible name or placeholder, and is not "
+          "explicitly marked as empty.\n"
+       << GetViewTreeAsString(view);
++#endif
+ }
+ 
+ }  // namespace views
