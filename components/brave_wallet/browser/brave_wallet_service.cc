@@ -121,9 +121,8 @@ BraveWalletService::BraveWalletService(
       kDefaultWallet2,
       base::BindRepeating(&BraveWalletService::OnDefaultWalletChanged,
                           base::Unretained(this)));
-  p3a_periodic_timer_.Start(
-      FROM_HERE, base::TimeDelta::FromHours(kRefreshP3AFrequencyHours), this,
-      &BraveWalletService::OnP3ATimerFired);
+  p3a_periodic_timer_.Start(FROM_HERE, base::Hours(kRefreshP3AFrequencyHours),
+                            this, &BraveWalletService::OnP3ATimerFired);
   OnP3ATimerFired();  // Also call on startup
 }
 
