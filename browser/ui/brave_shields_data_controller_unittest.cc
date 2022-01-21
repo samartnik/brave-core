@@ -19,6 +19,7 @@
 #include "components/content_settings/core/common/content_settings_types.h"
 #include "content/public/browser/web_contents.h"
 #include "content/public/test/browser_task_environment.h"
+#include "content/public/test/test_renderer_host.h"
 #include "content/public/test/web_contents_tester.h"
 #include "testing/gtest/include/gtest/gtest.h"
 
@@ -97,6 +98,8 @@ class BraveShieldsDataControllerTest : public testing::Test {
 
  private:
   content::BrowserTaskEnvironment task_environment_;
+  // This enables uses of TestWebContents.
+  content::RenderViewHostTestEnabler test_render_host_factories;
   std::unique_ptr<content::WebContents> web_contents_;
   Profile* profile_;
   std::unique_ptr<TestingProfileManager> profile_manager_;
