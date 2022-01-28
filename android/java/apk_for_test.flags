@@ -338,7 +338,6 @@
     *** mActivity;
     *** mNtpHeader;
     *** mRootView;
-    *** isEnhancedProtectionPromoEnabled(...);
     *** isReliabilityLoggingEnabled(...);
 }
 
@@ -346,7 +345,6 @@
     *** mScrollViewForPolicy;
     *** mNtpHeader;
     *** mRootView;
-    *** isEnhancedProtectionPromoEnabled(...);
     *** isReliabilityLoggingEnabled(...);
 }
 
