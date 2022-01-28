@@ -71,7 +71,6 @@
 }
 
 -keep class org.chromium.chrome.browser.search_engines.settings.SearchEngineAdapter {
-    *** getPermissionsLinkMessage(...);
     *** getSearchEngineSourceType(...);
     *** sortAndFilterUnnecessaryTemplateUrl(...);
 }
