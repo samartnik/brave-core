@@ -349,12 +349,18 @@ public class BytecodeTest {
         Assert.assertTrue(
                 methodExists("org/chromium/chrome/browser/tasks/tab_management/TabUiThemeProvider",
                         "getActionButtonTintList", false, null));
+        Assert.assertTrue(
+                methodExists("org/chromium/chrome/browser/tasks/tab_management/TabUiThemeProvider",
+                        "getCardViewBackgroundColor", false, null));
         Assert.assertTrue(methodExists(
                 "org/chromium/chrome/browser/tasks/tab_management/BraveTabUiThemeProvider",
                 "getTitleTextColor", false, null));
         Assert.assertTrue(methodExists(
                 "org/chromium/chrome/browser/tasks/tab_management/BraveTabUiThemeProvider",
                 "getActionButtonTintList", false, null));
+        Assert.assertTrue(methodExists(
+                "org/chromium/chrome/browser/tasks/tab_management/BraveTabUiThemeProvider",
+                "getCardViewBackgroundColor", false, null));
     }
 
     @Test

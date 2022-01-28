@@ -33,4 +33,15 @@ public class BraveTabUiThemeProvider {
 
         return TabUiThemeProvider.getActionButtonTintList(context, isIncognito, isSelected);
     }
+
+    @ColorInt
+    public static int getCardViewBackgroundColor(
+            Context context, boolean isIncognito, boolean isSelected) {
+        if (isSelected && !isIncognito) {
+            return ApiCompatibilityUtils.getColor(
+                    context.getResources(), R.color.baseline_primary_200);
+        }
+
+        return TabUiThemeProvider.getCardViewBackgroundColor(context, isIncognito, isSelected);
+    }
 }
