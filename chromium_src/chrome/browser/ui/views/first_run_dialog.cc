@@ -9,6 +9,7 @@
 
 #include "base/bind.h"
 #include "base/run_loop.h"
+#include "brave/components/l10n/common/locale_util.h"
 #include "brave/grit/brave_generated_resources.h"
 #include "build/build_config.h"
 #include "chrome/browser/first_run/first_run.h"
@@ -21,7 +22,6 @@
 #include "chrome/grit/chromium_strings.h"
 #include "chrome/grit/generated_resources.h"
 #include "components/strings/grit/components_strings.h"
-#include "ui/base/l10n/l10n_util.h"
 #include "ui/base/metadata/metadata_impl_macros.h"
 #include "ui/views/border.h"
 #include "ui/views/controls/button/checkbox.h"
@@ -72,10 +72,11 @@ FirstRunDialog::FirstRunDialog(base::RepeatingClosure learn_more_callback,
   if (report_crashes_)
     report_crashes_->GetChecked();
 
-  SetTitle(l10n_util::GetStringUTF16(IDS_FIRST_RUN_DIALOG_WINDOW_TITLE));
+  SetTitle(brave_l10n::GetLocalizedResourceUTF16String(
+      IDS_FIRST_RUN_DIALOG_WINDOW_TITLE));
   SetButtons(ui::DIALOG_BUTTON_OK);
-  SetExtraView(
-      std::make_unique<views::Link>(l10n_util::GetStringUTF16(IDS_LEARN_MORE)))
+  SetExtraView(std::make_unique<views::Link>(
+                   brave_l10n::GetLocalizedResourceUTF16String(IDS_LEARN_MORE)))
       ->SetCallback(std::move(learn_more_callback));
 
   constexpr int kChildSpacing = 16;
@@ -92,7 +93,7 @@ FirstRunDialog::FirstRunDialog(base::RepeatingClosure learn_more_callback,
           .DeriveWithSizeDelta(size_diff)
           .DeriveWithWeight(gfx::Font::Weight::NORMAL)};
   auto* contents_label = AddChildView(std::make_unique<views::Label>(
-      l10n_util::GetStringUTF16(
+      brave_l10n::GetLocalizedResourceUTF16String(
           IDS_FIRSTRUN_DLG_COMPLETE_INSTALLATION_LABEL_BRAVE),
       contents_font));
   contents_label->SetHorizontalAlignment(gfx::ALIGN_LEFT);
@@ -101,7 +102,8 @@ FirstRunDialog::FirstRunDialog(base::RepeatingClosure learn_more_callback,
   contents_label->SetMaximumWidth(kMaxWidth);
 
   make_default_ = AddChildView(std::make_unique<views::Checkbox>(
-      l10n_util::GetStringUTF16(IDS_FR_CUSTOMIZE_DEFAULT_BROWSER_BRAVE)));
+      brave_l10n::GetLocalizedResourceUTF16String(
+          IDS_FR_CUSTOMIZE_DEFAULT_BROWSER_BRAVE)));
   make_default_->SetChecked(true);
 
   chrome::RecordDialogCreation(chrome::DialogIdentifier::FIRST_RUN_DIALOG);
