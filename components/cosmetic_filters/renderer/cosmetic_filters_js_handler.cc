@@ -190,7 +190,7 @@ void CosmeticFiltersJSHandler::InjectStylesheet(const std::string& stylesheet,
   }
   web_frame->GetDocument().InsertStyleSheet(
       blink::WebString::FromUTF8(stylesheet), style_sheet_key,
-      blink::WebDocument::kUserOrigin);
+      blink::WebCssOrigin::kUser);
 }
 
 void CosmeticFiltersJSHandler::UninjectStylesheet(int id) {
@@ -204,7 +204,7 @@ void CosmeticFiltersJSHandler::UninjectStylesheet(int id) {
     inserted_stylesheet_ids.erase(i);
 
     web_frame->GetDocument().RemoveInsertedStyleSheet(
-        *key, blink::WebDocument::kUserOrigin);
+        *key, blink::WebCssOrigin::kUser);
   }
 }
 
