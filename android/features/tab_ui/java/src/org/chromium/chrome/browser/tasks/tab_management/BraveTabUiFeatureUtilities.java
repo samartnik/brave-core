@@ -34,15 +34,15 @@ public class BraveTabUiFeatureUtilities {
         // For backward compatibility we take value of Tab Grid feature if BRAVE_TAB_GROUPS_ENABLED
         // setting hasn't been created. We don't want to rely on Tab Grid feature itself since it
         // can be removed in the upstream going forward.
-        if (!SharedPreferencesManager.getInstance().contains(
-                    BravePreferenceKeys.BRAVE_TAB_GROUPS_ENABLED)) {
-            SharedPreferencesManager.getInstance().writeBoolean(
-                    BravePreferenceKeys.BRAVE_TAB_GROUPS_ENABLED,
-                    CachedFeatureFlags.isEnabled(ChromeFeatureList.TAB_GRID_LAYOUT_ANDROID));
-        }
+        // if (!SharedPreferencesManager.getInstance().contains(
+        //             BravePreferenceKeys.BRAVE_TAB_GROUPS_ENABLED)) {
+        //     SharedPreferencesManager.getInstance().writeBoolean(
+        //             BravePreferenceKeys.BRAVE_TAB_GROUPS_ENABLED,
+        //             CachedFeatureFlags.isEnabled(ChromeFeatureList.TAB_GRID_LAYOUT_ANDROID));
+        // }
 
         if (!SharedPreferencesManager.getInstance().readBoolean(
-                    BravePreferenceKeys.BRAVE_TAB_GROUPS_ENABLED, true)) {
+                    BravePreferenceKeys.BRAVE_TAB_GROUPS_ENABLED, false)) {
             return false;
         }
 

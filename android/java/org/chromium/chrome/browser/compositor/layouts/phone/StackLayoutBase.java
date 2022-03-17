@@ -27,6 +27,7 @@ import org.chromium.base.supplier.ObservableSupplier;
 import org.chromium.chrome.browser.browser_controls.BrowserControlsStateProvider;
 import org.chromium.chrome.browser.browser_controls.BrowserControlsUtils;
 import org.chromium.chrome.browser.compositor.LayerTitleCache;
+import org.chromium.chrome.browser.compositor.layouts.BraveLayoutManagerChrome;
 import org.chromium.chrome.browser.compositor.layouts.Layout;
 import org.chromium.chrome.browser.compositor.layouts.LayoutManagerImpl;
 import org.chromium.chrome.browser.compositor.layouts.LayoutRenderHost;
@@ -141,6 +142,12 @@ public abstract class StackLayoutBase extends Layout {
      */
     private static final float SWITCH_STACK_FLING_DT = 1.0f / 30.0f;
 
+    // Defines to make the code easier to read.
+    public static final boolean NEED_TITLE = true;
+    public static final boolean NO_TITLE = false;
+    public static final boolean SHOW_CLOSE_BUTTON = true;
+    public static final boolean NO_CLOSE_BUTTON = false;
+
     /**
      * True if this is currently the active layout and startHiding() has not yet been called, false
      * otherwise.
@@ -239,6 +246,9 @@ public abstract class StackLayoutBase extends Layout {
     private boolean mShowPending;
 
     private boolean mUiDoneEnteringStack;
+
+    private LayerTitleCache mLayerTitleCache;
+    private final LayoutUpdateHost mUpdateHost;
 
     private class StackLayoutGestureHandler implements GestureHandler {
         @Override
@@ -387,6 +397,8 @@ public abstract class StackLayoutBase extends Layout {
             LayoutRenderHost renderHost,
             ObservableSupplier<BrowserControlsStateProvider> browserControlsStateProviderSupplier) {
         super(context, updateHost, renderHost);
+
+        mUpdateHost = updateHost;
 
         mGestureHandler = new StackLayoutGestureHandler();
         mGestureEventFilter = new GestureEventFilter(context, mGestureHandler);
@@ -1633,16 +1645,16 @@ public abstract class StackLayoutBase extends Layout {
 
     @Override
     protected void updateSceneLayer(RectF viewport, RectF contentViewport,
-            LayerTitleCache layerTitleCache, TabContentManager tabContentManager,
-            ResourceManager resourceManager, BrowserControlsStateProvider browserControls) {
+            TabContentManager tabContentManager, ResourceManager resourceManager,
+            BrowserControlsStateProvider browserControls) {
         ensureSceneLayerCreated();
-        super.updateSceneLayer(viewport, contentViewport, layerTitleCache, tabContentManager,
-                resourceManager, browserControls);
+        super.updateSceneLayer(
+                viewport, contentViewport, tabContentManager, resourceManager, browserControls);
         assert mSceneLayer != null;
 
-        mSceneLayer.pushLayers(getContext(), viewport, contentViewport, this, layerTitleCache,
-                tabContentManager, resourceManager, browserControls, SceneLayer.INVALID_RESOURCE_ID,
-                0, 0);
+        mSceneLayer.initStack(mLayerTitleCache);
+        mSceneLayer.pushLayers(getContext(), viewport, contentViewport, this, tabContentManager,
+                resourceManager, browserControls, SceneLayer.INVALID_RESOURCE_ID, 0, 0);
     }
 
     @Override
@@ -1706,5 +1718,26 @@ public abstract class StackLayoutBase extends Layout {
             if (mLayoutAnimations.get(i).first.isRunning()) return true;
         }
         return false;
+    }
+
+    public LayoutTab createStackLayoutTab(
+            int id, boolean isIncognito, boolean showCloseButton, boolean isTitleNeeded) {
+        return createStackLayoutTab(id, isIncognito, showCloseButton, isTitleNeeded, -1.f, -1.f);
+    }
+
+    public LayoutTab createStackLayoutTab(int id, boolean isIncognito, boolean showCloseButton,
+            boolean isTitleNeeded, float maxContentWidth, float maxContentHeight) {
+        assert mUpdateHost
+                instanceof BraveLayoutManagerChrome
+            : "Something must be wrong with bytecode patching!";
+        LayoutTab layoutTab = ((BraveLayoutManagerChrome) mUpdateHost)
+                                      .createStackLayoutTab(id, isIncognito, showCloseButton,
+                                              isTitleNeeded, maxContentWidth, maxContentHeight);
+        initLayoutTabFromHost(layoutTab);
+        return layoutTab;
+    }
+
+    public void setLayerTitleCache(LayerTitleCache layerTitleCache) {
+        mLayerTitleCache = layerTitleCache;
     }
 }

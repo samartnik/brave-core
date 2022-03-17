@@ -1,0 +1,70 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/compositor/scene_layer/TabListSceneLayer.java b/chrome/android/java/src/org/chromium/chrome/browser/compositor/scene_layer/TabListSceneLayer.java
+index 654e433afa295a71d557bcd7a4d5276c73486919..36441b91e5d3d3df4ab321467066b1dd729f6e8f 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/compositor/scene_layer/TabListSceneLayer.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/compositor/scene_layer/TabListSceneLayer.java
+@@ -14,6 +14,7 @@ import org.chromium.chrome.R;
+ import org.chromium.chrome.browser.browser_controls.BrowserControlsStateProvider;
+ import org.chromium.chrome.browser.compositor.layouts.Layout;
+ import org.chromium.chrome.browser.compositor.layouts.components.LayoutTab;
++import org.chromium.chrome.browser.compositor.layouts.components.StackLayoutTab;
+ import org.chromium.chrome.browser.compositor.layouts.content.TabContentManager;
+ import org.chromium.chrome.browser.layouts.scene_layer.SceneLayer;
+ import org.chromium.chrome.browser.tabmodel.TabModelSelector;
+@@ -23,6 +24,10 @@ import org.chromium.components.browser_ui.styles.SemanticColorUtils;
+ import org.chromium.ui.resources.ResourceManager;
+ import org.chromium.ui.util.ColorUtils;
+ 
++import android.graphics.Color;
++import org.chromium.base.ApiCompatibilityUtils;
++
++import org.chromium.chrome.browser.compositor.LayerTitleCache;
+ /**
+  * A SceneLayer to render a tab stack.
+  * TODO(changwan): change layouts to share one instance of this.
+@@ -39,6 +44,12 @@ public class TabListSceneLayer extends SceneLayer {
+         mTabModelSelector = tabModelSelector;
+     }
+ 
++    public void initStack(LayerTitleCache layerTitleCache) {
++        if (mNativePtr == 0 || mIsInitialized || layerTitleCache == null) return;
++        TabListSceneLayerJni.get().setStackDependencies(
++                mNativePtr, TabListSceneLayer.this, layerTitleCache);
++    }
++
+     public void init(TabContentManager tabContentManager, ResourceManager resourceManager) {
+         if (mNativePtr == 0 || mIsInitialized) return;
+         TabListSceneLayerJni.get().setDependencies(
+@@ -117,8 +128,17 @@ public class TabListSceneLayer extends SceneLayer {
+                 contentOffset = browserControls.getContentOffset();
+             }
+ 
++            StackLayoutTab st = (StackLayoutTab) t;
+             // TODO(dtrainor, clholgat): remove "* dpToPx" once the native part fully supports dp.
+             TabListSceneLayerJni.get().putTabLayer(mNativePtr, TabListSceneLayer.this, t.getId(),
++                    R.drawable.btn_delete_24dp, st.isCloseButtonOnRight(),
++                    st.getTiltXPivotOffset() * dpToPx, st.getTiltYPivotOffset() * dpToPx,
++                    st.getTiltX(), st.getTiltY(), st.getBorderCloseButtonAlpha() * decoration,
++                    StackLayoutTab.CLOSE_BUTTON_WIDTH_DP * dpToPx,
++                    res.getDimensionPixelSize(R.dimen.tab_switcher_close_button_size),
++                    useIncognitoColors ? Color.WHITE
++                                       : SemanticColorUtils.getDefaultIconColorSecondary(context),
++                    st.isTitleNeeded(),
+                     relatedTabIds, mUseAdditionalIds, R.id.control_container,
+                     R.drawable.tabswitcher_border_frame_shadow,
+                     R.drawable.tabswitcher_border_frame_decoration,
+@@ -188,6 +208,7 @@ public class TabListSceneLayer extends SceneLayer {
+                 float viewportHeight);
+         // TODO(meiliang): Need to provide a resource that indicates the selected tab on the layer.
+         void putTabLayer(long nativeTabListSceneLayer, TabListSceneLayer caller, int selectedId,
++                int closeButtonResourceId, boolean isPortrait, float pivotX, float pivotY, float rotationX, float rotationY, float closeAlpha, float closeBtnWidth, float closeBtnAssetSize, int closeButtonColor, boolean showTabTitle,
+                 int[] ids, boolean useAdditionalIds, int toolbarResourceId, int shadowResourceId,
+                 int contourResourceId, int borderResourceId, int borderInnerShadowResourceId,
+                 boolean canUseLiveLayer, int tabBackgroundColor, boolean incognito, float x,
+@@ -202,5 +223,7 @@ public class TabListSceneLayer extends SceneLayer {
+ 
+         void putBackgroundLayer(long nativeTabListSceneLayer, TabListSceneLayer caller,
+                 int resourceId, float alpha, int topOffset);
++        void setStackDependencies(long nativeTabListSceneLayer, TabListSceneLayer caller,
++                LayerTitleCache layerTitleCache);
+     }
+ }

@@ -1,0 +1,13 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/compositor/layouts/LayoutManagerImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/compositor/layouts/LayoutManagerImpl.java
+index 7cf0c8850e0cfa73efbaf2547c03ea0ac640e91e..6b94f3792c7a190c2964287b786cfb36df3356e1 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/compositor/layouts/LayoutManagerImpl.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/compositor/layouts/LayoutManagerImpl.java
+@@ -129,7 +129,7 @@ public class LayoutManagerImpl implements ManagedLayoutManager, LayoutUpdateHost
+     private EventFilter mActiveEventFilter;
+ 
+     // Internal State
+-    private final SparseArray<LayoutTab> mTabCache = new SparseArray<>();
++    public final SparseArray<LayoutTab> mTabCache = new SparseArray<>();
+     private int mControlsShowingToken = TokenHolder.INVALID_TOKEN;
+     private int mControlsHidingToken = TokenHolder.INVALID_TOKEN;
+     private boolean mUpdateRequested;
