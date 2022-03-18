@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/android/compositor/layer/tab_layer.h b/chrome/browser/android/compositor/layer/tab_layer.h
-index 9f158c5906d6b6a9453c374ce0ce6e183cf7b7d8..80033f5f6113c3a09c2012c0585b8da45f20c576 100644
+index 9f158c5906d6b6a9453c374ce0ce6e183cf7b7d8..f6f080825cb4d4e8107cb6ff80849dc66c28159e 100644
 --- a/chrome/browser/android/compositor/layer/tab_layer.h
 +++ b/chrome/browser/android/compositor/layer/tab_layer.h
 @@ -16,6 +16,7 @@ namespace cc {
@@ -26,75 +26,38 @@ index 9f158c5906d6b6a9453c374ce0ce6e183cf7b7d8..80033f5f6113c3a09c2012c0585b8da4
    static scoped_refptr<TabLayer> Create(bool incognito,
                                          ui::ResourceManager* resource_manager,
                                          TabContentManager* tab_content_manager);
-@@ -45,7 +51,7 @@ class TabLayer : public Layer {
- 
-   // TODO(meiliang): This method needs another parameter, a resource that can be
-   // used to indicate the currently selected tab for the TabLayer.
--  void SetProperties(int id,
-+  void SetProperties_Chromium(int id,
-                      const std::vector<int>& ids,
-                      bool can_use_live_layer,
-                      int toolbar_resource_id,
-@@ -86,6 +92,58 @@ class TabLayer : public Layer {
+@@ -86,6 +92,30 @@ class TabLayer : public Layer {
                       float side_border_scale,
                       bool inset_border);
  
-+  void SetProperties(int id,
-+                     const std::vector<int>& ids,
-+                     bool can_use_live_layer,
-+                     int toolbar_resource_id,
-+                     int shadow_resource_id,
-+                     int contour_resource_id,
-+                     int border_resource_id,
-+                     int border_inner_shadow_resource_id,
-+                     int default_background_color,
-+                     float x,
-+                     float y,
-+                     float width,
-+                     float height,
-+                     float shadow_x,
-+                     float shadow_y,
-+                     float shadow_width,
-+                     float shadow_height,
-+                     float alpha,
-+                     float border_alpha,
-+                     float border_inner_shadow_alpha,
-+                     float contour_alpha,
-+                     float shadow_alpha,
-+                     float border_scale,
-+                     float saturation,
-+                     float brightness,
-+                     float static_to_view_blend,
-+                     float content_width,
-+                     float content_height,
-+                     float view_width,
-+                     bool show_toolbar,
-+                     int default_theme_color,
-+                     int toolbar_background_color,
-+                     bool anonymize_toolbar,
-+                     int toolbar_textbox_resource_id,
-+                     int toolbar_textbox_background_color,
-+                     float toolbar_alpha,
-+                     float toolbar_y_offset,
-+                     float content_offset,
-+                     float side_border_scale,
-+                     bool inset_border,
-+                     int close_button_resource_id,
-+                     bool close_button_on_right,
-+                     float pivot_x,
-+                     float pivot_y,
-+                     float rotation_x,
-+                     float rotation_y,
-+                     float close_alpha,
-+                     float close_btn_width,
-+                     float close_btn_asset_size,
-+                     int close_button_color,
-+                     bool show_tab_title);
++  void SetStackProperties(int id,
++                          int border_resource_id,
++                          float x,
++                          float y,
++                          float width,
++                          float alpha,
++                          float border_alpha,
++                          float border_scale,
++                          float content_width,
++                          float content_height,
++                          int default_theme_color,
++                          bool inset_border,
++                          int close_button_resource_id,
++                          bool close_button_on_right,
++                          float pivot_x,
++                          float pivot_y,
++                          float rotation_x,
++                          float rotation_y,
++                          float close_alpha,
++                          float close_btn_width,
++                          float close_btn_asset_size,
++                          int close_button_color,
++                          bool show_tab_title);
 +
    bool is_incognito() const { return incognito_; }
  
    scoped_refptr<cc::Layer> layer() override;
-@@ -137,6 +195,10 @@ class TabLayer : public Layer {
+@@ -137,6 +167,10 @@ class TabLayer : public Layer {
  
    scoped_refptr<cc::NinePatchLayer> shadow_;
    float brightness_;

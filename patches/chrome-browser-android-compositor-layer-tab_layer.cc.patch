@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/android/compositor/layer/tab_layer.cc b/chrome/browser/android/compositor/layer/tab_layer.cc
-index 8eadc90d0ff46da734e2ab02de93673d9d0d6ea4..fcea0de0d07972cf73b125a4df907ef48b7376c2 100644
+index 8eadc90d0ff46da734e2ab02de93673d9d0d6ea4..347c77f535643d9b43df67e01be364ba9c1d1d04 100644
 --- a/chrome/browser/android/compositor/layer/tab_layer.cc
 +++ b/chrome/browser/android/compositor/layer/tab_layer.cc
 @@ -26,6 +26,9 @@
@@ -12,87 +12,38 @@ index 8eadc90d0ff46da734e2ab02de93673d9d0d6ea4..fcea0de0d07972cf73b125a4df907ef4
  namespace android {
  
  // static
-@@ -89,7 +92,7 @@ static void PositionPadding(scoped_refptr<cc::SolidColorLayer> padding_layer,
-   padding_layer->SetTransform(transform);
- }
- 
--void TabLayer::SetProperties(int id,
-+void TabLayer::SetProperties_Chromium(int id,
-                              const std::vector<int>& ids,
-                              bool can_use_live_layer,
-                              int toolbar_resource_id,
-@@ -465,6 +468,167 @@ void TabLayer::SetProperties(int id,
+@@ -465,6 +468,127 @@ void TabLayer::SetProperties(int id,
    }
  }
  
-+void TabLayer::SetProperties(int id,
-+                             const std::vector<int>& ids,
-+                             bool can_use_live_layer,
-+                             int toolbar_resource_id,
-+                             int shadow_resource_id,
-+                             int contour_resource_id,
-+                             int border_resource_id,
-+                             int border_inner_shadow_resource_id,
-+                             int default_background_color,
-+                             float x,
-+                             float y,
-+                             float width,
-+                             float height,
-+                             float shadow_x,
-+                             float shadow_y,
-+                             float shadow_width,
-+                             float shadow_height,
-+                             float alpha,
-+                             float border_alpha,
-+                             float border_inner_shadow_alpha,
-+                             float contour_alpha,
-+                             float shadow_alpha,
-+                             float border_scale,
-+                             float saturation,
-+                             float brightness,
-+                             float static_to_view_blend,
-+                             float content_width,
-+                             float content_height,
-+                             float view_width,
-+                             bool show_toolbar,
-+                             int default_theme_color,
-+                             int toolbar_background_color,
-+                             bool anonymize_toolbar,
-+                             int toolbar_textbox_resource_id,
-+                             int toolbar_textbox_background_color,
-+                             float toolbar_alpha,
-+                             float toolbar_y_offset,
-+                             float content_offset,
-+                             float side_border_scale,
-+                             bool inset_border,
-+                             int close_button_resource_id,
-+                             bool close_button_on_right,
-+                             float pivot_x,
-+                             float pivot_y,
-+                             float rotation_x,
-+                             float rotation_y,
-+                             float close_alpha,
-+                             float close_btn_width,
-+                             float close_btn_asset_size,
-+                             int close_button_color,
-+                             bool show_tab_title) {
-+  SetProperties_Chromium(
-+      id, ids, can_use_live_layer, toolbar_resource_id, shadow_resource_id,
-+      contour_resource_id, border_resource_id, border_inner_shadow_resource_id,
-+      default_background_color, x, y, width, height, shadow_x, shadow_y,
-+      shadow_width, shadow_height, alpha, border_alpha,
-+      border_inner_shadow_alpha, contour_alpha, shadow_alpha, border_scale,
-+      saturation, brightness, static_to_view_blend, content_width,
-+      content_height, view_width, show_toolbar, default_theme_color,
-+      toolbar_background_color, anonymize_toolbar, toolbar_textbox_resource_id,
-+      toolbar_textbox_background_color, toolbar_alpha, toolbar_y_offset,
-+      content_offset, side_border_scale, inset_border);
-+
++void TabLayer::SetStackProperties(int id,
++                                  int border_resource_id,
++                                  float x,
++                                  float y,
++                                  float width,
++                                  float alpha,
++                                  float border_alpha,
++                                  float border_scale,
++                                  float content_width,
++                                  float content_height,
++                                  int default_theme_color,
++                                  bool inset_border,
++                                  int close_button_resource_id,
++                                  bool close_button_on_right,
++                                  float pivot_x,
++                                  float pivot_y,
++                                  float rotation_x,
++                                  float rotation_y,
++                                  float close_alpha,
++                                  float close_btn_width,
++                                  float close_btn_asset_size,
++                                  int close_button_color,
++                                  bool show_tab_title) {
 +  if (!title_ || !close_button_)
 +    return;
 +
 +  // Global Transform
-+  if (rotation_x != 0 || rotation_y != 0) {    
++  if (rotation_x != 0 || rotation_y != 0) {
 +    gfx::PointF pivot_origin(pivot_y, pivot_x);
 +
 +    gfx::Transform transform;
@@ -189,7 +140,7 @@ index 8eadc90d0ff46da734e2ab02de93673d9d0d6ea4..fcea0de0d07972cf73b125a4df907ef4
  scoped_refptr<cc::Layer> TabLayer::layer() {
    return layer_;
  }
-@@ -540,4 +704,34 @@ void TabLayer::SetContentProperties(
+@@ -540,4 +664,34 @@ void TabLayer::SetContentProperties(
    }
  }
  

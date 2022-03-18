@@ -39,7 +39,7 @@ import org.chromium.chrome.browser.compositor.layouts.eventfilter.GestureHandler
 import org.chromium.chrome.browser.compositor.layouts.phone.stack.OverlappingStack;
 import org.chromium.chrome.browser.compositor.layouts.phone.stack.Stack;
 import org.chromium.chrome.browser.compositor.layouts.phone.stack.StackTab;
-import org.chromium.chrome.browser.compositor.scene_layer.TabListSceneLayer;
+import org.chromium.chrome.browser.compositor.scene_layer.StackTabListSceneLayer;
 import org.chromium.chrome.browser.homepage.HomepageManager;
 import org.chromium.chrome.browser.layouts.EventFilter;
 import org.chromium.chrome.browser.layouts.LayoutType;
@@ -242,7 +242,7 @@ public abstract class StackLayoutBase extends Layout {
     private final ObservableSupplier<BrowserControlsStateProvider> mBrowserControlsSupplier;
     private final BrowserControlsStateProvider.Observer mBrowserControlsObserver;
     private Callback<BrowserControlsStateProvider> mBrowserControlsSupplierObserver;
-    private TabListSceneLayer mSceneLayer;
+    private StackTabListSceneLayer mSceneLayer;
     private boolean mShowPending;
 
     private boolean mUiDoneEnteringStack;
@@ -1640,7 +1640,7 @@ public abstract class StackLayoutBase extends Layout {
 
     private void ensureSceneLayerCreated() {
         if (mSceneLayer != null) return;
-        mSceneLayer = new TabListSceneLayer();
+        mSceneLayer = new StackTabListSceneLayer();
     }
 
     @Override
