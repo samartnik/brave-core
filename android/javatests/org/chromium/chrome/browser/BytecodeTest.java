@@ -221,6 +221,10 @@ public class BytecodeTest {
                 classExists("org/chromium/chrome/browser/autofill/BraveAutofillPopupBridge"));
         Assert.assertTrue(
                 classExists("org/chromium/components/variations/firstrun/VariationsSeedFetcher"));
+        Assert.assertTrue(classExists(
+                "org/chromium/chrome/browser/partnercustomizations/CustomizationProviderDelegateImpl"));
+        Assert.assertTrue(classExists(
+                "org/chromium/chrome/browser/partnercustomizations/BraveCustomizationProviderDelegateImpl"));
     }
 
     @Test
@@ -528,6 +532,9 @@ public class BytecodeTest {
                 FeedSurfaceCoordinator.class, Context.class, SnapScrollHelper.class,
                 PropertyModel.class, int.class, FeedActionDelegate.class,
                 FeedOptionsCoordinator.class));
+        Assert.assertTrue(constructorsMatch(
+                "org/chromium/chrome/browser/partnercustomizations/CustomizationProviderDelegateImpl",
+                "org/chromium/chrome/browser/partnercustomizations/BraveCustomizationProviderDelegateImpl"));
     }
 
     @Test

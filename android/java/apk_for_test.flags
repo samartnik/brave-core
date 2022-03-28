@@ -443,3 +443,11 @@
 -keep class org.chromium.components.variations.firstrun.VariationsSeedFetcher {
     *** get(...);
 }
+
+-keep class org.chromium.chrome.browser.partnercustomizations.CustomizationProviderDelegateImpl {
+    public <init>(...);
+}
+
+-keep class org.chromium.chrome.browser.partnercustomizations.BraveCustomizationProviderDelegateImpl {
+    public <init>(...);
+}
