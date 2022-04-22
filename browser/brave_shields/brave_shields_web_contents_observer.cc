@@ -67,28 +67,29 @@ BraveShieldsWebContentsObserver* g_receiver_impl_for_testing = nullptr;
 // content settings so this is fixed here too. That case is covered in tests by:
 // npm run test -- brave_browser_tests
 // --filter=BraveContentSettingsAgentImplBrowserTest.*
-void UpdateContentSettingsToRendererFrames(content::WebContents* web_contents) {
-  web_contents->ForEachRenderFrameHost(
-      base::BindRepeating([](content::RenderFrameHost* frame) {
-        if (!frame->IsRenderFrameLive())
-          return;
+// void UpdateContentSettingsToRendererFrames(content::WebContents*
+// web_contents) {
+//   web_contents->ForEachRenderFrameHost(
+//       base::BindRepeating([](content::RenderFrameHost* frame) {
+//         if (!frame->IsRenderFrameLive())
+//           return;
 
-        IPC::ChannelProxy* channel = frame->GetProcess()->GetChannel();
-        // channel might be NULL in tests.
-        if (channel) {
-          const auto* map = HostContentSettingsMapFactory::GetForProfile(
-              frame->GetBrowserContext());
+//         IPC::ChannelProxy* channel = frame->GetProcess()->GetChannel();
+//         // channel might be NULL in tests.
+//         if (channel) {
+//           const auto* map = HostContentSettingsMapFactory::GetForProfile(
+//               frame->GetBrowserContext());
 
-          RendererContentSettingRules rules;
-          GetRendererContentSettingRules(map, &rules);
+//           RendererContentSettingRules rules;
+//           GetRendererContentSettingRules(map, &rules);
 
-          mojo::AssociatedRemote<chrome::mojom::RendererConfiguration>
-              rc_interface;
-          channel->GetRemoteAssociatedInterface(&rc_interface);
-          rc_interface->SetContentSettingRules(rules);
-        }
-      }));
-}
+//           mojo::AssociatedRemote<chrome::mojom::RendererConfiguration>
+//               rc_interface;
+//           channel->GetRemoteAssociatedInterface(&rc_interface);
+//           rc_interface->SetContentSettingRules(rules);
+//         }
+//       }));
+// }
 
 }  // namespace
 
@@ -117,10 +118,10 @@ void BraveShieldsWebContentsObserver::RenderFrameCreated(RenderFrameHost* rfh) {
     }
   }
 
-  WebContents* web_contents = WebContents::FromRenderFrameHost(rfh);
-  if (web_contents) {
-    UpdateContentSettingsToRendererFrames(web_contents);
-  }
+  // WebContents* web_contents = WebContents::FromRenderFrameHost(rfh);
+  // if (web_contents) {
+  //   UpdateContentSettingsToRendererFrames(web_contents);
+  // }
 }
 
 void BraveShieldsWebContentsObserver::RenderFrameDeleted(RenderFrameHost* rfh) {
