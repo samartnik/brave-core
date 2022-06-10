@@ -12,6 +12,7 @@
 #include "base/callback_forward.h"
 #include "base/observer_list.h"
 #include "base/time/time.h"
+#include "base/values.h"
 #include "bat/ads/public/interfaces/ads.mojom.h"
 #include "brave/components/brave_adaptive_captcha/buildflags/buildflags.h"
 #include "brave/components/brave_ads/browser/ads_service_observer.h"
@@ -23,10 +24,9 @@
 
 class GURL;
 
-namespace base {
-class DictionaryValue;
-class ListValue;
-}  // namespace base
+namespace ads {
+struct HistoryInfo;
+}  // namespace ads
 
 namespace user_prefs {
 class PrefRegistrySyncable;
@@ -34,7 +34,7 @@ class PrefRegistrySyncable;
 
 namespace brave_ads {
 
-using OnGetHistoryCallback = base::OnceCallback<void(const base::ListValue&)>;
+using OnGetHistoryCallback = base::OnceCallback<void(base::Value::List)>;
 
 using OnToggleAdThumbUpCallback = base::OnceCallback<void(const std::string&)>;
 using OnToggleAdThumbDownCallback =
@@ -49,8 +49,8 @@ using OnToggleSavedAdCallback = base::OnceCallback<void(const std::string&)>;
 
 using OnToggleFlaggedAdCallback = base::OnceCallback<void(const std::string&)>;
 
-using OnGetInlineContentAdCallback = base::OnceCallback<
-    void(const bool, const std::string&, const base::DictionaryValue&)>;
+using OnGetInlineContentAdCallback =
+    base::OnceCallback<void(const bool, const std::string&, base::Value::Dict)>;
 
 using TriggerSearchResultAdEventCallback =
     base::OnceCallback<void(const bool,
