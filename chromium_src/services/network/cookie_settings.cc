@@ -15,27 +15,25 @@
 // we still want to block 3p frames as usual and not fallback to "allow
 // everything" path.
 #define BRAVE_COOKIE_SETTINGS_GET_COOKIE_SETTINGS_INTERNAL               \
-  if (blocked_by_third_party_setting ==                                  \
-          CookieSettings::ThirdPartyCookieBlockingSetting::              \
-              kThirdPartyStateAllowed &&                                 \
-      is_third_party_request) {                                          \
-    blocked_by_third_party_setting =                                     \
+  DCHECK(third_party_blocking_outcome ==                                 \
+         ThirdPartyBlockingOutcome::kIrrelevant);                        \
+  if (is_third_party_request) {                                          \
+    third_party_blocking_outcome =                                       \
         ShouldBlockThirdPartyIfSettingIsExplicit(                        \
             block_third_party_cookies_, cookie_setting,                  \
-            content_settings::IsExplicitSetting(*entry),                 \
+            found_explicit_setting,                                      \
             base::Contains(third_party_cookies_allowed_schemes_,         \
                            first_party_url.scheme()))                    \
-            ? CookieSettings::ThirdPartyCookieBlockingSetting::          \
-                  kThirdPartyStateDisallowed                             \
-            : blocked_by_third_party_setting;                            \
+            ? ThirdPartyBlockingOutcome::kAllStateDisallowed             \
+            : third_party_blocking_outcome;                              \
   }                                                                      \
   /* Store patterns information to determine if Shields are disabled. */ \
   if (auto* setting_with_brave_metadata =                                \
           cookie_setting_with_brave_metadata()) {                        \
     setting_with_brave_metadata->primary_pattern_matches_all_hosts =     \
-        entry->primary_pattern.MatchesAllHosts();                        \
+        match->primary_pattern.MatchesAllHosts();                        \
     setting_with_brave_metadata->secondary_pattern_matches_all_hosts =   \
-        entry->secondary_pattern.MatchesAllHosts();                      \
+        match->secondary_pattern.MatchesAllHosts();                      \
   }
 
 #include "src/services/network/cookie_settings.cc"
