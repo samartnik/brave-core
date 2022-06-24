@@ -88,7 +88,7 @@ void BraveLocationBarView::Init() {
         std::make_unique<
             BraveLocationBarViewFocusRingHighlightPathGenerator>());
     if (const auto color = GetFocusRingColor(profile()))
-      focus_ring->SetColor(color.value());
+      focus_ring->SetColorId(color.value());
   }
 #if BUILDFLAG(ENABLE_TOR)
   onion_location_view_ = new OnionLocationView(browser_->profile());

@@ -188,7 +188,7 @@ void SidebarAddItemBubbleDelegateView::AddChildViews() {
 
   auto* separator = AddChildView(std::make_unique<views::Separator>());
   if (theme_provider) {
-    separator->SetColor(theme_provider->GetColor(
+    separator->SetColorId(theme_provider->GetColor(
         BraveThemeProperties::COLOR_SIDEBAR_SEPARATOR));
   }
 

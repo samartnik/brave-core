@@ -51,12 +51,12 @@ FocusRingTheme& GetFocusRingTheme() {
 
 namespace views {
 
-SkColor FocusRing::GetColor(View* focus_ring, bool valid) {
+SkColor FocusRing::GetColor(FocusRing* focus_ring, bool valid) {
   // To avoid unused GetColor() in anonymous ns error.
   if (true) {
     return GetFocusRingTheme().GetSystemColor(ColorIdForValidity(valid));
   } else {
-    return ::views::GetColor(focus_ring, valid);
+    return ::views::GetPaintColor(focus_ring, valid);
   }
 }
 
