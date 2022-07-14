@@ -18,13 +18,13 @@ SegmentList ReadSegments(const std::string& json) {
     return {};
   }
 
-  base::ListValue* list = nullptr;
-  if (!value->GetAsList(&list)) {
+  base::Value::List* list = value->GetIfList();
+  if (!list) {
     return {};
   }
 
   SegmentList segments;
-  for (const auto& element : list->GetList()) {
+  for (const auto& element : *list) {
     if (!element.is_string()) {
       return {};
     }
