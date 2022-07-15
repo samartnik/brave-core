@@ -25,7 +25,6 @@
 #include "content/public/browser/native_web_keyboard_event.h"
 #include "content/public/browser/web_contents.h"
 #include "ui/base/metadata/metadata_impl_macros.h"
-#include "ui/base/theme_provider.h"
 #include "ui/events/event_observer.h"
 #include "ui/events/types/event_type.h"
 #include "ui/gfx/geometry/point.h"
@@ -159,15 +158,15 @@ bool SidebarContainerView::HandleKeyboardEvent(
 }
 
 void SidebarContainerView::UpdateBackgroundAndBorder() {
-  if (const ui::ThemeProvider* theme_provider = GetThemeProvider()) {
+  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
     constexpr int kBorderThickness = 1;
     // Fill background because panel's color uses alpha value.
     SetBackground(views::CreateSolidBackground(
-        theme_provider->GetColor(ThemeProperties::COLOR_TOOLBAR)));
+        colour_provider->GetColor(ThemeProperties::COLOR_TOOLBAR)));
     if (sidebar_panel_webview_ && sidebar_panel_webview_->GetVisible()) {
       SetBorder(views::CreateSolidSidedBorder(
           gfx::Insets::TLBR(0, 0, 0, kBorderThickness),
-          theme_provider->GetColor(
+          colour_provider->GetColor(
               ThemeProperties::COLOR_TOOLBAR_CONTENT_AREA_SEPARATOR)));
     } else {
       // Don't need right side border when panel is closed.
