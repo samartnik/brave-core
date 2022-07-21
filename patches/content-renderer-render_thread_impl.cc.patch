@@ -1,8 +1,8 @@
 diff --git a/content/renderer/render_thread_impl.cc b/content/renderer/render_thread_impl.cc
-index 2f86fff71f36353f1fc3d8024f16dbb4921a1db8..9a7e3866fc81ce89027c4b10f613671aa6a04c6f 100644
+index a793222140e58ade7bbf555b77fc2c87d6acf0d6..ba9e0285a9d06abb154e6f62d4ee1458cfd990aa 100644
 --- a/content/renderer/render_thread_impl.cc
 +++ b/content/renderer/render_thread_impl.cc
-@@ -927,6 +927,7 @@ void RenderThreadImpl::InitializeRenderer(
+@@ -901,6 +901,7 @@ void RenderThreadImpl::InitializeRenderer(
  }
  
  void RenderThreadImpl::RegisterSchemes() {
