@@ -1,8 +1,8 @@
 diff --git a/PRESUBMIT.py b/PRESUBMIT.py
-index 0c1c89027890545df05357e9964137696ca0adbb..91ddc57b35b8ac2f9363e7a695254a6f1c7a8739 100644
+index d3aa385db6f756b14373e6508ca910dcfd5bd37e..da050f4242c21949662eaaee06e4325ccd67cdbe 100644
 --- a/PRESUBMIT.py
 +++ b/PRESUBMIT.py
-@@ -6027,7 +6027,6 @@ def CheckPythonShebang(input_api, output_api):
+@@ -6030,7 +6030,6 @@ def CheckPythonShebang(input_api, output_api):
                  file))
      return result
  
@@ -10,7 +10,7 @@ index 0c1c89027890545df05357e9964137696ca0adbb..91ddc57b35b8ac2f9363e7a695254a6f
  def CheckBatchAnnotation(input_api, output_api):
      """Checks that tests have either @Batch or @DoNotBatch annotation. If this
      is not an instrumentation test, disregard."""
-@@ -6090,3 +6089,5 @@ Robolectric tests do not need a @Batch or @DoNotBatch annotations.
+@@ -6093,3 +6092,5 @@ Robolectric tests do not need a @Batch or @DoNotBatch annotations.
  """, extra_annotation_errors))
  
      return results
