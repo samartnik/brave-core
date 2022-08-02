@@ -21,6 +21,7 @@ RegisterPolymerTemplateModifications({
     if (!theme) {
       console.error(`[Brave Settings Overrides] Couldn't find #themeRow`)
     } else {
+      theme.setAttribute("class", "hr")
       theme.insertAdjacentHTML('beforebegin', `
         <settings-brave-appearance-theme prefs="{{prefs}}"></settings-brave-appearance-theme>
       `)
