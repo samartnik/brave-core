@@ -304,6 +304,7 @@ void AddBraveLightThemeColorMixer(ui::ColorProvider* provider,
 
   mixer[kColorBookmarkBarForeground] = {kColorTabForegroundActiveFrameActive};
   mixer[kColorDownloadShelfButtonText] = {gfx::kBraveGrey800};
+  mixer[kColorForTest] = {SkColorSetRGB(0xFF, 0xFF, 0xFF)};
   mixer[kColorNewTabButtonBackgroundFrameActive] = {ui::kColorFrameActive};
   mixer[kColorNewTabButtonBackgroundFrameInactive] = {ui::kColorFrameInactive};
   mixer[kColorNewTabPageBackground] = {kBraveNewTabBackgroundLight};
@@ -338,6 +339,7 @@ void AddBraveDarkThemeColorMixer(ui::ColorProvider* provider,
 
   mixer[kColorBookmarkBarForeground] = {kColorTabForegroundActiveFrameActive};
   mixer[kColorDownloadShelfButtonText] = {SK_ColorWHITE};
+  mixer[kColorForTest] = {SkColorSetRGB(0x00, 0x00, 0x00)};
   mixer[kColorNewTabButtonBackgroundFrameActive] = {ui::kColorFrameActive};
   mixer[kColorNewTabButtonBackgroundFrameInactive] = {ui::kColorFrameInactive};
   mixer[kColorNewTabPageBackground] = {kBraveNewTabBackgroundDark};
@@ -376,6 +378,7 @@ void AddBravePrivateThemeColorMixer(ui::ColorProvider* provider,
   ui::ColorMixer& mixer = provider->AddMixer();
 
   mixer[kColorBookmarkBarForeground] = {SkColorSetRGB(0xFF, 0xFF, 0xFF)};
+  mixer[kColorForTest] = {SkColorSetRGB(0xFF, 0x00, 0x00)};
   mixer[kColorNewTabButtonBackgroundFrameActive] = {ui::kColorFrameActive};
   mixer[kColorNewTabButtonBackgroundFrameInactive] = {ui::kColorFrameInactive};
   mixer[kColorNewTabPageBackground] = {kPrivateFrame};

@@ -13,11 +13,12 @@
 
 // clang-format off
 
-#define BRAVE_COMMON_COLORS                     \
+#define BRAVE_COMMON_COLOR_IDS                  \
+    E_CPONLY(kColorForTest)                     \
     E_CPONLY(kColorIconBase)                    \
     E_CPONLY(kColorMenuItemSubText)
 
-#define BRAVE_SEARCH_CONVERSION_COLORS                                \
+#define BRAVE_SEARCH_CONVERSION_COLOR_IDS                             \
     E_CPONLY(kColorSearchConversionBannerTypeBackgroundBorder)        \
     E_CPONLY(kColorSearchConversionBannerTypeBackgroundBorderHovered) \
     E_CPONLY(kColorSearchConversionBannerTypeBackgroundGradientFrom)  \
@@ -66,11 +67,11 @@
 #define BRAVE_VPN_COLOR_IDS
 #endif
 
-#define BRAVE_COLOR_IDS            \
-    BRAVE_COMMON_COLORS            \
-    BRAVE_SEARCH_CONVERSION_COLORS \
-    BRAVE_SIDEBAR_COLOR_IDS        \
-    BRAVE_SPEEDREADER_COLOR_IDS    \
+#define BRAVE_COLOR_IDS               \
+    BRAVE_COMMON_COLOR_IDS            \
+    BRAVE_SEARCH_CONVERSION_COLOR_IDS \
+    BRAVE_SIDEBAR_COLOR_IDS           \
+    BRAVE_SPEEDREADER_COLOR_IDS       \
     BRAVE_VPN_COLOR_IDS
 
 #include "ui/color/color_id_macros.inc"
