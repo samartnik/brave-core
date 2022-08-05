@@ -36,8 +36,8 @@ void BookmarkButton::SetToggled(bool on) {
 }
 
 void BookmarkButton::UpdateImageAndText() {
-  const ui::ColorProvider* colour_provider = GetColorProvider();
-  SkColor icon_color = colour_provider->GetColor(kColorToolbarButtonIcon);
+  const ui::ColorProvider* color_provider = GetColorProvider();
+  SkColor icon_color = color_provider->GetColor(kColorToolbarButtonIcon);
   const gfx::VectorIcon& icon =
       active_ ? omnibox::kStarActiveIcon : omnibox::kStarIcon;
   SetImage(views::Button::STATE_NORMAL,

@@ -72,9 +72,9 @@ IN_PROC_BROWSER_TEST_F(BraveThemeServiceTestWithoutSystemTheme,
   Profile* profile_private =
       profile->GetPrimaryOTRProfile(/*create_if_needed=*/true);
 
-  const ui::ColorProvider* colour_provider =
+  const ui::ColorProvider* color_provider =
       ThemeServiceFactory::GetForProfile(profile)->GetColorProvider();
-  const ui::ColorProvider* colour_provider_private =
+  const ui::ColorProvider* color_provider_private =
       ThemeServiceFactory::GetForProfile(profile_private)->GetColorProvider();
 
   auto test_theme_property = BraveThemeProperties::COLOR_FOR_TEST;
@@ -85,7 +85,7 @@ IN_PROC_BROWSER_TEST_F(BraveThemeServiceTestWithoutSystemTheme,
   EXPECT_EQ(dark_mode::BraveDarkModeType::BRAVE_DARK_MODE_TYPE_LIGHT,
             dark_mode::GetActiveBraveDarkModeType());
   EXPECT_EQ(BraveThemeProperties::kLightColorForTest,
-            colour_provider->GetColor(test_theme_property));
+            color_provider->GetColor(test_theme_property));
 
   // Test dark theme
   dark_mode::SetBraveDarkModeType(
@@ -94,11 +94,11 @@ IN_PROC_BROWSER_TEST_F(BraveThemeServiceTestWithoutSystemTheme,
       dark_mode::BraveDarkModeType::BRAVE_DARK_MODE_TYPE_DARK,
       dark_mode::GetActiveBraveDarkModeType());
   EXPECT_EQ(BraveThemeProperties::kDarkColorForTest,
-            colour_provider->GetColor(test_theme_property));
+            color_provider->GetColor(test_theme_property));
 
   // Test dark theme private
   EXPECT_EQ(BraveThemeProperties::kPrivateColorForTest,
-            colour_provider_private->GetColor(test_theme_property));
+            color_provider_private->GetColor(test_theme_property));
 }
 
 // Test whether appropriate native/web theme observer is called when brave theme

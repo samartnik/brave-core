@@ -45,8 +45,8 @@ void SidebarItemView::OnPaintBorder(gfx::Canvas* canvas) {
                          0, 0);
   }
 
-  const ui::ColorProvider* colour_provider = GetColorProvider();
-  if (draw_horizontal_border_ && colour_provider) {
+  const ui::ColorProvider* color_provider = GetColorProvider();
+  if (draw_horizontal_border_ && color_provider) {
     constexpr float kHorizontalBorderWidth = 2;
     gfx::Rect border_rect(GetLocalBounds());
 
@@ -55,8 +55,7 @@ void SidebarItemView::OnPaintBorder(gfx::Canvas* canvas) {
 
     border_rect.set_height(kHorizontalBorderWidth);
 
-    canvas->FillRect(
-        border_rect, colour_provider->GetColor(
+    canvas->FillRect(border_rect, color_provider->GetColor(
                                       kColorSidebarItemDragIndicatorColor));
   }
 }
@@ -70,11 +69,11 @@ bool SidebarItemView::IsTriggerableEvent(const ui::Event& e) {
 void SidebarItemView::OnPaintBackground(gfx::Canvas* canvas) {
   SidebarButtonView::OnPaintBackground(canvas);
 
-  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
+  if (const ui::ColorProvider* color_provider = GetColorProvider()) {
     if (paint_background_on_hovered_ && GetState() == STATE_HOVERED) {
       canvas->FillRect(
           GetLocalBounds(),
-          colour_provider->GetColor(kColorSidebarItemBackgroundHovered));
+          color_provider->GetColor(kColorSidebarItemBackgroundHovered));
     }
   }
 }

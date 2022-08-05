@@ -123,15 +123,14 @@ SkColor BookmarkBarInstructionsView::GetInstructionsTextColor() {
   // TODO(simonhong): Move this logic to color mixer when we finish
   // our color migration to color pipeline.
   SkColor text_color = gfx::kPlaceholderColor;
-  const ui::ColorProvider* colour_provider = GetColorProvider();
-  if (!colour_provider)
+  const ui::ColorProvider* color_provider = GetColorProvider();
+  if (!color_provider)
     return text_color;
 
   if (browser_->profile()->IsIncognitoProfile()) {
-    text_color =
-        colour_provider->GetColor(ThemeProperties::COLOR_BOOKMARK_TEXT);
+    text_color = color_provider->GetColor(ThemeProperties::COLOR_BOOKMARK_TEXT);
   } else {
-    const SkColor toolbar_color = colour_provider->GetColor(kColorToolbar);
+    const SkColor toolbar_color = color_provider->GetColor(kColorToolbar);
     text_color = color_utils::PickContrastingColor(
         kLightToolbarIcon, SK_ColorWHITE, toolbar_color);
   }

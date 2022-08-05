@@ -78,10 +78,10 @@ class HorizontalGradientBackground : public views::Background {
 
     SkColor from_color = gfx::kPlaceholderColor;
     SkColor to_color = gfx::kPlaceholderColor;
-    if (const ui::ColorProvider* colour_provider = view->GetColorProvider()) {
-      from_color = colour_provider->GetColor(
+    if (const ui::ColorProvider* color_provider = view->GetColorProvider()) {
+      from_color = color_provider->GetColor(
           kColorSearchConversionBannerTypeBackgroundGradientFrom);
-      to_color = colour_provider->GetColor(
+      to_color = color_provider->GetColor(
           kColorSearchConversionBannerTypeBackgroundGradientTo);
     }
 
@@ -320,15 +320,15 @@ void BraveSearchConversionPromotionView::UpdateButtonTypeState() {
   button_type_container_->SetVisible(true);
   button_type_selection_indicator_->SetVisible(selected_);
   button_type_contents_input_->SetText(input_);
-  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
+  if (const ui::ColorProvider* color_provider = GetColorProvider()) {
     auto desc_color_id = kColorSearchConversionButtonTypeDescNormal;
     if (IsMouseHovered() || selected_) {
       desc_color_id = kColorSearchConversionButtonTypeDescHovered;
     }
     button_type_description_->SetEnabledColor(
-        colour_provider->GetColor(desc_color_id));
+        color_provider->GetColor(desc_color_id));
     append_for_input_->SetEnabledColor(
-        colour_provider->GetColor(kColorSearchConversionButtonTypeInputAppend));
+        color_provider->GetColor(kColorSearchConversionButtonTypeInputAppend));
   }
 
   SetBackground(GetButtonTypeBackground());
@@ -342,14 +342,14 @@ void BraveSearchConversionPromotionView::UpdateBannerTypeState() {
   SkColor desc_color = gfx::kPlaceholderColor;
   SkColor border_color = gfx::kPlaceholderColor;
   const bool is_selected_or_hovered = selected_ || IsMouseHovered();
-  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
+  if (const ui::ColorProvider* color_provider = GetColorProvider()) {
     desc_color =
-        colour_provider->GetColor(kColorSearchConversionBannerTypeDescText);
+        color_provider->GetColor(kColorSearchConversionBannerTypeDescText);
     const auto border_id =
         is_selected_or_hovered
             ? kColorSearchConversionBannerTypeBackgroundBorderHovered
             : kColorSearchConversionBannerTypeBackgroundBorder;
-    border_color = colour_provider->GetColor(border_id);
+    border_color = color_provider->GetColor(border_id);
   }
   const int border_thickness = is_selected_or_hovered ? 2 : 1;
   banner_type_container_->SetBorder(views::CreateRoundedRectBorder(
@@ -573,12 +573,12 @@ void BraveSearchConversionPromotionView::ConfigureForBannerType() {
 std::unique_ptr<views::Background>
 BraveSearchConversionPromotionView::GetButtonTypeBackground() {
   SkColor bg = gfx::kPlaceholderColor;
-  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
+  if (const ui::ColorProvider* color_provider = GetColorProvider()) {
     auto bg_color_id = kColorSearchConversionButtonTypeBackgroundNormal;
     if (IsMouseHovered() || selected_) {
       bg_color_id = kColorSearchConversionButtonTypeBackgroundHovered;
     }
-    bg = colour_provider->GetColor(bg_color_id);
+    bg = color_provider->GetColor(bg_color_id);
   }
 
   return views::CreateSolidBackground(bg);

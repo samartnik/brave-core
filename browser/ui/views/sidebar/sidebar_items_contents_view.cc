@@ -157,8 +157,8 @@ void SidebarItemsContentsView::ShowContextMenuForViewImpl(
   view_for_context_menu_ = source;
   context_menu_model_ = std::make_unique<ui::SimpleMenuModel>(this);
   SkColor icon_color = SK_ColorWHITE;
-  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
-    icon_color = colour_provider->GetColor(kColorSidebarButtonBase);
+  if (const ui::ColorProvider* color_provider = GetColorProvider()) {
+    icon_color = color_provider->GetColor(kColorSidebarButtonBase);
   }
   context_menu_model_->AddItemWithIcon(
       kItemRemove,
@@ -243,8 +243,8 @@ void SidebarItemsContentsView::SetDefaultImageAt(
     int index,
     const sidebar::SidebarItem& item) {
   SkColor text_color = SK_ColorWHITE;
-  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
-    text_color = colour_provider->GetColor(kColorSidebarButtonBase);
+  if (const ui::ColorProvider* color_provider = GetColorProvider()) {
+    text_color = color_provider->GetColor(kColorSidebarButtonBase);
   }
 
   const int scale = GetWidget()->GetCompositor()->device_scale_factor();
@@ -409,8 +409,8 @@ gfx::ImageSkia SidebarItemsContentsView::GetImageForBuiltInItems(
     sidebar::SidebarItem::BuiltInItemType type,
     bool focused) const {
   SkColor base_button_color = SK_ColorWHITE;
-  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
-    base_button_color = colour_provider->GetColor(kColorSidebarButtonBase);
+  if (const ui::ColorProvider* color_provider = GetColorProvider()) {
+    base_button_color = color_provider->GetColor(kColorSidebarButtonBase);
   }
   constexpr int kBuiltInIconSize = 16;
   int focused_image_resource = -1;

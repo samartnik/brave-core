@@ -100,10 +100,10 @@ bool SidebarItemAddButton::IsBubbleVisible() const {
 void SidebarItemAddButton::UpdateButtonImages() {
   SkColor button_base_color = SK_ColorWHITE;
   SkColor button_disabled_color = SK_ColorWHITE;
-  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
-    button_base_color = colour_provider->GetColor(kColorSidebarButtonBase);
+  if (const ui::ColorProvider* color_provider = GetColorProvider()) {
+    button_base_color = color_provider->GetColor(kColorSidebarButtonBase);
     button_disabled_color =
-        colour_provider->GetColor(kColorSidebarAddButtonDisabled);
+        color_provider->GetColor(kColorSidebarAddButtonDisabled);
   }
 
   // Update add button image based on enabled state.

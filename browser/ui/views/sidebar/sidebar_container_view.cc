@@ -158,15 +158,15 @@ bool SidebarContainerView::HandleKeyboardEvent(
 }
 
 void SidebarContainerView::UpdateBackgroundAndBorder() {
-  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
+  if (const ui::ColorProvider* color_provider = GetColorProvider()) {
     constexpr int kBorderThickness = 1;
     // Fill background because panel's color uses alpha value.
-    SetBackground(views::CreateSolidBackground(
-        colour_provider->GetColor(kColorToolbar)));
+    SetBackground(
+        views::CreateSolidBackground(color_provider->GetColor(kColorToolbar)));
     if (sidebar_panel_webview_ && sidebar_panel_webview_->GetVisible()) {
       SetBorder(views::CreateSolidSidedBorder(
           gfx::Insets::TLBR(0, 0, 0, kBorderThickness),
-          colour_provider->GetColor(kColorToolbarContentAreaSeparator)));
+          color_provider->GetColor(kColorToolbarContentAreaSeparator)));
     } else {
       // Don't need right side border when panel is closed.
       SetBorder(nullptr);

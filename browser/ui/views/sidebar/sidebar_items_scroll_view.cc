@@ -60,15 +60,15 @@ class SidebarItemsArrowView : public views::ImageButton {
   gfx::Size CalculatePreferredSize() const override { return {42, 24}; }
 
   void OnPaintBackground(gfx::Canvas* canvas) override {
-    if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
-      const SkColor background_color = colour_provider->GetColor(kColorToolbar);
+    if (const ui::ColorProvider* color_provider = GetColorProvider()) {
+      const SkColor background_color = color_provider->GetColor(kColorToolbar);
       gfx::Rect bounds = GetContentsBounds();
       canvas->FillRect(bounds, background_color);
 
       // Draw additional rounded rect over background for hover effect.
       if (GetState() == STATE_HOVERED) {
         const SkColor hovered_bg_color =
-            colour_provider->GetColor(kColorSidebarArrowBackgroundHovered);
+            color_provider->GetColor(kColorSidebarArrowBackgroundHovered);
         cc::PaintFlags flags;
         flags.setColor(hovered_bg_color);
         flags.setStyle(cc::PaintFlags::kFill_Style);
@@ -237,11 +237,11 @@ void SidebarItemsScrollView::OnFaviconUpdatedForItem(
 }
 
 void SidebarItemsScrollView::UpdateArrowViewsTheme() {
-  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
+  if (const ui::ColorProvider* color_provider = GetColorProvider()) {
     const SkColor arrow_normal =
-        colour_provider->GetColor(kColorSidebarArrowNormal);
+        color_provider->GetColor(kColorSidebarArrowNormal);
     const SkColor arrow_disabled =
-        colour_provider->GetColor(kColorSidebarArrowDisabled);
+        color_provider->GetColor(kColorSidebarArrowDisabled);
 
     up_arrow_->SetImage(
         views::Button::STATE_NORMAL,

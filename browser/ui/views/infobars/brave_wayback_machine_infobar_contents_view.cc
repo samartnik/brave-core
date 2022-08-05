@@ -245,9 +245,8 @@ void BraveWaybackMachineInfoBarContentsView::UpdateChildrenVisibility(
 }
 
 SkColor BraveWaybackMachineInfoBarContentsView::GetColor(int id) const {
-  const auto* colour_provider = GetColorProvider();
-  return colour_provider ? colour_provider->GetColor(id)
-                         : gfx::kPlaceholderColor;
+  const auto* color_provider = GetColorProvider();
+  return color_provider ? color_provider->GetColor(id) : gfx::kPlaceholderColor;
 }
 
 void BraveWaybackMachineInfoBarContentsView::FetchWaybackURL() {

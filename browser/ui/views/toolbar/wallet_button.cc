@@ -109,8 +109,8 @@ void WalletButton::OnWalletPressed(const ui::Event& event) {
 }
 
 void WalletButton::UpdateImageAndText() {
-  const ui::ColorProvider* colour_provider = GetColorProvider();
-  SkColor icon_color = colour_provider->GetColor(kColorToolbarButtonIcon);
+  const ui::ColorProvider* color_provider = GetColorProvider();
+  SkColor icon_color = color_provider->GetColor(kColorToolbarButtonIcon);
   SetImage(views::Button::STATE_NORMAL,
            gfx::CreateVectorIcon(kWalletToolbarButtonIcon, icon_color));
   SetTooltipText(

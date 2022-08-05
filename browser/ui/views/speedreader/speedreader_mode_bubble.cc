@@ -153,13 +153,13 @@ void SpeedreaderModeBubble::Init() {
 }
 
 void SpeedreaderModeBubble::UpdateColors() {
-  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
+  if (const ui::ColorProvider* color_provider = GetColorProvider()) {
     // TODO(keur): We shoud be able to remove these once brave overrides
     // views::ToggleButton globally with our own theme
     site_toggle_button_->SetThumbOnColor(
-        colour_provider->GetColor(kColorSpeedreaderToggleThumb));
+        color_provider->GetColor(kColorSpeedreaderToggleThumb));
     site_toggle_button_->SetTrackOnColor(
-        colour_provider->GetColor(kColorSpeedreaderToggleTrack));
+        color_provider->GetColor(kColorSpeedreaderToggleTrack));
   }
 }
 

@@ -114,13 +114,13 @@ void SidebarControlView::OnThemeChanged() {
 }
 
 void SidebarControlView::UpdateBackgroundAndBorder() {
-  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
+  if (const ui::ColorProvider* color_provider = GetColorProvider()) {
     constexpr int kBorderThickness = 1;
-    SetBackground(views::CreateSolidBackground(
-        colour_provider->GetColor(kColorToolbar)));
+    SetBackground(
+        views::CreateSolidBackground(color_provider->GetColor(kColorToolbar)));
     SetBorder(views::CreateSolidSidedBorder(
         gfx::Insets::TLBR(0, 0, 0, kBorderThickness),
-        colour_provider->GetColor(kColorToolbarContentAreaSeparator)));
+        color_provider->GetColor(kColorToolbarContentAreaSeparator)));
   }
 }
 
@@ -231,12 +231,12 @@ void SidebarControlView::UpdateItemAddButtonState() {
 
 void SidebarControlView::UpdateSettingsButtonState() {
   DCHECK(sidebar_settings_view_);
-  if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
+  if (const ui::ColorProvider* color_provider = GetColorProvider()) {
     sidebar_settings_view_->SetImage(
         views::Button::STATE_NORMAL,
         gfx::CreateVectorIcon(
             kSidebarSettingsIcon,
-            colour_provider->GetColor(kColorSidebarButtonBase)));
+            color_provider->GetColor(kColorSidebarButtonBase)));
     auto& bundle = ui::ResourceBundle::GetSharedInstance();
     sidebar_settings_view_->SetImage(
         views::Button::STATE_HOVERED,
