@@ -12,8 +12,8 @@
 #include "base/notreached.h"
 #include "base/strings/utf_string_conversions.h"
 #include "brave/app/vector_icons/vector_icons.h"
-#include "brave/browser/themes/theme_properties.h"
 #include "brave/browser/ui/brave_browser.h"
+#include "brave/browser/ui/color/brave_color_id.h"
 #include "brave/browser/ui/sidebar/sidebar_controller.h"
 #include "brave/browser/ui/sidebar/sidebar_service_factory.h"
 #include "brave/browser/ui/views/sidebar/sidebar_item_added_feedback_bubble.h"
@@ -158,8 +158,7 @@ void SidebarItemsContentsView::ShowContextMenuForViewImpl(
   context_menu_model_ = std::make_unique<ui::SimpleMenuModel>(this);
   SkColor icon_color = SK_ColorWHITE;
   if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
-    icon_color = colour_provider->GetColor(
-        BraveThemeProperties::COLOR_SIDEBAR_BUTTON_BASE);
+    icon_color = colour_provider->GetColor(kColorSidebarButtonBase);
   }
   context_menu_model_->AddItemWithIcon(
       kItemRemove,
@@ -245,8 +244,7 @@ void SidebarItemsContentsView::SetDefaultImageAt(
     const sidebar::SidebarItem& item) {
   SkColor text_color = SK_ColorWHITE;
   if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
-    text_color = colour_provider->GetColor(
-        BraveThemeProperties::COLOR_SIDEBAR_BUTTON_BASE);
+    text_color = colour_provider->GetColor(kColorSidebarButtonBase);
   }
 
   const int scale = GetWidget()->GetCompositor()->device_scale_factor();
@@ -412,8 +410,7 @@ gfx::ImageSkia SidebarItemsContentsView::GetImageForBuiltInItems(
     bool focused) const {
   SkColor base_button_color = SK_ColorWHITE;
   if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
-    base_button_color = colour_provider->GetColor(
-        BraveThemeProperties::COLOR_SIDEBAR_BUTTON_BASE);
+    base_button_color = colour_provider->GetColor(kColorSidebarButtonBase);
   }
   constexpr int kBuiltInIconSize = 16;
   int focused_image_resource = -1;

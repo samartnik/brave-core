@@ -8,7 +8,7 @@
 #include "base/bind.h"
 #include "base/time/time.h"
 #include "brave/app/vector_icons/vector_icons.h"
-#include "brave/browser/themes/theme_properties.h"
+#include "brave/browser/ui/color/brave_color_id.h"
 #include "brave/browser/ui/views/sidebar/sidebar_add_item_bubble_delegate_view.h"
 #include "brave/grit/brave_theme_resources.h"
 #include "ui/base/metadata/metadata_impl_macros.h"
@@ -101,10 +101,9 @@ void SidebarItemAddButton::UpdateButtonImages() {
   SkColor button_base_color = SK_ColorWHITE;
   SkColor button_disabled_color = SK_ColorWHITE;
   if (const ui::ColorProvider* colour_provider = GetColorProvider()) {
-    button_base_color = colour_provider->GetColor(
-        BraveThemeProperties::COLOR_SIDEBAR_BUTTON_BASE);
-    button_disabled_color = colour_provider->GetColor(
-        BraveThemeProperties::COLOR_SIDEBAR_ADD_BUTTON_DISABLED);
+    button_base_color = colour_provider->GetColor(kColorSidebarButtonBase);
+    button_disabled_color =
+        colour_provider->GetColor(kColorSidebarAddButtonDisabled);
   }
 
   // Update add button image based on enabled state.

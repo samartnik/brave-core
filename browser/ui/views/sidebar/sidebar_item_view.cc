@@ -5,7 +5,7 @@
 
 #include "brave/browser/ui/views/sidebar/sidebar_item_view.h"
 
-#include "brave/browser/themes/theme_properties.h"
+#include "brave/browser/ui/color/brave_color_id.h"
 #include "brave/grit/brave_theme_resources.h"
 #include "chrome/browser/ui/views/event_utils.h"
 #include "ui/base/metadata/metadata_impl_macros.h"
@@ -56,9 +56,8 @@ void SidebarItemView::OnPaintBorder(gfx::Canvas* canvas) {
     border_rect.set_height(kHorizontalBorderWidth);
 
     canvas->FillRect(
-        border_rect,
-        colour_provider->GetColor(
-            BraveThemeProperties::COLOR_SIDEBAR_ITEM_DRAG_INDICATOR_COLOR));
+        border_rect, colour_provider->GetColor(
+                                      kColorSidebarItemDragIndicatorColor));
   }
 }
 
@@ -75,8 +74,7 @@ void SidebarItemView::OnPaintBackground(gfx::Canvas* canvas) {
     if (paint_background_on_hovered_ && GetState() == STATE_HOVERED) {
       canvas->FillRect(
           GetLocalBounds(),
-          colour_provider->GetColor(
-              BraveThemeProperties::COLOR_SIDEBAR_ITEM_BACKGROUND_HOVERED));
+          colour_provider->GetColor(kColorSidebarItemBackgroundHovered));
     }
   }
 }

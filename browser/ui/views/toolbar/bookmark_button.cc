@@ -10,7 +10,7 @@
 #include "base/strings/utf_string_conversions.h"
 #include "brave/components/l10n/common/locale_util.h"
 #include "chrome/app/chrome_command_ids.h"
-#include "chrome/browser/themes/theme_properties.h"
+#include "chrome/browser/ui/color/chrome_color_id.h"
 #include "chrome/browser/ui/view_ids.h"
 #include "chrome/browser/ui/views/toolbar/toolbar_view.h"
 #include "chrome/grit/generated_resources.h"
@@ -37,8 +37,7 @@ void BookmarkButton::SetToggled(bool on) {
 
 void BookmarkButton::UpdateImageAndText() {
   const ui::ColorProvider* colour_provider = GetColorProvider();
-  SkColor icon_color =
-      colour_provider->GetColor(ThemeProperties::COLOR_TOOLBAR_BUTTON_ICON);
+  SkColor icon_color = colour_provider->GetColor(kColorToolbarButtonIcon);
   const gfx::VectorIcon& icon =
       active_ ? omnibox::kStarActiveIcon : omnibox::kStarIcon;
   SetImage(views::Button::STATE_NORMAL,

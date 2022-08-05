@@ -13,11 +13,11 @@
 #include "brave/app/brave_command_ids.h"
 #include "brave/app/vector_icons/vector_icons.h"
 #include "brave/browser/brave_vpn/brave_vpn_service_factory.h"
-#include "brave/browser/themes/theme_properties.h"
+#include "brave/browser/ui/color/brave_color_id.h"
 #include "brave/components/brave_vpn/brave_vpn_service.h"
 #include "brave/components/l10n/common/locale_util.h"
 #include "brave/grit/brave_generated_resources.h"
-#include "chrome/browser/themes/theme_properties.h"
+#include "chrome/browser/ui/color/chrome_color_id.h"
 #include "chrome/browser/ui/browser.h"
 #include "chrome/browser/ui/browser_commands.h"
 #include "chrome/browser/ui/layout_constants.h"
@@ -168,18 +168,16 @@ void BraveVPNButton::UpdateColorsAndInsets() {
         gfx::Insets((height() - GetLayoutConstant(LOCATION_BAR_HEIGHT)) / 2);
     SetBackground(views::CreateBackgroundFromPainter(
         views::Painter::CreateSolidRoundRectPainter(
-            colour_provider->GetColor(ThemeProperties::COLOR_TOOLBAR),
-            kButtonRadius, paint_insets)));
+            colour_provider->GetColor(kColorToolbar), kButtonRadius,
+            paint_insets)));
 
     SetEnabledTextColors(colour_provider->GetColor(
-        IsConnected()
-            ? BraveThemeProperties::COLOR_BRAVE_VPN_BUTTON_TEXT_CONNECTED
-            : BraveThemeProperties::COLOR_BRAVE_VPN_BUTTON_TEXT_DISCONNECTED));
+        IsConnected() ? kColorBraveVpnButtonTextConnected
+                      : kColorBraveVpnButtonTextDisconnected));
 
     std::unique_ptr<views::Border> border = views::CreateRoundedRectBorder(
         1, kButtonRadius, gfx::Insets(),
-        colour_provider->GetColor(
-            BraveThemeProperties::COLOR_BRAVE_VPN_BUTTON_BORDER));
+        colour_provider->GetColor(kColorBraveVpnButtonBorder));
     constexpr auto kTargetInsets = gfx::Insets::VH(3, 7);
     const gfx::Insets extra_insets = kTargetInsets - border->GetInsets();
     SetBorder(views::CreatePaddedBorder(std::move(border), extra_insets));

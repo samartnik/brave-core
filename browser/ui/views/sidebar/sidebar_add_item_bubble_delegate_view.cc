@@ -8,8 +8,8 @@
 #include <utility>
 
 #include "base/strings/utf_string_conversions.h"
-#include "brave/browser/themes/theme_properties.h"
 #include "brave/browser/ui/brave_browser.h"
+#include "brave/browser/ui/color/brave_color_id.h"
 #include "brave/browser/ui/sidebar/sidebar_controller.h"
 #include "brave/browser/ui/sidebar/sidebar_service_factory.h"
 #include "brave/browser/ui/sidebar/sidebar_utils.h"
@@ -52,16 +52,11 @@ class SidebarAddItemButton : public views::LabelButton {
     if (colour_provider_) {
       SetTextColor(
           views::Button::STATE_NORMAL,
-          colour_provider_->GetColor(
-              BraveThemeProperties::COLOR_SIDEBAR_ADD_BUBBLE_ITEM_TEXT_NORMAL));
+          colour_provider_->GetColor(kColorSidebarAddBubbleItemTextNormal));
       SetTextColor(views::Button::STATE_HOVERED,
-                   colour_provider_->GetColor(
-                       BraveThemeProperties::
-                           COLOR_SIDEBAR_ADD_BUBBLE_ITEM_TEXT_HOVERED));
+          colour_provider_->GetColor(kColorSidebarAddBubbleItemTextHovered));
       SetTextColor(views::Button::STATE_PRESSED,
-                   colour_provider_->GetColor(
-                       BraveThemeProperties::
-                           COLOR_SIDEBAR_ADD_BUBBLE_ITEM_TEXT_HOVERED));
+          colour_provider_->GetColor(kColorSidebarAddBubbleItemTextHovered));
     }
 
     const int size_diff = 13 - views::Label::GetDefaultFontList().GetFontSize();
@@ -83,8 +78,7 @@ class SidebarAddItemButton : public views::LabelButton {
       flags.setStyle(cc::PaintFlags::kFill_Style);
       if (colour_provider_) {
         flags.setColor(colour_provider_->GetColor(
-            BraveThemeProperties::
-                COLOR_SIDEBAR_ADD_BUBBLE_ITEM_TEXT_BACKGROUND_HOVERED));
+            kColorSidebarAddBubbleItemTextBackgroundHovered));
       }
 
       constexpr int kItemRadius = 6;
@@ -116,8 +110,7 @@ SidebarAddItemBubbleDelegateView::SidebarAddItemBubbleDelegateView(
 
   if (const ui::ColorProvider* colour_provider =
           BrowserView::GetBrowserViewForBrowser(browser_)->GetColorProvider()) {
-    set_color(colour_provider->GetColor(
-        BraveThemeProperties::COLOR_SIDEBAR_ADD_BUBBLE_BACKGROUND));
+    set_color(colour_provider->GetColor(kColorSidebarAddBubbleBackground));
   }
   AddChildViews();
 }
@@ -162,8 +155,8 @@ void SidebarAddItemBubbleDelegateView::AddChildViews() {
   const ui::ColorProvider* colour_provider =
       BrowserView::GetBrowserViewForBrowser(browser_)->GetColorProvider();
   if (colour_provider) {
-    header->SetEnabledColor(colour_provider->GetColor(
-        BraveThemeProperties::COLOR_SIDEBAR_ADD_BUBBLE_HEADER_TEXT));
+    header->SetEnabledColor(
+        colour_provider->GetColor(kColorSidebarAddBubbleHeaderText));
   }
   header->SetAutoColorReadabilityEnabled(false);
   constexpr auto kHeaderInsets = gfx::Insets::TLBR(10, 34, 4, 8);
@@ -188,8 +181,7 @@ void SidebarAddItemBubbleDelegateView::AddChildViews() {
 
   auto* separator = AddChildView(std::make_unique<views::Separator>());
   if (colour_provider) {
-    separator->SetColorId(colour_provider->GetColor(
-        BraveThemeProperties::COLOR_SIDEBAR_SEPARATOR));
+    separator->SetColorId(colour_provider->GetColor(kColorSidebarSeparator));
   }
 
   // |default_part| includes hidden default items.
