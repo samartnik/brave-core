@@ -19,9 +19,11 @@ void AddBraveColorMixer(ui::ColorProvider* provider,
   if (key.custom_theme)
     return;
 
+#if !BUILDFLAG(IS_ANDROID)
   key.color_mode == ui::ColorProviderManager::ColorMode::kDark
       ? AddBraveDarkThemeColorMixer(provider, key)
       : AddBraveLightThemeColorMixer(provider, key);
+#endif  // #if !BUILDFLAG(IS_ANDROID)
 }
 
 }  // namespace
