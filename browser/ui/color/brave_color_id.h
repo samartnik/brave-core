@@ -16,7 +16,8 @@
 #define BRAVE_COMMON_COLOR_IDS                  \
     E_CPONLY(kColorForTest)                     \
     E_CPONLY(kColorIconBase)                    \
-    E_CPONLY(kColorMenuItemSubText)
+    E_CPONLY(kColorMenuItemSubText)             \
+    E_CPONLY(kColorLocationBarFocusRing)
 
 #define BRAVE_SEARCH_CONVERSION_COLOR_IDS                             \
     E_CPONLY(kColorSearchConversionBannerTypeBackgroundBorder)        \
