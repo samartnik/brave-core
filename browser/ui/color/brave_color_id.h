@@ -85,7 +85,7 @@ enum BraveColorIds : ui::ColorId {
   kBraveColorsEnd,
 };
 
-#include "ui/color/color_id_macros.inc"
+#include "ui/color/color_id_macros.inc"  // NOLINT
 
 // clang-format on
 
