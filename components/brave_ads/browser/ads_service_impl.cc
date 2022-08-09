@@ -1792,11 +1792,12 @@ void AdsServiceImpl::SetTimePref(const std::string& path,
 
 absl::optional<base::Value::Dict> AdsServiceImpl::GetDictPref(
     const std::string& path) const {
-  if (!profile_->GetPrefs()->HasPrefPath(path)) {
+  const base::Value::Dict* value = profile_->GetPrefs()->GetValueDict(path);
+  if (!value) {
     return absl::nullopt;
   }
-  const base::Value::Dict& value = profile_->GetPrefs()->GetValueDict(path);
-  return value.Clone();
+
+  return value->Clone();
 }
 
 void AdsServiceImpl::SetDictPref(const std::string& path,
@@ -1807,11 +1808,12 @@ void AdsServiceImpl::SetDictPref(const std::string& path,
 
 absl::optional<base::Value::List> AdsServiceImpl::GetListPref(
     const std::string& path) const {
-  if (!profile_->GetPrefs()->HasPrefPath(path)) {
+  const base::Value::List* value = profile_->GetPrefs()->GetValueList(path);
+  if (!value) {
     return absl::nullopt;
   }
-  const base::Value::List& value = profile_->GetPrefs()->GetValueList(path);
-  return value.Clone();
+
+  return value->Clone();
 }
 
 void AdsServiceImpl::SetListPref(const std::string& path,
