@@ -409,6 +409,7 @@
 -MediaRouterUIBrowserTest.*
 -MessagingApiFencedFrameTest/MessagingApiFencedFrameTest.*
 -MetadataCheckAndDeepScanningBrowserTest.*
+-MetricsLogBrowserTest.CommandLineKeyHash
 -MetricsServiceBrowserDoUploadTest.*
 -MetricsServiceBrowserTest.*
 -MetricsServiceUserDemographicsBrowserTest.*
