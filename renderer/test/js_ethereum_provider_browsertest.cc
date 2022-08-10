@@ -239,20 +239,22 @@ IN_PROC_BROWSER_TEST_F(JSEthereumProviderBrowserTest, OnlyWriteOwnProperty) {
 
   const std::string get_chain_id = "window.ethereum.chainId";
 
-  ASSERT_EQ(content::EvalJs(main_frame(), get_chain_id).ExtractString(), "0x1");
+  ASSERT_EQ(content::EvalJs(primary_main_frame(), get_chain_id).ExtractString(),
+            "0x1");
 
   GetJsonRpcService()->SetNetwork("0x3", brave_wallet::mojom::CoinType::ETH,
                                   false);
   // Needed so ChainChangedEvent observers run
   base::RunLoop().RunUntilIdle();
-  EXPECT_EQ(content::EvalJs(main_frame(), get_chain_id).ExtractString(), "0x3");
+  EXPECT_EQ(content::EvalJs(primary_main_frame(), get_chain_id).ExtractString(),
+            "0x3");
 
   brave_wallet::SetDefaultEthereumWallet(
       browser()->profile()->GetPrefs(),
       brave_wallet::mojom::DefaultWallet::BraveWalletPreferExtension);
   ReloadAndWaitForLoadStop();
   ASSERT_EQ(content::EvalJs(
-                main_frame(),
+                primary_main_frame(),
                 "window.ethereum = {chainId: '0x89'}; window.ethereum.chainId")
                 .ExtractString(),
             "0x89");
@@ -261,7 +263,7 @@ IN_PROC_BROWSER_TEST_F(JSEthereumProviderBrowserTest, OnlyWriteOwnProperty) {
                                   false);
   // Needed so ChainChangedEvent observers run
   base::RunLoop().RunUntilIdle();
-  EXPECT_EQ(content::EvalJs(main_frame(), get_chain_id).ExtractString(),
+  EXPECT_EQ(content::EvalJs(primary_main_frame(), get_chain_id).ExtractString(),
             "0x89");
 }
 
