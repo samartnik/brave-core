@@ -426,9 +426,9 @@
   }
 }
 
-- (NSInteger)indexOfChild:(IOSBookmarkNode*)child {
+- (size_t)indexOfChild:(IOSBookmarkNode*)child {
   DCHECK(node_);
-  return node_->GetIndexOf(child->node_);
+  return *node_->GetIndexOf(child->node_);
 }
 
 - (bool)hasAncestor:(IOSBookmarkNode*)parent {

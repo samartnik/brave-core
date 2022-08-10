@@ -12,22 +12,22 @@ SidebarItemDragContext::~SidebarItemDragContext() = default;
 // Drag indicator is not equal to target index always.
 // If item is moving to higher index, target index is 1 smaller index than
 // indicator index because source item's room is reduced.
-int SidebarItemDragContext::GetTargetIndex() const {
-  return drag_indicator_index_ > source_index_ ? drag_indicator_index_ - 1
-                                               : drag_indicator_index_;
+size_t SidebarItemDragContext::GetTargetIndex() const {
+  return drag_indicator_index_ > source_index_ ? *drag_indicator_index_ - 1
+                                               : *drag_indicator_index_;
 }
 
 bool SidebarItemDragContext::ShouldMoveItem() const {
-  if (drag_indicator_index_ == -1)
+  if (drag_indicator_index_ == absl::nullopt)
     return false;
 
   return GetTargetIndex() != source_index_;
 }
 
 void SidebarItemDragContext::Reset() {
-  source_index_ = -1;
+  source_index_ = absl::nullopt;
   source_ = nullptr;
-  drag_indicator_index_ = -1;
+  drag_indicator_index_ = absl::nullopt;
 }
 
 // static

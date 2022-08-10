@@ -14,8 +14,11 @@
 #include "components/prefs/scoped_user_pref_update.h"
 #include "components/prefs/testing_pref_service.h"
 #include "components/version_info/channel.h"
-#include "testing/gtest/include/gtest/gtest.h"
+#include "testing/gmock/include/gmock/gmock-matchers.h"
+#include "testing/gmock/include/gmock/gmock.h"
 
+using ::testing::Eq;
+using ::testing::Optional;
 using version_info::Channel;
 
 namespace sidebar {
@@ -35,36 +38,36 @@ class SidebarServiceTest : public testing::Test,
   }
 
   // SidebarServiceObserver overrides:
-  void OnItemAdded(const SidebarItem& item, int index) override {
+  void OnItemAdded(const SidebarItem& item, size_t index) override {
     item_index_on_called_ = index;
     on_item_added_called_ = true;
   }
 
-  void OnWillRemoveItem(const SidebarItem& item, int index) override {
+  void OnWillRemoveItem(const SidebarItem& item, size_t index) override {
     item_index_on_called_ = index;
     on_will_remove_item_called_ = true;
   }
 
-  void OnItemRemoved(const SidebarItem& item, int index) override {
+  void OnItemRemoved(const SidebarItem& item, size_t index) override {
     // Make sure OnWillRemoveItem() must be called before this.
     EXPECT_TRUE(on_will_remove_item_called_);
     item_index_on_called_ = index;
     on_item_removed_called_ = true;
   }
 
-  void OnItemMoved(const SidebarItem& item, int from, int to) override {
+  void OnItemMoved(const SidebarItem& item, size_t from, size_t to) override {
     on_item_moved_called_ = true;
   }
 
   void ClearState() {
-    item_index_on_called_ = -1;
+    item_index_on_called_ = absl::nullopt;
     on_item_added_called_ = false;
     on_will_remove_item_called_ = false;
     on_item_removed_called_ = false;
     on_item_moved_called_ = false;
   }
 
-  int item_index_on_called_ = -1;
+  absl::optional<size_t> item_index_on_called_ = absl::nullopt;
   bool on_item_added_called_ = false;
   bool on_will_remove_item_called_ = false;
   bool on_item_removed_called_ = false;
@@ -88,12 +91,12 @@ TEST_F(SidebarServiceTest, AddRemoveItems) {
 
   EXPECT_FALSE(on_will_remove_item_called_);
   EXPECT_FALSE(on_item_removed_called_);
-  EXPECT_EQ(-1, item_index_on_called_);
+  EXPECT_THAT(item_index_on_called_, Eq(absl::nullopt));
 
   service_->RemoveItemAt(0);
   EXPECT_EQ(3UL, service_->items().size());
   EXPECT_EQ(1UL, service_->GetHiddenDefaultSidebarItems().size());
-  EXPECT_EQ(0, item_index_on_called_);
+  EXPECT_THAT(item_index_on_called_, Optional(0u));
   EXPECT_TRUE(on_will_remove_item_called_);
   EXPECT_TRUE(on_item_removed_called_);
   ClearState();
@@ -102,7 +105,7 @@ TEST_F(SidebarServiceTest, AddRemoveItems) {
   EXPECT_FALSE(on_item_added_called_);
   service_->AddItem(item);
   // New item will be added at last.
-  EXPECT_EQ(3, item_index_on_called_);
+  EXPECT_THAT(item_index_on_called_, Optional(3u));
   EXPECT_EQ(4UL, service_->items().size());
   EXPECT_EQ(0UL, service_->GetHiddenDefaultSidebarItems().size());
   EXPECT_TRUE(on_item_added_called_);
@@ -113,7 +116,7 @@ TEST_F(SidebarServiceTest, AddRemoveItems) {
       SidebarItem::Type::kTypeWeb, SidebarItem::BuiltInItemType::kNone, true);
   EXPECT_TRUE(IsWebType(item2));
   service_->AddItem(item2);
-  EXPECT_EQ(4, item_index_on_called_);
+  EXPECT_THAT(item_index_on_called_, Optional(4u));
   EXPECT_EQ(5UL, service_->items().size());
   // Default item count is not changed.
   EXPECT_EQ(4UL, service_->GetCurrentlyPresentBuiltInTypes().size());

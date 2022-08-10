@@ -216,8 +216,8 @@ void SidebarItemsScrollView::OnItemAdded(const sidebar::SidebarItem& item,
 }
 
 void SidebarItemsScrollView::OnItemMoved(const sidebar::SidebarItem& item,
-                                         int from,
-                                         int to) {
+                                         size_t from,
+                                         size_t to) {
   contents_view_->OnItemMoved(item, from, to);
 }
 
@@ -225,8 +225,9 @@ void SidebarItemsScrollView::OnItemRemoved(int index) {
   contents_view_->OnItemRemoved(index);
 }
 
-void SidebarItemsScrollView::OnActiveIndexChanged(int old_index,
-                                                  int new_index) {
+void SidebarItemsScrollView::OnActiveIndexChanged(
+    absl::optional<size_t> old_index,
+    absl::optional<size_t> new_index) {
   contents_view_->OnActiveIndexChanged(old_index, new_index);
 }
 
@@ -408,7 +409,7 @@ int SidebarItemsScrollView::OnDragUpdated(const ui::DropTargetEvent& event) {
     ret = ui::DragDropTypes::DRAG_MOVE;
   } else {
     contents_view_->ClearDragIndicator();
-    drag_context_->set_drag_indicator_index(-1);
+    drag_context_->set_drag_indicator_index(absl::nullopt);
   }
 
   return ret;
@@ -428,7 +429,7 @@ void SidebarItemsScrollView::PerformDrop(
     output_drag_op = ui::mojom::DragOperation::kMove;
     auto* service =
         sidebar::SidebarServiceFactory::GetForProfile(browser_->profile());
-    service->MoveItem(drag_context_->source_index(),
+    service->MoveItem(*drag_context_->source_index(),
                       drag_context_->GetTargetIndex());
   }
 
@@ -467,7 +468,7 @@ bool SidebarItemsScrollView::CanStartDragForView(views::View* sender,
 }
 
 bool SidebarItemsScrollView::IsItemReorderingInProgress() const {
-  return drag_context_->source_index() != -1;
+  return drag_context_->source_index() != absl::nullopt;
 }
 
 bool SidebarItemsScrollView::IsBubbleVisible() const {
