@@ -99,8 +99,8 @@ std::string GetLegacyCryptoWalletsPassword(const std::string& password,
   size_t character_count = 0;
   for (size_t i = 0; i < salt_str->size(); ++i) {
     base_icu::UChar32 code_point;
-    if (base::ReadUnicodeCharacter(static_cast<const char*>(salt_str->data()),
-                                   salt_str->size(), &i, &code_point))
+    if (base::ReadUnicodeCharacter(salt_str->data(), salt_str->size(), &i,
+                                   &code_point))
       ++character_count;
   }
 
@@ -126,8 +126,9 @@ std::string GetLegacyCryptoWalletsPassword(const std::string& password,
   // https://github.com/brave/KeyringController/blob/0769514cea07e85ae190f30765d0a301c631c56b/index.js#L547
   for (size_t i = 0; i < sub_key.size(); ++i) {
     base_icu::UChar32 code_point;
-    if (!base::ReadUnicodeCharacter(static_cast<const char*>(salt_str->data()),
-                                    sub_key.size(), &i, &code_point) ||
+    if (!base::ReadUnicodeCharacter(
+            reinterpret_cast<const char*>(sub_key.data()), sub_key.size(), &i,
+            &code_point) ||
         !base::IsValidCodepoint(code_point)) {
       code_point = 0xfffd;
     }
