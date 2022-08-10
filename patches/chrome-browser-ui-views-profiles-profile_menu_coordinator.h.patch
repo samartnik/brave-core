@@ -1,0 +1,12 @@
+diff --git a/chrome/browser/ui/views/profiles/profile_menu_coordinator.h b/chrome/browser/ui/views/profiles/profile_menu_coordinator.h
+index fe05fca793e8f036308b669810e39775c1f8a5c8..5ab69e995bac1b2d86479ed210d36be8e8eda39c 100644
+--- a/chrome/browser/ui/views/profiles/profile_menu_coordinator.h
++++ b/chrome/browser/ui/views/profiles/profile_menu_coordinator.h
+@@ -23,6 +23,7 @@ class ProfileMenuCoordinator : public BrowserUserData<ProfileMenuCoordinator> {
+   bool IsShowing() const;
+ 
+   ProfileMenuViewBase* GetProfileMenuViewBaseForTesting();
++  BRAVE_PROFILE_MENU_COORDINATOR_H_
+ 
+  private:
+   friend class BrowserUserData<ProfileMenuCoordinator>;
