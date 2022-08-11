@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/resources/tools/build_webui.gni b/chrome/browser/resources/tools/build_webui.gni
-index c91b4b1e49028ecc1d64efd338907e566b0bb555..7c93e966ea998229d913158cd2c1ef03dc3c54ca 100644
+index cc4a64c61b40e96f6395c57d319f2b1673c8c5e4..e3fa0eee50057fa254d114f18f0c01fc995eff31 100644
 --- a/chrome/browser/resources/tools/build_webui.gni
 +++ b/chrome/browser/resources/tools/build_webui.gni
-@@ -204,6 +204,8 @@ template("build_webui") {
+@@ -230,6 +230,8 @@ template("build_webui") {
      if (defined(invoker.ts_extra_deps)) {
        extra_deps += invoker.ts_extra_deps
      }
@@ -11,7 +11,7 @@ index c91b4b1e49028ecc1d64efd338907e566b0bb555..7c93e966ea998229d913158cd2c1ef03
    }
  
    if (optimize) {
-@@ -247,6 +249,7 @@ template("build_webui") {
+@@ -277,6 +279,7 @@ template("build_webui") {
        deps += invoker.extra_grdp_deps
        grdp_files = invoker.extra_grdp_files
      }
