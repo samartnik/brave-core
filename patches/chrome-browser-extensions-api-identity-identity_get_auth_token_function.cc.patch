@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/extensions/api/identity/identity_get_auth_token_function.cc b/chrome/browser/extensions/api/identity/identity_get_auth_token_function.cc
-index 6420f1bc2970e4aecb1a7b8c23927db460182985..bd28765fe5de4ff7b38531cbfddcd0defeef09f5 100644
+index b425e031d9153d6df7ead1a9551325703aa92a26..3beec039ce974108f83d45058b99723f01daf50c 100644
 --- a/chrome/browser/extensions/api/identity/identity_get_auth_token_function.cc
 +++ b/chrome/browser/extensions/api/identity/identity_get_auth_token_function.cc
 @@ -4,6 +4,8 @@
@@ -11,8 +11,8 @@ index 6420f1bc2970e4aecb1a7b8c23927db460182985..bd28765fe5de4ff7b38531cbfddcd0de
  #include <set>
  #include <vector>
  
-@@ -48,6 +50,12 @@
- #include "google_apis/gaia/oauth2_access_token_fetcher.h"
+@@ -44,6 +46,12 @@
+ #include "google_apis/gaia/gaia_constants.h"
  #endif
  
 +#include "base/compiler_specific.h"
@@ -21,10 +21,10 @@ index 6420f1bc2970e4aecb1a7b8c23927db460182985..bd28765fe5de4ff7b38531cbfddcd0de
 +#include "google_apis/google_api_keys.h"
 +#include "net/base/url_util.h"
 +
- #if BUILDFLAG(IS_CHROMEOS_ASH)
- #include "chrome/browser/app_mode/app_mode_utils.h"
- #include "chrome/browser/ash/login/session/user_session_manager.h"
-@@ -168,6 +176,14 @@ ExtensionFunction::ResponseAction IdentityGetAuthTokenFunction::Run() {
+ namespace extensions {
+ 
+ namespace {
+@@ -156,6 +164,14 @@ ExtensionFunction::ResponseAction IdentityGetAuthTokenFunction::Run() {
    // From here on out, results must be returned asynchronously.
    StartAsyncRun();
  
@@ -39,7 +39,7 @@ index 6420f1bc2970e4aecb1a7b8c23927db460182985..bd28765fe5de4ff7b38531cbfddcd0de
    if (gaia_id.empty() || IsPrimaryAccountOnly()) {
      // Try the primary account.
      // TODO(https://crbug.com/932400): collapse the asynchronicity
-@@ -396,9 +412,15 @@ void IdentityGetAuthTokenFunction::StartMintTokenFlow(
+@@ -384,9 +400,15 @@ void IdentityGetAuthTokenFunction::StartMintTokenFlow(
      IdentityMintRequestQueue::MintType type) {
  #if !BUILDFLAG(IS_CHROMEOS)
    // ChromeOS in kiosk mode may start the mint token flow without account.
@@ -58,7 +58,7 @@ index 6420f1bc2970e4aecb1a7b8c23927db460182985..bd28765fe5de4ff7b38531cbfddcd0de
  #endif
    TRACE_EVENT_NESTABLE_ASYNC_BEGIN1("identity", "MintTokenFlow", this, "type",
                                      type);
-@@ -479,6 +501,14 @@ void IdentityGetAuthTokenFunction::StartMintToken(
+@@ -467,6 +489,14 @@ void IdentityGetAuthTokenFunction::StartMintToken(
          }
  #endif
  
@@ -73,7 +73,7 @@ index 6420f1bc2970e4aecb1a7b8c23927db460182985..bd28765fe5de4ff7b38531cbfddcd0de
          if (oauth2_info.auto_approve && *oauth2_info.auto_approve) {
            // oauth2_info.auto_approve is protected by an allowlist in
            // _manifest_features.json hence only selected extensions take
-@@ -521,6 +551,11 @@ void IdentityGetAuthTokenFunction::StartMintToken(
+@@ -509,6 +539,11 @@ void IdentityGetAuthTokenFunction::StartMintToken(
                                     cache_entry.granted_scopes());
          break;
        case IdentityTokenCacheValue::CACHE_STATUS_NOTFOUND:
@@ -85,7 +85,7 @@ index 6420f1bc2970e4aecb1a7b8c23927db460182985..bd28765fe5de4ff7b38531cbfddcd0de
        case IdentityTokenCacheValue::CACHE_STATUS_REMOTE_CONSENT:
          ShowRemoteConsentDialog(resolution_data_);
          break;
-@@ -595,6 +630,33 @@ void IdentityGetAuthTokenFunction::OnRemoteConsentSuccess(
+@@ -583,6 +618,33 @@ void IdentityGetAuthTokenFunction::OnRemoteConsentSuccess(
    StartMintTokenFlow(IdentityMintRequestQueue::MINT_TYPE_INTERACTIVE);
  }
  
@@ -119,7 +119,7 @@ index 6420f1bc2970e4aecb1a7b8c23927db460182985..bd28765fe5de4ff7b38531cbfddcd0de
  void IdentityGetAuthTokenFunction::OnRefreshTokenUpdatedForAccount(
      const CoreAccountInfo& account_info) {
    if (account_listening_mode_ != AccountListeningMode::kListeningTokens)
-@@ -744,6 +806,88 @@ void IdentityGetAuthTokenFunction::OnGaiaRemoteConsentFlowApproved(
+@@ -732,6 +794,88 @@ void IdentityGetAuthTokenFunction::OnGaiaRemoteConsentFlowApproved(
    StartMintTokenFlow(IdentityMintRequestQueue::MINT_TYPE_NONINTERACTIVE);
  }
  
