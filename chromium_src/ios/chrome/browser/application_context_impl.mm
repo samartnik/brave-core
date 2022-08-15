@@ -43,6 +43,7 @@
 #include "ios/chrome/browser/pref_names.h"
 #include "ios/chrome/browser/prefs/browser_prefs.h"
 #include "ios/chrome/browser/prefs/ios_chrome_pref_service_factory.h"
+#include "ios/chrome/browser/promos_manager/promos_manager.h"
 #include "ios/chrome/browser/segmentation_platform/otr_web_state_observer.h"
 #import "ios/components/security_interstitials/safe_browsing/safe_browsing_service.h"
 #include "ios/public/provider/chrome/browser/app_distribution/app_distribution_api.h"
@@ -363,4 +364,9 @@ void ApplicationContextImpl::CreateLocalState() {
 
 void ApplicationContextImpl::CreateGCMDriver() {
   DCHECK(thread_checker_.CalledOnValidThread());
+}
+
+PromosManager* ApplicationContextImpl::GetPromosManager() {
+  DCHECK(thread_checker_.CalledOnValidThread());
+  return nullptr;
 }
