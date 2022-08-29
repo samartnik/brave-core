@@ -11,7 +11,7 @@
 namespace brave_wallet {
 class EthereumProviderImplUnitTest;
 class SolanaProviderImplUnitTest;
-}
+}  // namespace brave_wallet
 
 namespace permissions {
 class BraveWalletPermissionContextUnitTest;
