@@ -76,7 +76,7 @@ void ShowFirstRunDialog(Profile* profile) {
   if (base::FeatureList::IsEnabled(features::kViewsFirstRunDialog))
     ShowBraveFirstRunDialogViews(profile);
   else
-    ShowFirstRunDialogCocoa(profile);
+    ShowFirstRunDialogCocoa();
 #else
   ShowBraveFirstRunDialogViews(profile);
 #endif
