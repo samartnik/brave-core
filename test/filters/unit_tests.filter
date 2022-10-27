@@ -8,14 +8,22 @@
 # These tests crash due to TestingBraveBrowserProcess::greaselion_download_service()
 # having NOTREACHED which causes an immediate crash
 # https://github.com/brave/brave-browser/issues/25726
+-All/PriceTrackingViewFeatureFlagTest.PriceTrackingViewCreation/*
+-ApcScrimManagerImplTest.DisabledScrimCannotBeShown
+-ApcScrimManagerImplTest.HideDoesNotImmediatelySetOriginalAxMode
+-ApcScrimManagerImplTest.HideFocusOnTheWebContent
 -ApcScrimManagerImplTest.RestoresTheOriginalHiddenStateOnWebcontentsVisibibleTransition
+-ApcScrimManagerImplTest.ShutDownDisablesAndHidesScrim
 -ApcScrimManagerImplTest.UpdatesVisibilityOnWebcontentsVisibilityChanged
 -BatterySaverButtonNoExperimentsAvailableTest.*
 -BatterySaverButtonTest.*
+-BrowserViewTestWithStopLoadingAnimationForHiddenWindow.LoadingAnimationNotRenderedWhenWindowHidden
+-ChromeBrowsingDataRemoverDelegateOriginTrialsTest.PersistentOriginTrialsAreDeleted
 -ExtensionActionViewControllerFeatureUnitTest.*
 -ExtensionActionViewControllerGrayscaleTest.*
 -ExtensionActionViewControllerUnitTest.*
 -HighEfficiencyChipViewTest.*
+-PageLiveStateDecoratorHelperTabsTest.IsActiveTab
 
 # These tests crash when BraveExtensionManagement is initialized via a
 # TestExtensionSystem
