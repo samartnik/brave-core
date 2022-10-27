@@ -51,6 +51,17 @@
 # https://github.com/brave/brave-browser/issues/25729
 -TabContainerTest.RemoveTabInGroupWithTabClosingMode
 
+# Tests below are disabled for attempting to read unregistered pref
+# kDefaultSearchProviderByExtension, and crashing. This pref seems to be
+# registered only by SearchEngineProviderServiceFactory::RegisterProfilePrefs.
+-RenderViewContextMenuPrefsTest.LensImageSearchDisabledFor3pDse
+-RenderViewContextMenuPrefsTest.LensImageSearchEnabled
+-RenderViewContextMenuPrefsTest.LensImageSearchEnabledFor3pDse
+-RenderViewContextMenuPrefsTest.LensImageSearchForProgressiveWebApp
+-RenderViewContextMenuPrefsTest.LensImageSearchNonImage
+-All/SearchProviderRequestTest.SendRequestWithURL/*
+-All/SearchProviderRequestTest.SendRequestWithoutURL/*
+
 # Tests below this point have not been diagnosed or had issues created yet.
 -AboutFlagsHistogramTest.*
 -AboutFlagsTest.*
