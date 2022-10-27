@@ -68,6 +68,10 @@
 -AutofillContextMenuManagerTest.AutofillContextMenuContents
 -AutofillContextMenuManagerTest.ExecuteCommand
 
+# These tests fail because we have features::kNavigationRequestPreconnect
+# disabled
+-PreconnectManagerTest.*
+
 # Tests below this point have not been diagnosed or had issues created yet.
 -AboutFlagsHistogramTest.*
 -AboutFlagsTest.*
