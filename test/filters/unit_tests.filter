@@ -62,6 +62,12 @@
 -All/SearchProviderRequestTest.SendRequestWithURL/*
 -All/SearchProviderRequestTest.SendRequestWithoutURL/*
 
+# The following tests are disabled for BraveRenderViewContextMenu::InitMenu
+# attempting to check Tor statuses, which dereferences an uninitialised
+# g_browser_process->local_state().
+-AutofillContextMenuManagerTest.AutofillContextMenuContents
+-AutofillContextMenuManagerTest.ExecuteCommand
+
 # Tests below this point have not been diagnosed or had issues created yet.
 -AboutFlagsHistogramTest.*
 -AboutFlagsTest.*
