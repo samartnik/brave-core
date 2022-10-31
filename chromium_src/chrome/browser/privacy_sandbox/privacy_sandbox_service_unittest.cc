@@ -11,6 +11,7 @@
 #include "base/test/scoped_feature_list.h"
 #include "chrome/browser/content_settings/cookie_settings_factory.h"
 #include "chrome/browser/content_settings/host_content_settings_map_factory.h"
+#include "chrome/browser/first_party_sets/scoped_mock_first_party_sets_handler.h"
 #include "chrome/browser/privacy_sandbox/privacy_sandbox_service.h"
 #include "chrome/browser/privacy_sandbox/privacy_sandbox_settings_factory.h"
 #include "chrome/browser/signin/identity_manager_factory.h"
@@ -132,6 +133,10 @@ class PrivacySandboxServiceTest : public testing::Test {
     return mock_sentiment_service_.get();
   }
 #endif
+  first_party_sets::ScopedMockFirstPartySetsHandler&
+  mock_first_party_sets_handler() {
+    return mock_first_party_sets_handler_;
+  }
   first_party_sets::FirstPartySetsPolicyService*
   first_party_sets_policy_service() {
     return &first_party_sets_policy_service_;
@@ -139,8 +144,7 @@ class PrivacySandboxServiceTest : public testing::Test {
 
  private:
   void SetGlobalFirstPartySetsAndWait() {
-    content::FirstPartySetsHandler::GetInstance()->ResetForTesting();
-    content::FirstPartySetsHandler::GetInstance()->SetGlobalSetsForTesting({});
+    mock_first_party_sets_handler().SetGlobalSets({});
     base::RunLoop run_loop;
     first_party_sets_policy_service_.WaitForFirstInitCompleteForTesting(
         run_loop.QuitClosure());
@@ -159,6 +163,8 @@ class PrivacySandboxServiceTest : public testing::Test {
 
   std::unique_ptr<PrivacySandboxService> privacy_sandbox_service_;
   browsing_topics::MockBrowsingTopicsService* mock_browsing_topics_service_;
+  first_party_sets::ScopedMockFirstPartySetsHandler
+      mock_first_party_sets_handler_;
   first_party_sets::FirstPartySetsPolicyService
       first_party_sets_policy_service_ =
           first_party_sets::FirstPartySetsPolicyService(
