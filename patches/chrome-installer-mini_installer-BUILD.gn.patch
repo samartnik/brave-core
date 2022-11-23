@@ -1,5 +1,5 @@
 diff --git a/chrome/installer/mini_installer/BUILD.gn b/chrome/installer/mini_installer/BUILD.gn
-index f72c5456309222e51d570e5d14676f28a73b405b..77b2a7470934712ece924d5f085b4b9676d419ae 100644
+index f72c5456309222e51d570e5d14676f28a73b405b..cabfbede2b6d9f702ba2a37dcbe8b3565c9857d0 100644
 --- a/chrome/installer/mini_installer/BUILD.gn
 +++ b/chrome/installer/mini_installer/BUILD.gn
 @@ -13,6 +13,7 @@ import("//third_party/icu/config.gni")
@@ -10,6 +10,15 @@ index f72c5456309222e51d570e5d14676f28a73b405b..77b2a7470934712ece924d5f085b4b96
  
  declare_args() {
    # The Chrome archive is compressed in official builds to reduce the size of
+@@ -157,7 +158,7 @@ action("mini_installer_archive") {
+     #'--diff_algorithm=COURGETTE',
+ 
+     # Optional argument for verbose archiving output.
+-    #"--verbose",
++    "--verbose",
+   ]
+ 
+   deps = [
 @@ -171,6 +172,9 @@ action("mini_installer_archive") {
      "//mojo/core:shared_library",
      "//third_party/icu:icudata",
