@@ -1052,7 +1052,7 @@ public class BraveNewTabPageLayout
 
         assert mMvTilesContainerLayout != null : "Something has changed in the upstream!";
 
-        if (mMvTilesContainerLayout != null) {
+        if (mMvTilesContainerLayout != null && !isScrollableMvtEnabled()) {
             ViewGroup tilesLayout = mMvTilesContainerLayout.findViewById(R.id.mv_tiles_layout);
 
             assert tilesLayout
