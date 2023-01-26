@@ -679,3 +679,11 @@
 -keep class org.chromium.chrome.browser.settings.BravePreferenceFragment {
     public <init>(...);
 }
+
+-keep class org.chromium.components.external_intents.ExternalNavigationHandler {
+    <init>(...);
+}
+
+-keep class org.chromium.chrome.browser.externalnav.BraveExternalNavigationHandler {
+    <init>(...);
+}
