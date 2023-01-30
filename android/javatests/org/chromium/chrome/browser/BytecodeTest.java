@@ -298,8 +298,8 @@ public class BytecodeTest {
         Assert.assertTrue(classExists("org/chromium/chrome/browser/BraveIntentHandler"));
         Assert.assertTrue(classExists("org/chromium/chrome/browser/flags/CachedFlag"));
         Assert.assertTrue(classExists("org/chromium/chrome/browser/flags/BraveCachedFlag"));
-        Assert.assertTrue(classExists("org/chromium/chrome/browser/logo/LogoCoordinator"));
-        Assert.assertTrue(classExists("org/chromium/chrome/browser/logo/BraveLogoCoordinator"));
+        Assert.assertTrue(classExists("org/chromium/chrome/browser/logo/LogoMediator"));
+        Assert.assertTrue(classExists("org/chromium/chrome/browser/logo/BraveLogoMediator"));
         Assert.assertTrue(
                 classExists("org/chromium/chrome/browser/tracing/settings/DeveloperSettings"));
         Assert.assertTrue(
@@ -458,6 +458,8 @@ public class BytecodeTest {
         Assert.assertTrue(methodExists(
                 "org/chromium/chrome/browser/download/BraveDownloadMessageUiControllerImpl",
                 "isVisibleToUser", false, null));
+        Assert.assertTrue(methodExists("org/chromium/chrome/browser/logo/LogoMediator",
+                "updateVisibility", true, void.class));
     }
 
     @Test
@@ -709,10 +711,10 @@ public class BytecodeTest {
                 "org/chromium/chrome/browser/BraveAppHooks"));
         Assert.assertTrue(constructorsMatch("org/chromium/chrome/browser/flags/CachedFlag",
                 "org/chromium/chrome/browser/flags/BraveCachedFlag", String.class, boolean.class));
-        Assert.assertTrue(constructorsMatch("org/chromium/chrome/browser/logo/LogoCoordinator",
-                "org/chromium/chrome/browser/logo/BraveLogoCoordinator", Context.class,
-                Callback.class, LogoView.class, boolean.class, Callback.class, Runnable.class,
-                boolean.class, LogoCoordinator.VisibilityObserver.class));
+        Assert.assertTrue(constructorsMatch("org/chromium/chrome/browser/logo/LogoMediator",
+                "org/chromium/chrome/browser/logo/BraveLogoMediator", Context.class, Callback.class,
+                PropertyModel.class, boolean.class, Callback.class, Runnable.class, boolean.class,
+                LogoCoordinator.VisibilityObserver.class, CachedTintedBitmap.class));
         Assert.assertTrue(constructorsMatch(
                 "org/chromium/chrome/browser/notifications/permissions/NotificationPermissionRationaleDialogController",
                 "org/chromium/chrome/browser/notifications/permissions/BraveNotificationPermissionRationaleDialogController",
@@ -908,7 +910,9 @@ public class BytecodeTest {
         Assert.assertTrue(fieldExists("org/chromium/chrome/browser/omnibox/LocationBarMediator",
                 "mAssistantVoiceSearchServiceSupplier"));
         Assert.assertTrue(
-                fieldExists("org/chromium/chrome/browser/logo/LogoCoordinator", "mLogoModel"));
+                fieldExists("org/chromium/chrome/browser/logo/LogoMediator", "mLogoModel"));
+        Assert.assertTrue(
+                fieldExists("org/chromium/chrome/browser/logo/LogoMediator", "mShouldShowLogo"));
     }
 
     @Test
