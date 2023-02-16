@@ -33,12 +33,6 @@ base::StringPiece kBravePinsJson = R"brave_pins_json({
     }
   ],
   "entries": [
-    // Critical endpoints that should remain unpinned so that they
-    // always work.
-    { "name": "laptopquery-updates.brave.com", "pins": "brave"},
-    { "name": "updates.bravesoftware.com", "pins": "brave"},
-    { "name": "updates-cdn.bravesoftware.com", "pins": "brave"},
-
     // Brave
     { "name": "adblock-data.s3.brave.com", "pins": "brave"},
     { "name": "brave-core-ext.s3.brave.com", "pins": "brave"},
@@ -529,13 +523,6 @@ base::StringPiece kBraveHstsJson = R"brave_hsts_json({
       "name": "account.brave.software",
       "mode": "force-https",
       "policy": "custom"
-    },
-
-    // Test page using a CA outside of the pinset (expected to be blocked)
-    {
-      "name": "ssl-pinning.someblog.org",
-      "policy": "custom",
-      "mode": "force-https"
     }
  ]})brave_hsts_json";
 }  // namespace
