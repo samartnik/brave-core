@@ -39,7 +39,7 @@ base::StringPiece kBravePinsJson = R"brave_pins_json({
     { "name": "updates.bravesoftware.com", "pins": "brave"},
     { "name": "updates-cdn.bravesoftware.com", "pins": "brave"},
 
-    // =====BEGIN BRAVE HOSTS JSON=====
+    // =====BEGIN BRAVE PINS JSON=====
     // Brave
     { "name": "adblock-data.s3.brave.com", "pins": "brave"},
     { "name": "brave-core-ext.s3.brave.com", "pins": "brave"},
@@ -128,6 +128,7 @@ base::StringPiece kBravePinsJson = R"brave_pins_json({
 
     // Test page using a CA outside of the pinset (expected to be blocked)
     { "name": "ssl-pinning.someblog.org", "pins" : "brave"}
+    // =====END BRAVE PINS JSON=====
  ]})brave_pins_json";
 
 base::StringPiece kBraveHstsJson = R"brave_hsts_json({
