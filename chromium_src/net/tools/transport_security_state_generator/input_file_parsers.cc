@@ -10,7 +10,7 @@
 #undef ParseJSON
 
 namespace {
-base::StringPiece kBravePinsJson = R"brave_pins_json({
+constexpr base::StringPiece kBravePinsJson = R"brave_pins_json({
   "pinsets": [
     {
       "name": "brave",
@@ -123,7 +123,7 @@ base::StringPiece kBravePinsJson = R"brave_pins_json({
     { "name": "ssl-pinning.someblog.org", "pins" : "brave"}
  ]})brave_pins_json";
 
-base::StringPiece kBraveHstsJson = R"brave_hsts_json({
+constexpr base::StringPiece kBraveHstsJson = R"brave_hsts_json({
   "entries": [
     // Critical endpoints that should remain unpinned so that they
     // always work.
@@ -534,7 +534,7 @@ namespace transport_security_state {
 bool ParseCertificatesFile(base::StringPiece certs_input,
                            Pinsets* pinsets,
                            base::Time* timestamp) {
-  base::StringPiece brave_certs = R"brave_certs(
+  constexpr base::StringPiece brave_certs = R"brave_certs(
 # Last updated: Tue Feb 14 19:44:42 UTC 2023
 PinsListTimestamp
 1676403882
