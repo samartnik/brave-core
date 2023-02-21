@@ -18,6 +18,13 @@
 #include "content/public/browser/web_contents.h"
 #include "url/gurl.h"
 
+#define JNI_InterceptNavigationDelegateImpl_AssociateWithWebContents \
+  JNI_InterceptNavigationDelegateImpl_AssociateWithWebContents_ChromiumImpl
+
+#include "src/components/external_intents/android/intercept_navigation_delegate_impl.cc"
+
+#undef JNI_InterceptNavigationDelegateImpl_AssociateWithWebContents
+
 namespace external_intents {
 namespace {
 
@@ -78,6 +85,12 @@ static void JNI_InterceptNavigationDelegateImpl_AssociateWithWebContents(
       std::make_unique<BraveInterceptNavigationDelegate>(
           env, jdelegate,
           user_prefs::UserPrefs::Get(web_contents->GetBrowserContext())));
+  // This will never happen. We need it just to avoid unused function error
+  // message.
+  if (!web_contents) {
+    JNI_InterceptNavigationDelegateImpl_AssociateWithWebContents_ChromiumImpl(
+        env, jdelegate, jweb_contents);
+  }
 }
 
 }  // namespace external_intents
