@@ -213,8 +213,8 @@ mojom::DBCommandResponseInfo::StatusType Database::Migrate(
     return mojom::DBCommandResponseInfo::StatusType::INITIALIZATION_ERROR;
   }
 
-  [[maybe_unused]] auto version_number = meta_table_.SetVersionNumber(version);
-  [[maybe_unused]] auto compat_number =
+  [[maybe_unused]] bool version_number = meta_table_.SetVersionNumber(version);
+  [[maybe_unused]] bool compat_number =
       meta_table_.SetCompatibleVersionNumber(compatible_version);
 
   return mojom::DBCommandResponseInfo::StatusType::RESPONSE_OK;
