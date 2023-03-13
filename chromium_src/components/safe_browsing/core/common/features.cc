@@ -11,7 +11,7 @@
 namespace safe_browsing {
 
 OVERRIDE_FEATURE_DEFAULT_STATES({{
-    // Download bubble is desktop only feature.
+// Download bubble is desktop only feature.
 #if !BUILDFLAG(IS_ANDROID) && !BUILDFLAG(IS_IOS)
     {kDownloadBubble, base::FEATURE_ENABLED_BY_DEFAULT},
     {kDownloadBubbleV2, base::FEATURE_ENABLED_BY_DEFAULT},
