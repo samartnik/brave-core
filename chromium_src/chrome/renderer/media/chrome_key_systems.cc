@@ -8,6 +8,6 @@
 #if !BUILDFLAG(ENABLE_WIDEVINE)
 // We need this value for DCHECK only.
 inline constexpr char kWidevineKeySystem[] = "com.widevine.alpha";
-#endif  // BUILDFLAG(ENABLE_WIDEVINE)
+#endif  // !BUILDFLAG(ENABLE_WIDEVINE)
 
 #include "src/chrome/renderer/media/chrome_key_systems.cc"
