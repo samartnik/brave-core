@@ -8,7 +8,7 @@ import { PolymerElement } from 'chrome://resources/polymer/v3_0/polymer/polymer_
 import { WebUiListenerMixin, WebUiListenerMixinInterface } from 'chrome://resources/cr_elements/web_ui_listener_mixin.js'
 import { SettingsCheckboxElement } from '../controls/settings_checkbox.js';
 import { loadTimeData } from '../i18n_setup.js';
-import { PrefsMixin, PrefsMixinInterface } from '../prefs/prefs_mixin.js'
+import {PrefsMixin, PrefsMixinInterface} from 'chrome://resources/cr_components/settings_prefs/prefs_mixin.js';
 import { BraveDefaultExtensionsBrowserProxyImpl } from './brave_default_extensions_browser_proxy.js'
 import { getTemplate } from './brave_default_extensions_page.html.js'
 import { Router, RouteObserverMixin } from '../router.js';

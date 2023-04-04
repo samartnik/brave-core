@@ -9,7 +9,7 @@ import { PolymerElement } from 'chrome://resources/polymer/v3_0/polymer/polymer_
 import { WebUiListenerMixin } from 'chrome://resources/cr_elements/web_ui_listener_mixin.js'
 import { I18nMixin } from 'chrome://resources/cr_elements/i18n_mixin.js';
 import { RouteObserverMixin } from '../router.js'
-import { PrefsMixin } from '../prefs/prefs_mixin.js'
+import {PrefsMixin} from 'chrome://resources/cr_components/settings_prefs/prefs_mixin.js';
 import { BraveTorBrowserProxyImpl } from './brave_tor_browser_proxy.js'
 import './brave_tor_bridges_dialog.js'
 import './brave_tor_snowflake_install_failed_dialog.js'

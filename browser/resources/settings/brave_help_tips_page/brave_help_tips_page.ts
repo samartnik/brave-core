@@ -5,7 +5,7 @@
 
  import {html, PolymerElement} from 'chrome://resources/polymer/v3_0/polymer/polymer_bundled.min.js';
  import {WebUiListenerMixin} from 'chrome://resources/cr_elements/web_ui_listener_mixin.js';
- import {PrefsMixin} from '../prefs/prefs_mixin.js';
+ import {PrefsMixin} from 'chrome://resources/cr_components/settings_prefs/prefs_mixin.js';
  import {getTemplate} from './brave_help_tips_page.html.js'
 
 const SettingBraveHelpTipsPageElementBase =

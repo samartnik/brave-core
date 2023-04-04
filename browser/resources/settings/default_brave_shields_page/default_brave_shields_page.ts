@@ -13,7 +13,7 @@ import {Router, RouteObserverMixin} from '../router.js';
 
 import {loadTimeData} from '../i18n_setup.js';
 import {I18nMixin} from 'chrome://resources/cr_elements/i18n_mixin.js';
-import {PrefsMixin} from '../prefs/prefs_mixin.js';
+import {PrefsMixin} from 'chrome://resources/cr_components/settings_prefs/prefs_mixin.js';
 import {getTemplate} from './default_brave_shields_page.html.js'
 
 const BraveShieldsPageBase = I18nMixin(PrefsMixin(RouteObserverMixin(PolymerElement)))
