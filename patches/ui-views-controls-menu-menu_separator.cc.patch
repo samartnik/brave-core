@@ -1,12 +1,13 @@
 diff --git a/ui/views/controls/menu/menu_separator.cc b/ui/views/controls/menu/menu_separator.cc
-index be7ca4059bc2d7f78419dbf863fdb7c74070e9dc..6391ae9d86b0d66cca37d98f71506c2733b12edd 100644
+index 6a895c94473f854b0cc3797338cf60005bb6bc9c..c3f0dced7984ac8336fbb939e75e66b24c58fc50 100644
 --- a/ui/views/controls/menu/menu_separator.cc
 +++ b/ui/views/controls/menu/menu_separator.cc
-@@ -43,6 +43,7 @@ void MenuSeparator::OnPaint(gfx::Canvas* canvas) {
-   if (type_ == ui::PADDED_SEPARATOR)
+@@ -47,7 +47,7 @@ void MenuSeparator::OnPaint(gfx::Canvas* canvas) {
      paint_rect.Inset(
-         gfx::Insets::TLBR(0, menu_config.padded_separator_left_margin, 0, 0));
-+  BRAVE_MENU_SEPARATOR_ON_PAINT
-   else if (menu_config.use_outer_border)
-     paint_rect.Inset(gfx::Insets::VH(0, 1));
- 
+         gfx::Insets::TLBR(0, menu_config.padded_separator_left_margin, 0,
+                           menu_config.padded_separator_right_margin));
+-  } else {
++  } BRAVE_MENU_SEPARATOR_ON_PAINT else {
+     paint_rect.Inset(gfx::Insets::TLBR(0, menu_config.separator_left_margin, 0,
+                                        menu_config.separator_right_margin));
+   }
