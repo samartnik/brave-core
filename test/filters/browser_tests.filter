@@ -35,8 +35,11 @@
 -LensDesktopNTPSearchEnabledPolicyTest.LensSearchButtonHidden
 -PrivacySandboxPromptHelperTestWithParamInstance/PrivacySandboxPromptHelperTestWithParam.NoPromptNonDefaultNtp/*
 -PermissionRequestChipGestureSensitiveBrowserTest.ShouldUpdateActiverPRMAndObservations
+-PersistentBackground/ContentScriptApiPrerenderingTest.Prerendering/0
+-PersistentBackground/ContentScriptApiTestWithContextType.CannotScriptTheNewTabPage/0
 -PersistentBackground/ExtensionApiNewTabTest.Tabs/0
 -PersistentBackground/ExtensionApiTabTestWithContextType.OnUpdatedDiscardedState/0
+-PersistentBackground/NTPInterceptionTest.ContentScript/0
 -ServiceWorker/ExtensionApiNewTabTest.Tabs/0
 -ServiceWorker/ExtensionApiTabTestWithContextType.OnUpdatedDiscardedState/0
 
@@ -344,6 +347,7 @@
 -PredictionServiceBrowserTest.*
 -SearchNavigationPrefetchDefaultMatchBrowserTest.NotDefaultMatch
 -SearchNavigationPrefetchNoCancelBrowserTest.PrefetchIsNotCancelled
+-SearchPreloadUnifiedFallbackBrowserTest.PrerenderDiscardedBeforeServingData
 
 # The tests below are being disabled due to current incompatibilities between
 # Chromium storage partitioning and Brave epehemeral storage.
@@ -467,6 +471,7 @@
 
 # These tests fail because we intentionally disable prefs::kEnableMediaRouter
 -All/CastMirroringServiceHostBrowserTestTabSwitcher.SwitchTabSource/*
+-CastMirroringServiceHostBrowserTestFreezeSession.FreezeSession
 
 # These tests fail because of the following CHECK in identity_test_utils.cc:
 # identity_manager->AreRefreshTokensLoaded()
@@ -542,6 +547,7 @@
 
 # These tests fail because we do not show the profile type selection screen in
 # the profile picker.
+-ProfileTypeChoiceUIPixelTest.InvokeUi_default/CR2023
 -ProfileTypeChoiceUIPixelTest.InvokeUi_default/DarkRtlSmall
 -ProfileTypeChoiceUIPixelTest.InvokeUi_default/DarkRtlSmallTS
 -ProfileTypeChoiceUIPixelTest.InvokeUi_default/Default
@@ -661,6 +667,8 @@
 -All/DataSaverHoldbackBrowserTest.*
 -All/DeclarativeNetRequestBackForwardCacheBrowserTest.*
 -All/DeclarativeNetRequestBrowserTest.*
+-All/DeclarativeNetRequestBrowserTest_Packed.BrowserRestart/0
+-All/DeclarativeNetRequestGlobalRulesBrowserTest_Packed.GlobalRulesBrowserRestart/0
 -All/DownloadFramePolicyBrowserTest_UpdateIframeSandboxFlags.*
 -All/DownloadReferrerPolicyTest.*
 -All/GetAuthTokenFunctionEnableGranularPermissionsTest.EnableGranularPermissions/*
@@ -800,6 +808,7 @@
 -ConversionsOriginTrialNoSubsetExclusionBrowserTest.*
 -CookieControlsBubbleViewTest.*
 -CookiePolicyBrowserTest.*
+-CookiePolicyStorageBrowserTest.*
 -CookieStoreSameParty*Test.*
 -CredentialManagerBrowserTest.*
 -CriticalClientHintsBrowserTest.*
@@ -1192,10 +1201,14 @@
 -SearchPreloadUnifiedBrowserTest.*
 -SecurityStatePageLoadMetricsBrowserTest.*
 -SensorsPolicyTest.*
+-ServiceWorker/ContentScriptApiPrerenderingMV3Test.SpeculationRules/0
+-ServiceWorker/ContentScriptApiPrerenderingTest.Prerendering/0
+-ServiceWorker/ContentScriptApiTestWithContextType.CannotScriptTheNewTabPage/0
 -ServiceWorker/CookiesApiTest.*
 -ServiceWorker/ExtensionContextMenuLazyTest.*
 -ServiceWorker/ExtensionContextMenuSWTest.*
 -ServiceWorker/ExtensionPreferenceApiTest.*
+-ServiceWorker/NTPInterceptionTest.ContentScript/0
 -ServiceWorker/NTPInterceptionWebRequestAPITest.*
 -ServiceWorker/WebNavigationApiTestWithContextType.*
 -ServiceWorker/WebUiNtpInterceptionWebRequestAPITest.*
