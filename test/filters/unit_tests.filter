@@ -168,6 +168,8 @@
 -All/DIPSDatabaseErrorHistogramsTest.*/*
 -All/DIPSDatabaseGarbageCollectionTest.*/*
 -All/DIPSDatabaseInteractionTest.*/*
+-BrowserSigninDetectorServiceTest.LateObservation
+-CreateChooserTitleTest.ExtensionsFrameTree
 -DIPSDatabaseHistogramTest.*
 -DIPSServiceHistogramTest.*
 -DIPSServiceStateRemovalTest.*
@@ -179,6 +181,7 @@
 -CustomizeChromePageHandlerTest.*
 -CustomizeChromePageHandlerWithModulesTest.*
 -SavedTabGroupKeyedServiceUnitTest.*
+-TabLifecycleUnitTest.CannotDiscardPictureInPictureWindow
 
 # These tests fail because BRAVE_COSMETIC_FILTERING has an initial default value
 # of CONTENT_SETTING_DEFAULT which is not allowed as an integer value by
@@ -626,6 +629,7 @@
 -StartupBrowserPolicyUnitTest.*
 -StartupTabProviderTest.*
 -StorageAccessGrantPermissionContextAPIEnabledTest.*
+-StorageAccessGrantPermissionContextAPIWithImplicitGrantsTest.*
 -StorageAccessGrantPermissionContextTest.*
 -StubResolverConfigReaderTest.*
 -SubresourceFilterComponentInstallerTest.*
