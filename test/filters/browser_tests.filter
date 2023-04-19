@@ -930,6 +930,8 @@
 -HTTPCacheSearchPreloadUnifiedBrowserTest.BackwardHitHttpCache
 -IdentityGetAccountsFunctionTest.*
 -IdentityGetProfileUserInfoFunctionTest.*
+-IdleServiceTest.MultiProfile
+-IdleServiceTest.MultiProfileWithDifferentThresholds
 -ImageUtilTest.CheckDefaultToolbarColor
 -Incognito/ExtensionWebRequestApiAuthRequiredTest.WebRequestAuthRequired/0
 -Incognito/ExtensionWebRequestApiAuthRequiredTest.WebRequestAuthRequiredAsync/0
