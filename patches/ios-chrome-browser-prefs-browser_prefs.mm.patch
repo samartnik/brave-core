@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/prefs/browser_prefs.mm b/ios/chrome/browser/prefs/browser_prefs.mm
-index 1c2e3c3cd4ad867bb08746907088ba8aba0335f2..33b165c07a8ceeb58ea27db0584aa1c283ce54f4 100644
+index dd437d19aaf5025efbb72bb5b0bae622739ce066..68713a15c763584429e303875ecdf6b6514dcb0d 100644
 --- a/ios/chrome/browser/prefs/browser_prefs.mm
 +++ b/ios/chrome/browser/prefs/browser_prefs.mm
-@@ -278,6 +278,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
+@@ -232,6 +232,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
    // Preferences related to tab grid.
    // Default to 0 which is the unassigned value.
    registry->RegisterIntegerPref(prefs::kInactiveTabsTimeThreshold, 0);
@@ -10,17 +10,28 @@ index 1c2e3c3cd4ad867bb08746907088ba8aba0335f2..33b165c07a8ceeb58ea27db0584aa1c2
  }
  
  void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
-@@ -424,6 +425,7 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
-   // shown.
-   registry->RegisterBooleanPref(prefs::kIosBringAndroidTabsPromptDisplayed,
-                                 false);
+@@ -374,10 +375,18 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
+   // Register pref used to determine if the Price Tracking UI has been shown.
+   registry->RegisterBooleanPref(prefs::kPriceNotificationsHasBeenShown, false);
+ 
++<<<<<<< ours
+   // Register pref used to determine if Browser Lockdown Mode is enabled.
+   registry->RegisterBooleanPref(prefs::kBrowserLockdownModeEnabled, false);
+ 
+   ntp_snippets::prefs::RegisterProfilePrefsForMigrationApril2023(registry);
++=======
++  // Register pref used to determine if the Bring Android Tabs prompt has been
++  // shown.
++  registry->RegisterBooleanPref(prefs::kIosBringAndroidTabsPromptDisplayed,
++                                false);
 +  BRAVE_REGISTER_BROWSER_STATE_PREFS
++>>>>>>> theirs
  }
  
  // This method should be periodically pruned of year+ old migrations.
-@@ -569,4 +571,5 @@ void MigrateObsoleteBrowserStatePrefs(PrefService* prefs) {
-   if (prefs->FindPreference(kUserClassifierLastTimeToUseSuggestions)) {
-     prefs->ClearPref(kUserClassifierLastTimeToUseSuggestions);
-   }
+@@ -449,4 +458,5 @@ void MigrateObsoleteBrowserStatePrefs(PrefService* prefs) {
+ 
+   // Added 04/2023.
+   ntp_snippets::prefs::MigrateObsoleteProfilePrefsApril2023(prefs);
 +  BRAVE_MIGRATE_OBSOLETE_BROWSER_STATE_PREFS
  }
