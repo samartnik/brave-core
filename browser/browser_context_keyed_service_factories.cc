@@ -16,19 +16,23 @@
 #include "brave/browser/brave_wallet/brave_wallet_service_factory.h"
 #include "brave/browser/brave_wallet/json_rpc_service_factory.h"
 #include "brave/browser/brave_wallet/keyring_service_factory.h"
+#include "brave/browser/brave_wallet/notifications/wallet_notification_service_factory.h"
 #include "brave/browser/brave_wallet/swap_service_factory.h"
 #include "brave/browser/brave_wallet/tx_service_factory.h"
 #include "brave/browser/debounce/debounce_service_factory.h"
 #include "brave/browser/ephemeral_storage/ephemeral_storage_service_factory.h"
 #include "brave/browser/ethereum_remote_client/buildflags/buildflags.h"
+#include "brave/browser/misc_metrics/page_metrics_service_factory.h"
 #include "brave/browser/ntp_background/view_counter_service_factory.h"
 #include "brave/browser/permissions/permission_lifetime_manager_factory.h"
 #include "brave/browser/search_engines/search_engine_provider_service_factory.h"
 #include "brave/browser/search_engines/search_engine_tracker.h"
 #include "brave/browser/sync/brave_sync_alerts_service_factory.h"
 #include "brave/browser/ui/commander/commander_service_factory.h"
+#include "brave/browser/ui/sidebar/sidebar_service_factory.h"
 #include "brave/browser/url_sanitizer/url_sanitizer_service_factory.h"
 #include "brave/components/brave_news/common/features.h"
+#include "brave/components/brave_perf_predictor/browser/named_third_party_registry_factory.h"
 #include "brave/components/brave_vpn/common/buildflags/buildflags.h"
 #include "brave/components/commander/common/features.h"
 #include "brave/components/greaselion/browser/buildflags/buildflags.h"
@@ -113,6 +117,7 @@ void EnsureBrowserContextKeyedServiceFactoriesBuilt() {
   brave_wallet::SwapServiceFactory::GetInstance();
   brave_wallet::TxServiceFactory::GetInstance();
   brave_wallet::BraveWalletServiceFactory::GetInstance();
+  brave_wallet::WalletNotificationServiceFactory::GetInstance();
 
 #if !BUILDFLAG(IS_ANDROID)
   if (base::FeatureList::IsEnabled(commands::features::kBraveCommands)) {
@@ -155,6 +160,10 @@ void EnsureBrowserContextKeyedServiceFactoriesBuilt() {
     SharedPinnedTabServiceFactory::GetInstance();
   }
 #endif
+
+  brave_perf_predictor::NamedThirdPartyRegistryFactory::GetInstance();
+  misc_metrics::PageMetricsServiceFactory::GetInstance();
+  sidebar::SidebarServiceFactory::GetInstance();
 }
 
 }  // namespace brave
