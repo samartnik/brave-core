@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/prefs/browser_prefs.mm b/ios/chrome/browser/prefs/browser_prefs.mm
-index dd437d19aaf5025efbb72bb5b0bae622739ce066..68713a15c763584429e303875ecdf6b6514dcb0d 100644
+index dd437d19aaf5025efbb72bb5b0bae622739ce066..b9ac232ab21e25bd38cbab6a3bf64ccc07550c23 100644
 --- a/ios/chrome/browser/prefs/browser_prefs.mm
 +++ b/ios/chrome/browser/prefs/browser_prefs.mm
 @@ -232,6 +232,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
@@ -10,26 +10,15 @@ index dd437d19aaf5025efbb72bb5b0bae622739ce066..68713a15c763584429e303875ecdf6b6
  }
  
  void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
-@@ -374,10 +375,18 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
-   // Register pref used to determine if the Price Tracking UI has been shown.
-   registry->RegisterBooleanPref(prefs::kPriceNotificationsHasBeenShown, false);
- 
-+<<<<<<< ours
-   // Register pref used to determine if Browser Lockdown Mode is enabled.
+@@ -378,6 +379,7 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
    registry->RegisterBooleanPref(prefs::kBrowserLockdownModeEnabled, false);
  
    ntp_snippets::prefs::RegisterProfilePrefsForMigrationApril2023(registry);
-+=======
-+  // Register pref used to determine if the Bring Android Tabs prompt has been
-+  // shown.
-+  registry->RegisterBooleanPref(prefs::kIosBringAndroidTabsPromptDisplayed,
-+                                false);
 +  BRAVE_REGISTER_BROWSER_STATE_PREFS
-+>>>>>>> theirs
  }
  
  // This method should be periodically pruned of year+ old migrations.
-@@ -449,4 +458,5 @@ void MigrateObsoleteBrowserStatePrefs(PrefService* prefs) {
+@@ -449,4 +451,5 @@ void MigrateObsoleteBrowserStatePrefs(PrefService* prefs) {
  
    // Added 04/2023.
    ntp_snippets::prefs::MigrateObsoleteProfilePrefsApril2023(prefs);
