@@ -8,6 +8,6 @@
     paint_rect.Inset(gfx::Insets::VH(0, 8));          \
   }
 
-#include "src/ui/views/controls/menu/menu_separator.cc"
+#include "src/ui/views/controls/menu/menu_separator.cc"  // IWYU pragma: export
 
 #undef BRAVE_MENU_SEPARATOR_ON_PAINT
