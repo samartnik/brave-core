@@ -836,6 +836,7 @@
 
 # These tests fail because we don't support the search companion.
 -CompanionPage*
+-SidePanelCompanion2BrowserEnabledTest.FeatureEnabled
 
 # These tests fail because they enable the kChromeRefresh2023 feature, which our
 # code is not expecting.
