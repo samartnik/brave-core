@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/shared/model/prefs/browser_prefs.mm b/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
-index d292712550acef255561a07975f758ccec574688..9ce267eead09db57f71701f0bfe86e1eb0e6fa05 100644
+index 591f67ec1d145e6fa2bcf121d7ae8b50d38c0295..b2cf2c00676d2e765c7638f979fa6bb2e6e92674 100644
 --- a/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
 +++ b/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
-@@ -303,6 +303,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
+@@ -315,6 +315,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
        PrefRegistry::LOSSY_PREF);
    registry->RegisterTimePref(prefs::kIosSafetyCheckManagerLastRunTime,
                               base::Time(), PrefRegistry::LOSSY_PREF);
@@ -10,7 +10,7 @@ index d292712550acef255561a07975f758ccec574688..9ce267eead09db57f71701f0bfe86e1e
  }
  
  void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
-@@ -490,6 +491,7 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
+@@ -502,6 +503,7 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
  
    registry->RegisterBooleanPref(prefs::kIosParcelTrackingOptInPromptDisplayed,
                                  false);
@@ -18,7 +18,7 @@ index d292712550acef255561a07975f758ccec574688..9ce267eead09db57f71701f0bfe86e1e
  }
  
  // This method should be periodically pruned of year+ old migrations.
-@@ -578,6 +580,7 @@ void MigrateObsoleteBrowserStatePrefs(PrefService* prefs) {
+@@ -590,6 +592,7 @@ void MigrateObsoleteBrowserStatePrefs(PrefService* prefs) {
    invalidation::InvalidatorRegistrarWithMemory::ClearDeprecatedPrefs(prefs);
    invalidation::PerUserTopicSubscriptionManager::ClearDeprecatedPrefs(prefs);
    invalidation::FCMInvalidationService::ClearDeprecatedPrefs(prefs);
