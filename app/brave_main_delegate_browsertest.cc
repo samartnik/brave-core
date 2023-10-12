@@ -48,6 +48,7 @@
 #include "components/shared_highlighting/core/common/shared_highlighting_features.h"
 #include "components/signin/public/base/signin_buildflags.h"
 #include "components/subresource_filter/core/common/common_features.h"
+#include "content/browser/private_aggregation/private_aggregation_features.h"
 #include "content/common/features.h"
 #include "content/public/common/content_features.h"
 #include "content/public/common/dips_utils.h"
@@ -124,6 +125,9 @@ IN_PROC_BROWSER_TEST_F(BraveMainDelegateBrowserTest, DisabledFeatures) {
     &autofill::features::kAutofillEnableRemadeDownstreamMetrics,
     &autofill::features::test::kAutofillServerCommunication,
     &autofill::features::kAutofillUpstreamAllowAdditionalEmailDomains,
+#if BUILDFLAG(IS_ANDROID)
+    &base::features::kCollectAndroidFrameTimelineMetrics,
+#endif
     &blink::features::kAdAuctionReportingWithMacroApi,
     &blink::features::kAdInterestGroupAPI,
     &blink::features::kAllowURNsInIframes,
@@ -164,6 +168,7 @@ IN_PROC_BROWSER_TEST_F(BraveMainDelegateBrowserTest, DisabledFeatures) {
     &companion::features::internal::kSidePanelCompanion,
     &companion::features::internal::kSidePanelCompanion2,
     &companion::visual_search::features::kVisualSearchSuggestions,
+    &content::kPrivateAggregationApiBundledEnhancements,
     &content_settings::features::kTrackingProtection3pcd,
     &content_settings::features::kUserBypassUI,
     &enterprise_connectors::kLocalContentAnalysisEnabled,
@@ -210,6 +215,7 @@ IN_PROC_BROWSER_TEST_F(BraveMainDelegateBrowserTest, DisabledFeatures) {
     &features::kPrivacyGuidePreloadAndroid,
 #endif
     &features::kPrivacySandboxAdsAPIsOverride,
+    &features::kResourceTimingForCancelledNavigationInFrame,
     &features::kSCTAuditing,
     &features::kServiceWorkerAutoPreload,
     &features::kSignedExchangeReportingForDistributors,
@@ -235,6 +241,7 @@ IN_PROC_BROWSER_TEST_F(BraveMainDelegateBrowserTest, DisabledFeatures) {
     &history_clusters::internal::kJourneys,
     &history_clusters::internal::kJourneysImages,
     &history_clusters::internal::kJourneysNamedNewTabGroups,
+    &history_clusters::internal::kJourneysPersistCachesToPrefs,
     &history_clusters::internal::kJourneysZeroStateFiltering,
     &history_clusters::internal::kOmniboxAction,
     &history_clusters::internal::kOmniboxHistoryClusterProvider,
@@ -253,6 +260,7 @@ IN_PROC_BROWSER_TEST_F(BraveMainDelegateBrowserTest, DisabledFeatures) {
     &net::features::kPartitionedCookies,
     &net::features::kThirdPartyPartitionedStorageAllowedByDefault,
     &net::features::kThirdPartyStoragePartitioning,
+    &net::features::kWaitForFirstPartySetsInit,
     &network::features::kFledgePst,
     &network::features::kPrivateStateTokens,
     &network_time::kNetworkTimeServiceQuerying,
@@ -286,10 +294,13 @@ IN_PROC_BROWSER_TEST_F(BraveMainDelegateBrowserTest, DisabledFeatures) {
 #endif
     &permissions::features::kPermissionOnDeviceNotificationPredictions,
     &permissions::features::kPermissionStorageAccessAPI,
-    &privacy_sandbox::kOverridePrivacySandboxSettingsLocalTesting,
     &privacy_sandbox::kEnforcePrivacySandboxAttestations,
+    &privacy_sandbox::kOverridePrivacySandboxSettingsLocalTesting,
+    &privacy_sandbox::kPrivacySandboxFirstPartySetsUI,
+    &privacy_sandbox::kPrivacySandboxProactiveTopicsBlocking,
     &privacy_sandbox::kPrivacySandboxSettings3,
     &privacy_sandbox::kPrivacySandboxSettings4,
+    &privacy_sandbox::kTrackingProtectionOnboardingForceEligibility,
     &promos_features::kIOSPromoPasswordBubble,
     &safe_browsing::kExtensionTelemetry,
     &safe_browsing::kExtensionTelemetryDisableOffstoreExtensions,
