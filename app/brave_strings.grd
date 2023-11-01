@@ -683,6 +683,9 @@ Permissions you've already given to websites and apps may apply to this account.
       <message name="IDS_DOWNLOAD_BUBBLE_SUBPAGE_SUMMARY_WARNING_BLOCKED_LEARN_MORE_LINK" desc="Text for the link to the help page about why Brave blocks some downloaded files.">
         Learn why Brave blocks some downloads
       </message>
+      <message name="IDS_DOWNLOAD_BUBBLE_SUBPAGE_SUMMARY_DEEP_SCANNING_PROMPT_LOCAL_DECRYPTION" desc="Subpage summary of warning for a file where we recommend providing the password for on-device decryption">
+        This file may be dangerous<ph name="LINE_BREAK">$1</ph>Brave can check this download for you if you provide the password — your password stays on your device
+      </message>
 
       <!-- Download Shelf Items -->
       <message name="IDS_DOWNLOAD_STATUS_CRX_INSTALL_RUNNING" desc="Message shown when a CRX has been downloaded and is being unpacked.">
@@ -1824,6 +1827,9 @@ Permissions you've already given to websites and apps may apply to this account.
         <!--Install errors.-->
         <message name="IDS_GENERIC_INSTALL_ERROR" desc="Error message displayed in the main dialog for runtime errors that occur while installing.">
           Install error: <ph name="INSTALL_ERROR">$1<ex>error-internal</ex></ph>
+        </message>
+        <message name="IDS_APP_INSTALL_DISABLED_BY_GROUP_POLICY" desc="Error message displayed in the main dialog when an IT admin has disabled installation or update of this application using Windows Group Policy.">
+          Your network administrator has applied a Group Policy that prevents installation: <ph name="INSTALL_ERROR">$1<ex>error-internal</ex></ph>
         </message>
       </if>
       <!-- High Efficiency Chip strings -->
