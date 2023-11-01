@@ -1,5 +1,5 @@
 diff --git a/chrome/android/BUILD.gn b/chrome/android/BUILD.gn
-index 1dca15a7f98877156c79074290f0d979b95fc322..c85cf8b515f163f51855f7fa7f20600ad6722593 100644
+index b97c16f6fb8c1363b05bf44cb499504c136f029f..93653fadbd2ea10199145dc2be857464c308d7fd 100644
 --- a/chrome/android/BUILD.gn
 +++ b/chrome/android/BUILD.gn
 @@ -170,6 +170,7 @@ if (current_toolchain == default_toolchain) {
@@ -66,7 +66,7 @@ index 1dca15a7f98877156c79074290f0d979b95fc322..c85cf8b515f163f51855f7fa7f20600a
  
      # More deps for DFMs.
      if (dfmify_dev_ui) {
-@@ -3682,6 +3690,7 @@ generate_jni("chrome_jni_headers") {
+@@ -3687,6 +3695,7 @@ generate_jni("chrome_jni_headers") {
      "java/src/org/chromium/chrome/browser/webapps/WebApkUpdateManager.java",
      "java/src/org/chromium/chrome/browser/webapps/WebappRegistry.java",
    ]

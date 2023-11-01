@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/renderer_context_menu/render_view_context_menu.cc b/chrome/browser/renderer_context_menu/render_view_context_menu.cc
-index 0aa9c67c292a63158da77605c95cfe84aee19e80..91afb2fb9596a794dc4bf74f0c68ee1ab8c4b047 100644
+index 7be3778c0d8f5c2314ba7748f2bd54b5236d2ad7..44ea5a200c386d230d6b42dfe922ba82f9a8ca0d 100644
 --- a/chrome/browser/renderer_context_menu/render_view_context_menu.cc
 +++ b/chrome/browser/renderer_context_menu/render_view_context_menu.cc
-@@ -2178,6 +2178,7 @@ void RenderViewContextMenu::AppendSearchProvider() {
+@@ -2204,6 +2204,7 @@ void RenderViewContextMenu::AppendSearchProvider() {
    selection_navigation_url_ = match.destination_url;
    if (!selection_navigation_url_.is_valid())
      return;
