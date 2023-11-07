@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ui/views/page_info/page_info_view_factory.cc b/chrome/browser/ui/views/page_info/page_info_view_factory.cc
-index f8c4c10e51a1d951ece2a04abda998da66d149b3..02414e5cd04282bd4840f8c8443975b767ff6232 100644
+index 02de1ecb9e4cb2c1afc68372211d87194813feed..6c07e734aaed377f63cbd80b1dbc110f91a9682f 100644
 --- a/chrome/browser/ui/views/page_info/page_info_view_factory.cc
 +++ b/chrome/browser/ui/views/page_info/page_info_view_factory.cc
 @@ -416,6 +416,7 @@ const ui::ImageModel PageInfoViewFactory::GetPermissionIcon(
@@ -8,5 +8,5 @@ index f8c4c10e51a1d951ece2a04abda998da66d149b3..02414e5cd04282bd4840f8c8443975b7
    switch (info.type) {
 +    BRAVE_PAGE_INFO_VIEW_FACTORY_GET_PERMISSION_ICON
      case ContentSettingsType::COOKIES:
-       icon = &vector_icons::kCookieIcon;
+       icon = &vector_icons::kDatabaseIcon;
        break;
