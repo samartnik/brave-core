@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/shared/model/prefs/browser_prefs.mm b/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
-index 198fce74c754826e031384ee7682ac1654799704..8f9f46f38c6e458c8a6c1b8a2bb957669e32a2cd 100644
+index 82d2887f23f00375f2ef3bcbcdb4dea056415e36..be7da74a0f9d40647c9a0e4590a9bed05e9557f9 100644
 --- a/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
 +++ b/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
-@@ -430,6 +430,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
+@@ -431,6 +431,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
    registry->RegisterIntegerPref(kAppStoreRatingTotalDaysOnChromeKey, 0);
    registry->RegisterListPref(kAppStoreRatingActiveDaysInPastWeekKey);
    registry->RegisterTimePref(kAppStoreRatingLastShownPromoDayKey, base::Time());
