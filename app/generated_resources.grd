@@ -2097,6 +2097,9 @@ are declared in tools/grit/grit_rule.gni.
       <message name="IDS_BLOCK_REASON_PROMPT_FOR_SCANNING_UPDATED" desc="Message shown to the user on chrome://downloads page to explain that this download is recommended to be scanned.">
         This file might be a virus or malware. You can send it to Brave to check if it's unsafe.
       </message>
+      <message name="IDS_BLOCK_REASON_PROMPT_FOR_LOCAL_PASSWORD_SCANNING" desc="Message shown to the user on chrome://downloads page to explain that this download is recommended to be scanned.">
+        This file may be dangerous
+      </message>
       <message name="IDS_DEEP_SCANNED_OPENED_DANGEROUS_DESCRIPTION" desc="Message shown to the user on chrome://downloads page to explain this this download was deep scanned, and found to be malicious.">
         This file is dangerous
       </message>
@@ -7484,11 +7487,11 @@ Keep your key file in a safe place. You will need it to create new versions of y
       <message name="IDS_NTP_WEBSTORE_TOAST_BUTTON_TEXT" desc="The text displayed in the New Tab Page webstore themes toast button">
         Find themes
       </message>
-      <message name="IDS_NTP_WALLPAPER_SEARCH_GENERIC_ERROR_TITLE" desc="The title of the generic error displayed when wallpaper search fails.">
-        Something went wrong.
-      </message>
       <message name="IDS_NTP_WALLPAPER_SEARCH_GENERIC_ERROR_DESCRIPTION" desc="The description of the generic error displayed when wallpaper search fails.">
         Please try again later.
+      </message>
+      <message name="IDS_NTP_WALLPAPER_SEARCH_GENERIC_ERROR_TITLE" desc="The title of the generic error displayed when wallpaper search fails.">
+        Something went wrong.
       </message>
       <message name="IDS_NTP_WALLPAPER_SEARCH_HEADER" translateable="false" desc="Header for the wallpaper search page of Customize Brave Side Panel.">
         Wallpaper Search
@@ -7496,11 +7499,26 @@ Keep your key file in a safe place. You will need it to create new versions of y
       <message name="IDS_NTP_WALLPAPER_SEARCH_HISTORY_HEADER" translateable="false" desc="Header for the wallpaper search section for showing past themes.">
         Your recent themes
       </message>
+      <message name="IDS_NTP_WALLPAPER_SEARCH_OFFLINE_DESCRIPTION" desc="The description of the message displayed by wallpaper search when the browser is offline.">
+        Check your internet connection and try again.
+      </message>
+      <message name="IDS_NTP_WALLPAPER_SEARCH_OFFLINE_TITLE" desc="The title of the message displayed by wallpaper search when the browser is offline.">
+        Looks like you're offline.
+      </message>
+      <message name="IDS_NTP_WALLPAPER_SEARCH_REQUEST_THROTTLED_DESCRIPTION" desc="The description of the message displayed when a wallpaper search request is throttled.">
+        You can try again tomorrow.
+      </message>
+      <message name="IDS_NTP_WALLPAPER_SEARCH_REQUEST_THROTTLED_TITLE" desc="The title of the message displayed when a wallpaper search request is throttled.">
+        You've reached your limit for today.
+      </message>
       <message name="IDS_NTP_WALLPAPER_SEARCH_SUBMIT_AGAIN_BTN_TEXT" translateable="false" desc="Button text for submitting the form to get wallpaper search results when the user has already done it before.">
         Search Again
       </message>
       <message name="IDS_NTP_WALLPAPER_SEARCH_SUBMIT_BTN_TEXT" translateable="false" desc="Button text for submitting the form to get wallpaper search results.">
         Search
+      </message>
+      <message name="IDS_NTP_WALLPAPER_SEARCH_TRY_AGAIN_CTA" desc="Call to action displayed when wallpaper search fails that asks user to try again.">
+        Try again
       </message>
 
       <!-- NTP Modules -->
@@ -15932,6 +15950,12 @@ Please help our engineers fix this problem. Tell us what happened right before y
         =0 {Checking public key and integrity block... Less than 1 minute remaining}
         =1 {Checking public key and integrity block... 1 minute remaining}
         other {Checking public key and integrity block... # minutes remaining}}
+    </message>
+    <message name="IDS_IWA_INSTALLER_VERIFICATION_ERROR_TITLE" desc="Title of an error popup during the verification step of the Isolated Web App installer">
+      Brave failed to verify this installation bundle
+    </message>
+    <message name="IDS_IWA_INSTALLER_VERIFICATION_ERROR_SUBTITLE" desc="Subtitle of an error popup during the verification step of the Isolated Web App installer">
+      This bundle might be broken or compromised. Please close this window and download it again
     </message>
   </messages>
 </release>
