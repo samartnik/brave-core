@@ -1,5 +1,5 @@
 diff --git a/base/BUILD.gn b/base/BUILD.gn
-index ad33015c785995b06dd48a43acca762e4a638e23..2cfbd4e83e2b577a0f5eeca325ca11b85fdc7995 100644
+index c450cf9237eeba510db908e5c3438beefd91a1d1..7febab9e10c7c533a825d5c853133089d9190871 100644
 --- a/base/BUILD.gn
 +++ b/base/BUILD.gn
 @@ -4478,6 +4478,7 @@ if (is_android) {

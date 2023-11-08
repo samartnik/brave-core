@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/shared/model/prefs/browser_prefs.mm b/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
-index 82d2887f23f00375f2ef3bcbcdb4dea056415e36..be7da74a0f9d40647c9a0e4590a9bed05e9557f9 100644
+index f15f1226bb5aee6c1f970507e3eabb2b3bbb6ae3..2d195fe2fd8f4656ab8ab9c5809edc90345d196c 100644
 --- a/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
 +++ b/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
 @@ -431,6 +431,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
@@ -10,7 +10,7 @@ index 82d2887f23f00375f2ef3bcbcdb4dea056415e36..be7da74a0f9d40647c9a0e4590a9bed0
  }
  
  void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
-@@ -656,6 +657,7 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
+@@ -657,6 +658,7 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
    registry->RegisterListPref(kActivityBucketLastReportedDateArrayKey);
  
    registry->RegisterBooleanPref(kSyncRequested, false);
@@ -18,7 +18,7 @@ index 82d2887f23f00375f2ef3bcbcdb4dea056415e36..be7da74a0f9d40647c9a0e4590a9bed0
  }
  
  // This method should be periodically pruned of year+ old migrations.
-@@ -833,6 +835,7 @@ void MigrateObsoleteBrowserStatePrefs(PrefService* prefs) {
+@@ -834,6 +836,7 @@ void MigrateObsoleteBrowserStatePrefs(PrefService* prefs) {
    // Added 10/2023, but DO NOT REMOVE after the usual year!
    // TODO(crbug.com/1486420): Remove ~one year after full launch.
    browser_sync::MaybeMigrateSyncingUserToSignedIn(prefs);
