@@ -22,6 +22,7 @@
 #include "brave/components/brave_rewards/common/mojom/rewards_engine.mojom-test-utils.h"
 #include "brave/components/brave_rewards/core/state/state_keys.h"
 #include "net/http/http_status_code.h"
+#include "testing/gtest/include/gtest/gtest.h"
 
 namespace brave_rewards::internal {
 
