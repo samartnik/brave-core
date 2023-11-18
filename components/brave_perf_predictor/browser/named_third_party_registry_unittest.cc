@@ -40,7 +40,9 @@ namespace {
 
 std::string LoadFile() {
   base::FilePath source_root;
-  base::PathService::Get(base::DIR_SRC_TEST_DATA_ROOT, &source_root);
+  if (!base::PathService::Get(base::DIR_SRC_TEST_DATA_ROOT, &source_root)) {
+    ADD_FAILURE() << "Failed to retrieve path DIR_SRC_TEST_DATA_ROOT.";
+  }
   auto path =
       source_root.Append(FILE_PATH_LITERAL("brave"))
           .Append(FILE_PATH_LITERAL("components"))
