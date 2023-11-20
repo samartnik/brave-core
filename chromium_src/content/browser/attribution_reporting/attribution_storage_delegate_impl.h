@@ -10,7 +10,7 @@
 
 #define GetNullAggregatableReports(...)                       \
   GetNullAggregatableReports_ChromiumImpl(__VA_ARGS__) const; \
-  std::vector<NullAggregatableReport> GetNullAggregatableReports
+  std::vector<NullAggregatableReport> GetNullAggregatableReports(__VA_ARGS__)
 
 #include "src/content/browser/attribution_reporting/attribution_storage_delegate_impl.h"  // IWYU pragma: export
 #undef GetNullAggregatableReports
