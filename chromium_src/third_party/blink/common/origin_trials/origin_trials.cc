@@ -24,7 +24,6 @@ namespace origin_trials {
 
 bool IsTrialDisabledInBrave(std::string_view trial_name) {
   // When updating also update the array in the overload below.
-  // clang-format off
   static const char* const kBraveDisabledTrialNames[] = {
       "AdInterestGroupAPI",
       "DeviceAttributes",
@@ -39,7 +38,6 @@ bool IsTrialDisabledInBrave(std::string_view trial_name) {
       "TrustTokens",
       "WebEnvironmentIntegrity",
   };
-  // clang-format on
 
   if (base::Contains(kBraveDisabledTrialNames, trial_name)) {
     // Check if this is still a valid trial name in Chromium. If not, it needs
@@ -53,9 +51,8 @@ bool IsTrialDisabledInBrave(std::string_view trial_name) {
 
 bool IsTrialDisabledInBrave(blink::mojom::OriginTrialFeature feature) {
   // When updating also update the array in the overload above.
-  // clang-format off
   static const blink::mojom::OriginTrialFeature kBraveDisabledTrialFeatures[] =
-      {   // NOLINT
+      {
           blink::mojom::OriginTrialFeature::kAdInterestGroupAPI,
           blink::mojom::OriginTrialFeature::kDigitalGoods,
           blink::mojom::OriginTrialFeature::kFencedFrames,
@@ -65,7 +62,6 @@ bool IsTrialDisabledInBrave(blink::mojom::OriginTrialFeature feature) {
           blink::mojom::OriginTrialFeature::kPrivateStateTokens,
           blink::mojom::OriginTrialFeature::kWebEnvironmentIntegrity,
       };
-  // clang-format on
 
   return base::Contains(kBraveDisabledTrialFeatures, feature);
 }
