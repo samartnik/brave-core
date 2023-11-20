@@ -8,10 +8,8 @@
 
 #include "content/browser/attribution_reporting/attribution_storage_delegate.h"
 
-#define GetNullAggregatableReports                              \
-  GetNullAggregatableReports_ChromiumImpl(                      \
-      const AttributionTrigger&, base::Time trigger_time,       \
-      absl::optional<base::Time> attributed_source_time) const; \
+#define GetNullAggregatableReports(...)                       \
+  GetNullAggregatableReports_ChromiumImpl(__VA_ARGS__) const; \
   std::vector<NullAggregatableReport> GetNullAggregatableReports
 
 #include "src/content/browser/attribution_reporting/attribution_storage_delegate_impl.h"  // IWYU pragma: export
