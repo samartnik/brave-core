@@ -5,6 +5,7 @@
 
 package org.chromium.chrome.browser.component_updater;
 
+import org.jni_zero.NativeMethods;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -12,7 +13,6 @@ import org.chromium.base.Log;
 import org.chromium.base.ThreadUtils;
 import org.chromium.base.annotations.CalledByNative;
 import org.chromium.base.annotations.JNINamespace;
-import org.chromium.base.annotations.NativeMethods;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

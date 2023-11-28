@@ -5,8 +5,9 @@
 
 package org.chromium.chrome.browser.crypto_wallet.util;
 
+import org.jni_zero.NativeMethods;
+
 import org.chromium.base.annotations.JNINamespace;
-import org.chromium.base.annotations.NativeMethods;
 
 /**
  * Class for JNI interaction with wallet_data_files_installer_android.cc
