@@ -6,7 +6,7 @@ index 8619605e2975f2f6aea6155912906cb6b8e5cfb1..c2e85d72e6e430157b8e61a40714b5c4
    ts_composite = true
    ts_deps = [ "../js:build_ts" ]
    if (include_polymer) {
-+    if (!is_chromeos && !is_android) { web_component_files += [ "cr_searchable_drop_down/cr_searchable_drop_down.ts" ] } ts_deps += ["//brave/ui/webui/resources:build_ts"]
++    ts_deps += ["//brave/ui/webui/resources:build_ts"]
      ts_deps += [
        "//third_party/lit/v3_0:build_ts",
        "//third_party/polymer/v3_0:library",
