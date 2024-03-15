@@ -816,7 +816,6 @@ public class BytecodeTest {
                         Supplier.class,
                         boolean.class,
                         BackPressManager.class,
-                        BooleanSupplier.class,
                         ObservableSupplier.class,
                         View.class));
         Assert.assertTrue(
@@ -1168,7 +1167,7 @@ public class BytecodeTest {
                         BackPressManager.class,
                         Bundle.class,
                         MultiInstanceManager.class,
-                        BooleanSupplier.class,
+                        ObservableSupplier.class,
                         View.class));
         Assert.assertTrue(
                 constructorsMatch(
