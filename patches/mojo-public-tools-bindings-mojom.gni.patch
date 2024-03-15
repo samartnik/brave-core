@@ -1,0 +1,12 @@
+diff --git a/mojo/public/tools/bindings/mojom.gni b/mojo/public/tools/bindings/mojom.gni
+index f39f6a01786ab00a77203129dc7608d57dfd1c04..a30dad62c68c6be767b807c9c257219dee890eae 100644
+--- a/mojo/public/tools/bindings/mojom.gni
++++ b/mojo/public/tools/bindings/mojom.gni
+@@ -753,7 +753,6 @@ template("mojom") {
+ 
+       # Use large worker to avoid OOM (b/325844324) and make it faster with
+       # multiple cores.
+-      remote_worker = "large"
+       custom_processor = "mojom_parser"
+       script = mojom_parser_script
+       inputs = mojom_parser_sources + ply_sources + [ build_metadata_filename ]
