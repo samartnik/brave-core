@@ -51,8 +51,9 @@ GURL GetOriginOrURL(const blink::WebFrame* frame) {
   // TODO(alexmos): This is broken for --site-per-process, since top() can be a
   // WebRemoteFrame which does not have a document(), and the WebRemoteFrame's
   // URL is not replicated.  See https://crbug.com/628759.
-  if (top_origin.opaque() && frame->Top()->IsWebLocalFrame())
+  if (top_origin.opaque() && frame->Top()->IsWebLocalFrame()) {
     return frame->Top()->ToWebLocalFrame()->GetDocument().Url();
+  }
   return top_origin.GetURL();
 }
 
@@ -139,6 +140,27 @@ void BraveContentSettingsAgentImpl::BraveSpecificDidBlockJavaScript(
   GetOrCreateBraveShieldsRemote()->OnJavaScriptBlocked(details);
 }
 
+bool BraveContentSettingsAgentImpl::AllowScript(bool enabled_per_settings) {
+  // clear cached url for other flow like directly calling `DidNotAllowScript`
+  // without calling `AllowScriptFromSource` first
+  blocked_script_url_ = GURL::EmptyGURL();
+
+  blink::WebLocalFrame* frame = render_frame()->GetWebFrame();
+  const GURL secondary_url(url::Origin(frame->GetSecurityOrigin()).GetURL());
+  bool allow = ContentSettingsAgentImpl::AllowScript(enabled_per_settings);
+  auto is_shields_down = IsBraveShieldsDown(frame, secondary_url);
+  auto is_script_temprily_allowed = IsScriptTemporilyAllowed(secondary_url);
+  allow = allow || is_shields_down || is_script_temprily_allowed;
+  if (!allow) {
+    blocked_script_url_ = secondary_url;
+  } else if (!is_shields_down) {
+    if (is_script_temprily_allowed) {
+      BraveSpecificDidAllowJavaScriptOnce(secondary_url);
+    }
+  }
+  return allow;
+}
+
 void BraveContentSettingsAgentImpl::DidNotAllowScript() {
   if (blocked_script_url_.is_empty()) {
     blink::WebLocalFrame* frame = render_frame()->GetWebFrame();
@@ -152,21 +174,61 @@ void BraveContentSettingsAgentImpl::DidNotAllowScript() {
   ContentSettingsAgentImpl::DidNotAllowScript();
 }
 
+bool BraveContentSettingsAgentImpl::AllowScriptFromSource(
+    bool enabled_per_settings,
+    const blink::WebURL& script_url) {
+  GURL secondary_url(script_url);
+  // For scripts w/o sources it should report the domain / site used for
+  // executing the frame (which most, but not all, of the time will just be from
+  // document.location
+  if (secondary_url.SchemeIsLocal()) {
+    secondary_url =
+        url::Origin(render_frame()->GetWebFrame()->GetSecurityOrigin())
+            .GetURL();
+  }
+  bool allow = ContentSettingsAgentImpl::AllowScriptFromSource(
+      enabled_per_settings, script_url);
+
+  // scripts with whitelisted protocols, such as chrome://extensions should
+  // be allowed
+  bool should_white_list = IsAllowlistedForContentSettings(
+      blink::WebSecurityOrigin::Create(script_url),
+      render_frame()->GetWebFrame()->GetDocument().Url());
+  auto is_shields_down =
+      IsBraveShieldsDown(render_frame()->GetWebFrame(), secondary_url);
+  auto is_script_temprily_allowed = IsScriptTemporilyAllowed(secondary_url);
+  allow = allow || should_white_list || is_shields_down ||
+          is_script_temprily_allowed;
+
+  if (!allow) {
+    blocked_script_url_ = secondary_url;
+  } else if (!is_shields_down) {
+    if (is_script_temprily_allowed) {
+      BraveSpecificDidAllowJavaScriptOnce(secondary_url);
+    }
+  }
+
+  return allow;
+}
+
 blink::WebSecurityOrigin
 BraveContentSettingsAgentImpl::GetEphemeralStorageOriginSync() {
-  if (!base::FeatureList::IsEnabled(net::features::kBraveEphemeralStorage))
+  if (!base::FeatureList::IsEnabled(net::features::kBraveEphemeralStorage)) {
     return {};
+  }
 
   blink::WebLocalFrame* frame = render_frame()->GetWebFrame();
 
-  if (!frame || IsFrameWithOpaqueOrigin(frame))
+  if (!frame || IsFrameWithOpaqueOrigin(frame)) {
     return {};
+  }
 
   auto frame_origin = url::Origin(frame->GetSecurityOrigin());
   const auto ephemeral_storage_origin_it =
       cached_ephemeral_storage_origins_.find(frame_origin);
-  if (ephemeral_storage_origin_it != cached_ephemeral_storage_origins_.end())
+  if (ephemeral_storage_origin_it != cached_ephemeral_storage_origins_.end()) {
     return ephemeral_storage_origin_it->second;
+  }
 
   auto top_origin = url::Origin(frame->Top()->GetSecurityOrigin());
   // If first party ephemeral storage is enabled, we should always ask the
@@ -195,8 +257,9 @@ BraveContentSettingsAgentImpl::GetEphemeralStorageOriginSync() {
 bool BraveContentSettingsAgentImpl::AllowStorageAccessSync(
     StorageType storage_type) {
   bool result = ContentSettingsAgentImpl::AllowStorageAccessSync(storage_type);
-  if (result)
+  if (result) {
     return true;
+  }
 
   if (storage_type == StorageType::kLocalStorage ||
       storage_type == StorageType::kSessionStorage) {
@@ -308,8 +371,9 @@ bool BraveContentSettingsAgentImpl::AllowAutoplay(bool play_requested) {
         content_setting_rules_->autoplay_rules, url::Origin(origin).GetURL());
     if (setting == CONTENT_SETTING_BLOCK) {
       DVLOG(1) << "AllowAutoplay=false because rule=CONTENT_SETTING_BLOCK";
-      if (play_requested)
+      if (play_requested) {
         DidBlockContentType(ContentSettingsType::AUTOPLAY);
+      }
       return false;
     } else if (setting == CONTENT_SETTING_ALLOW) {
       DVLOG(1) << "AllowAutoplay=true because rule=CONTENT_SETTING_ALLOW";
@@ -322,8 +386,9 @@ bool BraveContentSettingsAgentImpl::AllowAutoplay(bool play_requested) {
     DVLOG(1) << "AllowAutoplay=true because "
                 "ContentSettingsAgentImpl::AllowAutoplay says so";
   } else {
-    if (play_requested)
+    if (play_requested) {
       DidBlockContentType(ContentSettingsType::AUTOPLAY);
+    }
     DVLOG(1) << "AllowAutoplay=false because "
                 "ContentSettingsAgentImpl::AllowAutoplay says so";
   }
