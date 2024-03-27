@@ -403,7 +403,7 @@ public class BraveMainPreferencesBase
 
     private void updateSearchEnginePreference() {
         if (!TemplateUrlServiceFactory.getForProfile(ProfileManager.getLastUsedRegularProfile())
-                        .isLoaded()) {
+                .isLoaded()) {
             ChromeBasePreference searchEnginePref =
                     (ChromeBasePreference) findPreference(PREF_BRAVE_SEARCH_ENGINES);
             searchEnginePref.setEnabled(false);

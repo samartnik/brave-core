@@ -846,7 +846,8 @@ public class BytecodeTest {
                         OneshotSupplier.class,
                         Supplier.class));
         Assert.assertTrue(
-                constructorsMatch("org/chromium/chrome/browser/settings/SettingsLauncherImpl",
+                constructorsMatch(
+                        "org/chromium/chrome/browser/settings/SettingsLauncherImpl",
                         "org/chromium/chrome/browser/settings/BraveSettingsLauncherImpl"));
         Assert.assertTrue(constructorsMatch(
                 "org/chromium/chrome/browser/tasks/tab_management/TabGroupUiCoordinator",
