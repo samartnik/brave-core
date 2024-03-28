@@ -297,8 +297,10 @@ public class QuickActionSearchAndBookmarkWidgetProvider extends AppWidgetProvide
                 BraveSearchEngineUtils.getTemplateUrlByShortName(
                         profile, BraveSearchEngineUtils.getDSEShortName(profile, false));
         if (templateUrl != null) {
-            String searchWithDefaultSearchEngine = ContextUtils.getApplicationContext().getString(
-                    R.string.search_with_search_engine, templateUrl.getShortName());
+            String searchWithDefaultSearchEngine =
+                    ContextUtils.getApplicationContext()
+                            .getString(
+                                    R.string.search_with_search_engine, templateUrl.getShortName());
             views.setTextViewText(R.id.tvSearchWithBrave, searchWithDefaultSearchEngine);
         }
     }

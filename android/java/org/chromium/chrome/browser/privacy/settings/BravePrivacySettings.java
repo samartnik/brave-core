@@ -760,8 +760,11 @@ public class BravePrivacySettings extends PrivacySettings implements ConnectionE
                     isEnabled -> {
                         mBlockCookieConsentNoticesPref.setChecked(isEnabled);
                     });
-            mFilterListAndroidHandler.isFilterListEnabled(FilterListConstants.SWITCH_TO_APP_UUID,
-                    isEnabled -> { mBlockSwitchToAppNoticesPref.setChecked(isEnabled); });
+            mFilterListAndroidHandler.isFilterListEnabled(
+                    FilterListConstants.SWITCH_TO_APP_UUID,
+                    isEnabled -> {
+                        mBlockSwitchToAppNoticesPref.setChecked(isEnabled);
+                    });
         }
         // Debounce
         if (mDebouncePref != null) {

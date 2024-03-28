@@ -18,8 +18,8 @@ import org.chromium.chrome.browser.tabmodel.TabModelFilter;
 /** Brave's super class for {@link TabGroupModelFilter} */
 public abstract class BraveTabGroupModelFilter extends TabModelFilter {
     /**
-     * This variable will be used instead of {@link
-     * TabGroupModelFilter}'s variable, that will be deleted in bytecode.
+     * This variable will be used instead of {@link TabGroupModelFilter}'s variable, that will be
+     * deleted in bytecode.
      */
     protected boolean mIsResetting;
 
