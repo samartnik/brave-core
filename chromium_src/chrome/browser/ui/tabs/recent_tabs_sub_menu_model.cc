@@ -19,26 +19,8 @@ const char kBraveSyncedTabsUrl[] = "brave://history/syncedTabs";
   InsertItemWithStringIdAt(history_separator_index_++, \
                            IDC_CLEAR_BROWSING_DATA, IDS_CLEAR_BROWSING_DATA);
 
-#define BRAVE_RECENT_TABS_SUB_MENU_MODEL_BUILD_TABS_FROM_OTHER_DEVICES      \
-  if (tabs_in_session.size() > kMaxTabsPerSessionToShow) {                  \
-    /* Not all the tabs are shown in menu */                                \
-    if (!stub_tab_.get()) {                                                 \
-      stub_tab_.reset(new sessions::SessionTab());                          \
-      sessions::SerializedNavigationEntry stub_nav_entry;                   \
-      stub_nav_entry.set_title(brave_l10n::GetLocalizedResourceUTF16String( \
-          IDS_OPEN_MORE_OTHER_DEVICES_SESSIONS));                           \
-      stub_nav_entry.set_virtual_url(GURL(kBraveSyncedTabsUrl));            \
-      stub_tab_->navigations.push_back(stub_nav_entry);                     \
-      stub_tab_->tab_id = SessionID::NewUnique();                           \
-    }                                                                       \
-    tabs_in_session[kMaxTabsPerSessionToShow] = stub_tab_.get();            \
-    BuildOtherDevicesTabItem(this, kBraveStubSessionTag,                    \
-                             *tabs_in_session[kMaxTabsPerSessionToShow]);   \
-  }
-
 #include "src/chrome/browser/ui/tabs/recent_tabs_sub_menu_model.cc"
 
-#undef BRAVE_RECENT_TABS_SUB_MENU_MODEL_BUILD_TABS_FROM_OTHER_DEVICES
 #undef BRAVE_RECENT_TABS_SUB_MENU_MODEL_BUILD
 
 #include "brave/browser/ui/toolbar/brave_recent_tabs_sub_menu_model.h"
