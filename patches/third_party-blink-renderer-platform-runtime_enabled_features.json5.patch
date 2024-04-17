@@ -1,8 +1,8 @@
 diff --git a/third_party/blink/renderer/platform/runtime_enabled_features.json5 b/third_party/blink/renderer/platform/runtime_enabled_features.json5
-index 4148ab1e2b1f082d620dcfb12607195e355a8fbb..c9863b280dc92ba1f81a74d72638eabb30d960a8 100644
+index f5fa6f999dd3f49b083786e302f9080c93d4e08f..74811733b5ab77fc14a5578a42af0a19d9d9b077 100644
 --- a/third_party/blink/renderer/platform/runtime_enabled_features.json5
 +++ b/third_party/blink/renderer/platform/runtime_enabled_features.json5
-@@ -1756,6 +1756,7 @@
+@@ -1729,6 +1729,7 @@
        // In-development features for the File System Access API.
        name: "FileSystemAccessAPIExperimental",
        status: "experimental",
@@ -10,7 +10,7 @@ index 4148ab1e2b1f082d620dcfb12607195e355a8fbb..c9863b280dc92ba1f81a74d72638eabb
      },
      {
        // The FileSystemHandle.getCloudIdentifiers() method (see
-@@ -1771,6 +1772,7 @@
+@@ -1744,6 +1745,7 @@
        // Non-OPFS File System Access API.
        name: "FileSystemAccessLocal",
        status: {"Android": "test", "default": "stable"},
@@ -26,7 +26,7 @@ index 4148ab1e2b1f082d620dcfb12607195e355a8fbb..c9863b280dc92ba1f81a74d72638eabb
      },
      {
        name: "MobileLayoutTheme",
-@@ -3451,6 +3454,7 @@
+@@ -3460,6 +3463,7 @@
      {
        name: "Serial",
        status: {"Android": "", "default": "stable"},
