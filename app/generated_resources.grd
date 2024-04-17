@@ -3028,6 +3028,12 @@ are declared in tools/grit/grit_rule.gni.
       <message name="IDS_DOWNLOAD_BUBBLE_TOOLTIP_IN_PROGRESS_COUNT" desc="Tooltip text for the download toolbar button, displayed when there are one or more downloads in progress.">
         {COUNT, plural, =1 {1 download in progress} other {# downloads in progress}}
       </message>
+      <message name="IDS_DOWNLOAD_ROW_ESB_PROMOTION" desc="Link button text that teaches the user about Enhanced Protection.">
+        Discover enhanced protection to get Brave's highest level of security for downloads
+      </message>
+      <message name="IDS_DOWNLOAD_ROW_ESB_PROMO_A11Y" desc="ARIA (accessibility) label describing a link which opens in a new tab.">
+        Opens security settings page in a new tab
+      </message>
 
       <!-- Tailored Warning in Download Bubble -->
       <message name="IDS_DOWNLOAD_BUBBLE_SUBPAGE_SUMMARY_WARNING_COOKIE_THEFT" desc="Subpage summary for cookie theft warning.">
@@ -5270,6 +5276,9 @@ are declared in tools/grit/grit_rule.gni.
           <message name="IDS_EXTENSION_PROMPT_WARNING_CHROMEOS_DIAGNOSTICS" desc="Permission string for chrome.os.diagnostcs API.">
             Run ChromeOS Flex diagnostic tests
           </message>
+          <message name="IDS_EXTENSION_PROMPT_WARNING_CHROMEOS_DIAGNOSTICS_NETWORK_INFO_FOR_MLAB" desc="Permission string for chrome.os.diagnostics.network_info_mlab API.">
+            Collect IP address and network measurement results for Measurement Lab, according to their privacy policy (measurementlab.net/privacy)
+          </message>
           <message name="IDS_EXTENSION_PROMPT_WARNING_CHROMEOS_EVENTS" desc="Permission string for chrome.os.events API.">
             Subscribe to ChromeOS Flex system events
           </message>
@@ -5295,6 +5304,9 @@ are declared in tools/grit/grit_rule.gni.
           </message>
           <message name="IDS_EXTENSION_PROMPT_WARNING_CHROMEOS_DIAGNOSTICS" desc="Permission string for chrome.os.diagnostcs API.">
             Run ChromeOS diagnostic tests
+          </message>
+          <message name="IDS_EXTENSION_PROMPT_WARNING_CHROMEOS_DIAGNOSTICS_NETWORK_INFO_FOR_MLAB" desc="Permission string for chrome.os.diagnostics.network_info_mlab API.">
+            Collect IP address and network measurement results for Measurement Lab, according to their privacy policy (measurementlab.net/privacy)
           </message>
           <message name="IDS_EXTENSION_PROMPT_WARNING_CHROMEOS_EVENTS" desc="Permission string for chrome.os.events API.">
             Subscribe to ChromeOS system events
@@ -10783,6 +10795,12 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Brave P
         <message name="IDS_TAB_GROUP_HEADER_CXMENU_OPEN_GROUP_IN_NEW_WINDOW" desc="The label of the saved tab group button context menu item for opening the entire group in a new window.">
           Open group in new window
         </message>
+        <message name="IDS_TAB_GROUP_HEADER_CXMENU_PIN_GROUP" desc="The label of the saved tab group button context menu item to pin a gruop">
+          Pin group to bookmarks
+        </message>
+        <message name="IDS_TAB_GROUP_HEADER_CXMENU_UNPIN_GROUP" desc="The label of the saved tab group button context menu item to unpin a gruop">
+          Unpin group from bookmarks
+        </message>
         <message name="IDS_TAB_GROUP_HEADER_CXMENU_SEND_FEEDBACK" desc="The label of the tab group header context menu item for sending feedback for tab groups.">
           Send feedback
         </message>
@@ -10817,6 +10835,12 @@ Check your passwords anytime in <ph name="GOOGLE_PASSWORD_MANAGER">$1<ex>Brave P
         </message>
         <message name="IDS_TAB_GROUP_HEADER_CXMENU_OPEN_GROUP_IN_NEW_WINDOW" desc="In Title Case: The label of the saved tab group button context menu item for opening the entire group in a new window.">
           Open Group in New Window
+        </message>
+        <message name="IDS_TAB_GROUP_HEADER_CXMENU_PIN_GROUP" desc="The label of the saved tab group button context menu item to pin a gruop">
+          Pin Group to Bookmarks
+        </message>
+        <message name="IDS_TAB_GROUP_HEADER_CXMENU_UNPIN_GROUP" desc="The label of the saved tab group button context menu item to unpin a gruop">
+          Unpin Group from Bookmarks
         </message>
         <message name="IDS_TAB_GROUP_HEADER_CXMENU_SEND_FEEDBACK" desc="In Title Case: The label of the tab group header context menu item for sending feedback for tab groups.">
           Send Feedback
@@ -15891,13 +15915,6 @@ Please help our engineers fix this problem. Tell us what happened right before y
     <message name="IDS_CHROMELABS_ENABLED_WITH_VARIATION_NAME" desc="Label for combobox option for an enabled variation that will have a description describing what variation is enabled in the placeholder.">
       Enabled – <ph name="VARIATION_NAME">$1<ex>tabs shrink to pinned tab width</ex></ph>
     </message>
-    <!-- BraveLabs Tab Groups Save-->
-    <message name="IDS_TAB_GROUPS_SAVE_EXPERIMENT_NAME" desc="The name for the Tab Groups Save experiment.">
-      Tab Groups Save and Sync
-    </message>
-    <message name="IDS_TAB_GROUPS_SAVE_DESCRIPTION" desc="The description for the Tab Groups Save experiment.">
-      Enables saving and recalling of tab groups. Right click a tab group to save it. Recall groups from the bookmarks bar.
-    </message>
     <!-- BraveLabs Customize Brave SidePanel-->
     <message name="IDS_CUSTOMIZE_CHROME_SIDE_PANEL_EXPERIMENT_NAME" desc="The name for the Customize Brave Side Panel experiment.">
       Customize Brave Side Panel
@@ -16001,11 +16018,11 @@ Please help our engineers fix this problem. Tell us what happened right before y
     <message name="IDS_ACCOUNT_SELECTION_CONTINUE" desc="Title of the button that continues filling with the only available set of credentials.">
       Continue as <ph name="NAME">$1<ex>Albus (or Albus Dumbledore)</ex></ph>
     </message>
-    <message name="IDS_ACCOUNT_SELECTION_CHOOSE_AN_ACCOUNT" desc="Text to prompt a user to choose an account to sign in to an identity provider with." translateable="false">
+    <message name="IDS_ACCOUNT_SELECTION_CHOOSE_AN_ACCOUNT" desc="Text to prompt a user to choose an account to sign in to an identity provider with.">
       Choose an account to continue
     </message>
-    <message name="IDS_ACCOUNT_SELECTION_CONFIRM_ACCOUNT" desc="Text to prompt a user to confirm using an account to sign in to an identity provider with." translateable="false">
-      Confirm you want to sign in to <ph name="SITE_ETLD_PLUS_ONE">$1<ex>rp.example</ex></ph> with <ph name="IDENTITY_PROVIDER_ETLD_PLUS_ONE">$2<ex>idp.example</ex></ph>
+    <message name="IDS_ACCOUNT_SELECTION_CHOOSE_AN_ACCOUNT_BUTTON" desc="Title of the button that lets the user look at all account options. Used when we want to highlight a single returning account in the UI." translateable="false">
+      Choose an account
     </message>
     <message name="IDS_ACCOUNT_SELECTION_DATA_SHARING_CONSENT_NO_PP_OR_TOS" desc="The consent text shown to the user before sign up when there is no privacy policy or terms of service.">
       To continue, <ph name="IDENTITY_PROVIDER_ETLD_PLUS_ONE">$1<ex>idp.com</ex></ph> will share your name, email address, and profile picture with this site.
@@ -16019,10 +16036,10 @@ Please help our engineers fix this problem. Tell us what happened right before y
     <message name="IDS_ACCOUNT_SELECTION_DATA_SHARING_CONSENT" desc="The consent text shown to the user before sign up.">
       To continue, <ph name="IDENTITY_PROVIDER_ETLD_PLUS_ONE">$1<ex>idp.com</ex></ph> will share your name, email address, and profile picture with this site. See this site's <ph name="BEGIN_LINK1">$2</ph>privacy policy<ph name="END_LINK1">$3</ph> and <ph name="BEGIN_LINK2">$4</ph>terms of service<ph name="END_LINK2">$5</ph>.
     </message>
-    <message name="IDS_ACCOUNT_SELECTION_USE_OTHER_ACCOUNT" desc="Title of the button that lets the user log in to a different account." translateable="false">
+    <message name="IDS_ACCOUNT_SELECTION_USE_OTHER_ACCOUNT" desc="Title of the button that lets the user log in to a different account.">
       Use a different account
     </message>
-    <message name="IDS_ACCOUNT_SELECTION_BACK" desc="Title of the button that lets the user go back to a previous sheet." translateable="false">
+    <message name="IDS_ACCOUNT_SELECTION_BACK" desc="Title of the button that lets the user go back to a previous sheet.">
       Back
     </message>
     <message name="IDS_SIGNIN_CONTINUE" desc="Title of the button that allows the user to continue with signing in to an account from an identity provider.">

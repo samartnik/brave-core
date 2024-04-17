@@ -76,6 +76,38 @@
     <message name="IDS_SETTINGS_GET_THE_MOST_OUT_OF_CHROME_THIRD_PARTY_COOKIES" desc="Prompt on the link to the 'Get the most out of Brave' page.">
       Why is Brave moving beyond third-party cookies?
     </message>
+    <message name="IDS_SETTINGS_GET_THE_MOST_OUT_OF_CHROME_BETTER_WEB_MAKING_THE_WEB" desc="A paragraph that includes 2 bullets.">
+      Making the web work better for you means:
+      &lt;ul&gt;
+        &lt;li&gt;Keeping you safe as you browse, and&lt;/li&gt;
+        &lt;li&gt;Supporting a thriving ecosystem that keeps the web safe, open, fast and free&lt;/li&gt;
+      &lt;/ul&gt;
+    </message>
+    <message name="IDS_SETTINGS_GET_THE_MOST_OUT_OF_CHROME_BETTER_WEB_SUB_TITLE_CHROME_GIVES_YOU_CHOICE" desc="A subtitle">
+      Brave gives you choice
+    </message>
+    <message name="IDS_SETTINGS_GET_THE_MOST_OUT_OF_CHROME_BETTER_WEB_YOU_CAN_CUSTOMIZE" desc="A paragraph that includes 3 bullets.       * Bullet 1: Brave supports many Brave services, but it's the user's choice whether they want to use those services, so we include &quot;for those who want it&quot;.">
+      You can customize Brave the way you want:
+      &lt;ul&gt;
+        &lt;li&gt;&lt;em&gt;The best of Brave&lt;/em&gt;, for those who want it. For example, you can choose Brave Search as Brave’s default search engine and use Brave Password Manager to get all your passwords on any device. &lt;/li&gt;
+        &lt;li&gt;&lt;em&gt;Meaningful choice&lt;/em&gt;: Brave offers you choice and control with settings, and information to help you make meaningful decisions.&lt;/li&gt;
+        &lt;li&gt;&lt;em&gt;Extensions&lt;/em&gt;: You can extend Brave functionality with over 100,000 extensions in the Web Store.&lt;/li&gt;
+      &lt;/ul&gt;
+    </message>
+    <message name="IDS_SETTINGS_GET_THE_MOST_OUT_OF_CHROME_BETTER_WEB_SUB_TITLE_CHROME_SUPPORTS_FREE_WEB" desc="A subtitle">
+      Brave supports a free web
+    </message>
+    <message name="IDS_SETTINGS_GET_THE_MOST_OUT_OF_CHROME_BETTER_WEB_ADS_CRITICAL" desc="A paragraph that includes 3 bullets.">
+      Ads are critical to many online businesses. They help keep content free online, which helps ensure that anyone can access content. Brave develops ways to let sites show you personalized ads while protecting your privacy.  Done well, advertising benefits everyone on the web because when you see an ad:
+      &lt;ul&gt;
+        &lt;li&gt;You might find something new or interesting&lt;/li&gt;
+        &lt;li&gt;The advertiser might find a new customer&lt;/li&gt;
+        &lt;li&gt;The site you visit earns money by hosting the ad&lt;/li&gt;
+      &lt;/ul&gt;
+    </message>
+    <message name="IDS_SETTINGS_GET_THE_MOST_OUT_OF_CHROME_BETTER_WEB_ADS_ALSO_SUPPORT" desc="A paragraph that explains how ads support the expense of many Brave services, like Brave, Gmail, maps, and YouTube.">
+      Ads revenue also supports Brave’s many free products and services, like Brave, Gmail, Maps, and YouTube.
+    </message>
   </if>
   <if expr="is_macosx">
     <message name="IDS_ABOUT_CHROME_AUTOUPDATE_ALL" desc="The 'Automatically update Brave for all users.' button in the About window.  Mac-only.">
@@ -437,6 +469,9 @@
   </message>
   <message name="IDS_SETTINGS_AUTOFILL_MORE_ACTIONS_FOR_CREDIT_CARD" desc="The (accessibility) title of a button, which brings up a menu of actions that can be taken on a stored credit card. The credit card is described by the credit card nickname or the credit card network and last 4 digits of the card number.">
     More actions for <ph name="CARD_DESCRIPTION">$1<ex>My main card</ex></ph>
+  </message>
+  <message name="IDS_SETTINGS_AUTOFILL_MORE_ACTIONS_FOR_CREDIT_CARD_WITH_CVC" desc="The (accessibility) title of a button, which brings up a menu of actions that can be taken on a stored credit card. The credit card is described by the credit card nickname or the credit card network and last 4 digits of the card number along with appending the CVC saved tag.">
+    More actions for <ph name="CARD_DESCRIPTION">$1<ex>My main card</ex></ph>, CVC saved
   </message>
   <message name="IDS_AUTOFILL_ADD_VIRTUAL_CARD" desc="The text shown in the secondary action menu button to enroll a card in the virtual card feature. Virtual cards are credit cards generated from the actual cards and provide extra security.">
     Turn on virtual card
@@ -2716,16 +2751,13 @@
     Not allowed to use fonts installed on your device
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_AUTOMATIC_FULLSCREEN_DESCRIPTION" desc="Label explaining the automatic fullscreen content setting.">
-    Sites use this feature to offer immersive fullscreen experiences regardless of user gestures
-  </message>
-  <message name="IDS_SETTINGS_SITE_SETTINGS_AUTOMATIC_FULLSCREEN_BLOCK" desc="Label explaining that automatic fullscreen is blocked by default, meaning a user gesture is required.">
-    Entering fullscreen requires a user gesture by default
+    Sites use this feature to enter full screen automatically. Typically, entering full screen requires user interaction.
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_AUTOMATIC_FULLSCREEN_ALLOWED_EXCEPTIONS" desc="Label for the allowed exceptions site list of the automatic fullscreen content setting.">
-    Allowed to enter fullscreen automatically
+    Allowed to enter full screen automatically
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_AUTOMATIC_FULLSCREEN_BLOCKED_EXCEPTIONS" desc="Label for the blocked exceptions site list of the automatic fullscreen content setting.">
-    Not allowed to enter fullscreen automatically
+    Not allowed to enter full screen automatically
   </message>
   <message name="IDS_SETTINGS_SITE_SETTINGS_HID_DEVICES_DESCRIPTION" desc="Description of the hid devices site setting.">
     Sites usually connect to HID devices for features that use uncommon keyboards, game controllers, and other devices

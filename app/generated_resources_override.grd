@@ -807,8 +807,20 @@ are declared in tools/grit/grit_rule.gni.
         </if>
 
       <if expr="not use_titlecase">
+        <message name="IDS_TAB_GROUP_HEADER_CXMENU_PIN_GROUP" desc="The label of the saved tab group button context menu item to pin a gruop">
+          Pin group to bookmarks
+        </message>
+        <message name="IDS_TAB_GROUP_HEADER_CXMENU_UNPIN_GROUP" desc="The label of the saved tab group button context menu item to unpin a gruop">
+          Unpin group from bookmarks
+        </message>
         </if>
       <if expr="use_titlecase">
+        <message name="IDS_TAB_GROUP_HEADER_CXMENU_PIN_GROUP" desc="The label of the saved tab group button context menu item to pin a gruop">
+          Pin Group to Bookmarks
+        </message>
+        <message name="IDS_TAB_GROUP_HEADER_CXMENU_UNPIN_GROUP" desc="The label of the saved tab group button context menu item to unpin a gruop">
+          Unpin Group from Bookmarks
+        </message>
         </if>
 
       <if expr="not use_titlecase">

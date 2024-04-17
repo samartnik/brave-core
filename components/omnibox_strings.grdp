@@ -278,10 +278,10 @@
     History
   </message>
   <message name="IDS_SEARCH_ENGINES_STARTER_PACK_TABS_NAME" desc="The name of the search engine to search through open Brave Tabs as it appears on chrome://settings/searchEngines.">
-    tabs
+    Tabs
   </message>
   <message name="IDS_SEARCH_ENGINES_STARTER_PACK_TABS_KEYWORD" desc="The keyword required to trigger tab search in keyword mode. This will be prepended with an '@'.">
-    tabs
+    Tabs
   </message>
   <message name="IDS_SEARCH_ENGINES_STARTER_PACK_GEMINI_NAME" desc="The name of the Gemini engine as it appears on chrome://settings/searchEngines.">
     Gemini
@@ -292,13 +292,17 @@
   <message name="IDS_OMNIBOX_INSTANT_KEYWORD_CHAT_TEXT" desc="Text shown in an omnibox suggestion ready for instant keyword search when the destination is suitable for chatting. For example, starter pack suggestions like @gemini will chat with Gemini.">
     <ph name="KEYWORD">$1<ex>@gemini</ex></ph> - Chat with <ph name="KEYWORD_SHORT_NAME">$2<ex>Gemini</ex></ph>
   </message>
-  <message name="IDS_OMNIBOX_INSTANT_KEYWORD_SEARCH_TEXT" desc="Text shown in an omnibox suggestion ready for instant keyword search and the destination is suitable for searching. For example, starter pack suggestions like @bookmarks will search Bookmarks.">
+  <message name="IDS_OMNIBOX_INSTANT_KEYWORD_SEARCH_TEXT" desc="Text shown in an omnibox suggestion ready for instant keyword search when the destination is suitable for searching. For example, starter pack suggestions like @bookmarks will search Bookmarks.">
     <ph name="KEYWORD">$1<ex>@bookmarks</ex></ph> - Search <ph name="KEYWORD_SHORT_NAME">$2<ex>Bookmarks</ex></ph>
   </message>
 
   <!-- No results description for the Starter Pack's tab search feature (@tabs). This appears as the first suggestion when no matching tabs are found. -->
   <message name="IDS_OMNIBOX_TAB_SEARCH_NO_RESULTS_FOUND" desc="The string displayed as the first row in the Omnibox when no results are found in Tab Search mode.">
     No results found
+  </message>
+
+  <message name="IDS_OMNIBOX_GEMINI_IPH" desc="The string displayed as the last row in the Omnibox as IPH directing users to the @gemini starter pack.">
+    Type @gemini to Chat with Gemini
   </message>
 
   <message name="IDS_OMNIBOX_ONE_LINE_CALCULATOR_SUGGESTION_TEMPLATE" desc="The string displayed when a calculator answer is suggested.">
