@@ -813,7 +813,7 @@ Permissions you've already given to websites and apps may apply to this account.
         Brave recommends you review this extension
       </message>
       <message name="IDS_EXTENSIONS_SAFETY_CHECK_OFFSTORE" desc="Alerts the user that the extension is not from the Brave web store.">
-        Brave can't verify where this extension comes from
+        Brave can't verify where this extension comes from, and it might be unsafe. Remove it from Brave so it can no longer see and change your data on sites you visit, including personal info.
       </message>
       <message name="IDS_EXTENSIONS_SAFETY_CHECK_OFFSTORE_ON" desc="Alerts the user that the extension is not from the Brave web store.">
         On • Brave can't verify where this extension comes from

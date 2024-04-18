@@ -1309,12 +1309,6 @@ are declared in tools/grit/grit_rule.gni.
           <message name="IDS_SAVE_PAGE" desc="The text label of the Save Page As menu item">
             Save page &amp;as...
           </message>
-          <message name="IDS_DISTILL_PAGE" desc="The text label of the 'Enter reader mode' menu item">
-            Enter reader mode
-          </message>
-          <message name="IDS_EXIT_DISTILLED_PAGE" desc="The text label of the 'Exit reader mode' menu item">
-            Exit reader mode
-          </message>
           <message name="IDS_MORE_TOOLS_MENU" desc="The text label of the Tools submenu for touch">
             More too&amp;ls
           </message>
@@ -1457,12 +1451,6 @@ are declared in tools/grit/grit_rule.gni.
           </message>
           <message name="IDS_SAVE_PAGE" desc="In Title Case: The text label of the Save Page As menu item">
             Save Page &amp;As...
-          </message>
-          <message name="IDS_DISTILL_PAGE" desc="In Title Case: The text label of the 'Enter Reader Mode' menu item">
-            Enter Reader Mode
-          </message>
-          <message name="IDS_EXIT_DISTILLED_PAGE" desc="In Title Case: The text label of the 'Exit Reader Mode' menu item">
-            Exit Reader Mode
           </message>
           <message name="IDS_MORE_TOOLS_MENU" desc="In Title Case: The text label of the Tools submenu for touch">
             More Too&amp;ls
@@ -5942,23 +5930,11 @@ Keep your key file in a safe place. You will need it to create new versions of y
       <message name="IDS_EXTENSIONS_UNSUPPORTED_DISABLED_TITLE" desc="Title of the dialog shown when unsupported extensions have been disabled">
         Unsupported extensions disabled
       </message>
-      <message name="IDS_EXTENSIONS_DISABLED_AND_N_MORE" desc="Used for a count of additional items in the IDS_EXTENSIONS_UNSUPPORTED_DISABLED_BODY dialog shown when unsupported extensions have been disabled, if we could not fit them all in the dialog">
-        and <ph name="NUMBER_ADDITIONAL_DISABLED">$1<ex>5</ex></ph> more
-      </message>
-      <message name="IDS_EXTENSIONS_UNSUPPORTED_DISABLED_BUTTON" desc="Text of the button on the dialog shown when unsupported extensions have been disabled">
-      OK, got it
-      </message>
       <message name="IDS_EXTENSIONS_ADDED_WITHOUT_KNOWLEDGE" desc="Text shown in the extensions settings for items that might have been forcefully added to Brave without the user's knowledge">
         This extension is not listed in the <ph name="IDS_EXTENSION_WEB_STORE_TITLE">$1<ex>Web Store</ex></ph> and may have been added without your knowledge.
       </message>
       <message name="IDS_EXTENSIONS_ADDED_WITHOUT_KNOWLEDGE_LEARN_MORE" desc="Text read by screen readers for a link labeled 'Learn more' that links to a Help article about disabled extensions.">
         Learn more about disabled extensions.
-      </message>
-      <message name="IDS_EXTENSIONS_DISABLE_DEVELOPER_MODE_TITLE" desc="Title of a dialog warning users they have development mode extensions running">
-        Disable developer mode extensions
-      </message>
-      <message name="IDS_EXTENSIONS_DISABLE_DEVELOPER_MODE_BODY" desc="Body of a dialog warning users they have development mode extensions running">
-        Extensions running in developer mode can harm your computer. If you're not a developer, you should disable these extensions running in developer mode to stay safe.
       </message>
 
       <!-- Begin Extension Settings Overridden Dialog strings. -->
@@ -12955,6 +12931,9 @@ Please help our engineers fix this problem. Tell us what happened right before y
         </message>
         <message name="IDS_NOTIFICATION_QUIET_PERMISSION_INFOBAR_TITLE" desc="Title of an infobar that informs the user that notifications are blocked. [CHAR_LIMIT=32]">
           Notifications blocked
+        </message>
+        <message name="IDS_LOCATION_QUIET_PERMISSION_MESSAGE_UI_TITLE" desc="Title of the notification that informs the user that location is blocked. [CHAR_LIMIT=32]">
+          Location blocked
         </message>
         <message name="IDS_NOTIFICATION_QUIET_PERMISSION_INFOBAR_ABUSIVE_MESSAGE" desc="Description for the expanded infobar that informs the user that notifications are automatically blocked because the site is known to employ dark patterns to trick users into accepting the permission.">
           This site may be trying to trick you into allowing intrusive notifications.

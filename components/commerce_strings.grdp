@@ -4,7 +4,7 @@
   <!-- Desktop only -->
   <if expr="not is_android and not is_ios">
     <!-- Discount consent strings -->
-    <!-- TODO(crbug.com/1368330): Delete the following strings. -->
+    <!-- TODO(crbug.com/40868354): Delete the following strings. -->
     <message name="IDS_DISCOUNT_CONTEXTUAL_CONSENT_TITLE" desc="The title shown on the consent bubble for getting discount.">
       Get discount on <ph name="MERCHANT_NAME">$1</ph> and more
     </message>
@@ -32,7 +32,7 @@
     </message>
     <!-- This string can skip translation because the feature is targeted en-us locale. Only the
          en-us user can access the feature UI. -->
-    <!-- TODO(crbug.com/1372493): Remove the special character and enable translation. -->
+    <!-- TODO(crbug.com/40241740): Remove the special character and enable translation. -->
     <message name="IDS_NATIVE_NTP_CART_DISCOUNT_CONSENT_TITLE" translateable="false" desc="The title shown on the native consent dialog for getting discount.">
       Let Brave help you find&#13;discounts for your carts
     </message>
@@ -459,5 +459,16 @@
 
   <message name="IDS_SHOPPING_COLLECTION_FOLDER_NAME" desc="The name of bookmark folder that is automatically created when a user bookmarks a product page.">
     Shopping list
+  </message>
+
+  <!-- For Product Specifications -->
+  <message name="IDS_PRODUCT_SPECIFICATIONS_ENTRY_POINT_DEFAULT" translateable="false" desc="The default text for the Product Specifications entry point button.">
+    Analyze pages?
+  </message>
+  <message name="IDS_PRODUCT_SPECIFICATIONS_ENTRY_POINT" translateable="false" desc="The text for the Product Specifications entry point button with a placeholder for what the specifications are for.">
+    Analyze <ph name="SPECIFICATION">$1<ex>pages</ex></ph>?
+  </message>
+  <message name="IDS_TOOLTIP_PRODUCT_SPECIFICATIONS_ENTRY_POINT_CLOSE" translateable="false" desc="The tooltip text for the close button within the Product Specifications entry point button.">
+    Dismiss suggestion
   </message>
 </grit-part>
