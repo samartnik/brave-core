@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/shared/model/prefs/browser_prefs.mm b/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
-index 925ef6cc15bfc78c2fec62bffb29a41aaca22edd..e19b74ea2d357dbd5d9e8ae529efb512fa327de6 100644
+index 7a6308e0224278edd615586a612dea1b11175bb9..fde0c97d59cc2cbc45d6360d7324c81c22ba5b3a 100644
 --- a/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
 +++ b/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
-@@ -530,6 +530,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
+@@ -543,6 +543,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
    registry->RegisterStringPref(kIOSChromeNextVersionKey, std::string());
    registry->RegisterStringPref(kIOSChromeUpgradeURLKey, std::string());
    registry->RegisterTimePref(kLastInfobarDisplayTimeKey, base::Time());
@@ -10,10 +10,10 @@ index 925ef6cc15bfc78c2fec62bffb29a41aaca22edd..e19b74ea2d357dbd5d9e8ae529efb512
  }
  
  void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
-@@ -812,6 +813,7 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
-   // Deprecated 05/2024.
-   registry->RegisterBooleanPref(kAutologinEnabled, true);
-   registry->RegisterListPref(kReverseAutologinRejectedEmailList);
+@@ -828,6 +829,7 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
+ 
+   registry->RegisterIntegerPref(prefs::kIosSyncSegmentsNewTabPageDisplayCount,
+                                 0);
 +  BRAVE_REGISTER_BROWSER_STATE_PREFS
  }
  
