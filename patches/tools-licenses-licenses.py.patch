@@ -1,5 +1,5 @@
 diff --git a/tools/licenses/licenses.py b/tools/licenses/licenses.py
-index f3a8ba3756a19beb286a3f7bba52399705bf59bf..59b7f2ac132cb6ff921fc23009fa74e76c6f88a5 100755
+index 7390ac2a6667abface68318c742043f185e3ed2e..8f9b6a0eafbc42187846372980232cbf47d6a1aa 100755
 --- a/tools/licenses/licenses.py
 +++ b/tools/licenses/licenses.py
 @@ -41,6 +41,7 @@ _REPOSITORY_ROOT = os.path.abspath(
@@ -18,7 +18,7 @@ index f3a8ba3756a19beb286a3f7bba52399705bf59bf..59b7f2ac132cb6ff921fc23009fa74e7
  
  # These buildtools/third_party directories only contain
  # chromium build files. The actual third_party source files and their
-@@ -783,7 +785,8 @@ def FindThirdPartyDirs(prune_paths, root, extra_third_party_dirs=None):
+@@ -786,7 +788,8 @@ def FindThirdPartyDirs(prune_paths, root, extra_third_party_dirs=None):
        if skip in dirs:
          dirs.remove(skip)
  
@@ -28,7 +28,7 @@ index f3a8ba3756a19beb286a3f7bba52399705bf59bf..59b7f2ac132cb6ff921fc23009fa74e7
        # Add all subdirectories that are not marked for skipping.
        for dir in dirs:
          dirpath = os.path.join(path, dir)
-@@ -1045,8 +1048,10 @@ def GenerateCredits(file_template_file,
+@@ -1048,8 +1051,10 @@ def GenerateCredits(file_template_file,
                                         _REPOSITORY_ROOT,
                                         enable_warnings=enable_warnings)
        if not directory_metadata:
