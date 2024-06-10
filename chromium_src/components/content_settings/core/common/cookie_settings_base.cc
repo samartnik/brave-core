@@ -62,8 +62,9 @@ bool BraveIsAllowedThirdParty(const GURL& url,
 bool IsFirstPartyAccessAllowed(const GURL& first_party_url,
                                const CookieSettingsBase* const cookie_settings,
                                net::CookieSettingOverrides overrides) {
-  ContentSetting setting = cookie_settings->GetCookieSetting(
-      first_party_url, first_party_url, overrides, nullptr);
+  ContentSetting setting =
+      cookie_settings->GetCookieSetting(first_party_url, net::SiteForCookies(),
+                                        first_party_url, overrides, nullptr);
   return cookie_settings->IsAllowed(setting);
 }
 
@@ -269,8 +270,8 @@ CookieSettingsBase::GetCookieSettingWithBraveMetadata(
       &current_cookie_settings_with_brave_metadata, &setting_brave_metadata);
   // GetCookieSetting fills metadata structure implicitly (implemented in
   // GetCookieSettingInternal), the setting value is set explicitly here.
-  setting_brave_metadata.setting =
-      GetCookieSetting(url, first_party_url, overrides, nullptr);
+  setting_brave_metadata.setting = GetCookieSetting(
+      url, net::SiteForCookies(), first_party_url, overrides, nullptr);
   return setting_brave_metadata;
 }
 
