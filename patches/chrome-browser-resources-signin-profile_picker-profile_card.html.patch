@@ -1,13 +1,11 @@
 diff --git a/chrome/browser/resources/signin/profile_picker/profile_card.html b/chrome/browser/resources/signin/profile_picker/profile_card.html
-index 3f235b6c7b5e03284056c0d31a3779599bdfbca7..d6df60256e11094b190c16090ffda30d8cd93185 100644
+index fbab59178ef24aed610639ac1446a40a51d14cd9..3b99c26176c0a5f442720abf369973986c8d748a 100644
 --- a/chrome/browser/resources/signin/profile_picker/profile_card.html
 +++ b/chrome/browser/resources/signin/profile_picker/profile_card.html
-@@ -127,7 +127,7 @@
- </style>
- 
+@@ -1,5 +1,5 @@
  <div id="profileCardContainer">
--  <cr-button on-click="onProfileClick_"
-+  <cr-button class="plain" on-click="onProfileClick_"
-       aria-label="[[i18n(
-           'profileCardButtonLabel', profileState.localProfileName)]]">
+-  <cr-button @click="${this.onProfileClick_}"
++  <cr-button  class="plain" @click="${this.onProfileClick_}"
+       aria-label="${this.i18n(
+           'profileCardButtonLabel', this.profileState.localProfileName)}">
      <div id="avatarContainer">
