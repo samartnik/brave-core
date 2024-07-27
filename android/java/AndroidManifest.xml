@@ -147,7 +147,15 @@
     android:name="org.chromium.chrome.browser.brave_leo.BraveLeoActivity"
     android:configChanges="orientation|keyboardHidden|keyboard|screenSize|mcc|mnc|screenLayout|smallestScreenSize|uiMode|navigation"
     android:theme="@style/Theme.Chromium.Activity.FakeTranslucent"
-    android:exported="false"/>
+    android:exported="false">
+
+    <!-- Allow app to be default assistant -->
+    <!-- <intent-filter>
+        <action android:name="android.intent.action.ASSIST" />
+        <category android:name="android.intent.category.DEFAULT" />
+    </intent-filter> -->
+
+</activity>
 
 <activity
     android:name="org.chromium.chrome.browser.brave_leo.BraveLeoPlansActivity"
@@ -242,3 +250,20 @@
 <activity android:name="org.chromium.chrome.browser.searchwidget.SearchWidgetProviderActivity"
     android:theme="@style/Theme.Chromium.SearchActivity"
     android:exported="true"/>
+
+<!-- Activity that handles requests from Assistant -->
+<activity
+    android:name="org.chromium.chrome.browser.assist.BraveAssistActivity"
+    android:theme="@style/Theme.Chromium.Activity.FakeTranslucent"
+    android:excludeFromRecents="true"
+    android:launchMode="singleTask"
+    android:configChanges="orientation|keyboardHidden|keyboard|screenSize|mcc|mnc|screenLayout|smallestScreenSize|uiMode|density"
+    android:exported="false">
+
+    <!-- Allow app to be default assistant -->
+    <intent-filter>
+        <action android:name="android.intent.action.ASSIST" />
+        <category android:name="android.intent.category.DEFAULT" />
+    </intent-filter>
+
+</activity>

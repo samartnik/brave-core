@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.Browser;
 import android.view.View;
 
@@ -27,6 +28,8 @@ import org.chromium.ui.util.ColorUtils;
 
 /** Brave's Activity for AI Chat */
 public class BraveLeoActivity extends CustomTabActivity {
+    // public static final String BRAVE_AI_CHAT_URL = "chrome-untrusted://chat";
+
     @Override
     public boolean supportsAppMenu() {
         return false;
@@ -46,6 +49,22 @@ public class BraveLeoActivity extends CustomTabActivity {
             toolbarContainer.setVisibility(View.GONE);
         }
     }
+
+    @Override
+    public void onDestroyInternal() {
+        super.onDestroyInternal();
+        org.chromium.base.Log.e("SAM", "SAMSAM: onDestroyInternal");
+    }
+
+    // @Override
+    // public void finishNativeInitialization() {
+    //     super.finishNativeInitialization();
+
+    //     Intent intent = getIntent();
+    //     if (intent != null && Intent.ACTION_ASSIST.equals(intent.getAction())) {
+    //         showPage(this, BRAVE_AI_CHAT_URL);
+    //     }
+    // }
 
     public static void showPage(Context context, String url) {
         Intent intent = new Intent();
