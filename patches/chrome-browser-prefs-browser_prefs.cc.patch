@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/prefs/browser_prefs.cc b/chrome/browser/prefs/browser_prefs.cc
-index fe07c23953ff24bb47217e3a01db21ec49319850..50ac9f85246a93d505b84829c4f4336158ef1801 100644
+index 82b22ad7a483fedb1b4ccdf609a647d5b8eb1c9e..31e236f30143493d2bcc7f664f3c89f939a1ff16 100644
 --- a/chrome/browser/prefs/browser_prefs.cc
 +++ b/chrome/browser/prefs/browser_prefs.cc
-@@ -1746,6 +1746,7 @@ void RegisterLocalState(PrefRegistrySimple* registry) {
+@@ -1749,6 +1749,7 @@ void RegisterLocalState(PrefRegistrySimple* registry) {
    registry->RegisterBooleanPref(prefs::kQRCodeGeneratorEnabled, true);
  
    // This is intentionally last.
@@ -10,10 +10,10 @@ index fe07c23953ff24bb47217e3a01db21ec49319850..50ac9f85246a93d505b84829c4f43361
    RegisterLocalStatePrefsForMigration(registry);
  }
  
-@@ -2189,6 +2190,7 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry,
-   registry->RegisterIntegerPref(prefs::kLensOverlayStartCount, 0);
- 
+@@ -2194,6 +2195,7 @@ void RegisterProfilePrefs(user_prefs::PrefRegistrySyncable* registry,
    registry->RegisterDictionaryPref(prefs::kReportingEndpoints);
+ 
+   registry->RegisterBooleanPref(prefs::kCompactModeEnabled, false);
 +  brave::RegisterProfilePrefs(registry);
  }
  
