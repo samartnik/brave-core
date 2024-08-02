@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/ui/browser_actions.h b/chrome/browser/ui/browser_actions.h
-index b4670400235b9963a0b446caacb384a0efff5238..dde2016b9c806b087e66f397d1b8cec5ae739566 100644
+index 6d31e2327ccc3f57fdefcac3d67ff82be1e8544f..d255fa8d95d862b6958703c7a557369cad056279 100644
 --- a/chrome/browser/ui/browser_actions.h
 +++ b/chrome/browser/ui/browser_actions.h
-@@ -22,7 +22,7 @@ class BrowserActions {
+@@ -23,7 +23,7 @@ class BrowserActions {
    explicit BrowserActions(Browser& browser);
    BrowserActions(const BrowserActions&) = delete;
    BrowserActions& operator=(const BrowserActions&) = delete;

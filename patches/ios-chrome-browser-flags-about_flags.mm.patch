@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/flags/about_flags.mm b/ios/chrome/browser/flags/about_flags.mm
-index 190d10b127e31aab70887b1232e31b6bd7f0d2f3..4152d497e605062019d511cce9cc229baf88844f 100644
+index 293b0015977548ade3d0ecabcd8cbd4a609e9393..9ec1b902fd9bcbdae39003b537993fbdd2eb240e 100644
 --- a/ios/chrome/browser/flags/about_flags.mm
 +++ b/ios/chrome/browser/flags/about_flags.mm
-@@ -990,6 +990,7 @@ const FeatureEntry::FeatureVariation kContextualPanelEntrypointArmVariations[] =
+@@ -1002,6 +1002,7 @@ const FeatureEntry::FeatureVariation kTabResumption2Variations[] = {
  //
  // When adding a new choice, add it to the end of the list.
  const flags_ui::FeatureEntry kFeatureEntries[] = {

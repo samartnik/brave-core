@@ -1,5 +1,5 @@
 diff --git a/content/browser/renderer_host/navigation_request.cc b/content/browser/renderer_host/navigation_request.cc
-index 682a0849f5a8f1dff9e52366382338ce1b78ffcf..e11ff349a6e164aa8ec448577d9af23d4f089021 100644
+index fae6cb2e6eeac865825bfcbc79f0fb96aa66d266..6c5522b714ae946c9591b6cec9bf4240816ccf3f 100644
 --- a/content/browser/renderer_host/navigation_request.cc
 +++ b/content/browser/renderer_host/navigation_request.cc
 @@ -3457,6 +3457,7 @@ void NavigationRequest::OnRequestRedirected(

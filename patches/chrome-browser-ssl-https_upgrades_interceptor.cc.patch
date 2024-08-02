@@ -1,5 +1,5 @@
 diff --git a/chrome/browser/ssl/https_upgrades_interceptor.cc b/chrome/browser/ssl/https_upgrades_interceptor.cc
-index 7d6e2c5064090a94d49d836f747a0be66a117532..635a2ffdda2bdb09fc94fadf7c0fafa6fc1744b0 100644
+index cca12cf20c0fe0c0655159aaf2450227f8e54721..dee66ae25c8709fee1fcdc9fca1e41ca8784782b 100644
 --- a/chrome/browser/ssl/https_upgrades_interceptor.cc
 +++ b/chrome/browser/ssl/https_upgrades_interceptor.cc
 @@ -238,6 +238,7 @@ bool ShouldExcludeNavigationFromUpgrades(

@@ -1,8 +1,8 @@
 diff --git a/ios/chrome/browser/shared/model/prefs/browser_prefs.mm b/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
-index 31242949df371335963ee98710db52d54f8b2aed..df008f9e4dfa3d10260777df18791a70ee3fd748 100644
+index 7a1ed39484254ba800b22b538bbc1d7e79f0a92b..1a059ce2c8bf293a20f097271ee08d95b5abecb9 100644
 --- a/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
 +++ b/ios/chrome/browser/shared/model/prefs/browser_prefs.mm
-@@ -663,6 +663,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
+@@ -674,6 +674,7 @@ void RegisterLocalStatePrefs(PrefRegistrySimple* registry) {
                                 std::string());
    registry->RegisterIntegerPref(prefs::kIosSyncSegmentsNewTabPageDisplayCount,
                                  0);
@@ -10,7 +10,7 @@ index 31242949df371335963ee98710db52d54f8b2aed..df008f9e4dfa3d10260777df18791a70
  }
  
  void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
-@@ -988,6 +989,7 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
+@@ -1001,6 +1002,7 @@ void RegisterBrowserStatePrefs(user_prefs::PrefRegistrySyncable* registry) {
    // Prefs migrated to localState prefs.
    registry->RegisterBooleanPref(prefs::kBottomOmnibox, false);
    registry->RegisterBooleanPref(prefs::kBottomOmniboxByDefault, false);
