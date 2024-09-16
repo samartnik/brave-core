@@ -23,10 +23,21 @@ import org.chromium.base.IntentUtils;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.browserservices.intents.BrowserServicesIntentDataProvider;
 import org.chromium.chrome.browser.customtabs.CustomTabActivity;
+import org.chromium.components.safe_browsing.BraveSafeBrowsingApiHandler;
 import org.chromium.ui.util.ColorUtils;
 
 /** Brave's Activity for AI Chat */
 public class BraveLeoActivity extends CustomTabActivity {
+    private static boolean sNeedsResumeOnStart;
+
+    public static boolean doesNeedResumeOnStart() {
+        return sNeedsResumeOnStart;
+    }
+
+    public static void resetNeedsResumeOnStart() {
+        sNeedsResumeOnStart = false;
+    }
+
     @Override
     public boolean supportsAppMenu() {
         return false;
@@ -45,6 +56,15 @@ public class BraveLeoActivity extends CustomTabActivity {
         if (toolbarContainer != null) {
             toolbarContainer.setVisibility(View.GONE);
         }
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+
+        // We assume that BraveLeoActivity always needs to resume on start until this state is
+        // reset by BraveActivity.
+        sNeedsResumeOnStart = true;
     }
 
     public static void showPage(Context context, String url) {

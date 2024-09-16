@@ -928,6 +928,18 @@ public abstract class BraveActivity extends ChromeActivity
         if (mUsageMonitor != null) {
             mUsageMonitor.start();
         }
+
+        // Reset the state of the BraveLeoActivity, since we got back to the main activity.
+        BraveLeoActivity.resetNeedsResumeOnStart();
+    }
+
+    @Override
+    public void onNewIntentWithNative(Intent intent) {
+        // If started from the launcher and BraveLeoActivity needs to be resumed, open it.
+        if (IntentUtils.isMainIntentFromLauncher(intent)
+                && BraveLeoActivity.doesNeedResumeOnStart()) {
+            openBraveLeo();
+        }
     }
 
     @Override
