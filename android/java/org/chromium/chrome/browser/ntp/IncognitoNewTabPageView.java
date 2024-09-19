@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 
 import org.chromium.chrome.R;
 import org.chromium.components.content_settings.CookieControlsEnforcement;
@@ -110,6 +111,13 @@ public class IncognitoNewTabPageView extends FrameLayout {
     /** @return The IncognitoNewTabPageManager associated with this IncognitoNewTabPageView. */
     protected IncognitoNewTabPageManager getManager() {
         return mManager;
+    }
+
+    /**
+     * @return The ScrollView of within the page. Used for padding when drawing edge to edge.
+     */
+    ScrollView getScrollView() {
+        return mScrollView;
     }
 
     /**
