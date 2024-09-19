@@ -17,7 +17,12 @@ public class BraveDefaultBrowserPromoUtilsClassAdapter extends BraveClassVisitor
     public BraveDefaultBrowserPromoUtilsClassAdapter(ClassVisitor visitor) {
         super(visitor);
 
-        changeMethodOwner(sDefaultBrowserPromoUtilsClassName, "prepareLaunchPromoIfNeeded",
+        redirectConstructor(
+                sDefaultBrowserPromoUtilsClassName, sBraveDefaultBrowserPromoUtilsClassName);
+
+        changeMethodOwner(
+                sDefaultBrowserPromoUtilsClassName,
+                "prepareLaunchPromoIfNeeded",
                 sBraveDefaultBrowserPromoUtilsClassName);
     }
 }
