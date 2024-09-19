@@ -4,7 +4,6 @@
 # You can obtain one at https://mozilla.org/MPL/2.0/.
 
 brave_downloads_non_web_component_files = [
-  "brave_overrides/item.ts",
   "brave_overrides/index.ts",
 ]
 
