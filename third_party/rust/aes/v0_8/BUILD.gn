@@ -58,6 +58,8 @@ cargo_crate("lib") {
     deps += [ "//brave/third_party/rust/cpufeatures/v0_2:lib" ]
   }
   if (target_os == "android" && target_cpu == "arm64") {
-    deps -= [ "//brave/third_party/rust/cpufeatures/v0_2:lib" ]
+    deps_cpufeatures_excluded = filter_exclude(deps, [ "//brave/third_party/rust/cpufeatures/v0_2:lib" ])
+    deps = []
+    deps = deps_cpufeatures_excluded
   }
 }
