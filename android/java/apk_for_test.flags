@@ -580,10 +580,9 @@
     <init>(...);
 }
 
-# TODO(alexeybarabash): BraveDefaultBrowserPromoUtils now causes crash on debug build at start app
-# -keep class org.chromium.chrome.browser.ui.default_browser_promo.DefaultBrowserPromoUtils {
-#     *** prepareLaunchPromoIfNeeded(...);
-# }
+-keep class org.chromium.chrome.browser.ui.default_browser_promo.DefaultBrowserPromoUtils {
+    *** prepareLaunchPromoIfNeeded(...);
+}
 
 -keep class org.chromium.components.variations.firstrun.VariationsSeedFetcher {
     *** sLock;
