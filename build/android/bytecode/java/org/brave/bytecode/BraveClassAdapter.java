@@ -38,7 +38,9 @@ public class BraveClassAdapter {
         chain = new BraveContentSettingsResourcesClassAdapter(chain);
         chain = new BraveContentViewClassAdapter(chain);
         chain = new BraveCustomizationProviderDelegateImplClassAdapter(chain);
-        chain = new BraveDefaultBrowserPromoUtilsClassAdapter(chain);
+        // TODO(alexeybarabash): BraveDefaultBrowserPromoUtils now causes crash on debug build at
+        // start app
+        // chain = new BraveDefaultBrowserPromoUtilsClassAdapter(chain);
         chain = new BraveDownloadMessageUiControllerImplClassAdapter(chain);
         chain = new BraveDropdownItemViewInfoListBuilderClassAdapter(chain);
         chain = new BraveDropdownItemViewInfoListManagerClassAdapter(chain);
