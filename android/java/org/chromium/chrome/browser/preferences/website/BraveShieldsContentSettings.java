@@ -69,6 +69,11 @@ public class BraveShieldsContentSettings {
         }
     }
 
+    /**
+     * A finalizer is required to ensure that the native object associated with this descriptor gets
+     * torn down, otherwise there would be a memory leak.
+     */
+    @SuppressWarnings("Finalize")
     @Override
     protected void finalize() {
         destroy();
@@ -79,6 +84,7 @@ public class BraveShieldsContentSettings {
             return;
         }
         BraveShieldsContentSettingsJni.get().destroy(mNativeBraveShieldsContentSettings);
+        mNativeBraveShieldsContentSettings = 0;
     }
 
     static public void setShields(Profile profile, String host, String resourceIndentifier, boolean value,

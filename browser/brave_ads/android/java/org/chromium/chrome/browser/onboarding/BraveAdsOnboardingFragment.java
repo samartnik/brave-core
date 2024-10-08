@@ -139,7 +139,7 @@ public class BraveAdsOnboardingFragment extends Fragment implements FirstRunFrag
 
         progress = 0;
 
-        countDownTimer = new CountDownTimer(endTime * 1000, 100) {
+        countDownTimer = new CountDownTimer((long)endTime * 1000, 100) {
             @Override
             public void onTick(long millisUntilFinished) {
                 setProgress(progress, endTime);

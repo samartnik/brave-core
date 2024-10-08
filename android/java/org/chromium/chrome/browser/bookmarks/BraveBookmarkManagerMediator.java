@@ -217,7 +217,7 @@ class BraveBookmarkManagerMediator
             String exportFileName = "bookmarks.html";
             File file = new File(downloadDir, exportFileName);
             while (file.exists()) {
-                exportFileName = "bookmarks (" + (num++) + ").html";
+                exportFileName = "bookmarks (" + num++ + ").html";
                 file = new File(downloadDir, exportFileName);
             }
             doExportBookmarksOnUI(file);
