@@ -18,8 +18,10 @@ std::unique_ptr<KeyedService>
 LoginDbDeprecationRunnerFactory::BuildServiceInstanceForBrowserContext(
     content::BrowserContext* context) const {
 #if BUILDFLAG(USE_LOGIN_DATABASE_AS_BACKEND)
-  // We intend to use LoginDatabase as the backend for password manager, so
-  // normally we should get here.
+  // Upstream uses OS based password manager now, we decided to keep using
+  // browser based PM. Once flag is removed, we intend to retain the code (move
+  // it to `brave-core` repo). This `if` is required only to avoid the error
+  // below.
   return nullptr;
 #else
   // Explicitly call Chromium's implementation in `else` block to avoid error:
