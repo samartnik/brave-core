@@ -92,6 +92,8 @@
 #include "ios/chrome/browser/credential_provider/model/credential_provider_util.h"
 #endif
 
+class ScopedAllowBlockingForProfile : public base::ScopedAllowBlocking {};
+
 namespace brave {
 ProfileIOS* CreateMainProfileIOS() {
   // Initialize and set the main browser state.
@@ -103,7 +105,7 @@ ProfileIOS* CreateMainProfileIOS() {
     localState->SetString(prefs::kLastUsedProfile, profileName);
   }
   DCHECK(!profileName.empty());
-  base::ScopedAllowBlocking allow_blocking;
+  ScopedAllowBlockingForProfile allow_blocking;
   return profileManager->CreateProfile(profileName);
 }
 }  // namespace brave
