@@ -395,6 +395,11 @@ public abstract class BraveMainPreferencesBase extends BravePreferenceFragment
         updatePreferenceIcon(PREF_NOTIFICATIONS, R.drawable.ic_notification);
         updatePreferenceIcon(MainSettings.PREF_DEVELOPER, R.drawable.ic_info);
         updatePreferenceIcon(MainSettings.PREF_HOMEPAGE, R.drawable.ic_homepage);
+        updatePreferenceIcon(
+                MainSettings.PREF_ADDRESS_BAR,
+                BottomToolbarConfiguration.isToolbarTopAnchored()
+                        ? R.drawable.ic_address_bar_top
+                        : R.drawable.ic_address_bar_bottom);
     }
 
     private void updateSearchEnginePreference() {
