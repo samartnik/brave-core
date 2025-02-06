@@ -903,6 +903,22 @@ public class BytecodeTest {
                         MethodModifier.STATIC,
                         true,
                         Context.class));
+        Assert.assertTrue(
+                methodExists(
+                        "org/chromium/chrome/browser/toolbar/ToolbarPositionController",
+                        "calculateStateTransition",
+                        MethodModifier.STATIC,
+                        true,
+                        int.class,
+                        boolean.class,
+                        boolean.class,
+                        boolean.class,
+                        boolean.class,
+                        boolean.class,
+                        boolean.class,
+                        boolean.class,
+                        boolean.class,
+                        int.class));
     }
 
     @Test

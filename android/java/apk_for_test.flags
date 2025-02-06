@@ -914,3 +914,11 @@
 -keep class org.chromium.chrome.browser.media.ui.MediaSessionTabHelper {
    *** mTab;
 }
+
+-keep class org.chromium.chrome.browser.toolbar.ToolbarPositionController {
+    *** calculateStateTransition(...);
+}
+
+-keep class org.chromium.chrome.browser.toolbar.BraveToolbarPositionController {
+    *** calculateStateTransition(...);
+}

@@ -538,6 +538,7 @@ brave_browser_ui_android_toolbar_sources = [
   "//brave/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/bottom/BraveBottomControlsMediator.java",
   "//brave/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/BottomTabSwitcherActionMenuCoordinator.java",
   "//brave/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/BraveToolbarLayout.java",
+  "//brave/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/BraveToolbarPositionController.java",
 ]
 
 brave_java_base_sources = [
