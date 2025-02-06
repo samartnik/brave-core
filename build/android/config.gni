@@ -34,6 +34,7 @@ brave_chrome_java_deps = [
   "//brave/browser/password_entry_edit:public_java",
   "//brave/browser/quick_search_engines/android:java",
   "//brave/browser/safe_browsing/android/java/src/org/chromium/chrome/browser/safe_browsing/settings:java",
+  "//brave/browser/search_engines/android:java",
   "//brave/browser/skus/android:java",
   "//brave/browser/tab_group_sync:java",
   "//brave/browser/ui/android/logo:java",
@@ -111,6 +112,7 @@ brave_chrome_java_srcjar_deps = [
 brave_chrome_app_java_resources_deps = [
   "//brave/android:java_resources",
   "//brave/browser/quick_search_engines/android:java_resources",
+  "//brave/browser/search_engines/android:java_resources",
   "//brave/build/android:android_brave_strings_grd",
   "//brave/components/resources:brave_components_strings_grd",
 ]
