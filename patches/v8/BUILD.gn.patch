@@ -1,8 +1,8 @@
 diff --git a/BUILD.gn b/BUILD.gn
-index ef1d419a4895f83b850757b0b066efed677fea0d..45b9bbd4d5061647af3cd647455adc70708a69a8 100644
+index 96680594bdd4ac4607e8ce848b40993eb40b3990..1f5531ad1b2a07776c667cf9c89fa481b38e8eda 100644
 --- a/BUILD.gn
 +++ b/BUILD.gn
-@@ -814,6 +814,7 @@ config("internal_config_base") {
+@@ -827,6 +827,7 @@ config("internal_config_base") {
      "include",
      "$target_gen_dir",
    ]
@@ -10,7 +10,7 @@ index ef1d419a4895f83b850757b0b066efed677fea0d..45b9bbd4d5061647af3cd647455adc70
  }
  
  config("internal_config") {
-@@ -3170,6 +3171,7 @@ v8_header_set("v8_headers") {
+@@ -3183,6 +3184,7 @@ v8_header_set("v8_headers") {
      ":v8_tracing",
      ":v8_version",
    ]

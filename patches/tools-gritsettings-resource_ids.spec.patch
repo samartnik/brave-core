@@ -1,5 +1,5 @@
 diff --git a/tools/gritsettings/resource_ids.spec b/tools/gritsettings/resource_ids.spec
-index b162935b2b83c06fd58ad955f0506e11ed6c73f7..851eab6bd411f6651d6cd3182312057674712935 100644
+index 4d696890b52f95c29c5d0f47ce45ecf277a17e92..37b7a216879d38f3512d5bc752fccdbae359c058 100644
 --- a/tools/gritsettings/resource_ids.spec
 +++ b/tools/gritsettings/resource_ids.spec
 @@ -38,6 +38,9 @@
@@ -21,7 +21,7 @@ index b162935b2b83c06fd58ad955f0506e11ed6c73f7..851eab6bd411f6651d6cd31823120576
      "includes": [3920],
    },
    "<(SHARED_INTERMEDIATE_DIR)/chrome/browser/resources/family_link_user_internals/resources.grd": {
-@@ -573,7 +576,7 @@
+@@ -577,7 +580,7 @@
      "includes": [4720],
    },
    "<(SHARED_INTERMEDIATE_DIR)/chrome/browser/resources/settings/resources.grd": {
@@ -30,7 +30,7 @@ index b162935b2b83c06fd58ad955f0506e11ed6c73f7..851eab6bd411f6651d6cd31823120576
      "includes": [4740],
    },
    "<(SHARED_INTERMEDIATE_DIR)/chrome/browser/resources/settings_shared/resources.grd": {
-@@ -947,6 +950,9 @@
+@@ -951,6 +954,9 @@
      # Big alignment at start of section.
      "messages": [7020],
    },
@@ -40,7 +40,7 @@ index b162935b2b83c06fd58ad955f0506e11ed6c73f7..851eab6bd411f6651d6cd31823120576
    "components/components_google_chrome_strings.grd": {
      "messages": [7020],
    },
-@@ -1438,7 +1444,7 @@
+@@ -1447,7 +1453,7 @@
      "includes": [9980],
    },
    "<(SHARED_INTERMEDIATE_DIR)/ui/webui/resources/webui_resources.grd": {

@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/about_flags.cc b/chrome/browser/about_flags.cc
-index 71b8c74866b4fd842a440dccca36c3f087e1c322..9c48c0b452ee1b89d64d33e5c03b5aaab5782149 100644
+index bc18b326c45264e5b26da62124877baaa2d23be4..719c7a116fb8b48349b4459b189f51a5e878f090 100644
 --- a/chrome/browser/about_flags.cc
 +++ b/chrome/browser/about_flags.cc
-@@ -4405,6 +4405,7 @@ const FeatureEntry::FeatureVariation kTabSwitcherColorBlendAnimateVariations[] =
+@@ -4368,6 +4368,7 @@ constexpr char kDisableFacilitatedPaymentsMerchantAllowlistInternalName[] =
  //
  // When adding a new choice, add it to the end of the list.
  const FeatureEntry kFeatureEntries[] = {

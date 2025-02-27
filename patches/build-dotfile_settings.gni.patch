@@ -1,8 +1,8 @@
 diff --git a/build/dotfile_settings.gni b/build/dotfile_settings.gni
-index 29e01306126b6635297457e4452f090f0f519964..95a6c891abdfcb73ea91c5fb17e3acb1e8862f3a 100644
+index 10c0e325114b85160fd736dfbb5bd0088662fbfc..3239ba01360565311a4dd26dde95d847f43728f4 100644
 --- a/build/dotfile_settings.gni
 +++ b/build/dotfile_settings.gni
-@@ -47,3 +47,4 @@ build_dotfile_settings = {
+@@ -46,3 +46,4 @@ build_dotfile_settings = {
    # so that we don't need to keep supporting `exec_script_whitelist`.
    exec_script_whitelist = exec_script_allowlist
  }
