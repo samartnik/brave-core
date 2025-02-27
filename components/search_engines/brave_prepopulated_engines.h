@@ -48,6 +48,10 @@ enum BravePrepopulatedEngineID : unsigned int {
   PREPOPULATED_ENGINE_ID_ECOSIA = 101,
   PREPOPULATED_ENGINE_ID_STARTPAGE = 112,
   // These engine IDs are not defined in Chromium
+  // When adding a new engine, also add it to kBraveAddedEngines in
+  // chromium_src/components/search_engines/
+  //   brave_template_url_prepopulate_data_unittest.cc, so that we would know if
+  // Chromium adds the same engine in the future.
   BRAVE_PREPOPULATED_ENGINES_START = 500,
   PREPOPULATED_ENGINE_ID_AMAZON = 500,  // No longer in defaults (2/2019).
   PREPOPULATED_ENGINE_ID_DUCKDUCKGO,
