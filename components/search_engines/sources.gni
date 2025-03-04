@@ -15,3 +15,6 @@ brave_third_party_search_engines_data_prepopulated_engines_sources = [
 
 brave_third_party_search_engines_data_prepopulated_engines_deps =
     [ "//components/search_engines:search_engine_type" ]
+
+brave_components_search_engines_deps =
+    [ "//brave/components/search_engines/android:jni_headers" ]

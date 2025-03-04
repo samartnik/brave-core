@@ -87,6 +87,7 @@ public class BraveSearchEnginesPreferences extends BravePreferenceFragment
         if (preference != null) {
             getPreferenceScreen().removePreference(preference);
         }
+    }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
