@@ -32,6 +32,7 @@ import org.chromium.chrome.browser.preferences.BravePref;
 import org.chromium.chrome.browser.preferences.ChromeSharedPreferences;
 import org.chromium.chrome.browser.profiles.ProfileManager;
 import org.chromium.chrome.browser.tasks.tab_management.BraveTabUiFeatureUtilities;
+import org.chromium.chrome.browser.toolbar.ToolbarPositionController;
 import org.chromium.chrome.browser.toolbar.bottom.BottomToolbarConfiguration;
 import org.chromium.components.browser_ui.settings.ChromeSwitchPreference;
 import org.chromium.components.browser_ui.settings.SettingsUtils;
@@ -51,6 +52,7 @@ public class AppearancePreferences extends BravePreferenceFragment
     public static final String PREF_BRAVE_ENABLE_SPEEDREADER = "brave_enable_speedreader";
     public static final String PREF_ENABLE_MULTI_WINDOWS = "enable_multi_windows";
     public static final String PREF_SHOW_UNDO_WHEN_TABS_CLOSED = "show_undo_when_tabs_closed";
+    public static final String PREF_ADDRESS_BAR = "address_bar";
 
     private BraveRewardsNativeWorker mBraveRewardsNativeWorker;
 
@@ -82,6 +84,10 @@ public class AppearancePreferences extends BravePreferenceFragment
         }
         if (!new BraveMultiWindowUtils().shouldShowEnableWindow(getActivity())) {
             removePreferenceIfPresent(PREF_ENABLE_MULTI_WINDOWS);
+        }
+
+        if (!ToolbarPositionController.isToolbarPositionCustomizationEnabled(getContext(), false)) {
+            removePreferenceIfPresent(PREF_ADDRESS_BAR);
         }
     }
 
@@ -204,6 +210,14 @@ public class AppearancePreferences extends BravePreferenceFragment
             mBraveRewardsNativeWorker.addObserver(this);
         }
         super.onStart();
+
+        if (ToolbarPositionController.isToolbarPositionCustomizationEnabled(getContext(), false)) {
+            updatePreferenceIcon(
+                    PREF_ADDRESS_BAR,
+                    BottomToolbarConfiguration.isToolbarTopAnchored()
+                            ? R.drawable.ic_address_bar_top
+                            : R.drawable.ic_address_bar_bottom);
+        }
     }
 
     @Override
@@ -305,5 +319,12 @@ public class AppearancePreferences extends BravePreferenceFragment
         SharedPreferences.Editor sharedPreferencesEditor = sharedPreferences.edit();
         sharedPreferencesEditor.putBoolean(PREF_ADS_SWITCH, enabled);
         sharedPreferencesEditor.apply();
+    }
+
+    private void updatePreferenceIcon(String preferenceString, int drawable) {
+        Preference preference = findPreference(preferenceString);
+        if (preference != null) {
+            preference.setIcon(drawable);
+        }
     }
 }

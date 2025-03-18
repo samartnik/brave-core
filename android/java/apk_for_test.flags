@@ -899,6 +899,7 @@
 -keep class org.chromium.chrome.browser.tabbed_mode.TabbedNavigationBarColorController {
     *** mContext;
     *** mTabModelSelector;
+    *** mActiveTab;
 }
 
 -keep class org.chromium.chrome.browser.tabbed_mode.BraveTabbedNavigationBarColorControllerBase
@@ -925,4 +926,12 @@
     *** mMinimizationManagerHolder;
     *** mCustomTabFeatureOverridesManager;
     public <init>(...);
+}
+
+-keep class org.chromium.chrome.browser.toolbar.ToolbarPositionController {
+    *** calculateStateTransition(...);
+}
+
+-keep class org.chromium.chrome.browser.toolbar.BraveToolbarPositionController {
+    *** calculateStateTransition(...);
 }
