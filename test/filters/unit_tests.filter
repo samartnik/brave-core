@@ -55,6 +55,11 @@
 -SaveCardBubbleControllerImplTestWithCvCStorageAndFilling.UploadCardSaveWithCvcDialogContent
 -TemplateURLServiceTest.DefaultSearchProviderKeywordConflictReentrancy/SearchEngineChoice*
 
+# These tests fail because we have different than expected default number of
+# prepopulated search engines
+-TemplateURLServiceTest.TemplateURLCountsOnStartupHistogram/SearchEngineChoiceDisabled
+-TemplateURLServiceTest.TemplateURLCountsOnStartupHistogram/SearchEngineChoiceEnabled
+
 # These tests crash because pinned_toolbar_actions_container_ in
 # BraveToolbarView is set to nullptr
 -PinnedToolbarActionsContainerTest.*
@@ -86,8 +91,9 @@
 -SearchEngineListCountryOverrideParametrizedTest.CheckNumberOfSearchEngines/BelgiumSearchEngineList
 -SearchEngineListCountryOverrideParametrizedTest.CheckNumberOfSearchEngines/DefaultSearchEngineList
 
-# These tests crash because we have kOptimizationHints feature disabled, which
-# causes OptimizationGuideKeyedServiceFactory::GetForProfile return a nullptr.
+# These tests crash or fail because we have kOptimizationHints feature disabled,
+# which causes OptimizationGuideKeyedServiceFactory::GetForProfile return a
+# nullptr.
 -AILanguageModelHackyPrototypeTest.Basic
 -AILanguageModelTest.*
 -AIManagerTest.*
@@ -101,6 +107,9 @@
 -ComposeEnablingTest.*
 -ComposePopupAutofillDriverTest.*
 -NotificationContentDetectionServiceFactoryTest.DisabledForAndroidArmAndLowEndDevices
+-PersistentNotificationHandlerWithNotificationContentDetectionAndLoggingTest.ReportNotificationAsSafe
+-PersistentNotificationHandlerWithNotificationContentDetectionAndLoggingTest.ReportUnwarnedNotificationAsSpam
+-PersistentNotificationHandlerWithNotificationContentDetectionAndLoggingTest.ReportWarnedNotificationAsSpam
 -WallpaperSearchHandlerTest.*
 
 # These tests fail because we don't use upstream's material colors.
@@ -261,6 +270,8 @@
 -SigninManagerSupervisedUserTest.SignoutOnCookiesDeletedNotAllowed/*
 -SignInPromoVersionTest.SignInPromoVersions
 -SignoutAllowed/SigninManagerTest.*
+-SyncPromoIdentityPillManagerTest.MaxShownCount
+-SyncPromoIdentityPillManagerTest.MaxUsedCount
 
 # Failed because we disabled upstream's entire client-side field trials.
 # See ChromeBrowserFieldTrials.
@@ -290,6 +301,8 @@
 -All/ClientSideDetectionServiceTest.TestSessionCreationFailure/3
 -All/ClientSideDetectionServiceTest.TestSessionCreationSuccess/1
 -All/ClientSideDetectionServiceTest.TestSessionCreationSuccess/3
+-All/ClientSideDetectionServiceTest.TestSessionCreationSuccessWithAPreviousAliveSession/1
+-All/ClientSideDetectionServiceTest.TestSessionCreationSuccessWithAPreviousAliveSession/3
 -All/ClientSideDetectionServiceTest.TestSessionExecutionAndResponseParseSuccess/1
 -All/ClientSideDetectionServiceTest.TestSessionExecutionAndResponseParseSuccess/3
 -All/ClientSideDetectionServiceTest.TestSessionExecutionFailure/1
@@ -312,9 +325,11 @@
 -ClientSideDetectionHostNotificationTest.*
 -ClientSideDetectionHostScamDetectionTest.*
 -ClientSideDetectionHostTest.CSDFeaturesCacheContainsVerdictAndFullDebuggingMetadata
+-ClientSideDetectionHostTest.NoRTLookupResponseInRedirectChainContainsForceRequest
 -ClientSideDetectionHostTest.PhishingDetectionDoneCalledTwiceShouldSucceed
 -ClientSideDetectionHostTest.PhishingDetectionDoneEnhancedProtectionShouldHaveToken
 -ClientSideDetectionHostTest.RTLookupResponseForceRequestSendsCSPPPingWhenVerdictNotPhishing
+-ClientSideDetectionHostTest.RTLookupResponseOnFirstURLInRedirectChainTriggersForceRequest
 -ClientSideDetectionHostTest.TwoKeyboardLockRequestsOnSamePageOnlyLogsOnePreclassificationCheck
 -ClientSideDetectionRTLookupResponseForceRequestTest.AsyncCheckTrackerNotTriggerClassificationRequestAlreadyPhishing
 -ClientSideDetectionRTLookupResponseForceRequestTest.AsyncCheckTrackerNotTriggerClassificationRequestNoEnforcedPing
@@ -390,6 +405,8 @@
 -ChromeHintsManagerFetchingTest.HintsFetched_*
 -PasswordChangeDelegateImplTest.MetricsReportedFlowCanceledDuringSignInCheck
 -PasswordChangeDelegateImplTest.MetricsReportedWasPasswordChangeNewTabFocused
+-PasswordChangeDelegateImplTest.OtpDetectionIgnoredOnOriginalTab
+-PasswordChangeDelegateImplTest.OtpDetectionProcessed
 -PasswordChangeDelegateImplTest.PasswordChangeFormNotFound
 -PasswordChangeDelegateImplTest.RestartPasswordChange
 
@@ -414,6 +431,7 @@
 # These tests fail because we do not record permissions UKM, see
 # brave/chromium_src/components/permissions/permission_uma_util.cc
 # GetUkmSourceId override.
+-All/RevokedPermissionsServiceTest.RevokedPermissionsServiceTest/*
 -All/UnusedSitePermissionsServiceTest.UnusedSitePermissionsServiceTest/1
 -All/UnusedSitePermissionsServiceTest.UnusedSitePermissionsServiceTest/3
 -SiteSettingsHandlerTest.NotificationPermissionRevokeUkm
@@ -563,6 +581,9 @@
 # created when the test profile is using the first-party NTP
 -NtpMicrosoftAuthResponseCaptureNavigationThrottleTest.*
 
+# These tests fail because we modify tab/strip dimentions
+-TabStripLayoutTest.*
+
 # Tests below this point have not been diagnosed or had issues created yet.
 -AboutFlagsHistogramTest.*
 -AboutFlagsTest.EveryFlagHasMetadata
@@ -581,7 +602,6 @@
 -BrowserCommandsTest.OnDefaultZoomLevelChanged
 -BrowserCommandsTest.OnMaxZoomIn
 -CastDialogCoordinatorTest.ShowAndHideDialog
--ChromeAutocompleteProviderClientTest.StartServiceWorker
 -ChromeBrowsingDataRemoverDelegateTest.*
 -ChromeComponentUpdaterConfiguratorTest.*
 -ChromeDownloadManagerDelegateTest.*
