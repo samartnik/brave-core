@@ -21,6 +21,8 @@ import org.chromium.base.task.TaskTraits;
 import org.chromium.build.annotations.Nullable;
 import org.chromium.brave.browser.search_engines.CustomSearchEnginesPrefManager;
 import org.chromium.brave.browser.search_engines.settings.CustomSearchEnginesPreference;
+import org.chromium.brave.browser.custom_search_engines.CustomSearchEnginesPrefManager;
+import org.chromium.brave.browser.custom_search_engines.settings.CustomSearchEnginesPreference;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.BraveConfig;
 import org.chromium.chrome.browser.preferences.BravePref;
