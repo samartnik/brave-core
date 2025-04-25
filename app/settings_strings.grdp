@@ -114,6 +114,12 @@
   <message name="IDS_SETTINGS_MAIN_NODE_ANNOTATIONS_SUBTITLE" desc="Subtitle for screen reader main node annotation feature.">
     Identify the main landmark in web pages for assistive technology
   </message>
+  <message name="IDS_SETTINGS_AX_TREE_FIXING_TITLE" desc="Description for screen reader tree fixing feature." translateable="false">
+    AXTree Fixing
+  </message>
+  <message name="IDS_SETTINGS_AX_TREE_FIXING_SUBTITLE" desc="Subtitle for screen reader tree fixing feature." translateable="false">
+    Fix the AXTree
+  </message>
   <message name="IDS_SETTINGS_CAPTIONS_ENABLE_LIVE_CAPTION_TITLE" desc="Name of the setting to enable Live Caption feature.">
     Live Caption
   </message>
@@ -621,7 +627,7 @@
     Autofill can offer to save info when you submit forms, like your driver's license or passport number
   </message>
   <message name="IDS_SETTINGS_AUTOFILL_AI_TO_CONSIDER_DATA_USAGE" desc="Bullet 1 of 2 that appears beneath the 'Things to consider' title. The point of this bullet is to convey to the user the types of data that get shared with Brave to support this feature. There are 2 data types: 1) 'sites you visit' can mean browsing history and the URL of the page the user is visiting, and 2) 'page content', by which we mean the words, visuals, and layout of the pages the user visits. This notion that Brave is considering 'page content' is new. We want to lead with 'To offer suggestions' even though it might be a bit grammatically awkward, because we want to express the need / value before explaining the data that gets shared.">
-    To offer suggestions, sites you visit and page content are shared with Brave
+    To offer suggestions and improve this feature, the page’s URL and content are shared with Brave
   </message>
   <message name="IDS_SETTINGS_AUTOFILL_AI_TO_CONSIDER_STORAGE" desc="Bullet 2 of 2 that appears beneath the 'Things to consider' title. This statement isn't immediately relevant to how Autofill with AI works, but it's intended as a reassuring statement.">
     Your saved information is stored on your device
@@ -634,10 +640,6 @@
   </message>
   <message name="IDS_SETTINGS_AUTOFILL_AI_MORE_ACTIONS_FOR_ENTITY_INSTANCE" desc="The accessibility label of the More options menu. Options in the menu include 'Edit' and 'Delete'. If including specific verbs in your language adds undo complexity, it's also acceptable to use something like: 'More options for 'label', 'sublabel''. Examples of 'label' and 'sublabel' include 'Toyota Corolla, Vehicle'.">
     More options to edit or delete <ph name="ENTITY_INSTANCE_LABEL">$1<ex>Toyota</ex></ph>, <ph name="ENTITY_INSTANCE_SUBLABEL">$2<ex>Car</ex></ph>
-  </message>
-  <!-- TODO(crbug.com/393318914): Change this string in favor of entity specific strings. -->
-  <message name="IDS_SETTINGS_AUTOFILL_AI_DELETE_ENTITY_INSTANCE_DIALOG_TITLE" desc="A title of a dialog within settings that allows a user to delete an entry. The user opened this dialog by choosing 'Delete' from the more options menu.">
-    Delete info?
   </message>
   <message name="IDS_SETTINGS_AUTOFILL_AI_DELETE_ENTITY_INSTANCE_DIALOG_TEXT" desc="The body text of the delete entity instance confirmation dialog, on the Autofill AI settings page.">
     Autofill won't have this info on this device to help fill out forms
@@ -4650,7 +4652,7 @@
 
     <!-- Experimental settings - Password Change -->
   <message name="IDS_SETTINGS_PASSWORD_CHANGE_LABEL" desc="Primary label for password change entry in settings.">
-    Automated password Change
+    Automated Password Change
   </message>
   <message name="IDS_SETTINGS_PASSWORD_CHANGE_SUBLABEL" desc="Sublabel for password change entry in settings.">
     When Brave finds one of your passwords in a data breach, it can offer to change your password for you when you sign in
