@@ -1,8 +1,8 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerOpenerImpl.java b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerOpenerImpl.java
-index 23a37ee7bbc59d741d46408fc085f1df5483a244..1859511abcce16833deec319df2aed63ecc02c33 100644
+index 150ee663fc02b96410be24fdcf686d4ef114d46f..7ce2287caa8fd96f9da81929a3c9be0acfc05cc3 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerOpenerImpl.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/bookmarks/BookmarkManagerOpenerImpl.java
-@@ -97,7 +97,7 @@ public class BookmarkManagerOpenerImpl implements BookmarkManagerOpener {
+@@ -100,7 +100,7 @@ public class BookmarkManagerOpenerImpl implements BookmarkManagerOpener {
          Intent intent =
                  new Intent(
                          activity == null ? ContextUtils.getApplicationContext() : activity,
