@@ -29,7 +29,8 @@ group("grdp") {
     ":fonts_grdp",
     ":icons_grdp",
     ":leo_web_components",
-    ":opaque_ke",
+
+    # ":opaque_ke",
     ":static_grdp",
   ]
   if (include_polymer) {
