@@ -21,5 +21,12 @@ public class BraveRadioButtonGroupHomepagePreferenceClassAdapter extends BraveCl
         changeSuperName(
                 sBraveRadioButtonGroupHomepagePreferenceClassName,
                 sRadioButtonGroupHomepagePreferenceClassName);
+
+        renameClass(
+                sRadioButtonGroupHomepagePreferenceClassName,
+                sRadioButtonGroupHomepagePreferenceClassName + "ChromiumImpl");
+        renameClass(
+                sBraveRadioButtonGroupHomepagePreferenceClassName,
+                sRadioButtonGroupHomepagePreferenceClassName);
     }
 }

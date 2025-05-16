@@ -107,6 +107,7 @@ class BraveClassVisitor extends ClassVisitor {
     protected String mSuperName = "";
 
     private Map<String, String> mSuperNames = new HashMap<String, String>();
+    private Map<String, String> mRenameClasses = new HashMap<String, String>();
     private Map<String, ArrayList<String>> mDeleteMethods =
             new HashMap<String, ArrayList<String>>();
     private Map<String, ArrayList<String>> mDeleteFields =
@@ -139,9 +140,12 @@ class BraveClassVisitor extends ClassVisitor {
         mSuperNames.put(className, superName);
     }
 
+    protected void renameClass(String originalClassName, String newClassName) {
+        mRenameClasses.put(originalClassName, newClassName);
+    }
+
     private boolean shouldDeleteMethod(String methodName) {
-        for(Map.Entry<String, ArrayList<String>> entry :
-                mDeleteMethods.entrySet()) {
+        for (Map.Entry<String, ArrayList<String>> entry : mDeleteMethods.entrySet()) {
             String className = entry.getKey();
             ArrayList<String> methodNames = entry.getValue();
             return mName.contains(className) &&
@@ -401,6 +405,10 @@ class BraveClassVisitor extends ClassVisitor {
         if (mSuperNames.containsKey(name)) {
             superName = mSuperNames.get(name);
             System.out.println("change superclass of " + name + " to " + superName);
+        }
+        if (mRenameClasses.containsKey(name)) {
+            System.out.println("renaming class " + name + " to " + mRenameClasses.get(name));
+            name = mRenameClasses.get(name);
         }
 
         visitImpl(version, access, name, signature, superName, interfaces);
