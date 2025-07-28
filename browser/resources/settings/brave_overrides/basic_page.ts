@@ -119,14 +119,14 @@ RegisterPolymerTemplateModifications({
     // Add 'Getting Started' section
     const basicPageEl = templateContent.querySelector('#basicPage')
     if (!basicPageEl) {
-      throw new Error('[Settings] Could not find basicPage element')
+      throw new Error('[Settings] Missing basicPage element')
     } else {
       const privacyGuidePromoTemplate = templateContent.
         querySelector('template[is=dom-if][if="[[isPrivacyGuideAvailable]]"]')
       if (privacyGuidePromoTemplate) {
         privacyGuidePromoTemplate.remove()
       } else {
-        throw new Error('[Settings] Could not find privacyGuidePromoTemplate')
+        throw new Error('[Settings] Missing privacyGuidePromoTemplate')
       }
       const sectionGetStarted = document.createElement('template')
       sectionGetStarted.setAttribute('is', 'dom-if')

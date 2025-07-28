@@ -13,9 +13,19 @@ RegisterPolymerTemplateModifications({
     // Always show settings-basic-page
     const templateSettingsBasicPage =
       templateContent.querySelector('#old template')
-    if (!templateSettingsBasicPage) {
+    if (templateSettingsBasicPage) {
+      templateSettingsBasicPage.setAttribute('if', 'true')
+    } else {
       throw new Error('[Settings] Missing template for settings-basic-page')
     }
-    templateSettingsBasicPage.setAttribute('if', 'true')
+
+    // Remove the performance page template
+    const templatePerformancePageSlot = templateContent.querySelector(
+      'template[is=dom-if][if="[[showPage_(pageVisibility_.performance)]]"]')
+    if (templatePerformancePageSlot) {
+      templatePerformancePageSlot.remove()
+    } else {
+      throw new Error('[Settings] Missing template for performance page slot')
+    }
   }
 })
