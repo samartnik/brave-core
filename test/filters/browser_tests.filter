@@ -93,6 +93,7 @@
 -NotificationContentDetectionShowWarningsEnabledBrowserTest.NotificationDisplayedWhenModelNotAvailable/*
 -NotificationContentDetectionShowWarningsEnabledBrowserTest.OriginalNotificationDisplayedWhenUserAllowlistsOrigin/*
 -NotificationContentDetectionShowWarningsEnabledBrowserTest.WarningShownWhenUserAllowlistsOriginThenUnsubscribesThenResubscribes/*
+-OnDeviceModelAdaptationLoaderTest2.UnavailableAdaptationRejectsSession
 -OnDeviceModelExecutionEnabledBrowserTest.CanCreateOnDeviceSessionIn*
 -OnDeviceModelExecutionEnabledBrowserTest.GetOnDeviceModelEligibilityIn*
 -OnDeviceModelExecutionEnabledBrowserTest.GetSamplingParamsConfig
@@ -1004,6 +1005,7 @@
 # These tests time out because we Disable "Use a prediction service to load
 # pages more quickly" (via prefetch::prefs::kNetworkPredictionOptions pref).
 -Aiv3ModelTest/Aiv3ModelPredictionServiceBrowserTest.*/*
+-Aiv4ModelTest/Aiv4ModelPredictionServiceBrowserTest.*/*
 -All/LoadingPredictorNetworkIsolationKeyBrowserTest.*
 -All/SearchNavigationPrefetchDefaultMatchBrowserTest.NotDefaultMatch/0
 -All/NavigationPredictorSiteIsolationBrowserTest.PageWithSameOriginIframeInCrossOriginIframe/*
@@ -2313,7 +2315,9 @@
 -PrivacySandboxNoticeEntryPointHandlersTest.NoPromptInSmallBrowser
 -PrivacySandboxNoticeEntryPointHandlersTest.NoPromptSync
 -PrivacySandboxNoticeEntryPointHandlersTest.PromptShowsNewTabChromeOS
+-PrivacySandboxNoticeEntryPointHandlersTest.UnsuitableUrl
 -PrivacySandboxPromptHelperWithParamInstanceBrowserTest/PrivacySandboxPromptHelperWithParamBrowserTest.PromptOpensOnSettings/*
+-PrivacySandboxPromptHelperWithParamInstanceBrowserTest/PrivacySandboxPromptHelperWithParamBrowserTest.UnsuitableUrl/*
 -PrivacySandboxQueueNoticeBrowserTest.PromptShows
 -PrivacySandboxQueueNoticeBrowserTest.PromptShowsMultipleWindows
 -PrivacySandboxQueueNoticeFeatureDisabledBrowserTest.ShowAndClickPrompt
@@ -2333,10 +2337,16 @@
 
 # This test fails because we stub IsChromeLabsEnabled to return false
 -ChromeLabsBrowserTest.ClosesWithoutCrashing
+-ChromeLabsModelBrowserTest.NoChromeLabsModel
 
 # These tests are flakey in cr140 at the moment due to
 # https://issues.chromium.org/issues/430608016
 -MultiContentsViewWebContentsReLayoutBrowserTest.*
+
+# These tests are flakey in cr140 and are expected to be removed soon because
+# the tab search container is going away
+# https://issues.chromium.org/issues/413441658#comment1
+-TabSearchContainerBrowserTest.*
 
 # Tests below this point have not been diagnosed or had issues created yet.
 -_/WebrtcLoggingPrivateApiStartEventLoggingTestPolicyEnabled.*
@@ -2722,6 +2732,7 @@
 -PasswordManagerBackForwardCacheBrowserTest.*
 -PasswordManagerBrowserTest.*
 -PasswordManagerCredentiallessIframeTest.DisablePasswordManagerOnCredentiallessIframe
+-PasswordManagerFeaturesUtilTest.MigrateDefaultProfileStorePref
 -PasswordManagerInternalsWebUIBrowserTest.*
 -PasswordManagerOverwritePlaceholderTest.FillIfServerPredictionSaysUsernameIsPlaceholder
 -PasswordManagerVotingBrowserTest.VerifyPasswordGenerationUpload
