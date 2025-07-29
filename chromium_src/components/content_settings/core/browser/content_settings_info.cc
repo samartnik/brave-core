@@ -42,7 +42,8 @@ bool IsMorePermissive_BraveImpl(ContentSettingsType content_type,
 }  // namespace
 }  // namespace content_settings
 
-#define IsMorePermissive(a, b) IsMorePermissive_BraveImpl(info_->website_settings_info()->type(), a, b)
+#define IsMorePermissive(a, b) \
+  IsMorePermissive_BraveImpl(info_->website_settings_info()->type(), a, b)
 
 #include <components/content_settings/core/browser/content_settings_info.cc>
 
