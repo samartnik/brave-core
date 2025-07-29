@@ -208,15 +208,20 @@ void BraveBrowserViewLayout::LayoutInfoBar(gfx::Rect& available_bounds) {
 
 void BraveBrowserViewLayout::LayoutContentsContainerView(
     const gfx::Rect& available_bounds) {
-  gfx::Rect contents_container_bounds = available_bounds;
-  contents_container_bounds.set_height(available_bounds.height() -
-                                       available_bounds.y());
-  int vertical_tab_offset = 0;
-  if (tabs::AreVerticalTabsEnabled()) {
-    vertical_tab_offset = BrowserView::kVerticalTabStripWidth;
-    contents_container_bounds.set_width(available_bounds.width() -
-                                        vertical_tab_offset);
+  gfx::Rect new_rect = available_bounds;
+  if (vertical_tab_strip_host_) {
+    // Both vertical tab impls should not be enabled together.
+    CHECK(!tabs::AreVerticalTabsEnabled());
+    new_rect.Inset(GetInsetsConsideringVerticalTabHost());
+  } else if (tabs::AreVerticalTabsEnabled()) {
+    new_rect.set_height(new_rect.height() - new_rect.y());
+    new_rect.set_width(new_rect.width() - BrowserView::kVerticalTabStripWidth);
   }
+
+  const int top = new_rect.y();
+  const int bottom = browser_view_->height();
+  gfx::Rect contents_container_bounds(new_rect.x(), top, new_rect.width(),
+                                      std::max(0, bottom - top));
   if (webui_tab_strip_ && webui_tab_strip_->GetVisible()) {
     // The WebUI tab strip container should "push" the tab contents down without
     // resizing it.
