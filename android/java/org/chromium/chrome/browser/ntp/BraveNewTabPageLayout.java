@@ -31,7 +31,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewStub;
 import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -154,11 +153,7 @@ public class BraveNewTabPageLayout extends NewTabPageLayout
     private FetchWallpaperWorkerTask mWorkerTask;
     private boolean mIsFromBottomSheet;
     private NTPBackgroundImagesBridge mNTPBackgroundImagesBridge;
-    // TODO(AlexeyBarabash): cr140, consider remove or re-use
-    // warning: [UnusedVariable] The field 'mMainLayout' is never read.
-    // Relative upstream commit: e6fb5317f5439ed23952329bd901cca10ad70dbd
-    // private ViewGroup mMainLayout;//warning: [UnusedVariable] The field 'mMainLayout' is never
-    // read.
+    private ViewGroup mMainLayout;
     private final DatabaseHelper mDatabaseHelper;
 
     private LottieAnimationView mBadgeAnimationView;
@@ -230,12 +225,12 @@ public class BraveNewTabPageLayout extends NewTabPageLayout
     }
 
     protected void initializeSiteSectionView() {
-        // TODO(AlexeyBarabash): cr140, consider remove or re-use
-        // warning: [UnusedVariable] The field 'mMainLayout' is never read.
-        // Relative upstream commit: e6fb5317f5439ed23952329bd901cca10ad70dbd
-        // mMainLayout = findViewById(R.id.ntp_content);
+        mMainLayout = findViewById(R.id.ntp_content);
         mMvTilesContainerLayout =
-                (ViewGroup) ((ViewStub) findViewById(R.id.mv_tiles_layout_stub)).inflate();
+                (ViewGroup)
+                        LayoutInflater.from(mMainLayout.getContext())
+                                .inflate(R.layout.mv_tiles_layout, mMainLayout, false);
+        mMvTilesContainerLayout.setId(R.id.mv_tiles_container);
         mMvTilesContainerLayout.setPadding(0, 0, 0, 0);
         mMvTilesContainerLayout.setVisibility(View.VISIBLE);
 
