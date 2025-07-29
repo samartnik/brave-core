@@ -93,7 +93,6 @@
 -NotificationContentDetectionShowWarningsEnabledBrowserTest.NotificationDisplayedWhenModelNotAvailable/*
 -NotificationContentDetectionShowWarningsEnabledBrowserTest.OriginalNotificationDisplayedWhenUserAllowlistsOrigin/*
 -NotificationContentDetectionShowWarningsEnabledBrowserTest.WarningShownWhenUserAllowlistsOriginThenUnsubscribesThenResubscribes/*
--OnDeviceModelAdaptationLoaderTest2.UnavailableAdaptationRejectsSession
 -OnDeviceModelExecutionEnabledBrowserTest.CanCreateOnDeviceSessionIn*
 -OnDeviceModelExecutionEnabledBrowserTest.GetOnDeviceModelEligibilityIn*
 -OnDeviceModelExecutionEnabledBrowserTest.GetSamplingParamsConfig
@@ -2732,7 +2731,6 @@
 -PasswordManagerBackForwardCacheBrowserTest.*
 -PasswordManagerBrowserTest.*
 -PasswordManagerCredentiallessIframeTest.DisablePasswordManagerOnCredentiallessIframe
--PasswordManagerFeaturesUtilTest.MigrateDefaultProfileStorePref
 -PasswordManagerInternalsWebUIBrowserTest.*
 -PasswordManagerOverwritePlaceholderTest.FillIfServerPredictionSaysUsernameIsPlaceholder
 -PasswordManagerVotingBrowserTest.VerifyPasswordGenerationUpload
@@ -2991,6 +2989,7 @@
 -TabHelperBrowserTest.*
 -TabManagerTest.*
 -TabManagerTestWithTwoTabs.*
+-TabRestore/TabRestoreSavedGroupsTest.SavedGroupNotDuplicatedAfterRestart/0
 -TabRestoreTest.*
 -TabSharingMessageLinksBrowserTest.ClickingOn*/*
 -TabSharingUIViewsPreferCurrentTabBrowserTest.*

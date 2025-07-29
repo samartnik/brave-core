@@ -619,6 +619,9 @@
 -HatsHandlerTest.HandleSecurityPageHatsRequestPassesArgumentsToHatsService
 -SafetyHubHatsServiceTest.GetOverallState_*
 
+# Optimization Guide is disabled
+-OnDeviceModelAdaptationLoaderTest2.UnavailableAdaptationRejectsSession
+
 # Tests below this point have not been diagnosed or had issues created yet.
 -AboutFlagsHistogramTest.*
 -AboutFlagsTest.EveryFlagHasMetadata
@@ -693,6 +696,7 @@
 -OmniboxViewViewsTest.*
 -PageInfoBubbleViewTest.*
 -PageInfoTest.IncognitoPermissionsDontShowAsk # Change upstream logic for incognito windows. https://github.com/brave/brave-browser/issues/24720
+-PasswordManagerFeaturesUtilTest.MigrateDefaultProfileStorePref
 -PdfPrinterHandlerPosixTest.*
 -PeriodicBackgroundSyncPermissionContextWithPermissionTest.DefaultSearchEngine
 -PermissionDashboardUnitTest.DisplayLHSIndicatorForCamera*
