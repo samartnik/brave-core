@@ -15,6 +15,7 @@ import androidx.preference.PreferenceViewHolder;
 import org.chromium.build.annotations.NullMarked;
 import org.chromium.build.annotations.Nullable;
 import org.chromium.chrome.browser.toolbar.R;
+import org.chromium.chrome.browser.toolbar.adaptive.AdaptiveToolbarButtonVariant;
 import org.chromium.components.browser_ui.widget.RadioButtonWithDescription;
 import org.chromium.ui.base.DeviceFormFactor;
 
@@ -23,9 +24,11 @@ import org.chromium.ui.base.DeviceFormFactor;
 public class BraveRadioButtonGroupAdaptiveToolbarPreference
         extends RadioButtonGroupAdaptiveToolbarPreference {
     private final Context mContext;
+    private boolean mIsBound;
     private @Nullable RadioButtonWithDescription mAutoButton;
     private @Nullable RadioButtonWithDescription mNewTabButton;
     private @Nullable RadioButtonWithDescription mShareButton;
+    private @Nullable RadioButtonWithDescription mBookmarksButton;
 
     public BraveRadioButtonGroupAdaptiveToolbarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -46,10 +49,15 @@ public class BraveRadioButtonGroupAdaptiveToolbarPreference
         mNewTabButton =
                 (RadioButtonWithDescription) holder.findViewById(R.id.adaptive_option_new_tab);
         mShareButton = (RadioButtonWithDescription) holder.findViewById(R.id.adaptive_option_share);
+        mBookmarksButton = (RadioButtonWithDescription) holder.findViewById(R.id.adaptive_option_bookmarks);
+
+        mIsBound = true;
     }
 
     @Override
     public void onCheckedChanged(@Nullable RadioGroup group, int checkedId) {
+        if (!isBound()) return;
+
         RadioButtonWithDescription defaultButton =
                 DeviceFormFactor.isNonMultiDisplayContextOnTablet(mContext)
                         ? mShareButton
@@ -60,6 +68,20 @@ public class BraveRadioButtonGroupAdaptiveToolbarPreference
             defaultButton.setChecked(mAutoButton.isChecked());
         }
 
+        boolean isOnCheckedChangedHandled = false;
+        if (mBookmarksButton != null && mBookmarksButton.isChecked()) {
+            mSelected = AdaptiveToolbarButtonVariant.BOOKMARKS;
+            isOnCheckedChangedHandled = true;
+        }
+        if (isOnCheckedChangedHandled) {
+            callChangeListener(mSelected);
+            return;
+        }
+
         super.onCheckedChanged(group, checkedId);
+    }
+
+    public boolean isBound() {
+        return mIsBound;
     }
 }

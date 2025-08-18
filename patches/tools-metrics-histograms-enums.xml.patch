@@ -1,0 +1,12 @@
+diff --git a/tools/metrics/histograms/enums.xml b/tools/metrics/histograms/enums.xml
+index 34335f5a8bba251da4c06b4cee3c7ae4a4e2c074..b3bdf62d6773469262e2749e85ced2bd4f0e24a3 100644
+--- a/tools/metrics/histograms/enums.xml
++++ b/tools/metrics/histograms/enums.xml
+@@ -199,6 +199,7 @@ uploading your change for review.  These are checked by presubmit scripts.
+   <int value="14" label="Discounts"/>
+   <int value="15" label="Open in browser"/>
+   <int value="16" label="Tab grouping"/>
++  <int value="17" label="Bookmarks"/>
+ </enum>
+ 
+ <!-- LINT.ThenChange(/chrome/browser/ui/android/toolbar/adaptive_toolbar_enums.h:AdaptiveToolbarButtonVariant) -->

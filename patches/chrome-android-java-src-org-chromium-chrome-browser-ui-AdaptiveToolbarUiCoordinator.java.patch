@@ -1,0 +1,21 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ui/AdaptiveToolbarUiCoordinator.java b/chrome/android/java/src/org/chromium/chrome/browser/ui/AdaptiveToolbarUiCoordinator.java
+index 62b2c349f110f936c03a90ab4ce68ce3d0af37ad..a53c5801d0e74eaee1ade880d0346e1011d6d5c3 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/ui/AdaptiveToolbarUiCoordinator.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/ui/AdaptiveToolbarUiCoordinator.java
+@@ -165,6 +165,16 @@ public class AdaptiveToolbarUiCoordinator {
+                         trackerSupplier,
+                         mModalDialogManagerSupplier.get(),
+                         onShareRunnable);
++        ShareButtonController bookmarksButtonController =
++                new ShareButtonController(
++                        mContext,
++                        AppCompatResources.getDrawable(
++                                mContext, R.drawable.brave_menu_bookmarks),
++                        mActivityTabProvider,
++                        shareDelegateSupplier,
++                        trackerSupplier,
++                        mModalDialogManagerSupplier.get(),
++                        onShareRunnable);
+         TranslateToolbarButtonController translateToolbarButtonController =
+                 new TranslateToolbarButtonController(
+                         mActivityTabProvider,

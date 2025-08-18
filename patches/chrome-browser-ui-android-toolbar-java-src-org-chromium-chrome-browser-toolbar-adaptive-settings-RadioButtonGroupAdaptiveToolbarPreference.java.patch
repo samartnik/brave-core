@@ -1,0 +1,13 @@
+diff --git a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/adaptive/settings/RadioButtonGroupAdaptiveToolbarPreference.java b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/adaptive/settings/RadioButtonGroupAdaptiveToolbarPreference.java
+index b3021b530d305263136ace2f28ae5b6ffe931ccf..d2c0085e3f9347341f4b02ad86d9cfe28131eb76 100644
+--- a/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/adaptive/settings/RadioButtonGroupAdaptiveToolbarPreference.java
++++ b/chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/adaptive/settings/RadioButtonGroupAdaptiveToolbarPreference.java
+@@ -41,7 +41,7 @@ public class RadioButtonGroupAdaptiveToolbarPreference extends Preference
+     private @Nullable RadioButtonWithDescription mAddToBookmarksButton;
+     private @Nullable RadioButtonWithDescription mReadAloudButton;
+     private @Nullable RadioButtonWithDescription mPageSummaryButton;
+-    private @AdaptiveToolbarButtonVariant int mSelected;
++    protected @AdaptiveToolbarButtonVariant int mSelected;
+     private @AdaptiveToolbarButtonVariant int mAutoButtonCaption;
+     private @Nullable AdaptiveToolbarStatePredictor mStatePredictor;
+     private boolean mCanUseVoiceSearch = true;
