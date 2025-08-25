@@ -1,5 +1,5 @@
 diff --git a/ios/chrome/browser/flags/about_flags.mm b/ios/chrome/browser/flags/about_flags.mm
-index 09dee2a04ed83cac397ed5130536fed5ccb44cc1..7722a2184e7f1d990d4b10296da84be7cb43b91b 100644
+index 3f5eb9f537d3db082192128d093e60aa0e245675..b1d3345e958a71b0b7754c46bb6bceeb3694f16d 100644
 --- a/ios/chrome/browser/flags/about_flags.mm
 +++ b/ios/chrome/browser/flags/about_flags.mm
 @@ -1484,6 +1484,7 @@ const FeatureEntry::FeatureVariation kMobilePromoOnDesktopVariations[] = {

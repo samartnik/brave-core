@@ -1,8 +1,8 @@
 diff --git a/chrome/browser/about_flags.cc b/chrome/browser/about_flags.cc
-index e8251fb256adc72d75e4d9af0d8e4eacace4675a..6ed911d11ee33cf05e366d585e0cc12a5cc0cda1 100644
+index a3729d9ccf2d0488c0291a5579c72aca655a5d1f..c680a5bbf6896e2b3e338dfcee952e506231751f 100644
 --- a/chrome/browser/about_flags.cc
 +++ b/chrome/browser/about_flags.cc
-@@ -4909,6 +4909,7 @@ const FeatureEntry::FeatureVariation kMobilePromoOnDesktopVariations[] = {
+@@ -4908,6 +4908,7 @@ const FeatureEntry::FeatureVariation kMobilePromoOnDesktopVariations[] = {
  //
  // When adding a new choice, add it to the end of the list.
  const FeatureEntry kFeatureEntries[] = {
