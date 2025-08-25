@@ -151,6 +151,9 @@ CHAR_LIMIT guidelines:
       <message name="IDS_CONTEXTMENU_OPEN_IN_INCOGNITO_TAB" desc="Context sensitive menu item to open the selected link in a new Private tab. [CHAR_LIMIT=30]">
         Open in Private tab
       </message>
+      <message name="IDS_CONTEXTMENU_OPEN_IN_INCOGNITO_WINDOW" desc="Context sensitive menu item to open the selected link in a new Private window. [CHAR_LIMIT=30]">
+        Open in Private window
+      </message>
       <message name="IDS_CONTEXTMENU_OPEN_IN_CHROME_INCOGNITO_TAB" desc="Context sensitive menu item to open the selected link in a Brave Private tab from Brave Custom Tab. [CHAR_LIMIT=30]">
         Open in Private tab
       </message>
