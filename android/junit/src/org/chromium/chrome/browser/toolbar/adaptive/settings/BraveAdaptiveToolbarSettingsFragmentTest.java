@@ -200,6 +200,9 @@ public class BraveAdaptiveToolbarSettingsFragmentTest {
                             AdaptiveToolbarButtonVariant.HISTORY,
                             AdaptiveToolbarButtonVariant.BOOKMARKS + 1);
                     Assert.assertEquals(
+                            AdaptiveToolbarButtonVariant.DOWNLOADS,
+                            AdaptiveToolbarButtonVariant.HISTORY + 1);
+                    Assert.assertEquals(
                             AdaptiveToolbarButtonVariant.NEWS,
                             AdaptiveToolbarButtonVariant.MAX_VALUE);
 
@@ -228,6 +231,21 @@ public class BraveAdaptiveToolbarSettingsFragmentTest {
                             AdaptiveToolbarButtonVariant.HISTORY, mRadioPreference.getSelection());
                     Assert.assertEquals(
                             AdaptiveToolbarButtonVariant.HISTORY,
+                            ChromeSharedPreferences.getInstance()
+                                    .readInt(ADAPTIVE_TOOLBAR_CUSTOMIZATION_SETTINGS));
+
+                    // Test Downloads button
+                    Assert.assertEquals(
+                            R.id.adaptive_option_downloads,
+                            getButton(AdaptiveToolbarButtonVariant.DOWNLOADS).getId());
+                    selectButton(AdaptiveToolbarButtonVariant.DOWNLOADS);
+                    assertButtonCheckedCorrectly(
+                            "Downloads", AdaptiveToolbarButtonVariant.DOWNLOADS);
+                    Assert.assertEquals(
+                            AdaptiveToolbarButtonVariant.DOWNLOADS,
+                            mRadioPreference.getSelection());
+                    Assert.assertEquals(
+                            AdaptiveToolbarButtonVariant.DOWNLOADS,
                             ChromeSharedPreferences.getInstance()
                                     .readInt(ADAPTIVE_TOOLBAR_CUSTOMIZATION_SETTINGS));
                 });

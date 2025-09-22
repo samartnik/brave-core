@@ -19,6 +19,7 @@ import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.toolbar.adaptive.AdaptiveToolbarButtonController;
 import org.chromium.chrome.browser.toolbar.adaptive.AdaptiveToolbarButtonVariant;
 import org.chromium.chrome.browser.toolbar.adaptive.BraveBookmarksButtonController;
+import org.chromium.chrome.browser.toolbar.adaptive.BraveDownloadsButtonController;
 import org.chromium.chrome.browser.toolbar.adaptive.BraveHistoryButtonController;
 import org.chromium.ui.modaldialog.ModalDialogManager;
 
@@ -87,5 +88,15 @@ public class BraveAdaptiveToolbarUiCoordinator extends AdaptiveToolbarUiCoordina
                         mModalDialogManagerSupplier.get());
         mAdaptiveToolbarButtonController.addButtonVariant(
                 AdaptiveToolbarButtonVariant.HISTORY, historyButtonController);
+
+        var downloadsButtonController =
+                new BraveDownloadsButtonController(
+                        mContext,
+                        AppCompatResources.getDrawable(mContext, R.drawable.ic_downloads),
+                        mActivityTabProvider,
+                        mProfileSupplier,
+                        mModalDialogManagerSupplier.get());
+        mAdaptiveToolbarButtonController.addButtonVariant(
+                AdaptiveToolbarButtonVariant.DOWNLOADS, downloadsButtonController);
     }
 }

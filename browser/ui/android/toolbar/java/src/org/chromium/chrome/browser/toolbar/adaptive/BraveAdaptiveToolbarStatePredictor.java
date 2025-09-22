@@ -42,6 +42,7 @@ public class BraveAdaptiveToolbarStatePredictor
                 // Add more Brave-specific variants here as needed
             case AdaptiveToolbarButtonVariant.BOOKMARKS:
             case AdaptiveToolbarButtonVariant.HISTORY:
+            case AdaptiveToolbarButtonVariant.DOWNLOADS:
                 return true;
         }
 
