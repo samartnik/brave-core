@@ -34,6 +34,7 @@ public class BraveRadioButtonGroupAdaptiveToolbarPreference
     // Own members.
     private final Context mContext;
     private @Nullable RadioButtonWithDescription mBookmarksButton;
+    private @Nullable RadioButtonWithDescription mHistoryButton;
 
     public BraveRadioButtonGroupAdaptiveToolbarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -47,6 +48,8 @@ public class BraveRadioButtonGroupAdaptiveToolbarPreference
         // method.
         mBookmarksButton =
                 (RadioButtonWithDescription) holder.findViewById(R.id.adaptive_option_bookmarks);
+        mHistoryButton =
+                (RadioButtonWithDescription) holder.findViewById(R.id.adaptive_option_history);
 
         super.onBindViewHolder(holder);
 
@@ -75,6 +78,9 @@ public class BraveRadioButtonGroupAdaptiveToolbarPreference
         if (mBookmarksButton != null && mBookmarksButton.isChecked()) {
             mSelected = AdaptiveToolbarButtonVariant.BOOKMARKS;
             isOnCheckedChangedHandled = true;
+        } else if (mHistoryButton != null && mHistoryButton.isChecked()) {
+            mSelected = AdaptiveToolbarButtonVariant.HISTORY;
+            isOnCheckedChangedHandled = true;
         }
         if (isOnCheckedChangedHandled) {
             callChangeListener(mSelected);
@@ -89,6 +95,8 @@ public class BraveRadioButtonGroupAdaptiveToolbarPreference
         switch (variant) {
             case AdaptiveToolbarButtonVariant.BOOKMARKS:
                 return mBookmarksButton;
+            case AdaptiveToolbarButtonVariant.HISTORY:
+                return mHistoryButton;
         }
 
         return super.getButton(variant);
