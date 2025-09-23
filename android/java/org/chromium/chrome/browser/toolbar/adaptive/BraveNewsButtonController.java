@@ -11,26 +11,24 @@ import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 
-import org.chromium.base.BraveFeatureList;
 import org.chromium.base.supplier.ObservableSupplier;
 import org.chromium.build.annotations.NullMarked;
 import org.chromium.build.annotations.Nullable;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.ActivityTabProvider;
 import org.chromium.chrome.browser.app.BraveActivity;
-import org.chromium.chrome.browser.flags.ChromeFeatureList;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.tab.Tab;
 import org.chromium.chrome.browser.toolbar.optional_button.BaseButtonDataProvider;
 import org.chromium.ui.modaldialog.ModalDialogManager;
 
-/** Handles displaying Brave Wallet button on toolbar. */
+/** Handles displaying Brave News button on toolbar. */
 @NullMarked
-public class BraveWalletButtonController extends BaseButtonDataProvider {
+public class BraveNewsButtonController extends BaseButtonDataProvider {
     private final Context mContext;
     private final ObservableSupplier<Profile> mProfileSupplier;
 
-    public BraveWalletButtonController(
+    public BraveNewsButtonController(
             Context context,
             Drawable buttonDrawable,
             ActivityTabProvider tabProvider,
@@ -40,12 +38,12 @@ public class BraveWalletButtonController extends BaseButtonDataProvider {
                 tabProvider,
                 modalDialogManager,
                 buttonDrawable,
-                context.getString(R.string.menu_brave_wallet),
+                context.getString(R.string.brave_news_title),
                 /* actionChipLabelResId= */ Resources.ID_NULL,
                 /* supportsTinting= */ true,
                 /* iphCommandBuilder= */ null,
-                AdaptiveToolbarButtonVariant.WALLET,
-                /* tooltipTextResId= */ R.string.menu_brave_wallet);
+                AdaptiveToolbarButtonVariant.NEWS,
+                /* tooltipTextResId= */ R.string.brave_news_title);
 
         mContext = context;
         mProfileSupplier = profileSupplier;
@@ -59,9 +57,9 @@ public class BraveWalletButtonController extends BaseButtonDataProvider {
         assert mContext instanceof Activity : "Context is not an Activity";
         if (!(mContext instanceof Activity)) return;
 
-        // Open Brave Wallet
+        // Open Brave News Settings
         if (mContext instanceof BraveActivity) {
-            ((BraveActivity) mContext).openBraveWallet(false, false, false);
+            ((BraveActivity) mContext).openBraveNewsSettings();
         }
     }
 
@@ -69,7 +67,7 @@ public class BraveWalletButtonController extends BaseButtonDataProvider {
     protected boolean shouldShowButton(@Nullable Tab tab) {
         if (!super.shouldShowButton(tab)) return false;
 
-        // Show the Brave Wallet button only if the feature is enabled
-        return ChromeFeatureList.isEnabled(BraveFeatureList.NATIVE_BRAVE_WALLET);
+        // Show the Brave News button for all tabs
+        return true;
     }
 }
