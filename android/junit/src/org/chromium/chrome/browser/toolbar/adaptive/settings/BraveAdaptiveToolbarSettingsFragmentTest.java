@@ -202,11 +202,17 @@ public class BraveAdaptiveToolbarSettingsFragmentTest {
                             AdaptiveToolbarButtonVariant.DOWNLOADS,
                             AdaptiveToolbarButtonVariant.HISTORY + 1);
                     Assert.assertEquals(
-                            AdaptiveToolbarButtonVariant.LEO,
+                            AdaptiveToolbarButtonVariant.PLAYLIST,
                             AdaptiveToolbarButtonVariant.DOWNLOADS + 1);
+                    Assert.assertEquals(
+                            AdaptiveToolbarButtonVariant.LEO,
+                            AdaptiveToolbarButtonVariant.PLAYLIST + 1);
                     Assert.assertEquals(
                             AdaptiveToolbarButtonVariant.WALLET,
                             AdaptiveToolbarButtonVariant.LEO + 1);
+                    Assert.assertEquals(
+                            AdaptiveToolbarButtonVariant.NEWS,
+                            AdaptiveToolbarButtonVariant.WALLET + 1);
                     Assert.assertEquals(
                             AdaptiveToolbarButtonVariant.NEWS,
                             AdaptiveToolbarButtonVariant.MAX_VALUE);
