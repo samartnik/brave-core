@@ -36,6 +36,7 @@ public class BraveRadioButtonGroupAdaptiveToolbarPreference
     private @Nullable RadioButtonWithDescription mBookmarksButton;
     private @Nullable RadioButtonWithDescription mHistoryButton;
     private @Nullable RadioButtonWithDescription mDownloadsButton;
+    private @Nullable RadioButtonWithDescription mBraveLeoButton;
 
     public BraveRadioButtonGroupAdaptiveToolbarPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -53,6 +54,8 @@ public class BraveRadioButtonGroupAdaptiveToolbarPreference
                 (RadioButtonWithDescription) holder.findViewById(R.id.adaptive_option_history);
         mDownloadsButton =
                 (RadioButtonWithDescription) holder.findViewById(R.id.adaptive_option_downloads);
+        mBraveLeoButton =
+                (RadioButtonWithDescription) holder.findViewById(R.id.adaptive_option_brave_leo);
 
         super.onBindViewHolder(holder);
 
@@ -87,6 +90,9 @@ public class BraveRadioButtonGroupAdaptiveToolbarPreference
         } else if (mDownloadsButton != null && mDownloadsButton.isChecked()) {
             mSelected = AdaptiveToolbarButtonVariant.DOWNLOADS;
             isOnCheckedChangedHandled = true;
+        } else if (mBraveLeoButton != null && mBraveLeoButton.isChecked()) {
+            mSelected = AdaptiveToolbarButtonVariant.LEO;
+            isOnCheckedChangedHandled = true;
         }
         if (isOnCheckedChangedHandled) {
             callChangeListener(mSelected);
@@ -105,6 +111,8 @@ public class BraveRadioButtonGroupAdaptiveToolbarPreference
                 return mHistoryButton;
             case AdaptiveToolbarButtonVariant.DOWNLOADS:
                 return mDownloadsButton;
+            case AdaptiveToolbarButtonVariant.LEO:
+                return mBraveLeoButton;
         }
 
         return super.getButton(variant);

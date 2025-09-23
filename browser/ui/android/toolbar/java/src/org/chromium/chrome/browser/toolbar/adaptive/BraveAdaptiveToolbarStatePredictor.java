@@ -43,6 +43,7 @@ public class BraveAdaptiveToolbarStatePredictor
             case AdaptiveToolbarButtonVariant.BOOKMARKS:
             case AdaptiveToolbarButtonVariant.HISTORY:
             case AdaptiveToolbarButtonVariant.DOWNLOADS:
+            case AdaptiveToolbarButtonVariant.LEO:
                 return true;
         }
 

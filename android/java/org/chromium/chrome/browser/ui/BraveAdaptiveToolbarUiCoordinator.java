@@ -15,12 +15,14 @@ import org.chromium.build.annotations.NullMarked;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.ActivityTabProvider;
 import org.chromium.chrome.browser.bookmarks.BookmarkManagerOpener;
+import org.chromium.chrome.browser.brave_leo.BraveLeoPrefUtils;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.toolbar.adaptive.AdaptiveToolbarButtonController;
 import org.chromium.chrome.browser.toolbar.adaptive.AdaptiveToolbarButtonVariant;
 import org.chromium.chrome.browser.toolbar.adaptive.BraveBookmarksButtonController;
 import org.chromium.chrome.browser.toolbar.adaptive.BraveDownloadsButtonController;
 import org.chromium.chrome.browser.toolbar.adaptive.BraveHistoryButtonController;
+import org.chromium.chrome.browser.toolbar.adaptive.BraveLeoButtonController;
 import org.chromium.ui.modaldialog.ModalDialogManager;
 
 import java.util.function.Supplier;
@@ -98,5 +100,17 @@ public class BraveAdaptiveToolbarUiCoordinator extends AdaptiveToolbarUiCoordina
                         mModalDialogManagerSupplier.get());
         mAdaptiveToolbarButtonController.addButtonVariant(
                 AdaptiveToolbarButtonVariant.DOWNLOADS, downloadsButtonController);
+
+        if (BraveLeoPrefUtils.isLeoEnabled()) {
+            var leoButtonController =
+                    new BraveLeoButtonController(
+                            mContext,
+                            AppCompatResources.getDrawable(mContext, R.drawable.ic_brave_ai),
+                            mActivityTabProvider,
+                            mProfileSupplier,
+                            mModalDialogManagerSupplier.get());
+            mAdaptiveToolbarButtonController.addButtonVariant(
+                    AdaptiveToolbarButtonVariant.LEO, leoButtonController);
+        }
     }
 }
