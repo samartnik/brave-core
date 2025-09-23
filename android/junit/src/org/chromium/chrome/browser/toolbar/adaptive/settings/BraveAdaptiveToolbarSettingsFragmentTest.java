@@ -205,6 +205,9 @@ public class BraveAdaptiveToolbarSettingsFragmentTest {
                             AdaptiveToolbarButtonVariant.LEO,
                             AdaptiveToolbarButtonVariant.DOWNLOADS + 1);
                     Assert.assertEquals(
+                            AdaptiveToolbarButtonVariant.WALLET,
+                            AdaptiveToolbarButtonVariant.LEO + 1);
+                    Assert.assertEquals(
                             AdaptiveToolbarButtonVariant.NEWS,
                             AdaptiveToolbarButtonVariant.MAX_VALUE);
 
@@ -261,6 +264,20 @@ public class BraveAdaptiveToolbarSettingsFragmentTest {
                             AdaptiveToolbarButtonVariant.LEO, mRadioPreference.getSelection());
                     Assert.assertEquals(
                             AdaptiveToolbarButtonVariant.LEO,
+                            ChromeSharedPreferences.getInstance()
+                                    .readInt(ADAPTIVE_TOOLBAR_CUSTOMIZATION_SETTINGS));
+
+                    // Test Wallet button
+                    Assert.assertEquals(
+                            R.id.adaptive_option_brave_wallet,
+                            getButton(AdaptiveToolbarButtonVariant.WALLET).getId());
+                    selectButton(AdaptiveToolbarButtonVariant.WALLET);
+                    assertButtonCheckedCorrectly(
+                            "Brave Wallet", AdaptiveToolbarButtonVariant.WALLET);
+                    Assert.assertEquals(
+                            AdaptiveToolbarButtonVariant.WALLET, mRadioPreference.getSelection());
+                    Assert.assertEquals(
+                            AdaptiveToolbarButtonVariant.WALLET,
                             ChromeSharedPreferences.getInstance()
                                     .readInt(ADAPTIVE_TOOLBAR_CUSTOMIZATION_SETTINGS));
                 });
