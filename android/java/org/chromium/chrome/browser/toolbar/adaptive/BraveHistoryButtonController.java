@@ -58,6 +58,8 @@ public class BraveHistoryButtonController extends BaseButtonDataProvider {
         if (!(mContext instanceof Activity)) return;
 
         Tab activeTab = mActiveTabSupplier.get();
+        if (activeTab == null) return;
+
         HistoryManagerUtils.showHistoryManager((Activity) mContext, activeTab, profile);
     }
 
