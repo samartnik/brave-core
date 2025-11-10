@@ -17,6 +17,7 @@ namespace tabs {
 
 std::unique_ptr<TabInterface> TabStripCollection::RemoveTabAtIndexRecursive(
     size_t index) {
+#if !BUILDFLAG(IS_ANDROID)
   TabInterface* tab_to_be_removed = GetTabAtIndexRecursive(index);
   TabCollection* parent_collection =
       tab_to_be_removed->GetParentCollection(GetPassKey());
@@ -40,6 +41,7 @@ std::unique_ptr<TabInterface> TabStripCollection::RemoveTabAtIndexRecursive(
 
     return tab;
   }
+#endif  // !BUILDFLAG(IS_ANDROID)
 
   return RemoveTabAtIndexRecursive_Chromium(index);
 }
