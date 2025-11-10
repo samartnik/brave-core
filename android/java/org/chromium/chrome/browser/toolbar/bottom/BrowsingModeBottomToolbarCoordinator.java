@@ -19,6 +19,7 @@ import org.chromium.base.supplier.OneShotCallback;
 import org.chromium.chrome.R;
 import org.chromium.chrome.browser.ActivityTabProvider;
 import org.chromium.chrome.browser.app.BraveActivity;
+import org.chromium.chrome.browser.layouts.LayoutStateProvider;
 import org.chromium.chrome.browser.omaha.UpdateMenuItemHelper;
 import org.chromium.chrome.browser.tab.Tab;
 import org.chromium.chrome.browser.tabmodel.IncognitoStateProvider;
@@ -96,7 +97,7 @@ public class BrowsingModeBottomToolbarCoordinator {
         PropertyModelChangeProcessor.create(
                 mModel, mToolbarRoot, new BrowsingModeBottomToolbarViewBinder());
 
-        mMediator = new BrowsingModeBottomToolbarMediator(mModel);
+        mMediator = new BrowsingModeBottomToolbarMediator(mModel, mToolbarRoot.getContext());
 
         mBraveHomeButton = mToolbarRoot.findViewById(R.id.bottom_home_button);
         mBraveHomeButton.setOnClickListener(homeButtonListener);
@@ -187,6 +188,7 @@ public class BrowsingModeBottomToolbarCoordinator {
         }
         mThemeColorProvider = themeColorProvider;
         mMediator.setThemeColorProvider(themeColorProvider);
+        mMediator.setIncognitoStateProvider(incognitoStateProvider);
         if (incognitoStateProvider.isIncognitoSelected()) {
             mMediator.onThemeColorChanged(
                     ChromeColors.getDefaultThemeColor(ContextUtils.getApplicationContext(), true),
@@ -275,8 +277,19 @@ public class BrowsingModeBottomToolbarCoordinator {
     }
 
     /**
-     * Clean up any state when the browsing mode bottom toolbar is destroyed.
+     * Set the layout state provider to detect tab overview mode.
+     *
+     * @param layoutStateProvider The layout state provider.
      */
+    void setLayoutStateProvider(LayoutStateProvider layoutStateProvider) {
+        mMediator.setLayoutStateProvider(layoutStateProvider);
+        // Update color when layout state is set
+        if (mThemeColorProvider != null) {
+            mMediator.onThemeColorChanged(mThemeColorProvider.getThemeColor(), false);
+        }
+    }
+
+    /** Clean up any state when the browsing mode bottom toolbar is destroyed. */
     public void destroy() {
         if (mShareButtonListenerSupplier != null) {
             mShareButtonListenerSupplier.removeObserver(mShareButtonListenerSupplierCallback);
