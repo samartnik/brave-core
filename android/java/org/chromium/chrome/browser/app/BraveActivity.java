@@ -199,6 +199,7 @@ import org.chromium.chrome.browser.ui.messages.snackbar.SnackbarManager.Snackbar
 import org.chromium.chrome.browser.ui.messages.snackbar.SnackbarManagerProvider;
 import org.chromium.chrome.browser.util.BraveConstants;
 import org.chromium.chrome.browser.util.BraveDbUtil;
+import org.chromium.chrome.browser.util.BraveReferrer;
 import org.chromium.chrome.browser.util.KeyboardVisibilityHelper;
 import org.chromium.chrome.browser.util.LiveDataUtil;
 import org.chromium.chrome.browser.util.PackageUtils;
@@ -1177,6 +1178,7 @@ public abstract class BraveActivity extends ChromeActivity
             checkForYandexSE();
             enableSearchSuggestions();
             setBraveAsDefaultPrivateMode();
+            maybeApplySearchChoiceDefaultSearchEngine();
         }
 
         if (!isFirstInstall
@@ -1454,6 +1456,41 @@ public abstract class BraveActivity extends ChromeActivity
                 };
         TemplateUrlServiceFactory.getForProfile(getCurrentProfile())
                 .runWhenLoaded(onTemplateUrlServiceReady);
+    }
+
+    private void maybeApplySearchChoiceDefaultSearchEngine() {
+        final ChromeSharedPreferences prefs = ChromeSharedPreferences.getInstance();
+        if (prefs.readBoolean(BravePreferenceKeys.BRAVE_SEARCH_CHOICE_DEFAULT_APPLIED, false)) {
+            return;
+        }
+        String referralCode = BraveReferrer.getSavedReferralCode(this);
+        if (!TextUtils.equals(referralCode, "SCS001")) {
+            return;
+        }
+        TemplateUrlService templateUrlService =
+                TemplateUrlServiceFactory.getForProfile(getCurrentProfile());
+        if (templateUrlService == null) {
+            return;
+        }
+        Runnable setDefault =
+                () -> {
+                    if (isActivityFinishingOrDestroyed()) return;
+                    TemplateUrl braveTemplateUrl =
+                            BraveSearchEngineUtils.getTemplateUrlByShortName(
+                                    getCurrentProfile(), OnboardingPrefManager.BRAVE);
+                    if (braveTemplateUrl == null) {
+                        return;
+                    }
+                    BraveSearchEngineUtils.setDSEPrefs(braveTemplateUrl, getCurrentProfile());
+                    BraveSearchEngineUtils.updateActiveDSE(getCurrentProfile(), templateUrlService);
+                    prefs.writeBoolean(
+                            BravePreferenceKeys.BRAVE_SEARCH_CHOICE_DEFAULT_APPLIED, true);
+                };
+        if (templateUrlService.isLoaded()) {
+            setDefault.run();
+        } else {
+            templateUrlService.runWhenLoaded(setDefault);
+        }
     }
 
     private void enableSearchSuggestions() {

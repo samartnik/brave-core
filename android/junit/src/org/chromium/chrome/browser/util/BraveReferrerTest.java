@@ -21,6 +21,26 @@ import org.chromium.base.test.BaseRobolectricTestRunner;
 public class BraveReferrerTest {
     @Test
     @SmallTest
+    public void returnsSearchChoiceCode() {
+        String result =
+                BraveReferrer.getReferralCodeForTesting(
+                        "utm_source=eea-search-choice&urpc=URPCTEST");
+
+        assertEquals("SCS001", result);
+    }
+
+    @Test
+    @SmallTest
+    public void returnsBrowserChoiceCode() {
+        String result =
+                BraveReferrer.getReferralCodeForTesting(
+                        "utm_source=eea-browser-choice&urpc=URPCTEST");
+
+        assertEquals("BCS001", result);
+    }
+
+    @Test
+    @SmallTest
     public void returnsExactUrpc() {
         String result =
                 BraveReferrer.getReferralCodeForTesting(
