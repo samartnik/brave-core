@@ -26,7 +26,7 @@ public class CustomSearchEnginesManager {
     public static String KEYWORD = "keyword";
 
     private static CustomSearchEnginesManager sInstance;
-    private CustomSearchEnginesPrefManager mCustomSearchEnginesPrefManager;
+    private final CustomSearchEnginesPrefManager mCustomSearchEnginesPrefManager;
 
     private CustomSearchEnginesManager() {
         mCustomSearchEnginesPrefManager = CustomSearchEnginesPrefManager.getInstance();

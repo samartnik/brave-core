@@ -327,4 +327,9 @@ public class AddCustomSearchEnginePreferenceFragment extends ChromeBaseSettingsF
     public ObservableSupplier<String> getPageTitle() {
         return mPageTitle;
     }
+
+    @Override
+    public @AnimationType int getAnimationType() {
+        return AnimationType.PROPERTY;
+    }
 }

@@ -20,7 +20,7 @@ public class CustomSearchEnginesPrefManager {
 
     private static final String CUSTOM_SEARCH_ENGINES = "custom_search_engines";
 
-    private SharedPreferencesManager mSharedPreferencesManager;
+    private final SharedPreferencesManager mSharedPreferencesManager;
 
     private static CustomSearchEnginesPrefManager sInstance;
 

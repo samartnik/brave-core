@@ -28,9 +28,9 @@ jboolean TemplateUrlServiceAndroid::DoesDefaultSearchEngineHaveLogo(
 
 jboolean TemplateUrlServiceAndroid::Add(
     JNIEnv* env,
-    const base::android::JavaParamRef<jstring>& search_engine_title,
-    const base::android::JavaParamRef<jstring>& search_engine_keyword,
-    const base::android::JavaParamRef<jstring>& search_engine_url) {
+    const base::android::JavaRef<jstring>& search_engine_title,
+    const base::android::JavaRef<jstring>& search_engine_keyword,
+    const base::android::JavaRef<jstring>& search_engine_url) {
   TemplateURLData template_url_data;
   template_url_data.SetShortName(
       base::android::ConvertJavaStringToUTF16(env, search_engine_title));
@@ -45,10 +45,10 @@ jboolean TemplateUrlServiceAndroid::Add(
 
 jboolean TemplateUrlServiceAndroid::Update(
     JNIEnv* env,
-    const base::android::JavaParamRef<jstring>& existing_keyword,
-    const base::android::JavaParamRef<jstring>& search_engine_title,
-    const base::android::JavaParamRef<jstring>& search_engine_keyword,
-    const base::android::JavaParamRef<jstring>& search_engine_url) {
+    const base::android::JavaRef<jstring>& existing_keyword,
+    const base::android::JavaRef<jstring>& search_engine_title,
+    const base::android::JavaRef<jstring>& search_engine_keyword,
+    const base::android::JavaRef<jstring>& search_engine_url) {
   TemplateURL* existing = template_url_service_->GetTemplateURLForKeyword(
       base::android::ConvertJavaStringToUTF16(env, existing_keyword));
   if (!existing) {
@@ -68,7 +68,7 @@ jboolean TemplateUrlServiceAndroid::Update(
 
 jboolean TemplateUrlServiceAndroid::Remove(
     JNIEnv* env,
-    const base::android::JavaParamRef<jstring>& search_engine_keyword) {
+    const base::android::JavaRef<jstring>& search_engine_keyword) {
   const TemplateURL* existing = template_url_service_->GetTemplateURLForKeyword(
       base::android::ConvertJavaStringToUTF16(env, search_engine_keyword));
   const TemplateURL* default_search_provider =
@@ -79,3 +79,5 @@ jboolean TemplateUrlServiceAndroid::Remove(
   }
   return false;
 }
+
+DEFINE_JNI(BraveTemplateUrlService)

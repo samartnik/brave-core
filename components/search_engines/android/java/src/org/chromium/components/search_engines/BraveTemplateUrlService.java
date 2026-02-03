@@ -10,7 +10,7 @@ import org.jni_zero.NativeMethods;
 public class BraveTemplateUrlService extends TemplateUrlService {
 
     // Overridden Chromium's TemplateUrlService.mNativeTemplateUrlServiceAndroid
-    private long mNativeTemplateUrlServiceAndroid;
+    private final long mNativeTemplateUrlServiceAndroid;
 
     public BraveTemplateUrlService(long nativeTemplateUrlServiceAndroid) {
         super(nativeTemplateUrlServiceAndroid);
