@@ -105,7 +105,7 @@
             android:id="@+id/cancel_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/cancel"
+            android:text="@string/cancel_action_text"
             android:textAllCaps="false"
             android:paddingHorizontal="12dp"
             android:layout_marginEnd="8dp"
