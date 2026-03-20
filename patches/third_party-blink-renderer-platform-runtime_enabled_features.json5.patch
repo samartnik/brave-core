@@ -30,17 +30,7 @@ index 9ba8c0055a45eb0a27a6374c52966c83d8384f12..a1f649358b447368d18f213defdc2df3
      },
      {
        name: "FileSystemAccessLockingScheme",
-@@ -2611,8 +2618,8 @@
-       // This fixes the suppression of markers for <details> and
-       // list items for appearance:auto.
-       // This was added in M146 and can be removed after M148.
-+      // Note that as-is, this flag triggers crbug.com/408002786.
-       name: "FixMarkerSuppressionForAppearanceAuto",
--      status: "stable",
-     },
-     {
-       // crbug.com/411739501
-@@ -3593,6 +3600,7 @@
+@@ -3712,6 +3719,7 @@
      {
        name: "MiddleClickAutoscroll",
        status: "test",
