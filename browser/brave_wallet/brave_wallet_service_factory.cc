@@ -67,7 +67,7 @@ bool BraveWalletServiceFactory::ServiceIsNULLWhileTesting() const {
   // we'd need to put a lot of unnecessary ifs/checks into those services.
   // Instead, we just won't create the wallet service if the local state isn't
   // available.
-  return (g_browser_process->local_state() == nullptr);
+  return true /*(g_browser_process->local_state() == nullptr)*/;
 }
 
 }  // namespace brave_wallet

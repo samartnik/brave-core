@@ -810,14 +810,14 @@
 # calling TearDownGlobalFeaturesForTesting without resetting the secondary
 # profile first. Incorrect order is being partially addressed upstream via
 # https://crgo.dev/r/7591034.
--DefaultBrowserHandlerTest.*
--DefaultBrowserManagerTest.*
--DefaultBrowserNotificationObserverTest.*
--SiteSettingsHelperChooserExceptionTest.*
--SiteSettingsHelperExtensionTest.*
--SiteSettingsHelperIsolatedWebAppTest.*
--SiteSettingsHelperTest.*
--PersistentPermissionsSiteSettingsHelperTest.*
+#-DefaultBrowserHandlerTest.*
+#-DefaultBrowserManagerTest.*
+#-DefaultBrowserNotificationObserverTest.*
+#-SiteSettingsHelperChooserExceptionTest.*
+#-SiteSettingsHelperExtensionTest.*
+#-SiteSettingsHelperIsolatedWebAppTest.*
+#-SiteSettingsHelperTest.*
+#-PersistentPermissionsSiteSettingsHelperTest.*
 
 # Tests below this point have not been diagnosed or had issues created yet.
 -AboutFlagsHistogramTest.*
