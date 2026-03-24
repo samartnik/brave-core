@@ -1,0 +1,22 @@
+diff --git a/chrome/android/java/src/org/chromium/chrome/browser/customtabs/features/toolbar/CustomTabToolbarButtonsViewBinder.java b/chrome/android/java/src/org/chromium/chrome/browser/customtabs/features/toolbar/CustomTabToolbarButtonsViewBinder.java
+index d508ece70211c594e27638e830dd4898d90d0376..48d364991efdd0e6936819b392b876133b30e4ee 100644
+--- a/chrome/android/java/src/org/chromium/chrome/browser/customtabs/features/toolbar/CustomTabToolbarButtonsViewBinder.java
++++ b/chrome/android/java/src/org/chromium/chrome/browser/customtabs/features/toolbar/CustomTabToolbarButtonsViewBinder.java
+@@ -231,6 +231,17 @@ public class CustomTabToolbarButtonsViewBinder
+             view.getMenuButton().setVisibility(View.GONE);
+         }
+ 
++        View braveShieldsButton = view.findViewById(R.id.brave_shields_button);
++        if (braveShieldsButton != null) {
++            braveShieldsButton.setVisibility(View.VISIBLE);
++            positionButton(
++                    braveShieldsButton,
++                    posParams,
++                    defaultButtonWidth,
++                    defaultButtonHorizontalPadding,
++                    /* isEndAligned= */ true);
++        }
++
+         FrameLayout customActionButtons = assumeNonNull(view.getCustomActionButtonsParent());
+         // TODO(crbug.com/402213312): Think of how we can optimize this so we don't reinflate all
+         // buttons any time if we add/remove one.

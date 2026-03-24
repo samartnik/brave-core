@@ -553,6 +553,7 @@ android_resources("java_resources") {
     "java/brave-res/layout/brave_homepage_mobile_bookmarks_button.xml",
     "java/brave-res/layout/brave_leo_clear_history_dialog.xml",
     "java/brave-res/layout/brave_leo_reset_dialog.xml",
+    "java/brave-res/layout/brave_new_custom_tabs_toolbar.xml",
     "java/brave-res/layout/brave_news_card_menu.xml",
     "java/brave-res/layout/brave_news_load_new_content.xml",
     "java/brave-res/layout/brave_news_no_sources.xml",

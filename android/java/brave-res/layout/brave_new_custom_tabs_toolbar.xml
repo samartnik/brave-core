@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2026 The Brave Authors. All rights reserved.
+     This Source Code Form is subject to the terms of the Mozilla Public
+     License, v. 2.0. If a copy of the MPL was not distributed with this file,
+     You can obtain one at https://mozilla.org/MPL/2.0/. -->
+
+<merge
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Inflated inside @id/action_buttons (FrameLayout) when CCT toolbar refactor is on. -->
+    <ImageButton android:id="@+id/brave_shields_button"
+        style="@style/ToolbarButton"
+        android:layout_width="@dimen/toolbar_button_width"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        android:paddingHorizontal="@dimen/custom_tabs_toolbar_button_horizontal_padding"
+        android:src="@drawable/btn_brave"
+        android:contentDescription="@string/accessibility_toolbar_btn_brave_shields" />
+
+</merge>
