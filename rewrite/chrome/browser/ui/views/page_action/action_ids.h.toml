@@ -5,5 +5,5 @@
 
 [[substitution]]
 description = 'Add kActionShowPartitionedStorage to the array'
-re_pattern = '(inline constexpr auto kActionIds = std::to_array<actions::ActionId>\(\{\s+?kActionAiMode,)'
+re_pattern = '(kActionIds = std::to_array<actions::ActionId>\(\{\s+?kActionAiMode,)'
 replace = '\1\n    kActionShowPartitionedStorage,'
