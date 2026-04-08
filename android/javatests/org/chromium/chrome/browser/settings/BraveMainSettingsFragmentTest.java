@@ -79,7 +79,6 @@ public class BraveMainSettingsFragmentTest {
         "autofill_options",
         "autofill_payment_methods",
         "autofill_addresses",
-        "autofill_private_window",
         "support_section",
         "rate_brave",
         "about_section",

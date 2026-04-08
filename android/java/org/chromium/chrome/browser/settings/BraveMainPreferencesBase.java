@@ -37,7 +37,6 @@ import org.chromium.chrome.browser.notifications.BravePermissionUtils;
 import org.chromium.chrome.browser.notifications.permissions.BraveNotificationPermissionRationaleDialog;
 import org.chromium.chrome.browser.onboarding.OnboardingPrefManager;
 import org.chromium.chrome.browser.partnercustomizations.CloseBraveManager;
-import org.chromium.chrome.browser.preferences.BravePref;
 import org.chromium.chrome.browser.privacy.settings.BravePrivacySettings;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.profiles.ProfileManager;
@@ -59,7 +58,6 @@ import org.chromium.components.browser_ui.settings.search.SearchIndexProvider;
 import org.chromium.components.browser_ui.settings.search.SettingsIndexData;
 import org.chromium.components.browser_ui.site_settings.BraveSiteSettingsPreferencesBase;
 import org.chromium.components.browser_ui.site_settings.SiteSettings;
-import org.chromium.components.user_prefs.UserPrefs;
 import org.chromium.ui.base.DeviceFormFactor;
 
 import java.util.HashMap;
@@ -92,7 +90,6 @@ public abstract class BraveMainPreferencesBase extends BravePreferenceFragment
     private static final String PREF_NOTIFICATIONS = "notifications";
     private static final String PREF_PAYMENT_METHODS = "autofill_payment_methods";
     private static final String PREF_ADDRESSES = "autofill_addresses";
-    private static final String PREF_AUTOFILL_PRIVATE_WINDOW = "autofill_private_window";
     private static final String PREF_TABS = "tabs";
     private static final String PREF_MEDIA = "media";
     private static final String PREF_APPEARANCE = "brave_appearance";
@@ -263,18 +260,6 @@ public abstract class BraveMainPreferencesBase extends BravePreferenceFragment
 
     private void prepareBravePreferences() {
         setCustomTabPreference();
-        setAutofillPrivateWindowPreference();
-    }
-
-    private void setAutofillPrivateWindowPreference() {
-        boolean isAutofillPrivateWindow =
-                UserPrefs.get(getProfile()).getBoolean(BravePref.BRAVE_AUTOFILL_PRIVATE_WINDOWS);
-        Preference preference = findPreference(PREF_AUTOFILL_PRIVATE_WINDOW);
-        assumeNonNull(preference);
-        preference.setOnPreferenceChangeListener(this);
-        if (preference instanceof ChromeSwitchPreference) {
-            ((ChromeSwitchPreference) preference).setChecked(isAutofillPrivateWindow);
-        }
     }
 
     private void setCustomTabPreference() {
@@ -412,7 +397,6 @@ public abstract class BraveMainPreferencesBase extends BravePreferenceFragment
         setPreferenceOrder(MainSettings.PREF_AUTOFILL_OPTIONS, ++passwordsAndAutofillSectionOrder);
         setPreferenceOrder(PREF_PAYMENT_METHODS, ++passwordsAndAutofillSectionOrder);
         setPreferenceOrder(PREF_ADDRESSES, ++passwordsAndAutofillSectionOrder);
-        setPreferenceOrder(PREF_AUTOFILL_PRIVATE_WINDOW, ++passwordsAndAutofillSectionOrder);
 
         int supportSectionOrder = passwordsAndAutofillSectionOrder;
         setPreferenceOrder(PREF_SUPPORT_SECTION, ++supportSectionOrder);
@@ -482,7 +466,6 @@ public abstract class BraveMainPreferencesBase extends BravePreferenceFragment
         updatePreferenceIcon(PREF_ACCESSIBILITY, R.drawable.ic_accessibility);
         updatePreferenceIcon(PREF_PRIVACY, R.drawable.ic_bar_chart_search);
         updatePreferenceIcon(PREF_ADDRESSES, R.drawable.ic_location_on);
-        updatePreferenceIcon(PREF_AUTOFILL_PRIVATE_WINDOW, R.drawable.ic_autofill);
         updatePreferenceIcon(PREF_NOTIFICATIONS, R.drawable.ic_notification);
         updatePreferenceIcon(MainSettings.PREF_DEVELOPER, R.drawable.ic_code);
         updatePreferenceIcon(MainSettings.PREF_HOMEPAGE, R.drawable.ic_browser_home);
@@ -620,9 +603,6 @@ public abstract class BraveMainPreferencesBase extends BravePreferenceFragment
         String key = preference.getKey();
         if (PREF_CLOSING_ALL_TABS_CLOSES_BRAVE.equals(key)) {
             CloseBraveManager.setClosingAllTabsClosesBraveEnabled((boolean) newValue);
-        } else if (PREF_AUTOFILL_PRIVATE_WINDOW.equals(key)) {
-            UserPrefs.get(getProfile())
-                    .setBoolean(BravePref.BRAVE_AUTOFILL_PRIVATE_WINDOWS, (boolean) newValue);
         }
 
         return true;
@@ -710,7 +690,6 @@ public abstract class BraveMainPreferencesBase extends BravePreferenceFragment
                     // navigate to from search results, so exclude them from the index.
                     indexData.removeEntry(getUniqueId(PREF_CLOSING_ALL_TABS_CLOSES_BRAVE));
                     indexData.removeEntry(getUniqueId(PREF_RATE_BRAVE));
-                    indexData.removeEntry(getUniqueId(PREF_AUTOFILL_PRIVATE_WINDOW));
                     indexData.removeEntry(getUniqueId(PREF_USE_CUSTOM_TABS));
                     // Leaf prefs from brave_main_preferences.xml that are conditionally hidden.
                     if (!BraveSearchWidgetUtils.isRequestPinAppWidgetSupported()) {
