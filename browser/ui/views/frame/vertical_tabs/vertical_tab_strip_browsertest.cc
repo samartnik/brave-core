@@ -65,6 +65,7 @@
 #include "ui/views/layout/flex_layout.h"
 #include "ui/views/layout/layout_manager.h"
 #include "ui/views/test/views_test_utils.h"
+#include "ui/views/test/widget_test.h"
 
 #if BUILDFLAG(IS_WIN)
 #include "chrome/browser/ui/view_ids.h"
@@ -2181,6 +2182,7 @@ IN_PROC_BROWSER_TEST_P(VerticalTabStripHideCompletelyTest,
   EXPECT_EQ(BraveVerticalTabStripRegionView::State::kCollapsed,
             region_view->state());
   if (!base::FeatureList::IsEnabled(tabs::kBraveVerticalTabStripEmbedded)) {
+    views::test::WidgetVisibleWaiter(vertical_tab_widget).WaitUntilInvisible();
     EXPECT_FALSE(vertical_tab_widget->IsVisible());
   }
   EXPECT_FALSE(region_view->GetVisible());
@@ -2192,6 +2194,7 @@ IN_PROC_BROWSER_TEST_P(VerticalTabStripHideCompletelyTest,
   screen->SetCursorScreenPointForTesting(mouse_position);
   browser_view()->HandleBrowserWindowMouseEvent(GetDummyEvent());
   if (!base::FeatureList::IsEnabled(tabs::kBraveVerticalTabStripEmbedded)) {
+    views::test::WidgetVisibleWaiter(vertical_tab_widget).WaitUntilInvisible();
     EXPECT_FALSE(vertical_tab_widget->IsVisible());
   }
   EXPECT_FALSE(region_view->GetVisible());
