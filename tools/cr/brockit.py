@@ -2231,13 +2231,24 @@ class Reassign(Task):
             allows_empty=True,
             no_verify=True)
 
-def fetch_chromium_dash_version(channel: str, target_platform: str) -> Version:
-    """Fetches the latest version from the Chromium Dash.
+
+def fetch_chromium_dash_version(channel: str) -> Version:
+    """Fetches the highest latest version across all platforms for a channel.
+
+    For the canary channel, the ASAN variant on Windows is also considered.
     """
-    response = requests.get(CHROMIUMDASH_LATEST_RELEASE.format(
-        channel=channel, platform=target_platform),
-                            timeout=10)
-    return Version(response.json()[0].get('version'))
+
+    def _fetch(channel: str, target_platform: str) -> Version:
+        response = requests.get(CHROMIUMDASH_LATEST_RELEASE.format(
+            channel=channel, platform=target_platform),
+                                timeout=10)
+        return Version(response.json()[0].get('version'))
+
+    platforms = ('Windows', 'Linux', 'Android', 'Mac', 'ios')
+    versions = [_fetch(channel, platform) for platform in platforms]
+    if channel == 'canary':
+        versions.append(_fetch('canary_asan', target_platform='Windows'))
+    return max(versions)
 
 
 def _fetch_chromium_tag(to: str) -> Version:
@@ -2298,24 +2309,7 @@ def _fetch_chromium_tag(to: str) -> Version:
                 f'Invalid @latest channel: "{channel}". '
                 'Valid options: canary, beta, dev, stable.')
 
-        if channel == 'canary':
-            # The canary branch has two versions, the regular and the ASAN
-            # version, and we want the highest of the two.
-            canary_version = fetch_chromium_dash_version(
-                'canary', target_platform='Windows')
-            canary_asan_version = fetch_chromium_dash_version(
-                'canary_asan', target_platform='Windows')
-            linux_version = fetch_chromium_dash_version(
-                channel='canary', target_platform='Linux')
-            adroid_version = fetch_chromium_dash_version(
-                channel='canary', target_platform='Android')
-            mac_version = fetch_chromium_dash_version(channel='canary',
-                                                      target_platform='Mac')
-            ios_verion = fetch_chromium_dash_version(channel='canary',
-                                                     target_platform='ios')
-            return max(canary_version, canary_asan_version, linux_version,
-                       adroid_version, ios_verion, mac_version)
-        return fetch_chromium_dash_version(channel, target_platform='Windows')
+        return fetch_chromium_dash_version(channel)
 
     raise InvalidInputException(
         f'Unknown label: "{to}". '
