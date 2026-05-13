@@ -2327,7 +2327,7 @@ public class BytecodeTest {
                 constructorsMatch(
                         "org/chromium/chrome/browser/tabbed_mode/TabbedAdaptiveToolbarBehavior",
                         "org/chromium/chrome/browser/tabbed_mode/BraveTabbedAdaptiveToolbarBehavior", // presubmit: ignore-long-line
-                        Context.class,
+                        Activity.class,
                         ActivityLifecycleDispatcher.class,
                         Supplier.class,
                         Supplier.class,
