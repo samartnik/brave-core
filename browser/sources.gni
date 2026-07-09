@@ -637,7 +637,7 @@ if (is_android) {
     "//brave/components/brave_sync:sync_service_impl_helper",
     "//chrome/android:jni_headers",
     "//chrome/browser/affiliations",
-    "//chrome/browser/password_manager/android:jni_headers",
+    "//chrome/browser/password_manager/android:password_manager_android",
     "//chrome/browser/password_manager/factories",
     "//chrome/browser/webdata_services",
     "//components/password_manager/core/browser/export",
