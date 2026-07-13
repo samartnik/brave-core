@@ -466,28 +466,37 @@ def CheckNalaIconOverridesExistUpstream(input_api, output_api):
     return []
 
 
-# Every upstream context menu that adds a tab group creation item
-# (R.id.add_to_new_tab_group / R.id.add_to_tab_group). Brave hides these items
-# when the "Enable tab groups" master switch is off via a Brave subclass that
-# strips them in buildMenuActionItems (BraveTabUiFeatureUtilities.removeMenuItems).
-# A NEW file here means a menu that offers tab group creation without being
-# gated - add a Brave subclass for it, then add the file below.
-_TAB_GROUP_CREATION_MENUS = {
+# Every upstream context menu whose item id matches a tab-group menu pattern
+# (add*tab*group / new*tab*group, e.g. add_to_new_tab_group, add_to_tab_group,
+# open_new_tab_in_group). Each file below has been reviewed and is either:
+#   - gated: a Brave subclass strips the creation item in buildMenuActionItems
+#     when the "Enable tab groups" master switch is off
+#     (BraveTabUiFeatureUtilities.removeMenuItems); or
+#   - allowed: the item only operates on an already-existing group (not
+#     creation), so it is intentionally left untouched.
+# A NEW file here means an unreviewed tab-group menu - classify it (gate the
+# creation item, or confirm it is an existing-group op) and add it below.
+_TAB_GROUP_MENU_FILES = {
+    # Gated (creation items stripped when the switch is off).
     'chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridContextMenuCoordinator.java',
     'chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/pinned_tabs_strip/PinnedTabStripItemContextMenuCoordinator.java',
     'chrome/android/java/src/org/chromium/chrome/browser/compositor/overlays/strip/TabContextMenuCoordinator.java',
+    # Allowed: "open new tab in group" acts on an already-existing group (the
+    # menu is anchored on that group), so it does not create a group.
+    'chrome/android/java/src/org/chromium/chrome/browser/compositor/overlays/strip/TabGroupContextMenuCoordinator.java',
 }
 
 
 def CheckTabGroupCreationMenusAreGated(input_api, output_api):
     """Ensures every menu offering tab group creation is gated by Brave.
 
-    Brave removes the "Add to (new) group" context menu items when the "Enable
+    Brave removes the tab-group creation context menu items when the "Enable
     tab groups" master switch is off. A newly added upstream menu that offers
     tab group creation would bypass that. This check runs unconditionally
     (scanning the upstream tree) so a new menu surfaces as a presubmit failure -
-    most likely during a Chromium roll - prompting review: add a Brave subclass
-    that strips the item, then add the file to _TAB_GROUP_CREATION_MENUS.
+    most likely during a Chromium roll - prompting review: gate the creation
+    item (or confirm it only touches an existing group), then add the file to
+    _TAB_GROUP_MENU_FILES.
     """
     src_dir = brave_chromium_utils.get_src_dir()
     cmd = [
@@ -498,9 +507,9 @@ def CheckTabGroupCreationMenusAreGated(input_api, output_api):
         '--name-only',
         '--extended-regexp',
         '-e',
-        r'withMenuId\(R\.id\.add_to_new_tab_group\)',
+        r'withMenuId\(R\.id\.[a-z_]*add[a-z_]*tab[a-z_]*group[a-z_]*\)',
         '-e',
-        r'withMenuId\(R\.id\.add_to_tab_group\)',
+        r'withMenuId\(R\.id\.[a-z_]*new[a-z_]*tab[a-z_]*group[a-z_]*\)',
         '--',
         'chrome/android/*.java',
     ]
@@ -517,18 +526,20 @@ def CheckTabGroupCreationMenusAreGated(input_api, output_api):
         and 'Test' not in line and '/junit/' not in line
     }
 
-    unexpected = sorted(found - _TAB_GROUP_CREATION_MENUS)
+    unexpected = sorted(found - _TAB_GROUP_MENU_FILES)
     if unexpected:
         return [
             output_api.PresubmitError(
-                'Ungated tab group creation menu(s) found upstream',
+                'Unreviewed tab group menu(s) found upstream',
                 items=unexpected,
-                long_text='These menus add a tab group creation item '
-                '(add_to_new_tab_group / add_to_tab_group) but are not gated '
-                'behind the Brave "Enable tab groups" master switch. Add a '
-                'Brave subclass that strips the item in buildMenuActionItems '
-                '(see BraveTabGridContextMenuCoordinator), then add the file to '
-                '_TAB_GROUP_CREATION_MENUS in brave/PRESUBMIT.py.')
+                long_text='These menus add an item whose id matches a tab-group '
+                'pattern (add*tab*group / new*tab*group) but have not been '
+                'reviewed for the Brave "Enable tab groups" master switch. If it '
+                'creates a group, gate it with a Brave subclass that strips the '
+                'item in buildMenuActionItems (see '
+                'BraveTabGridContextMenuCoordinator); if it only operates on an '
+                'existing group, it can be left as-is. Then add the file to '
+                '_TAB_GROUP_MENU_FILES in brave/PRESUBMIT.py.')
         ]
     return []
 
