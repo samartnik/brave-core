@@ -478,13 +478,19 @@ def CheckNalaIconOverridesExistUpstream(input_api, output_api):
 # creation item, or confirm it is an existing-group op) and add it below.
 _TAB_GROUP_MENU_FILES = {
     # Gated (creation items stripped when the switch is off).
-    'chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridContextMenuCoordinator.java',
-    'chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/pinned_tabs_strip/PinnedTabStripItemContextMenuCoordinator.java',
-    'chrome/android/java/src/org/chromium/chrome/browser/compositor/overlays/strip/TabContextMenuCoordinator.java',
-    'chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherActionMenuCoordinator.java',
+    'chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/'
+    'tasks/tab_management/TabGridContextMenuCoordinator.java',
+    'chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/'
+    'tasks/tab_management/pinned_tabs_strip/'
+    'PinnedTabStripItemContextMenuCoordinator.java',
+    'chrome/android/java/src/org/chromium/chrome/browser/compositor/'
+    'overlays/strip/TabContextMenuCoordinator.java',
+    'chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/'
+    'toolbar/top/TabSwitcherActionMenuCoordinator.java',
     # Allowed: "open new tab in group" acts on an already-existing group (the
     # menu is anchored on that group), so it does not create a group.
-    'chrome/android/java/src/org/chromium/chrome/browser/compositor/overlays/strip/TabGroupContextMenuCoordinator.java',
+    'chrome/android/java/src/org/chromium/chrome/browser/compositor/'
+    'overlays/strip/TabGroupContextMenuCoordinator.java',
 }
 
 
@@ -533,14 +539,14 @@ def CheckTabGroupCreationMenusAreGated(input_api, output_api):
             output_api.PresubmitError(
                 'Unreviewed tab group menu(s) found upstream',
                 items=unexpected,
-                long_text='These menus add an item whose id matches a tab-group '
-                'pattern (add*tab*group / new*tab*group) but have not been '
-                'reviewed for the Brave "Enable tab groups" master switch. If it '
-                'creates a group, gate it with a Brave subclass that strips the '
-                'item in buildMenuActionItems (see '
-                'BraveTabGridContextMenuCoordinator); if it only operates on an '
-                'existing group, it can be left as-is. Then add the file to '
-                '_TAB_GROUP_MENU_FILES in brave/PRESUBMIT.py.')
+                long_text='These menus add an item whose id matches a '
+                'tab-group pattern (add*tab*group / new*tab*group) but have '
+                'not been reviewed for the Brave "Enable tab groups" master '
+                'switch. If it creates a group, gate it with a Brave subclass '
+                'that strips the item in buildMenuActionItems (see '
+                'BraveTabGridContextMenuCoordinator); if it only operates on '
+                'an existing group, it can be left as-is. Then add the file '
+                'to _TAB_GROUP_MENU_FILES in brave/PRESUBMIT.py.')
         ]
     return []
 
