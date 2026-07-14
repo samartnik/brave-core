@@ -7,6 +7,7 @@ package org.chromium.chrome.browser.toolbar.top;
 
 import org.chromium.base.BravePreferenceKeys;
 import org.chromium.base.supplier.MonotonicObservableSupplier;
+import org.chromium.build.annotations.NullMarked;
 import org.chromium.chrome.browser.preferences.ChromeSharedPreferences;
 import org.chromium.chrome.browser.profiles.Profile;
 import org.chromium.chrome.browser.tabmodel.TabModelSelector;
@@ -21,6 +22,7 @@ import org.chromium.ui.modelutil.MVCListAdapter.ModelList;
  * the tab switcher button long-press menu when the Brave "Enable tab groups" master switch is off.
  * Instantiated in place of the upstream class via a plaster redirect.
  */
+@NullMarked
 public class BraveTabSwitcherActionMenuCoordinator extends TabSwitcherActionMenuCoordinator {
     public BraveTabSwitcherActionMenuCoordinator(
             Profile profile,
