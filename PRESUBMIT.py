@@ -481,6 +481,7 @@ _TAB_GROUP_MENU_FILES = {
     'chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/TabGridContextMenuCoordinator.java',
     'chrome/android/features/tab_ui/java/src/org/chromium/chrome/browser/tasks/tab_management/pinned_tabs_strip/PinnedTabStripItemContextMenuCoordinator.java',
     'chrome/android/java/src/org/chromium/chrome/browser/compositor/overlays/strip/TabContextMenuCoordinator.java',
+    'chrome/browser/ui/android/toolbar/java/src/org/chromium/chrome/browser/toolbar/top/TabSwitcherActionMenuCoordinator.java',
     # Allowed: "open new tab in group" acts on an already-existing group (the
     # menu is anchored on that group), so it does not create a group.
     'chrome/android/java/src/org/chromium/chrome/browser/compositor/overlays/strip/TabGroupContextMenuCoordinator.java',
@@ -511,7 +512,7 @@ def CheckTabGroupCreationMenusAreGated(input_api, output_api):
         '-e',
         r'withMenuId\(R\.id\.[a-z_]*new[a-z_]*tab[a-z_]*group[a-z_]*\)',
         '--',
-        'chrome/android/*.java',
+        '*.java',
     ]
     try:
         out = input_api.subprocess.check_output(cmd, encoding='utf-8')
