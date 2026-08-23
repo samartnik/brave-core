@@ -872,8 +872,6 @@
 -PageInfoBubbleViewTest.*
 -PageInfoTest.IncognitoPermissionsDontShowAsk # Change upstream logic for incognito windows. https://github.com/brave/brave-browser/issues/24720
 -PeriodicBackgroundSyncPermissionContextWithPermissionTest.DefaultSearchEngine
--PermissionDashboardUnitTest.DisplayLHSIndicatorForCamera*
--PermissionDashboardUnitTest.DisplayLHSIndicatorTooltip
 -PermissionsUpdaterTest.GrantAndRevokeOptionalPermissions
 -ProfileAttributesStorageTest.*
 -ProfileCustomizationBubbleSyncControllerTest.ShouldAbortIfCalledAgain
