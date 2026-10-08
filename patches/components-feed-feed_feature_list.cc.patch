@@ -1,5 +1,5 @@
 diff --git a/components/feed/feed_feature_list.cc b/components/feed/feed_feature_list.cc
-index 4ef72a4b65288af7eddddd331d396c05dc72160c..c0e0498418dc421f21eb7172d87605b31a87a31d 100644
+index 63d8ef3e5b784e6f093052bd0e6a84f7aaaed79c..2505b960c235f7c0799b286da036eeb082e74506 100644
 --- a/components/feed/feed_feature_list.cc
 +++ b/components/feed/feed_feature_list.cc
 @@ -21,7 +21,13 @@ namespace feed {
