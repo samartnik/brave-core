@@ -1,11 +1,12 @@
 diff --git a/third_party/rust/syn/v2/BUILD.gn b/third_party/rust/syn/v2/BUILD.gn
-index 1bf66671cd9562b7ca827edcdd048fef83bf2875..2bca611baa32d0ac76f9994749be833d7b58a0d0 100644
+index 1bf66671cd9562b7ca827edcdd048fef83bf2875..e3c8da6ce6abf1dc1ee697f32e9737f84f5dea16 100644
 --- a/third_party/rust/syn/v2/BUILD.gn
 +++ b/third_party/rust/syn/v2/BUILD.gn
-@@ -97,6 +97,7 @@ cargo_crate("lib") {
+@@ -97,6 +97,8 @@ cargo_crate("lib") {
      "printing",
      "proc-macro",
      "visit",
++    "fold",
 +    "visit-mut",
    ]
  
