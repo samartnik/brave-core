@@ -1,5 +1,5 @@
 diff --git a/components/omnibox/browser/BUILD.gn b/components/omnibox/browser/BUILD.gn
-index 6626942a958d448ff4aeea7f82cacbb0eea13608..da153ef7d7425d131c41a45df8c3207872a0c5a5 100644
+index 6626942a958d448ff4aeea7f82cacbb0eea13608..17ba10e1a14fbac1e6cc6ed24a706e374d7bb27f 100644
 --- a/components/omnibox/browser/BUILD.gn
 +++ b/components/omnibox/browser/BUILD.gn
 @@ -376,6 +376,7 @@ static_library("browser") {
@@ -34,7 +34,7 @@ index 6626942a958d448ff4aeea7f82cacbb0eea13608..da153ef7d7425d131c41a45df8c32078
  }
  
  if (!is_ios) {
-@@ -1171,6 +1175,7 @@ if (!is_ios) {
+@@ -1171,12 +1175,14 @@ if (!is_ios) {
          traits_deps = [ "//third_party/omnibox_proto" ]
        },
      ]
@@ -42,3 +42,10 @@ index 6626942a958d448ff4aeea7f82cacbb0eea13608..da153ef7d7425d131c41a45df8c32078
    }
  
    mojom("suggest_template_info_mojo_bindings") {
+     sources = [ "suggest_template_info.mojom" ]
+     webui_module_path = "chrome://resources/mojo/components/omnibox/browser"
+     public_deps = [ "//url/mojom:url_mojom_gurl" ]
++    generate_legacy_js_bindings = true
+   }
+ 
+   source_set("suggest_template_info_mojo_utils") {
