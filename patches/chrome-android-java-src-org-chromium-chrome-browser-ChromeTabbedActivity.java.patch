@@ -1,5 +1,5 @@
 diff --git a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
-index 81101ad649d7e9358f763600fb3f4f4b6b1e9005..1e2128f4da3f9876923462cfdf70ca66a0eda48d 100644
+index 81101ad649d7e9358f763600fb3f4f4b6b1e9005..d5ed440dd7b5f2739227842bd153a5a576ef3858 100644
 --- a/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 +++ b/chrome/android/java/src/org/chromium/chrome/browser/ChromeTabbedActivity.java
 @@ -994,6 +994,14 @@ public class ChromeTabbedActivity extends ChromeActivity implements PreAttachInt
@@ -29,14 +29,3 @@ index 81101ad649d7e9358f763600fb3f4f4b6b1e9005..1e2128f4da3f9876923462cfdf70ca66
                          if (mMultiInstanceManager != null) {
                              mMultiInstanceManager.onTabStateInitialized();
                          }
-@@ -5587,6 +5600,10 @@ public class ChromeTabbedActivity extends ChromeActivity implements PreAttachInt
-     public void onSaveInstanceState(Bundle outState) {
-         try (TraceEvent e = TraceEvent.scoped("ChromeTabbedActivity.onSaveInstanceState")) {
-             super.onSaveInstanceState(outState);
-+            if (areTabModelsInitialized()
-+                    && mTabModelSelector.getModel(/* incognito= */ true).getCount() > 0) {
-+                CipherLazyHolder.sCipherInstance.getCipher(javax.crypto.Cipher.ENCRYPT_MODE);
-+            }
-             CipherLazyHolder.sCipherInstance.saveToBundle(outState);
-             saveToBaseBundle(outState);
-         }

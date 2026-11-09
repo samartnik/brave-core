@@ -50,6 +50,7 @@ import java.util.List;
                 "Changes device-wide night mode and battery saver state, and recreates"
                         + " ChromeTabbedActivity.")
 public class PrivateTabSystemUiModeChangeTest {
+    private static final String ABOUT_BLANK_URL = "about:blank";
     private static final String NIGHT_MODE_COMMAND = "cmd uimode night";
     private static final String NIGHT_MODE_PREFIX = "Night mode: ";
     private static final String NIGHT_MODE_ENABLED = "yes";
@@ -80,6 +81,12 @@ public class PrivateTabSystemUiModeChangeTest {
         prepareSystemUiModeBaseline();
 
         mActivityTestRule.startMainActivityOnBlankPage();
+        // Saving this tab creates the private cipher key. A private NTP alone never does, so the
+        // recreated activity would skip private tabs and leak the stashed one (known issue).
+        assertTrue(
+                mActivityTestRule
+                        .loadUrlInNewTab(ABOUT_BLANK_URL, /* incognito= */ true)
+                        .isIncognito());
         assertTrue(mActivityTestRule.newIncognitoTabFromMenu().isIncognito());
     }
 
